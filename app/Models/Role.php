@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Role;
+
 class Role extends Model
 {
     use HasFactory;
@@ -12,7 +14,7 @@ class Role extends Model
     protected $fillable = ["role", "superior"];
 
     public function userRole() {
-        return $this->hasOne("App\Models\UserRole");
+        return $this->belongsToMany(User::class, 'users_roles')->orderBy('users_roles.created_at', 'asc');
     }
 
     public function superior() {

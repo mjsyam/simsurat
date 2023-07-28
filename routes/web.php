@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// use App\Http\Middleware\Role;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::group(['middleware'=>['auth', 'role:admin']], function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+});
+
+// contoh menggunaan middleware untuk filter berdasarkan role
+// Route::group(['middleware'=>['auth', 'Role:admin']], function () {
+//      Route yang ingin diakses
+// });

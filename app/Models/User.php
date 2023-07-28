@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Role;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -47,7 +49,7 @@ class User extends Authenticatable
     ];
 
     public function userRole() {
-        return $this->hasOne("App\Models\UserRole");
+        return $this->belongsToMany(Role::class, 'users_roles')->orderBy('users_roles.created_at', 'asc');
     }
 
     public function letterReceiver() {
