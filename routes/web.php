@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 // use App\Http\Middleware\Role;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,7 @@ use App\Http\Controllers\HomeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('admin-pagination', [AdminController::class, 'getUsers']);
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,3 +31,4 @@ Route::group(['middleware'=>['auth', 'role:admin']], function () {
 // Route::group(['middleware'=>['auth', 'Role:admin']], function () {
 //      Route yang ingin diakses
 // });
+// Route::resource('admin', [AdminController::class, 'index']);

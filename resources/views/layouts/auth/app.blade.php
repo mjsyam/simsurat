@@ -17,8 +17,22 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <div id="app w-100">
+        <div class="row w-100" style="min-height: 100vh;">
+            <div class="col-lg-8 bg-image d-flex align-items-center" style="background-image: url('{{asset('images/Gedung ITK-01.png') }}'); background-repeat: no-repeat; background-size: cover;height: 100vh">
+                <div class="bg-light rounded-circle shadow d-flex align-items-center m-auto mt-auto" style="width: 150px; height: 150px;">
+                    <img class="w-100 m-auto" src="{{ asset('images/logo-itk.png') }}" alt="">
+                </div>
+            </div>
+            <div class="col-lg-4 d-flex justify-content-center align-items-center">
+                <div class="p-5 w-100">
+                    @yield('content')
+                </div>
+            </div>
+
+
+        </div>
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -70,11 +84,7 @@
                     </ul>
                 </div>
             </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+        </nav> --}}
     </div>
 </body>
 </html>
