@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("title", 50);
             $table->string("refrences_number", 30);
             $table->string("letter_destination", 40)->nullable();
-            $table->string("body");
+            $table->text("body");
             $table->string("sender", 40)->nullable();
             $table->timestamps();
         });

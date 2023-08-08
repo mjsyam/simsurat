@@ -15,17 +15,13 @@ use App\Http\Controllers\HomeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('admin-pagination', [AdminController::class, 'getUsers']);
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('test/{id}', [AdminController::class, 'index']);
-Route::get('/test', function () {
-    return view('test');
-});
-
-// Auth::routes();
+Auth::routes();
 
 Route::group(['middleware'=>['auth', 'role:admin']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -35,3 +31,4 @@ Route::group(['middleware'=>['auth', 'role:admin']], function () {
 // Route::group(['middleware'=>['auth', 'Role:admin']], function () {
 //      Route yang ingin diakses
 // });
+// Route::resource('admin', [AdminController::class, 'index']);
