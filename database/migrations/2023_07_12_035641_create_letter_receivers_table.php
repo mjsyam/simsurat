@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('letter_receivers', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid("user_id")->constrained("users");
-            $table->foreignUuid("role_id")->constrained("roles");
+            $table->foreignId("role_id")->constrained("roles");
             $table->foreignUuid("disposition_id")->constrained("users")->default(null);
             $table->foreignUuid("letter_id")->constrained("letters");
             $table->timestamps();

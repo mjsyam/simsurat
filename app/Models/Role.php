@@ -12,7 +12,7 @@ class Role extends Model
     protected $fillable = ["role", "superior"];
 
     public function userRole() {
-        return $this->hasOne("App\Models\UserRole");
+        return $this->belongsToMany(User::class, 'users_roles')->orderBy('users_roles.created_at', 'asc');
     }
 
     public function superior() {
