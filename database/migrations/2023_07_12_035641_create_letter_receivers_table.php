@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid("user_id")->constrained("users");
             $table->foreignId("role_id")->constrained("roles");
-            $table->foreignUuid("disposition_id")->constrained("users")->default(null);
+            $table->foreignUuid("disposition_id")->nullable()->constrained("users");
             $table->foreignUuid("letter_id")->constrained("letters");
             $table->timestamps();
         });
