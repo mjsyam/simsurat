@@ -31,6 +31,7 @@ Route::group(['middleware'=>['auth']], function () {
 Route::group(['middleware'=>['auth']], function () {
     Route::get('/approve', [ApproveController::class, 'index'])->name('approve.index');
     Route::get('/approve/table', [ApproveController::class, 'tableApprove'])->name('approve.tableApprove');
+    Route::post('/approve', [ApproveController::class, 'approveLetter'])->name('approve.approveLetter');
 });
 
 // contoh menggunaan middleware untuk filter berdasarkan role

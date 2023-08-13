@@ -16,6 +16,11 @@ class LetterReceiver extends Model
         return $this->belongsTo(Letter::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function letterStatuses()
     {
         return $this->hasMany(LetterStatus::class);
