@@ -9,9 +9,9 @@ class LetterCategory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["category"];
+    protected $guarded = [];
 
-    public function letter() {
-        return $this->hasMany("App\Models\Letter");
+    public function letters() {
+        return $this->hasMany(Letter::class);
     }
 }

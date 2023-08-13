@@ -9,25 +9,25 @@ class Letter extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["title", "refrences_number", "body", "sender", "user_id", "letter_destination", "letter_category_id"];
+    protected $guarded = [];
 
     public function letterCategory() {
-        return $this->belongsTo("App\Models\LetterCategory");
+        return $this->belongsTo(LetterCategory::class);
     }
 
     public function user() {
-        return $this->belongsTo("App\Models\User");
+        return $this->belongsTo(User::class);
     }
 
     public function letterHistories() {
-        return $this->hasMany("App\Models\LetterHistory");
+        return $this->hasMany(LetterHistory::class);
     }
 
     public function letterReceivers() {
-        return $this->hasMany("App\Models\LetterReceiver");
+        return $this->hasMany(LetterReceiver::class);
     }
 
     public function role() {
-        return $this->belongsTo("App\Models\Role");
+        return $this->belongsTo(Role::class);
     }
 }

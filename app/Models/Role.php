@@ -9,21 +9,21 @@ class Role extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["role", "superior"];
+    protected $guarded = [];
 
-    public function userRole() {
-        return $this->belongsToMany(User::class, 'users_roles')->orderBy('users_roles.created_at', 'asc');
+    public function userRoles() {
+        return $this->belongsToMany(User::class, 'users_roles');
     }
 
-    public function superior() {
-        return $this->belongsTo("App\Models\Role");
+    public function parent() {
+        return $this->belongsTo(Role::class, "parent_id");
     }
 
     public function letters() {
-        return $this->hasMany("App\Models\Letter");
+        return $this->hasMany(Letter::class);
     }
 
     public function letterReceivers() {
-        return $this->hasMany("App\Models\letterReceiver");
+        return $this->hasMany(letterReceiver::class);
     }
 }

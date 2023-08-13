@@ -19,14 +19,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'signature',
-        'avatar',
-        'status'
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -48,15 +41,23 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function userRole() {
+    public function userRoles()
+    {
         return $this->belongsToMany(Role::class, 'user_roles');
     }
 
-    public function letterReceiver() {
-        return $this->hasMany("App\Models\LetterReceiver");
+    public function identifiers()
+    {
+        return $this->belongsToMany(Identifier::class, 'user_roles');
     }
 
-    public function letter() {
-        return $this->hasMany("App\Models\letter");
+    public function letterReceivers()
+    {
+        return $this->hasMany(LetterReceiver::class);
+    }
+
+    public function letters()
+    {
+        return $this->hasMany(Letter::class);
     }
 }
