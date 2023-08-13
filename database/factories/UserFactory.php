@@ -19,7 +19,6 @@ class UserFactory extends Factory
     {
         $unique = fake()->unique()->safeEmail();
         return [
-            "id" => $unique,
             'name' => fake()->name(),
             'email' => $unique,
             'email_verified_at' => now(),

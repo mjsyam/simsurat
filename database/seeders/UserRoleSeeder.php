@@ -24,7 +24,7 @@ class UserRoleSeeder extends Seeder
             // dd($user);
             UserRole::create([
                 'role_id' => $i,
-                'user_id' => $user->email,
+                'user_id' => $user->id,
             ]);
             if($i < $role->count()){
                 $i++;

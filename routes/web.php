@@ -20,8 +20,6 @@ use App\Http\Controllers\Letter\SentLetterController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/test', [SentLetterController::class, 'create']);
-Route::post('/test', [SentLetterController::class, 'store']);
 
 Auth::routes();
 
