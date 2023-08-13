@@ -49,7 +49,7 @@ class User extends Authenticatable
     ];
 
     public function userRole() {
-        return $this->belongsToMany(Role::class, 'users_roles')->orderBy('users_roles.created_at', 'asc');
+        return $this->belongsToMany(Role::class, 'user_roles')->orderBy('users_roles.created_at', 'asc');
     }
 
     public function letterReceiver() {
