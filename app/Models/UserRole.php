@@ -9,13 +9,18 @@ class UserRole extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["role_id", "user_id"];
+    protected $guarded = [];
 
     public function role() {
-        return $this->belongsTo("App\Models\Role");
+        return $this->belongsTo(Role::class);
     }
 
     public function user() {
-        return $this->belongsTo("App\Models\User");
+        return $this->belongsTo(User::class);
+    }
+
+    public function identifier()
+    {
+        return $this->belongsTo(Identifier::class);
     }
 }

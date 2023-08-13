@@ -9,9 +9,10 @@ class LetterStatus extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["letter_receiver_id", "status", "read"];
+    protected $guarded = [];
 
-    public function letterReceiver() {
-        return $this->belongsTo("App\Models\LetterReceiver");
+    public function letterReceiver()
+    {
+        return $this->belongsTo(LetterReceiver::class);
     }
 }

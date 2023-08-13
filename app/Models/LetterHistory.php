@@ -9,9 +9,9 @@ class LetterHistory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["note"];
+    protected $guarded = [];
 
     public function letter() {
-        return $this->belongsTo("App\Models\Letter");
+        return $this->belongsTo(Letter::class);
     }
 }

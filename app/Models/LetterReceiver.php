@@ -9,17 +9,20 @@ class LetterReceiver extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["user_id", "send_letter_id", "disposition_id"];
+    protected $guarded = [];
 
-    public function letter() {
-        return $this->belongsTo("App\Models\Letter");
+    public function letter()
+    {
+        return $this->belongsTo(Letter::class);
     }
 
-    public function letterStatus() {
-        return $this->hasMany("App\Models\LetterStatus");
+    public function letterStatuses()
+    {
+        return $this->hasMany(LetterStatus::class);
     }
 
-    public function role() {
-        return $this->belongsTo("App\Models\Role");
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 }
