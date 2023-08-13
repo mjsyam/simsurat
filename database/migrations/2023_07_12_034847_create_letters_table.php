@@ -12,9 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('letters', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->foreignUuid("user_id")->constrained("users");
-            $table->foreignUuid("letter_category_id")->constrained("letter_categories");
+            $table->id();
+            // $table->uuid('id')->primary();
+            // $table->foreignUuid("user_id")->constrained("users");
+            $table->foreignId("user_id")->constrained("users");
+            // $table->foreignUuid("letter_category_id")->constrained("letter_categories");
+            $table->foreignId("letter_category_id")->constrained("letter_categories");
             $table->foreignId("role_id")->constrained("roles");
             $table->string("title", 50);
             $table->string("refrences_number", 30);

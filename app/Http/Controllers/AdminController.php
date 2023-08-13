@@ -48,7 +48,7 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'string',
             'email' => 'string|unique:users,email',
-            'password' => 'string|min:8|confirmed',
+            'password' => 'string|min:8',
             'signature' => 'string|nullable',
             'avatar' => 'string|nullable',
         ]);

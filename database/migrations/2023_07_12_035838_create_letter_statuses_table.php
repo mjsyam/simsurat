@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('letter_statuses', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->foreignUuid("letter_receiver_id")->constrained("letter_receivers");
+            $table->id();
+            // $table->uuid('id')->primary();
+            // $table->foreignUuid("letter_receiver_id")->constrained("letter_receivers");
+            $table->foreignId("letter_receiver_id")->constrained("letter_receivers");
             $table->enum("status", ["waiting", "sented", "received", "disposition"]);
             $table->boolean("read")->default(false);
             $table->timestamps();
