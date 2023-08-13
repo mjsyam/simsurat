@@ -17,13 +17,14 @@ class UserRoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = User::get("id");
+        $users = User::all();
         $role = Role::get("id");
         $i = 1;
         foreach($users as $user){
+            // dd($user);
             UserRole::create([
                 'role_id' => $i,
-                'user_id' => $user->id,
+                'user_id' => $user->email,
             ]);
             if($i < $role->count()){
                 $i++;

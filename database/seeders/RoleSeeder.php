@@ -14,6 +14,9 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         collect([
+            [
+                'role' => "admin",
+            ],
             // 1
             [
                 'role' => "rektor",
