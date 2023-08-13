@@ -28,7 +28,7 @@
 		</div>
 
 		<!-- ### $Sidebar Menu ### -->
-		<ul class="sidebar-menu scrollable pos-r">
+		<ul class="scrollable">
 			@include('layouts.partials.menu')
 		</ul>
 	</div>

@@ -11,19 +11,15 @@
             @include('layouts.partials.topbar')
 
             <!-- ### $App Screen Content ### -->
-            <main class='main-content bgc-grey-100'>
-                <div id='mainContent'>
-                    <div class="container-fluid">
+            <div class="container-fluid py-5 px-10">
 
-                        <h4 class="c-grey-900 mT-10 mB-30">@yield('page-header')</h4>
+                <h4 class="c-grey-900 mT-10 mB-30">@yield('page-header')</h4>
 
-                        @include('layouts.partials.messages')
+                @include('layouts.partials.messages')
 
-                        @yield('content')
+                @yield('content')
 
-                    </div>
-                </div>
-            </main>
+            </div>
             <!-- ### $App Screen Footer ### -->
             <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600">
                 <span>Copyright © {{ date('Y') }} Designed by
@@ -36,7 +32,7 @@
         @include('layouts.partials.sidebar')
 
     </div>
-
+    
     <script src="{{ asset('/js/app.js') }}"></script>
 
     <!-- Global js content -->
@@ -45,8 +41,8 @@
 
     <!-- Specific js content placeholder -->
     @stack('js')
-    <!-- End of specific js content placeholder --> --}}
 
+    {{-- <script src="{{asset('/datatable/datatables.bundle.js')}}"></script> --}}
 </body>
 
 </html>

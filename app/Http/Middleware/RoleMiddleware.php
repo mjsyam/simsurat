@@ -18,12 +18,12 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next, $role)
     {
         // Not Logged
-        if (!Auth::check()) {   
+        if (!Auth::check()) {
             return redirect('/login');
         }
-        
+
         // Not allowed
-        if (!str_contains($role, Auth::user()->userRole->first()->role)) {
+        if (!str_contains($role, Auth::user()->userRoles->first()->role)) {
             return abort(404);
         }
         return $next($request);

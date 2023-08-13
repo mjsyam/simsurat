@@ -10,10 +10,8 @@
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('/css/rtl.css') }}" rel="stylesheet">
-
-
-    <!-- Global css content -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	{{-- <link href="{{ asset('/datatable/datatables.bundle.css') }}" rel="stylesheet" type="text/css" /> --}}
 
     <!-- End of global css content-->
 
@@ -33,5 +31,15 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    
+    <link href="{{asset('custom/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('custom/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
+	<link href="{{asset('custom/datatable/datatables.bundle.css')}}" rel="stylesheet" type="text/css" />
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css" rel="stylesheet">
 
+    {{-- <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="{{asset('custom/js/scripts.bundle.js')}}"></script>
+
+    <script src="{{asset('custom/datatable/datatables.bundle.js')}}"></script>
 </head>
