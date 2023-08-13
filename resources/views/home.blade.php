@@ -3,16 +3,8 @@
 
 @include('layouts.head')
 
-<body class="app">
-
-
-    @include('layouts.partials.spinner')
-
-
+<body>
     <div>
-        <!-- #Left Sidebar ==================== -->
-        @include('layouts.partials.sidebar')
-
         <!-- #Main ============================ -->
         <div class="page-container">
             <!-- ### $Topbar ### -->
@@ -39,6 +31,10 @@
                     reserved.</span>
             </footer>
         </div>
+
+        <!-- #Left Sidebar ==================== -->
+        @include('layouts.partials.sidebar')
+
     </div>
 
     {{-- @yield('script')
@@ -51,37 +47,6 @@
     <!-- Specific js content placeholder -->
     @stack('js')
     <!-- End of specific js content placeholder --> --}}
-
-
-
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
-
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                  document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                        {{ __('You are logged in!') }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </body>
 
