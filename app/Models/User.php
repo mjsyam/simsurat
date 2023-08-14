@@ -43,7 +43,7 @@ class User extends Authenticatable
 
     public function userRoles()
     {
-        return $this->belongsToMany(Role::class, 'user_roles')->orderBy('user_roles.created_at', 'asc');
+        return $this->belongsToMany(Role::class, 'user_roles');
     }
 
     public function identifiers()

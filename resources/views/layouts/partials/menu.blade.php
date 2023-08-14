@@ -22,6 +22,15 @@
     </a>
 </li>
 <li class="nav-item mt-3">
+    {{-- <a class="btn sidebar-link {{ Str::startsWith($route, ADMIN . '.users') ? 'actived' : '' }}" href="{{ route(ADMIN . '.users.index') }}"> --}}
+    <a class="btn sidebar-link" href={{route("sent.letter-index")}}>
+        <span class="icon-holder">
+            <i class="c-brown-500 ti-user"></i>
+        </span>
+        <span class="">Kirim Surat</span>
+    </a>
+</li>
+<li class="nav-item mt-3">
     {{-- <a class="btn sidebar-link {{ Str::startsWith($route, ADMIN . '.pengaturan') ? 'actived' : '' }}" href="{{ route(ADMIN . '.pengaturan.index') }}"> --}}
     <a class="btn sidebar-link" href="">
         <span class="icon-holder">

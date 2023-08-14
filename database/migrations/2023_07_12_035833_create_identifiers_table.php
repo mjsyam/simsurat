@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('letter_categories', function (Blueprint $table) {
-            // $table->uuid('id')->primary();
+        Schema::create('identifiers', function (Blueprint $table) {
             $table->id();
-            $table->string("name", 40);
+            $table->foreignId("parent_id")->nullable()->constrained("identifiers");
+            $table->string("name");
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('letter_categories');
+        Schema::dropIfExists('identifiers');
     }
 };
