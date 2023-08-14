@@ -14,4 +14,8 @@ class LetterHistory extends Model
     public function letter() {
         return $this->belongsTo(Letter::class);
     }
+
+    public function approver() {
+        return $this->belongsTo(User::class, "approver_id");
+    }
 }

@@ -7,11 +7,18 @@ use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 use Auth;
+use App\Models\LetterReceiver;
 
 class InboxController extends Controller
 {
     public function index() {
         return view("inbox.index");
+    }
+
+    public function disposition($request){
+        LetterReceiver::update([
+            'disposition_id' => $request->disposition_id,
+        ]);
     }
 
     public function tableInbox() {
@@ -25,12 +32,18 @@ class InboxController extends Controller
             ->orWhere('letter_statuses.status', '=', 'received')
             ->orderBy('letters.id', 'DESC')
             ->get();
+            
             return DataTables::of($query)
             ->addColumn('action', function ($action) {
                 $detail = '
                 <li>
-                    <div class="btn-detail" id="btn-'. $action->id . '">
-                        <a href="" data-bs-toggle="modal" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
+                    <div class="btn-detail">
+                        <a href="" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="btn-detail">
+                        <a href="/disposition/'. $action->letter_id .'" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Disposisi</a>
                     </div>
                 </li>
                 ';

@@ -32,8 +32,17 @@ Route::group(['middleware'=>['auth']], function () {
 Route::group(['middleware'=>['auth']], function () {
     Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');
     Route::get('/inbox/table', [InboxController::class, 'tableInbox'])->name('inbox.tableInbox');
+    Route::post('/disposition/{disposition_id}', [InboxController::class, 'disposition'])->name('inbox.disposition');
     Route::get('/approve', [ApproveController::class, 'index'])->name('approve.index');
     Route::get('/approve/table', [ApproveController::class, 'tableApprove'])->name('approve.tableApprove');
+    Route::post('/approve', [ApproveController::class, 'approveLetter'])->name('approve.approveLetter');
+});
+
+Route::group(['middleware'=>['auth']], function () {
+    Route::get('/letter/sent', [SentLetterController::class, 'index'])->name('sent.letter-index');
+    Route::get('/letter/sent/table', [SentLetterController::class, 'sentLetterTable'])->name('sent.letter-table');
+    Route::get('/letter/sent/create', [SentLetterController::class, 'create'])->name('sent.letter-create');
+    Route::post('/letter/sent/create', [SentLetterController::class, 'store'])->name('sent.letter-store');
 });
 
 // contoh menggunaan middleware untuk filter berdasarkan role
