@@ -31,7 +31,7 @@
 
     <script>
         $(document).ready(function() {
-            const dataTableEpprove = $('#tb_family_content').DataTable({
+            const dataTableEpprove = $('#sent_letter_table').DataTable({
                 processing: true,
                 serverSide: true,
                 retrieve: true,
@@ -57,14 +57,18 @@
                 "<'col-12 col-lg-7 d-flex align-items-center justify-content-center justify-content-lg-end'p>" +
                 ">",
                 ajax: {
-                    url : "{{route('approve.tableApprove')}}",
+                    url : "{{route('sent.letter-table')}}",
+                    data: function (data) {
+                        data.userId = {{$userId}}
+                    }
                 },
 
                 columns: [
                 { data: 'DT_RowIndex'},
+                { data: 'refrences_number'},
                 { data: 'title'},
-                { data: 'name'},
-                { data: 'email'},
+                { data: 'category'},
+                { data: 'created_at'},
                 { data: 'action'},
                 ],
             });

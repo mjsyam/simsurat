@@ -11,6 +11,7 @@ use App\Models\LetterCategory;
 use App\Models\LetterReceiver;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Carbon\Carbon;
 
 class SentLetterController extends Controller
 {
@@ -138,7 +139,7 @@ class SentLetterController extends Controller
 
     public function sentLetterTable(Request $request) {
         if (request()->ajax()) {
-            $letters = Letter::whereId($request->userId)->orderBy('created_at', 'desc');
+            $letters = Letter::where('user_id', $request->userId)->with('LetterCategory')->orderBy('created_at', 'desc')->get();
 
             return DataTables::of($letters)
             ->addColumn('action', function ($action) {
@@ -158,6 +159,9 @@ class SentLetterController extends Controller
             })
             ->addColumn('category', function ($lettter) {
                 return $lettter->letterCategory->name;
+            })
+            ->addColumn('created_at', function ($lettter) {
+                return Carbon::parse($lettter->created_at)->format('Y-m-d H:i:s');
             })
             ->addIndexColumn()
             ->rawColumns(['action'])

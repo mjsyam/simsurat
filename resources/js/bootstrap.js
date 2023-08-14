@@ -42,7 +42,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // import './skycons';
 // import './vectorMaps';
 // import './chat';
-// import './datatable';
+import './datatable';
 // import './datetimepicker';
 // import './email';
 // // import './fullcalendar';
