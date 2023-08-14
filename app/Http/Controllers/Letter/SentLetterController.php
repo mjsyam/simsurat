@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Letter;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
+use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 use App\Models\User;
 use App\Models\Letter;
 use App\Models\LetterCategory;
 use App\Models\LetterReceiver;
-use Illuminate\Http\Request;
-use Yajra\DataTables\Facades\DataTables;
-use Carbon\Carbon;
 
 class SentLetterController extends Controller
 {
@@ -144,11 +146,11 @@ class SentLetterController extends Controller
             $letters = Letter::where('user_id', $request->userId)->with('LetterCategory')->orderBy('created_at', 'desc')->get();
 
             return DataTables::of($letters)
-            ->addColumn('action', function ($action) {
+            ->addColumn('action', function ($letter) {
                 $detail = '
                 <li>
-                    <div class="btn-detail" id="btn-'. $action->id . '">
-                        <a href="" data-bs-toggle="modal" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
+                    <div class="btn-detail">
+                        <a href="'. route('sent.letter-detail', ['id' => 1]) . '" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
                     </div>
                 </li>
                 ';
@@ -169,5 +171,13 @@ class SentLetterController extends Controller
             ->rawColumns(['action'])
             ->make(true);
         }
+    }
+
+    public function exportPdf(string $id)
+    {
+        $letter = Letter::whereId($id)->first();
+        return view('letterPdf', compact(['letter']));
+        $pdf = Pdf::loadView('letterPdf', compact(['letter']));
+        return $pdf->download('sample.pdf');
     }
 }

@@ -37,6 +37,9 @@ Route::group(['middleware'=>['auth']], function () {
 
 Route::group(['middleware'=>['auth']], function () {
     Route::get('/letter/sent', [SentLetterController::class, 'index'])->name('sent.letter-index');
+    Route::get('/letter/sent/detail/{id}', [SentLetterController::class, 'show'])->name('sent.letter-detail');
+    Route::get('/letter/sent/detail/{id}/pdf', [SentLetterController::class, 'exportPdf'])->name('sent.letter-exports');
+
     Route::get('/letter/sent/table', [SentLetterController::class, 'sentLetterTable'])->name('sent.letter-table');
     Route::get('/letter/sent/create', [SentLetterController::class, 'create'])->name('sent.letter-create');
     Route::post('/letter/sent/create', [SentLetterController::class, 'store'])->name('sent.letter-store');

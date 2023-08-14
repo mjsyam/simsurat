@@ -19,6 +19,7 @@ return new class extends Migration
             // $table->foreignUuid("letter_category_id")->constrained("letter_categories");
             $table->foreignId("letter_category_id")->constrained("letter_categories");
             $table->foreignId("role_id")->constrained("roles");
+            $table->date("date");
             $table->string("title", 50);
             $table->string("refrences_number", 30);
             $table->string("letter_destination", 40)->nullable();
