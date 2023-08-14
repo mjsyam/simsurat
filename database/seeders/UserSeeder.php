@@ -4,6 +4,11 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Faker\Factory as Faker;
+
+use App\Models\User;
 
 class UserSeeder extends Seeder
 {
@@ -12,6 +17,19 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(20)->create();
+        $faker = Faker::create();
+        // \App\Models\User::factory(20)->create();
+        for ($i = 0; $i <= 10; $i++){
+            User::create([
+                'name' => $faker->name(),
+                'email' => $faker->unique()->safeEmail(),
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => str::random(10),
+                'signature' => "beta",
+                'avatar' => "beta",
+            ]);
+        }
     }
 }
