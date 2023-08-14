@@ -138,7 +138,7 @@ class SentLetterController extends Controller
             })->with('LetterCategory')->orderBy('created_at', 'desc');
 
             return DataTables::of($letters)
-            ->addColumn('action', function ($action) {
+            ->addColumn('action', function ($letter) {
                 $detail = '
                 <li>
                     <div class="btn-detail">
