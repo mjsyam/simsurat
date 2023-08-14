@@ -6,7 +6,7 @@
         <h3 class="">Surat yang butuh Approval</h3><br>
         <div class="bgc-white bd bdrs-3 p-20 mB-20 mt-4">
             <div class="table-responsive">
-                <table class="table table-striped" id="tb_family_content">
+                <table class="table table-striped" id="tb_approve">
                     <thead>
                         <tr class="fw-bold fs-7 text-gray-500 text-uppercase">
                             <th>#</th>
@@ -25,7 +25,7 @@
 
     <script>
     $(document).ready(function() {
-        const dataTableEpprove = $('#tb_family_content').DataTable({
+        const dataTableEpprove = $('#tb_approve').DataTable({
             processing: true,
             serverSide: true,
             retrieve: true,
@@ -55,11 +55,11 @@
             },
 
             columns: [
-            { data: 'DT_RowIndex'},
+            { data: 'DT_RowIndex', searchable : false,},
             { data: 'title'},
             { data: 'name'},
             { data: 'email'},
-            { data: 'action'},
+            { data: 'action', orderable : false, searchable : false,},
             ],
         });
     });

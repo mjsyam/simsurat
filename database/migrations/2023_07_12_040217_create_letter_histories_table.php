@@ -17,6 +17,7 @@ return new class extends Migration
             // $table->foreignUuid("letter_id")->constrained("letters");
             $table->foreignId("letter_id")->constrained("letters");
             $table->string("note");
+            $table->foreignId("approver_id")->nullable()->constrained("user_roles");
             $table->timestamps();
         });
     }
