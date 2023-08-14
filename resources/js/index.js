@@ -9,7 +9,7 @@ import '../styles/index.scss';
 // import './skycons';
 // import './vectorMaps';
 // import './chat';
-import './datatable';
+// import './datatable';
 // // import './datepicker';
 // import './email';
 // import './fullcalendar';
