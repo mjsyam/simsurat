@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 // use App\Http\Middleware\Role;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ApproveController;
+use App\Http\Controllers\InboxController;
 use App\Http\Controllers\Letter\SentLetterController;
 
 /*
@@ -29,6 +30,8 @@ Route::group(['middleware'=>['auth']], function () {
 });
 
 Route::group(['middleware'=>['auth']], function () {
+    Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');
+    Route::get('/inbox/table', [InboxController::class, 'tableInbox'])->name('inbox.tableInbox');
     Route::get('/approve', [ApproveController::class, 'index'])->name('approve.index');
     Route::get('/approve/table', [ApproveController::class, 'tableApprove'])->name('approve.tableApprove');
 });
