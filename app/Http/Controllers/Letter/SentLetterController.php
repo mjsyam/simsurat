@@ -111,6 +111,8 @@ class SentLetterController extends Controller
     public function show(string $id)
     {
         //
+        $letter = Letter::with(['letterHistories.approver', 'letterCategory'])->whereId($id)->first();
+        return view('sent-letter.show', compact(['letter']));
     }
 
     /**
