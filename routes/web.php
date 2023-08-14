@@ -33,6 +33,13 @@ Route::group(['middleware'=>['auth']], function () {
     Route::get('/approve/table', [ApproveController::class, 'tableApprove'])->name('approve.tableApprove');
 });
 
+Route::group(['middleware'=>['auth']], function () {
+    Route::get('/letter/sent', [SentLetterController::class, 'index'])->name('sent.letter-index');
+    Route::get('/letter/sent/table', [SentLetterController::class, 'sentLetterTable'])->name('sent.letter-table');
+    Route::get('/letter/sent/create', [SentLetterController::class, 'create'])->name('sent.letter-create');
+    Route::post('/letter/sent/create', [SentLetterController::class, 'store'])->name('sent.letter-store');
+});
+
 // contoh menggunaan middleware untuk filter berdasarkan role
 // Route::group(['middleware'=>['auth', 'Role:admin']], function () {
 //      Route yang ingin diakses
