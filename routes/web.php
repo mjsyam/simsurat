@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin;
 // use App\Http\Middleware\Role;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ApproveController;
@@ -33,6 +33,20 @@ Route::group(['middleware'=>['auth']], function () {
     Route::get('/approve', [ApproveController::class, 'index'])->name('approve.index');
     Route::get('/approve/table', [ApproveController::class, 'tableApprove'])->name('approve.tableApprove');
     Route::post('/approve', [ApproveController::class, 'approveLetter'])->name('approve.approveLetter');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::controller(Admin\UserController::class)->group(function () {
+        Route::prefix('user')->group(function () {
+            Route::get('/list', 'index')->name('admin.user.index');
+            Route::get('/detail/{id}', 'show')->name('admin.user.detail');
+            Route::delete('/update/{id}', 'update')->name('admin.user.update');
+            Route::delete('/delete/{id}', 'destroy')->name('admin.user.delete');
+            Route::post('/add', 'store')->name('admin.user.add');
+
+            Route::get('/get-data/table', 'getUsersTable')->name('admin.user.table');
+        });
+    });
 });
 
 Route::group(['middleware'=>['auth']], function () {

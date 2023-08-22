@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Letter;
 use App\Models\LetterHistory;
+use App\Models\LetterStatus;
 
 class ApproveController extends Controller
 {

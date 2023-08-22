@@ -31,7 +31,7 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    
+
     <link href="{{asset('custom/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('custom/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 	<link href="{{asset('custom/datatable/datatables.bundle.css')}}" rel="stylesheet" type="text/css" />
@@ -42,4 +42,7 @@
     <script src="{{asset('custom/js/scripts.bundle.js')}}"></script>
 
     <script src="{{asset('custom/datatable/datatables.bundle.js')}}"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </head>
