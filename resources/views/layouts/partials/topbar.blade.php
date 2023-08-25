@@ -7,7 +7,7 @@
         <!-- Default dropstart button -->
         <div class="btn-group dropstart">
             <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            {{Auth::user()->name}}
+                {{Auth::user()->name}}
             </button>
             <ul class="dropdown-menu">
                 <!-- Dropdown menu links -->
@@ -15,6 +15,12 @@
                     <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
                         <i class="ti-user mR-10"></i>
                         <span>Profile</span>
+                    </a>
+                </li>
+                <li class="px-3">
+                    <a href="{{route('received.letter-index')}}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
+                        <i class="ti-bell mR-10"></i>
+                        <span>Notifikasi</span>
                     </a>
                 </li>
                 <li class="px-3">

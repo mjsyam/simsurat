@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ApproveController;
 use App\Http\Controllers\InboxController;
 use App\Http\Controllers\Letter\SentLetterController;
+use App\Http\Controllers\Letter\ReceivedLetterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,13 @@ Route::group(['middleware'=>['auth']], function () {
     Route::get('/letter/sent/table', [SentLetterController::class, 'sentLetterTable'])->name('sent.letter-table');
     Route::get('/letter/sent/create', [SentLetterController::class, 'create'])->name('sent.letter-create');
     Route::post('/letter/sent/create', [SentLetterController::class, 'store'])->name('sent.letter-store');
+    Route::get('/letter/sent/{id}', [SentLetterController::class, 'show'])->name('sent.letter-show');
+});
+
+Route::group(['middleware'=>['auth']], function () {
+    Route::get('/letter/received', [ReceivedLetterController::class, 'index'])->name('received.letter-index');
+    Route::get('/letter/received/table', [ReceivedLetterController::class, 'receivedLetterTable'])->name('received.letter-table');
+    Route::get('/letter/received/{id}', [ReceivedLetterController::class, 'show'])->name('received.letter-show');
 });
 
 // contoh menggunaan middleware untuk filter berdasarkan role
