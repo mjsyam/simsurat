@@ -15,4 +15,9 @@ class LetterStatus extends Model
     {
         return $this->belongsTo(LetterReceiver::class);
     }
+
+    public function approver()
+    {
+        return $this->belongsTo(UserRole::class);
+    }
 }

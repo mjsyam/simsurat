@@ -58,6 +58,7 @@ Route::group(['middleware'=>['auth']], function () {
     Route::get('/letter/sent/create', [SentLetterController::class, 'create'])->name('sent.letter-create');
     Route::post('/letter/sent/create', [SentLetterController::class, 'store'])->name('sent.letter-store');
     Route::get('/letter/sent/{id}', [SentLetterController::class, 'show'])->name('sent.letter-show');
+    Route::get('/letter/sent/{id}/receiver/{receiver_id}', [SentLetterController::class, 'sentReceiver'])->name('sent.receiver.show');
 });
 
 Route::group(['middleware'=>['auth']], function () {

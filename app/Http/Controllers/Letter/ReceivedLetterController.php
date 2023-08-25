@@ -13,12 +13,8 @@ class ReceivedLetterController extends Controller
     public function index()
     {
         $letters = Letter::with([
-            'letterReceivers' => function ($query) {
-                $query->where('user_id', Auth::user()->id)->with([
-                    'letterStatuses'=> function ($query) {
-                        $query->orderBy('created_at', 'desc')->first();
-                    }]);
-            }, 'user'
+            'letterReceivers.letterStatus' => fn ($q) => $q->orderBy('status'),
+            'user'
         ])->whereHas(
             'letterReceivers',
             function ($query) {
@@ -26,6 +22,6 @@ class ReceivedLetterController extends Controller
             }
         )->get();
         dd($letters);
-        return view('status-letter.index', compact(['letters']));
+        return view('received.index', compact(['letters']));
     }
 }

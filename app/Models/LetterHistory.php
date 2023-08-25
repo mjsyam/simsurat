@@ -11,8 +11,8 @@ class LetterHistory extends Model
 
     protected $guarded = [];
 
-    public function letter() {
-        return $this->belongsTo(Letter::class);
+    public function letterReceiver() {
+        return $this->belongsTo(LetterReceiver::class, "letter_receivers_id");
     }
 
     public function approver() {

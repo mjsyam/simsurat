@@ -58,11 +58,13 @@ class SentLetterController extends Controller
             'user_id' => Auth::user()->id,
             'letter_category_id' => $request->letter_category_id,
             'title' => $request->title,
+            // TODO: change date to user input date
+            'date' => Carbon::now()->format('Y-m-d'), // '2021-08-12
             'refrences_number' => $request->refrences_number,
             'letter_destination' => $request->letter_destination,
             'body' => $request->body,
             'sender' => $request->sender,
-            'role_id'=> $userRole
+            'role_id' => $userRole
         ]);
         foreach ($request->receivers as $receiver) {
             $role = User::whereId($receiver)->first()->userRoles->first()->id;
@@ -141,35 +143,36 @@ class SentLetterController extends Controller
         //
     }
 
-    public function sentLetterTable(Request $request) {
+    public function sentLetterTable(Request $request)
+    {
         if (request()->ajax()) {
             $letters = Letter::where('user_id', $request->userId)->with('LetterCategory')->orderBy('created_at', 'desc')->get();
 
             return DataTables::of($letters)
-            ->addColumn('action', function ($letter) {
-                $detail = '
+                ->addColumn('action', function ($letter) {
+                    $detail = '
                 <li>
                     <div class="btn-detail">
-                        <a href="'. route('sent.letter-detail', ['id' => 1]) . '" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
+                        <a href="' . route('sent.letter-detail', ['id' => $letter->id]) . '" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
                     </div>
                 </li>
                 ';
-                return '
+                    return '
                 <button type="button" class="btn btn-secondary btn-icon btn-sm" data-kt-menu-placement="bottom-end" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                 <ul class="dropdown-menu">
-                '.$detail.'
+                ' . $detail . '
                 </ul>
                 ';
-            })
-            ->addColumn('category', function ($lettter) {
-                return $lettter->letterCategory->name;
-            })
-            ->addColumn('created_at', function ($lettter) {
-                return Carbon::parse($lettter->created_at)->format('Y-m-d H:i:s');
-            })
-            ->addIndexColumn()
-            ->rawColumns(['action'])
-            ->make(true);
+                })
+                ->addColumn('category', function ($lettter) {
+                    return $lettter->letterCategory->name;
+                })
+                ->addColumn('created_at', function ($lettter) {
+                    return Carbon::parse($lettter->created_at)->format('Y-m-d H:i:s');
+                })
+                ->addIndexColumn()
+                ->rawColumns(['action'])
+                ->make(true);
         }
     }
 
@@ -179,5 +182,24 @@ class SentLetterController extends Controller
         return view('letterPdf', compact(['letter']));
         $pdf = Pdf::loadView('letterPdf', compact(['letter']));
         return $pdf->download('sample.pdf');
+    }
+
+    public function sentReceiver($id, $receiver_id)
+    {
+        $receiver = LetterReceiver::with([
+            'user',
+            'letter',
+            'letterStatus' => function ($query) {
+                $query->with([
+                    'approver'
+                ])->orderBy('id', 'desc');
+            },
+            'letterHistories' => function ($query) {
+                $query->with([
+                    'approver'
+                ])->orderBy('id', 'desc');
+            },
+        ])->find($receiver_id);
+        return view('sent-letter.receiver.index', compact(['receiver']));
     }
 }
