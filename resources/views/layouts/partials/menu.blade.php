@@ -32,7 +32,7 @@
 </li>
 <li class="nav-item mt-3">
     {{-- <a class="btn sidebar-link {{ Str::startsWith($route, ADMIN . '.users') ? 'actived' : '' }}" href="{{ route(ADMIN . '.users.index') }}"> --}}
-    <a class="btn sidebar-link" href="">
+    <a class="btn sidebar-link" href="{{route("admin.user.index")}}">
         <span class="icon-holder">
             <i class="c-brown-500 ti-user"></i>
         </span>
@@ -41,7 +41,7 @@
 </li>
 <li class="nav-item mt-3">
     {{-- <a class="btn sidebar-link {{ Str::startsWith($route, ADMIN . '.users') ? 'actived' : '' }}" href="{{ route(ADMIN . '.users.index') }}"> --}}
-    <a class="btn sidebar-link" href={{route("sent.letter-index")}}>
+    <a class="btn sidebar-link" href="{{route("sent.letter-index")}}">
         <span class="icon-holder">
             <i class="c-brown-500 ti-user"></i>
         </span>

@@ -18,7 +18,7 @@
                                 <label for="letter_category_id">Kategori Surat *</label>
                                 <select class="form-select" name="letter_category_id" aria-label="Default select example">
                                     @foreach ($letterCategories as $category)
-                                        <option value="{{$category->id}}">{{$category->category}}</option>
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

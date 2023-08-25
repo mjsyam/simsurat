@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin;
 // use App\Http\Middleware\Role;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ApproveController;
@@ -38,6 +38,20 @@ Route::group(['middleware'=>['auth']], function () {
     Route::post('/approve', [ApproveController::class, 'approveLetter'])->name('approve.approveLetter');
 });
 
+Route::prefix('admin')->group(function () {
+    Route::controller(Admin\UserController::class)->group(function () {
+        Route::prefix('user')->group(function () {
+            Route::get('/list', 'index')->name('admin.user.index');
+            Route::get('/detail/{id}', 'show')->name('admin.user.detail');
+            Route::delete('/update/{id}', 'update')->name('admin.user.update');
+            Route::delete('/delete/{id}', 'destroy')->name('admin.user.delete');
+            Route::post('/add', 'store')->name('admin.user.add');
+
+            Route::get('/get-data/table', 'getUsersTable')->name('admin.user.table');
+        });
+    });
+});
+
 Route::group(['middleware'=>['auth']], function () {
     Route::get('/letter/sent', [SentLetterController::class, 'index'])->name('sent.letter-index');
     Route::get('/letter/sent/detail/{id}', [SentLetterController::class, 'show'])->name('sent.letter-detail');
@@ -47,6 +61,7 @@ Route::group(['middleware'=>['auth']], function () {
     Route::get('/letter/sent/create', [SentLetterController::class, 'create'])->name('sent.letter-create');
     Route::post('/letter/sent/create', [SentLetterController::class, 'store'])->name('sent.letter-store');
     Route::get('/letter/sent/{id}', [SentLetterController::class, 'show'])->name('sent.letter-show');
+    Route::get('/letter/sent/{id}/receiver/{receiver_id}', [SentLetterController::class, 'sentReceiver'])->name('sent.receiver.show');
 });
 
 Route::group(['middleware'=>['auth']], function () {
