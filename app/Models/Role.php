@@ -12,7 +12,7 @@ class Role extends Model
     protected $guarded = [];
 
     public function userRoles() {
-        return $this->belongsToMany(User::class, 'users_roles');
+        return $this->belongsToMany(User::class, UserRole::class);
     }
 
     public function parent() {

@@ -47,6 +47,20 @@ Route::prefix('admin')->group(function () {
             Route::get('/get-data/table', 'getUsersTable')->name('admin.user.table');
         });
     });
+
+    Route::controller(Admin\RoleController::class)->group(function () {
+        Route::prefix('role')->group(function () {
+            Route::get('/list', 'index')->name('admin.role.index');
+            Route::get('/detail/{id}', 'show')->name('admin.role.detail');
+            Route::delete('/update/{id}', 'update')->name('admin.role.update');
+            Route::delete('/delete/{id}', 'destroy')->name('admin.role.delete');
+            Route::post('/add', 'store')->name('admin.role.add');
+            Route::post('/assign-user/{id}', 'assignUser')->name('admin.role.assignUser');
+            Route::post('/remove-user/{id}', 'removeUser')->name('admin.role.removeUser');
+
+            Route::get('/get-data/table', 'getRolesTable')->name('admin.role.table');
+        });
+    });
 });
 
 Route::group(['middleware'=>['auth']], function () {
