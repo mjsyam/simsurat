@@ -43,12 +43,12 @@ class User extends Authenticatable
 
     public function userRoles()
     {
-        return $this->belongsToMany(Role::class, 'user_roles');
+        return $this->belongsToMany(Role::class, UserRole::class);
     }
 
     public function identifiers()
     {
-        return $this->belongsToMany(Identifier::class, 'user_roles');
+        return $this->belongsToMany(Identifier::class, UserRole::class);
     }
 
     public function letterReceivers()

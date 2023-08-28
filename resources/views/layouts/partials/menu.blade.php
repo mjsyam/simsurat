@@ -1,6 +1,6 @@
 @php
-    $r = \Route::current()->getAction();
-    $route = (isset($r['as'])) ? $r['as'] : '';
+$r = \Route::current()->getAction();
+$route = (isset($r['as'])) ? $r['as'] : '';
 @endphp
 
 <li class="nav-item mt-3">
@@ -50,7 +50,7 @@
 </li>
 <li class="nav-item mt-3">
     {{-- <a class="btn sidebar-link {{ Str::startsWith($route, ADMIN . '.pengaturan') ? 'actived' : '' }}" href="{{ route(ADMIN . '.pengaturan.index') }}"> --}}
-    <a class="btn sidebar-link" href="">
+    <a class="btn sidebar-link" href="{{route('admin.role.index')}}">
         <span class="icon-holder">
             <i class="c-red-300 ti-settings"></i>
         </span>

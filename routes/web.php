@@ -50,6 +50,20 @@ Route::prefix('admin')->group(function () {
             Route::get('/get-data/table', 'getUsersTable')->name('admin.user.table');
         });
     });
+
+    Route::controller(Admin\RoleController::class)->group(function () {
+        Route::prefix('role')->group(function () {
+            Route::get('/list', 'index')->name('admin.role.index');
+            Route::get('/detail/{id}', 'show')->name('admin.role.detail');
+            Route::delete('/update/{id}', 'update')->name('admin.role.update');
+            Route::delete('/delete/{id}', 'destroy')->name('admin.role.delete');
+            Route::post('/add', 'store')->name('admin.role.add');
+            Route::post('/assign-user/{id}', 'assignUser')->name('admin.role.assignUser');
+            Route::post('/remove-user/{id}', 'removeUser')->name('admin.role.removeUser');
+
+            Route::get('/get-data/table', 'getRolesTable')->name('admin.role.table');
+        });
+    });
 });
 
 Route::group(['middleware'=>['auth']], function () {
@@ -62,9 +76,7 @@ Route::group(['middleware'=>['auth']], function () {
     Route::post('/letter/sent/create', [SentLetterController::class, 'store'])->name('sent.letter-store');
     Route::get('/letter/sent/{id}', [SentLetterController::class, 'show'])->name('sent.letter-show');
     Route::get('/letter/sent/{id}/receiver/{receiver_id}', [SentLetterController::class, 'sentReceiver'])->name('sent.receiver.show');
-});
 
-Route::group(['middleware'=>['auth']], function () {
     Route::get('/letter/received', [ReceivedLetterController::class, 'index'])->name('received.letter-index');
     Route::get('/letter/received/table', [ReceivedLetterController::class, 'receivedLetterTable'])->name('received.letter-table');
     Route::get('/letter/received/{id}', [ReceivedLetterController::class, 'show'])->name('received.letter-show');
