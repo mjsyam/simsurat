@@ -138,11 +138,11 @@ class SentLetterController extends Controller
             })->with('LetterCategory')->orderBy('created_at', 'desc');
 
             return DataTables::of($letters)
-            ->addColumn('action', function ($letter) {
-                $detail = '
+                ->addColumn('action', function ($letter) {
+                    $detail = '
                 <li>
                     <div class="btn-detail">
-                        <a href="'. route('sent.letter-detail', ['id' => 1]) . '" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
+                        <a href="' . route('sent.letter-detail', ['id' => $letter->id]) . '" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
                     </div>
                 </li>
                 ';
