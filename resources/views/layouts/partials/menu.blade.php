@@ -13,6 +13,24 @@ $route = (isset($r['as'])) ? $r['as'] : '';
     </a>
 </li>
 <li class="nav-item mt-3">
+    {{-- <a class="btn sidebar-link {{ Str::startsWith($route, ADMIN . '.users') ? 'actived' : '' }}" href="{{ route(ADMIN . '.users.index') }}"> --}}
+    <a class="btn sidebar-link" href="{{route("admin.user.index")}}">
+        <span class="icon-holder">
+            <i class="c-brown-500 ti-user"></i>
+        </span>
+        <span class="">Users</span>
+    </a>
+</li>
+<li class="nav-item mt-3">
+    {{-- <a class="btn sidebar-link {{ Str::startsWith($route, ADMIN . '.users') ? 'actived' : '' }}" href="{{ route(ADMIN . '.users.index') }}"> --}}
+    <a class="btn sidebar-link" href="{{route("sent.letter-index")}}">
+        <span class="icon-holder">
+            <i class="c-brown-500 ti-user"></i>
+        </span>
+        <span class="">Kirim Surat</span>
+    </a>
+</li>
+<li class="nav-item mt-3">
     {{-- <a class="btn sidebar-link {{ Str::startsWith($route, ADMIN . '.pengaturan') ? 'actived' : '' }}" href="{{ route(ADMIN . '.pengaturan.index') }}"> --}}
     <a class="btn sidebar-link" href="{{route("inbox.index")}}">
         <span class="icon-holder">
