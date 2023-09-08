@@ -41,15 +41,6 @@ $route = (isset($r['as'])) ? $r['as'] : '';
 </li>
 <li class="nav-item mt-3">
     {{-- <a class="btn sidebar-link {{ Str::startsWith($route, ADMIN . '.pengaturan') ? 'actived' : '' }}" href="{{ route(ADMIN . '.pengaturan.index') }}"> --}}
-    <a class="btn sidebar-link" href="{{route("inbox.index")}}">
-        <span class="icon-holder">
-            <i class="c-red-300 ti-settings"></i>
-        </span>
-        <span class="">inbox</span>
-    </a>
-</li>
-<li class="nav-item mt-3">
-    {{-- <a class="btn sidebar-link {{ Str::startsWith($route, ADMIN . '.pengaturan') ? 'actived' : '' }}" href="{{ route(ADMIN . '.pengaturan.index') }}"> --}}
     <a class="btn sidebar-link" href="{{route("approve.index")}}">
         <span class="icon-holder">
             <i class="c-red-300 ti-settings"></i>
