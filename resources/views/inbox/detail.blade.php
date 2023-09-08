@@ -39,7 +39,7 @@
                                 <p class="fs-3 mb-0">KEMENTERIAN PENDIDIKAN, KEBUDAYAAN,</p>
                                 <p class="fs-3 mb-0">RISET, DAN TEKNOLOGI</p>
                                 <p class="fs-3 mb-0">INSTITUT TEKNOLOGI KALIMANTAN</p>
-                                <p class="fs-3 mb-0 font-weight-bold">LEMBAGA PENELITIAN DAN PENGABDIAN MASYARAKAT</p>
+                                <p class="fs-3 mb-0 font-weight-bold">{{$letter->title}}</p>
                             </div>
                             <div>
                                 <p class="fs-6 mb-0">Kampus ITK Karang Joang, Balikpapan 76127</p>
@@ -62,32 +62,30 @@
                             <div>
                                 <div class="row mb-3">
                                     <div class="col-md-2">Nomor</div>
-                                    <div class="col-md-5">: 192/153/12</div>
+                                    <div class="col-md-5">: {{$letter->refrences_number}}</div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-md-2">Hal</div>
-                                    <div class="col-md-5">: 19</div>
+                                    <div class="col-md-5">: -</div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3"></div>
-                        <div class="col-md-3">8 September 2023</div>
+                        <div class="col-md-3">{{ Carbon::parse($letter->date)->format('j F Y') }}</div>
                     </div>
                     <div class="content">
-                        <p>Yth. Archie Dylan Ramadhan</p>
+                        <p>Yth. {{$letterReceiver->user->name}}</p>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, nulla. Beatae quis commodi
-                            autem ipsam repellat, ullam amet quia id minus sunt voluptate voluptatum. Voluptates modi
-                            facilis tenetur ad cupiditate.
+                            {{$letter->body}}
                         </p>
                     </div>
                     <div class="signature">
                         <div class="row">
                             <div class="col-md-8"></div>
                             <div class="col-md-4">
-                                <p>Ketua Senat</p>
-                                <img src="{{ asset('images/ttd.png') }}" class="mt-4" style="max-height: 50px;">
-                                <p>Prof. Archie Dylan S.Kom., M.Kom.</p>
+                                <p>{{$letter->identifiers->name}}</p>
+                                <img src="@if($letter->signature != null) {{$letter->signature}} @else {{ asset('images/ttd.png') }} @endif" class="mt-4" style="max-height: 50px;">
+                                <p>{{ $letter->user->name }}</p>
                                 <p>NIP. 14022</p>
                             </div>
                         </div>
