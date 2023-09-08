@@ -5,8 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
+use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 use Auth;
+use App\Models\LetterReceiver;
+use App\Models\User;
+use App\Models\Letter;
 
 class InboxController extends Controller
 {
@@ -16,7 +21,8 @@ class InboxController extends Controller
 
     public function tableInbox() {
         if (request()->ajax()) {
-            $query = DB::table('letters')
+
+            $letters = DB::table('letters')
             ->join('letter_receivers', 'letter_receivers.letter_id', '=', 'letters.id')
             ->join('letter_statuses', 'letter_receivers.id', '=', 'letter_statuses.letter_receiver_id')
             ->join('users', 'letters.user_id', '=', 'users.id')
@@ -25,12 +31,20 @@ class InboxController extends Controller
             ->orWhere('letter_statuses.status', '=', 'received')
             ->orderBy('letters.id', 'DESC')
             ->get();
-            return DataTables::of($query)
+
+            // dd($query);
+            
+            return DataTables::of($letters)
             ->addColumn('action', function ($action) {
                 $detail = '
                 <li>
-                    <div class="btn-detail" id="btn-'. $action->id . '">
-                        <a href="" data-bs-toggle="modal" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
+                    <div class="btn-detail">
+                        <a href="/inbox/detail/'. $action->letter_id .'" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="btn-detail">
+                        <a href="/disposition/'. $action->letter_id .'" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Disposisi</a>
                     </div>
                 </li>
                 ';
@@ -45,5 +59,19 @@ class InboxController extends Controller
             ->rawColumns(['action'])
             ->make(true);
         }
+    }
+
+    public function detail(Letter $letter){
+        $letterReceiver = LetterReceiver::where('user_id', Auth::user()->id)->first();
+        $users = User::select('id', 'name')->get();
+        return view('inbox.detail', compact(['users', 'letter', 'letterReceiver']));
+    }
+
+    public function disposition(LetterReceiver $letterReceiver, Request $request){ 
+        $users = User::select('id', 'name')->get();
+        $letterReceiver->update([
+            'disposition_id' => $request->disposition_id,
+        ]);
+        return redirect()->back()->with('success', 'disposisi berhasil')->with(compact('users', 'letterReceiver'));   
     }
 }
