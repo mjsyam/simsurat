@@ -6,7 +6,7 @@
     <div>
         <h3 class="">Users</h3><br>
         <div class="mb-4">
-            <a href="#add_user_modal" class="dropdown-item py-2 btn btn-success px-7" data-bs-toggle="modal">
+            <a href="#add_user_modal" class="dropdown-item py-2 btn btn-success px-7" style="width: 80px" data-bs-toggle="modal">
                 Add
             </a>
         </div>

@@ -60,26 +60,34 @@ class SentLetterController extends Controller
             'receivers' => 'required'
         ]);
 
-        $userRole = Auth::user()->userRoles->first()->id;
+        $user = Auth::user();
+        $userRole = $user->userRoles->first()->id;
+        $identifiers = $user->identifiers->first()->id;
 
         $letter = Letter::create([
             'user_id' => Auth::user()->id,
             'letter_category_id' => $request->letter_category_id,
             'date' => $request->date,
             'title' => $request->title,
+            // TODO: change date to user input date
+            'date' => Carbon::now()->format('Y-m-d'), // '2021-08-12
             'refrences_number' => $request->refrences_number,
             'letter_destination' => $request->letter_destination,
             'body' => $request->body,
             'sender' => $request->sender,
-            'role_id' => $userRole
+            'role_id' => $userRole,
+            'identifier_id' => $identifiers,
         ]);
         foreach ($request->receivers as $receiver) {
-            $role = User::whereId($receiver)->first()->userRoles->first()->id;
+            $data = User::whereId($receiver)->first();
+            $role = $data->userRoles->first()->id;
+            $identifier = $data->identifiers->first()->id;
 
             LetterReceiver::create([
                 'user_id' => $receiver,
                 'role_id' => $role,
-                'letter_id' => $letter->id
+                'letter_id' => $letter->id,
+                'identifier_id' => $identifier,
             ]);
         }
 
@@ -180,5 +188,24 @@ class SentLetterController extends Controller
 
             return response()->json($data["data"], $data["code"]);
         }
+    }
+
+    public function sentReceiver($id, $receiver_id)
+    {
+        $receiver = LetterReceiver::with([
+            'user',
+            'letter',
+            'letterStatus' => function ($query) {
+                $query->with([
+                    'approver'
+                ])->orderBy('id', 'desc');
+            },
+            'letterHistories' => function ($query) {
+                $query->with([
+                    'approver'
+                ])->orderBy('id', 'desc');
+            },
+        ])->find($receiver_id);
+        return view('sent-letter.receiver.index', compact(['receiver']));
     }
 }

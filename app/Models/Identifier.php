@@ -24,4 +24,8 @@ class Identifier extends Model
     {
         return $this->belongsTo(Identifier::class, "parent_id");
     }
+
+    public function children() {
+        return $this->hasMany(Identifier::class, "parent_id");
+    }
 }

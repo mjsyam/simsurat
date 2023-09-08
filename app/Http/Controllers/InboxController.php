@@ -21,7 +21,8 @@ class InboxController extends Controller
 
     public function tableInbox() {
         if (request()->ajax()) {
-            $query = DB::table('letters')
+
+            $letters = DB::table('letters')
             ->join('letter_receivers', 'letter_receivers.letter_id', '=', 'letters.id')
             ->join('letter_statuses', 'letter_receivers.id', '=', 'letter_statuses.letter_receiver_id')
             ->join('users', 'letters.user_id', '=', 'users.id')
@@ -30,8 +31,10 @@ class InboxController extends Controller
             ->orWhere('letter_statuses.status', '=', 'received')
             ->orderBy('letters.id', 'DESC')
             ->get();
+
+            // dd($query);
             
-            return DataTables::of($query)
+            return DataTables::of($letters)
             ->addColumn('action', function ($action) {
                 $detail = '
                 <li>

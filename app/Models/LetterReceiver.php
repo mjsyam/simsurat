@@ -21,13 +21,22 @@ class LetterReceiver extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function letterStatuses()
+    public function letterStatus()
     {
-        return $this->hasMany(LetterStatus::class);
+        return $this->hasOne(LetterStatus::class);
     }
 
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function identifiers() {
+        return $this->belongsTo(Identifier::class, 'identifier_id');
+    }
+
+    public function letterHistories()
+    {
+        return $this->hasMany(LetterHistory::class);
     }
 }

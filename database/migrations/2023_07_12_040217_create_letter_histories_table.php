@@ -1,11 +1,18 @@
 <?php
 
+use App\Constants;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    private $constants;
+
+    public function __construct()
+    {
+        $this->constants = new Constants();
+    }
     /**
      * Run the migrations.
      */
@@ -13,10 +20,9 @@ return new class extends Migration
     {
         Schema::create('letter_histories', function (Blueprint $table) {
             $table->id();
-            // $table->uuid('id')->primary();
-            // $table->foreignUuid("letter_id")->constrained("letters");
-            $table->foreignId("letter_id")->constrained("letters");
+            $table->foreignId("letter_receiver_id")->constrained('letter_receivers');
             $table->string("note");
+            $table->enum("status", $this->constants->letter_status);
             $table->foreignId("approver_id")->nullable()->constrained("user_roles");
             $table->timestamps();
         });

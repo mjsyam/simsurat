@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('letter_receivers', function (Blueprint $table) {
             $table->id();
             // $table->uuid('id')->primary();
-            $table->foreignId("user_id")->constrained("users");
-            // $table->foreignUuid("user_id")->constrained("users");
-            $table->foreignId("role_id")->constrained("roles");
-            // $table->foreignUuid("disposition_id")->nullable()->constrained("users");
-            $table->foreignId("disposition_id")->nullable()->constrained("users");
             $table->foreignId("letter_id")->constrained("letters");
+            $table->foreignId("user_id")->constrained("users");
+            $table->foreignId("disposition_id")->nullable()->constrained("users");
+            // $table->foreignUuid("user_id")->constrained("users");
+            // $table->foreignUuid("disposition_id")->nullable()->constrained("users");
+            $table->foreignId("role_id")->constrained("roles");
+            $table->foreignId('identifier_id')->constrained("identifiers");
             // $table->foreignUuid("letter_id")->constrained("letters");
             $table->timestamps();
         });
