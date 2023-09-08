@@ -43,12 +43,12 @@ class User extends Authenticatable
 
     public function userRoles()
     {
-        return $this->belongsToMany(Role::class, UserRole::class);
+        return $this->belongsToMany(Role::class, UserRole::class)->orderBy('user_roles.created_at', 'desc');
     }
 
     public function identifiers()
     {
-        return $this->belongsToMany(Identifier::class, UserRole::class);
+        return $this->belongsToMany(Identifier::class, UserRole::class)->orderBy('user_roles.created_at', 'desc');
     }
 
     public function letterReceivers()

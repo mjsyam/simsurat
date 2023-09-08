@@ -31,6 +31,10 @@ class LetterReceiver extends Model
         return $this->belongsTo(Role::class);
     }
 
+    public function identifiers() {
+        return $this->belongsTo(Identifier::class, 'identifier_id');
+    }
+
     public function letterHistories()
     {
         return $this->hasMany(LetterHistory::class);

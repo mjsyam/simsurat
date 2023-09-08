@@ -60,7 +60,9 @@ class SentLetterController extends Controller
             'receivers' => 'required'
         ]);
 
-        $userRole = Auth::user()->userRoles->first()->id;
+        $user = Auth::user();
+        $userRole = $user->userRoles->first()->id;
+        $identifiers = $user->identifiers->first()->id;
 
         $letter = Letter::create([
             'user_id' => Auth::user()->id,
@@ -73,15 +75,19 @@ class SentLetterController extends Controller
             'letter_destination' => $request->letter_destination,
             'body' => $request->body,
             'sender' => $request->sender,
-            'role_id' => $userRole
+            'role_id' => $userRole,
+            'identifier_id' => $identifiers,
         ]);
         foreach ($request->receivers as $receiver) {
-            $role = User::whereId($receiver)->first()->userRoles->first()->id;
+            $data = User::whereId($receiver)->first();
+            $role = $data->userRoles->first()->id;
+            $identifier = $data->identifiers->first()->id;
 
             LetterReceiver::create([
                 'user_id' => $receiver,
                 'role_id' => $role,
-                'letter_id' => $letter->id
+                'letter_id' => $letter->id,
+                'identifier_id' => $identifier,
             ]);
         }
 
