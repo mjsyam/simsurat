@@ -5,20 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
+use Carbon\Carbon;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 use Auth;
 use App\Models\LetterReceiver;
+use App\Models\User;
+use App\Models\Letter;
 
 class InboxController extends Controller
 {
     public function index() {
         return view("inbox.index");
-    }
-
-    public function disposition($request){
-        LetterReceiver::update([
-            'disposition_id' => $request->disposition_id,
-        ]);
     }
 
     public function tableInbox() {
@@ -38,7 +36,7 @@ class InboxController extends Controller
                 $detail = '
                 <li>
                     <div class="btn-detail">
-                        <a href="" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
+                        <a href="/inbox/detail/'. $action->letter_id .'" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
                     </div>
                 </li>
                 <li>
@@ -58,5 +56,19 @@ class InboxController extends Controller
             ->rawColumns(['action'])
             ->make(true);
         }
+    }
+
+    public function detail(Letter $letter){
+        $letterReceiver = LetterReceiver::where('user_id', Auth::user()->id)->first();
+        $users = User::select('id', 'name')->get();
+        return view('inbox.detail', compact(['users', 'letter', 'letterReceiver']));
+    }
+
+    public function disposition(LetterReceiver $letterReceiver, Request $request){ 
+        $users = User::select('id', 'name')->get();
+        $letterReceiver->update([
+            'disposition_id' => $request->disposition_id,
+        ]);
+        return redirect()->back()->with('success', 'disposisi berhasil')->with(compact('users', 'letterReceiver'));   
     }
 }

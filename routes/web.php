@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin;
 // use App\Http\Middleware\Role;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ApproveController;
@@ -32,14 +32,32 @@ Route::group(['middleware'=>['auth']], function () {
 Route::group(['middleware'=>['auth']], function () {
     Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');
     Route::get('/inbox/table', [InboxController::class, 'tableInbox'])->name('inbox.tableInbox');
-    Route::post('/disposition/{disposition_id}', [InboxController::class, 'disposition'])->name('inbox.disposition');
+    Route::get('/inbox/detail/{letter}', [InboxController::class, 'detail'])->name('inbox.detail');
+    Route::post('/inbox/disposition/{letterReceiver}', [InboxController::class, 'disposition'])->name('inbox.disposition');
     Route::get('/approve', [ApproveController::class, 'index'])->name('approve.index');
     Route::get('/approve/table', [ApproveController::class, 'tableApprove'])->name('approve.tableApprove');
     Route::post('/approve', [ApproveController::class, 'approveLetter'])->name('approve.approveLetter');
 });
 
+Route::prefix('admin')->group(function () {
+    Route::controller(Admin\UserController::class)->group(function () {
+        Route::prefix('user')->group(function () {
+            Route::get('/list', 'index')->name('admin.user.index');
+            Route::get('/detail/{id}', 'show')->name('admin.user.detail');
+            Route::delete('/update/{id}', 'update')->name('admin.user.update');
+            Route::delete('/delete/{id}', 'destroy')->name('admin.user.delete');
+            Route::post('/add', 'store')->name('admin.user.add');
+
+            Route::get('/get-data/table', 'getUsersTable')->name('admin.user.table');
+        });
+    });
+});
+
 Route::group(['middleware'=>['auth']], function () {
     Route::get('/letter/sent', [SentLetterController::class, 'index'])->name('sent.letter-index');
+    Route::get('/letter/sent/detail/{id}', [SentLetterController::class, 'show'])->name('sent.letter-detail');
+    Route::get('/letter/sent/detail/{id}/pdf', [SentLetterController::class, 'exportPdf'])->name('sent.letter-exports');
+
     Route::get('/letter/sent/table', [SentLetterController::class, 'sentLetterTable'])->name('sent.letter-table');
     Route::get('/letter/sent/create', [SentLetterController::class, 'create'])->name('sent.letter-create');
     Route::post('/letter/sent/create', [SentLetterController::class, 'store'])->name('sent.letter-store');

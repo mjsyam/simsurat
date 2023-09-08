@@ -41,7 +41,7 @@
 
     <!-- Specific js content placeholder -->
     @stack('js')
-
+    @yield('script')
     {{-- <script src="{{asset('/datatable/datatables.bundle.js')}}"></script> --}}
 </body>
 

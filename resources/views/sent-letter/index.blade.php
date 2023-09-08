@@ -57,10 +57,7 @@
                 "<'col-12 col-lg-7 d-flex align-items-center justify-content-center justify-content-lg-end'p>" +
                 ">",
                 ajax: {
-                    url : "{{route('sent.letter-table')}}",
-                    data: function (data) {
-                        data.userId = {{$userId}}
-                    }
+                    url : "{{route('sent.letter-table')}}"
                 },
 
                 columns: [

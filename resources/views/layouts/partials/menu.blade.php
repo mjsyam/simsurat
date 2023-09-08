@@ -13,6 +13,15 @@
     </a>
 </li>
 <li class="nav-item mt-3">
+    {{-- <a class="btn sidebar-link {{ Str::startsWith($route, ADMIN . '.users') ? 'actived' : '' }}" href="{{ route(ADMIN . '.users.index') }}"> --}}
+    <a class="btn sidebar-link" href="{{route("admin.user.index")}}">
+        <span class="icon-holder">
+            <i class="c-red-300 ti-settings"></i>
+        </span>
+        <span class="">User</span>
+    </a>
+</li>
+<li class="nav-item mt-3">
     {{-- <a class="btn sidebar-link {{ Str::startsWith($route, ADMIN . '.pengaturan') ? 'actived' : '' }}" href="{{ route(ADMIN . '.pengaturan.index') }}"> --}}
     <a class="btn sidebar-link" href="{{route("inbox.index")}}">
         <span class="icon-holder">
@@ -23,7 +32,7 @@
 </li>
 <li class="nav-item mt-3">
     {{-- <a class="btn sidebar-link {{ Str::startsWith($route, ADMIN . '.users') ? 'actived' : '' }}" href="{{ route(ADMIN . '.users.index') }}"> --}}
-    <a class="btn sidebar-link" href={{route("sent.letter-index")}}>
+    <a class="btn sidebar-link" href="{{route("sent.letter-index")}}">
         <span class="icon-holder">
             <i class="c-brown-500 ti-user"></i>
         </span>
