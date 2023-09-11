@@ -9,76 +9,170 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap">
+    <style>
+        html,
+        body,
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            font-family: 'Times New Roman', Times, serif;
+            max-width: 210mm;
+            height: 100%;
+            margin: 2.5rem;
+        }
+
+        header {
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            margin-top: 1rem;
+        }
+
+        #header_image {
+            margin-right: 1.75rem;
+        }
+
+        #header_image img {
+            height: 130px;
+        }
+
+        #header_text_container {
+            text-align: center;
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+
+        #header_text_letter {
+            text-transform: uppercase;
+            font-weight: 500;
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+        }
+
+        hr {
+            border-width: 2px;
+            margin-top: 0.25rem;
+            border-color: black;
+            border-style: solid;
+        }
+
+        section {
+            margin-top: 1.25rem;
+            margin-left: 2rem;
+            margin-right: 2rem;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        #nomor {
+            margin-right: 2.5rem;
+        }
+
+        #hal {
+            margin-right: 62px;
+        }
+
+        #date {
+            flex: 1 1 0%;
+        }
+
+        #date p {
+            text-align: right;
+        }
+
+        #body {
+            min-height: 30vh;
+        }
+
+        footer {
+            display: flex;
+            margin-top: 6rem;
+        }
+
+        #ttd {
+            max-height: 80px;
+            margin-top: 1rem;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="m-10 max-w-[210mm] h-full" style="font-family: 'Times New Roman', serif;">
+    <div id="container">
 
-        <div class="items-center justify-center mt-4 flex">
-            <div class="mr-7">
-                <img src="{{ asset('images/logo-itk.png') }}" class="h-[130px]">
+        <header>
+            <div id="header_image">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Lambang_ITK.png">
             </div>
-            <div class="mx-4 text-center">
-                <div class="uppercase text-lg font-medium">
+            <div id="header_text_container">
+                <div id="header_text_letter">
                     <p>kementerian pendidikan, kebudayaan,</p>
                     <p>riset, dan teknologi</p>
                     <p>institut teknologi kalimantan</p>
-                    <p class="font-semibold">lembaga penelitian dan pengabdian masyarakat</p>
+                    <p style="font-weight: 600;">lembaga penelitian dan pengabdian masyarakat</p>
                 </div>
-                <div>
+                <div id="header_text_address">
                     <p>Kampus ITK Karang Joang, Balikpapan 76127</p>
                     <p>Telepon (0542) 8530801 Faksimile (0542) 8530800</p>
                     <p>Surat elektronik : lppm@itk.ac.id laman : www.itk.ac.id</p>
                 </div>
             </div>
-        </div>
+        </header>
 
         <hr class="border-2 border-black mt-1">
 
-        <div class="mx-8 mt-5">
+        <section class="mx-8 mt-5">
             <div class="flex">
                 <div>
                     <div class="flex">
-                        <p class="mr-10">Nomor</p>
+                        <p id="nomor">Nomor</p>
                         <p>: {{ $letter->refrences_number }}</p>
                     </div>
                     <div class="flex">
-                        <p class="mr-[62px]">Hal</p>
+                        <p id="hal">Hal</p>
                         <p>: {{ $letter->letterCategory->name }}</p>
                     </div>
                 </div>
-                <div class="flex-1">
-                    <p class="text-right">{{ Carbon::parse($letter->date)->format('j F Y') }}</p>
+                <div id="date">
+                    <p>{{ Carbon::parse($letter->date)->format('j F Y') }}</p>
                 </div>
             </div>
+
             <br>
 
-            <div class="mb-5">
+            <div style="margin-bottom: 1.25rem;">
                 <p>Yth. {{ $letter->letter_destination }}</p>
             </div>
 
-            <div class="min-h-[30vh]">
-                {{ $letter->body }}
+            <div id="body">
+                {!! $letter->body !!}
             </div>
 
-            <div class="flex mt-24">
-                <div class="flex-1"></div>
-                <div class="flex-shrink mr-4">
+            <footer>
+                <div style="flex: 1 1 0%;"></div>
+                <div style="flex-shrink: 1; margin-right:1rem;">
                     <div>
-                        <p>a.n. {{ $letter->sender }}</p>
-                        {{-- <p>a.n. Andi Agung</p>
-                        <p>Mahasiswa Informatika 2021</p> --}}
+                        <p>{{ $letter->role->role }} {{ $letter->identifiers->name }}</p>
                     </div>
-                    <img src="{{ asset('images/ttd.png') }}" class="max-h-[50px] mt-4">
+                    {{-- {{ public_path('images/' . $letter->user->signature) }} --}}
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Tanda_Tangan_Mick_Schumacher.png"
+                        id="ttd">
+                    <div>
+                        <p>{{ $letter->user->name }}</p>
+                        <p>NIP {{ $letter->user->nip }}</p>
+                    </div>
                 </div>
-            </div>
+            </footer>
 
-        </div>
+        </section>
 
     </div>
-
 </body>
 
 </html>
