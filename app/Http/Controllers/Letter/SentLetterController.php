@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Letter;
 
+use App\Constants;
 use App\Exceptions\AuthorizationError;
 use App\Exceptions\NotFoundError;
 use App\Http\Controllers\Controller;
@@ -16,15 +17,18 @@ use App\Models\User;
 use App\Models\Letter;
 use App\Models\LetterCategory;
 use App\Models\LetterReceiver;
+use App\Models\LetterStatus;
 use App\Utils\ErrorHandler;
 
 class SentLetterController extends Controller
 {
-    protected $errorHandler;
+    private $errorHandler;
+    private $constants;
 
     public function __construct()
     {
         $this->errorHandler = new ErrorHandler();
+        $this->constants = new Constants();
     }
     /**
      * Display a listing of the resource.
@@ -40,7 +44,7 @@ class SentLetterController extends Controller
     public function create()
     {
         $letterCategories = LetterCategory::get();
-        $users = User::get();
+        $users = User::where('id', '!=', Auth::user()->id)->get();
         return view('sent-letter.create', compact(['letterCategories', 'users']));
     }
 
@@ -69,8 +73,7 @@ class SentLetterController extends Controller
             'letter_category_id' => $request->letter_category_id,
             'date' => $request->date,
             'title' => $request->title,
-            // TODO: change date to user input date
-            'date' => Carbon::now()->format('Y-m-d'), // '2021-08-12
+            'date' => $request->date,
             'refrences_number' => $request->refrences_number,
             'letter_destination' => $request->letter_destination,
             'body' => $request->body,
@@ -83,11 +86,16 @@ class SentLetterController extends Controller
             $role = $data->userRoles->first()->id;
             $identifier = $data->identifiers->first()->id;
 
-            LetterReceiver::create([
+            $letterReciver = LetterReceiver::create([
                 'user_id' => $receiver,
                 'role_id' => $role,
                 'letter_id' => $letter->id,
                 'identifier_id' => $identifier,
+            ]);
+
+            LetterStatus::create([
+                'letter_receiver_id' => $letterReciver->id,
+                'status' => $this->constants->letter_status[1]
             ]);
         }
 
@@ -99,7 +107,7 @@ class SentLetterController extends Controller
      */
     public function show(string $id)
     {
-        $letter = Letter::whereId($id)->first();
+        $letter = Letter::findOrFail($id);
 
         return view('sent-letter.detail', compact(['letter']));
     }
@@ -135,7 +143,7 @@ class SentLetterController extends Controller
             $letters = Letter::where(function ($query) use ($userRoleId) {
                 $query->where('user_id', Auth::user()->id)
                     ->orWhere('role_id', $userRoleId);
-            })->with('LetterCategory')->orderBy('created_at', 'desc');
+            })->orderBy('created_at', 'desc')->with('LetterCategory');
 
             return DataTables::of($letters)
                 ->addColumn('action', function ($letter) {

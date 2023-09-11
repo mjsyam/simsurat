@@ -76,8 +76,8 @@
                                 <label for="body" class="required">Isi Surat</label>
                                 <div class="input-group mb-3">
                                     <textarea id="body" type="text"
-                                        class="form-control @error('body') is-invalid @enderror" name="body"
-                                        autocomplete="no_surat" required>{{ old('body') }}</textarea>
+                                        class="form-control editor @error('body') is-invalid @enderror" name="body">
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                                 <div class="input-group mb-3">
                                     <input id="sender" type="text"
                                         class="form-control @error('sender') is-invalid @enderror" name="sender"
-                                        autocomplete="no_surat" value="{{ old('sender') }}">
+                                        autocomplete="sender" value="{{ old('sender') }}">
                                 </div>
                                 <small id="sender" class="form-text text-muted">Contoh : JMTI/SK/0112/08/2021</small>
                             </div>
@@ -97,12 +97,11 @@
                         <div class="form-group">
                             <div class="form-group col-md-8">
                                 <label for="receivers">Penerima Surat</label>
-                                <select class="form-select" name="receivers[]" multiple="multiple">
+                                <select class="form-select select2" name="receivers[]" multiple>
                                     @foreach ($users as $user)
-                                        <option value="{{$user->id}}">{{$user->name}}</option>
+                                        <option value="{{$user->id}}">{{$user->name}} | {{$user->email}}</option>
                                     @endforeach
                                 </select>
-                                <small id="receivers" class="form-text text-muted">Contoh : JMTI/SK/0112/08/2021</small>
                             </div>
                         </div>
 
@@ -120,4 +119,19 @@
         </div>
 
     </div>
+@endsection
+
+@section('script')
+    <script src="{{ asset("ckeditor/ckeditor.js") }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+
+            ClassicEditor
+            .create(document.querySelector('.editor'))
+            .catch(error => {
+                console.error(error);
+            });
+        });
+    </script>
 @endsection
