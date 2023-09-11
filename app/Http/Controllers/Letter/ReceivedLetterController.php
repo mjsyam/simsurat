@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Letter;
 
 use App\Http\Controllers\Controller;
 use App\Models\Letter;
-use App\Models\LetterStatus;
+use App\Models\LetterReceiver;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -24,7 +25,6 @@ class ReceivedLetterController extends Controller
                 $query->where('user_id', Auth::user()->id);
             }
         )->get();
-        // dd($letters);
         return view('received.index', compact(['letters']));
     }
 
@@ -32,7 +32,10 @@ class ReceivedLetterController extends Controller
     {
         //
         $letter = Letter::with([ 'letterCategory'])->findOrFail($id);
-        return view('received.show', compact(['letter']));
+        $letterReceiver = LetterReceiver::where('user_id', Auth::user()->id)->first();
+        $users = User::select('id', 'name')->get();
+
+        return view('inbox.detail', compact(['users', 'letter', 'letterReceiver']));
     }
 
     public function receivedLetterTable(Request $request)

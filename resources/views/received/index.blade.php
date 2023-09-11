@@ -23,17 +23,6 @@
                         </tr>
                     </thead>
                     <tbody class="fs-7">
-                        {{-- @foreach($letters as $letter)
-                            <tr class="fs-7 text-gray-500">
-                            <th>#</th>
-                            <th>Nomor Surat</th>
-                            <th>{{$letter->title}}</th>
-                            <th>{{$letter->letterCategory->name}}</th>
-                            <th>{{$carbon::parse($letter->created_at)->format('Y-m-d H:i:s')}}</th>
-                            <th>Status</th>
-                            <th class="w-100px">#</th>
-                        </tr>
-                        @endforeach --}}
                     </tbody>
                 </table>
             </div>
@@ -55,8 +44,8 @@
                     "zeroRecords": "Data tidak ditemukan 😞",
                 },
                 dom:
-                "<'row mb-2'" +
-                "<'col-12 col-lg-6 d-flex align-items-center justify-content-start'l B>" +`
+               "<'row mb-2'" +
+                "<'col-12 col-lg-6 d-flex align-items-center justify-content-start'l B>" +
                 "<'col-12 col-lg-6 d-flex align-items-center justify-content-lg-end justify-content-start 'f>" +
                 ">" +
 
