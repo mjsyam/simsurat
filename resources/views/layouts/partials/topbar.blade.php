@@ -11,23 +11,26 @@
             </button>
             <ul class="dropdown-menu">
                 <!-- Dropdown menu links -->
-                <li class="px-3">
-                    <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
-                        <i class="ti-user mR-10"></i>
+                <li class="">
+                    <a href="" class="btn">
+                        <i class="ti-user"></i>
                         <span>Profile</span>
                     </a>
                 </li>
-                <li class="px-3">
-                    <a href="{{route('received.letter-index')}}" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
-                        <i class="ti-bell mR-10"></i>
+                <li class="">
+                    <a href="{{route('received.letter-index')}}" class="btn">
+                        <i class="ti-bell"></i>
                         <span>Notifikasi</span>
                     </a>
                 </li>
-                <li class="px-3">
-                    <a href="/logout" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
-                        <i class="ti-power-off mR-10"></i>
-                        <span>Logout</span>
-                    </a>
+                <li class="">
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <button type="submit" class="btn">
+                            <i class="ti-power-off"></i>
+                            <span>Logout</span>
+                        </button>
+                    </form>
                 </li>
             </ul>
         </div>

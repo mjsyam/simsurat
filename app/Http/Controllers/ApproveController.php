@@ -18,44 +18,6 @@ class ApproveController extends Controller
         return view("approve-letter.index");
     }
 
-    public function approveLetter(Request $request)
-    {
-        $letter = Letter::whereId($request->letter_id)->first();
-        $roleIds = Auth::user()->userRoles->first()->children->pluck("id")->toArray();
-        $identifierId = Auth::user()->identifiers->first()->children->pluck("id")->toArray();
-        $letterRoleId = $letter->role_id;
-        $letterIdentifierId = $letter->identifier_id;
-
-        foreach ($letter->letterReceivers as $receiver) {
-            if (in_array($letterRoleId, $roleIds) && in_array($letterIdentifierId, $identifierId)) {
-                LetterHistory::create([
-                    "letter_receiver_id" => $receiver->id,
-                    "note" => "Telah disetujui oleh " . Auth::user()->name,
-                    "status" => "waiting",
-                    "approver_id" => Auth::user()->id,
-                ]);
-            }
-            if (in_array($receiver->role_id, $roleIds) && in_array($receiver->identifier_id, $identifierId)) {
-                LetterHistory::create([
-                    "letter_receiver_id" => $receiver->id,
-                    "note" => "Telah disetujui oleh " . Auth::user()->name,
-                    "status" => "waiting",
-                    "approver_id" => Auth::user()->id,
-                ]);
-            }
-
-            if ($receiver->letterHistories->count() >= 2) {
-                LetterHistory::create([
-                    "letter_receiver_id" => $receiver->id,
-                    "note" => "Telah disetujui oleh semua atasan",
-                    "status" => "sented",
-                ]);
-            }
-        };
-
-        return back();
-    }
-
     public function tableApprove()
     {
         if (request()->ajax()) {
@@ -80,33 +42,9 @@ class ApproveController extends Controller
 
             return DataTables::of($letters)
                 ->addColumn('action', function ($action) {
-                    $detail = '
-                <li>
-                    <div class="btn-detail" id="btn-' . $action->id . '">
-                        <a href="" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
-                    </div>
-                </li>
-                ';
-                    $approve = '
-                <li>
-                    <div class="btn-detail" id="btn-' . $action->id . '">
-                        <form action="' . route("approve.approveLetter") . '" method="post">
-                            <input type="hidden" name="_token" value="' . csrf_token() . '" />
-                            <input type="hidden" name="letter_id" value="' . $action->id . '" />
-                            <button class="btn">
-                            <i class="fa-solid fa-check me-3"></i> Approve
-                            </button>
-                        </form>
-                    </div>
-                </li>
-                ';
-                    return '
-                <button type="button" class="btn btn-secondary btn-icon btn-sm" data-kt-menu-placement="bottom-end" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                <ul class="dropdown-menu">
-                ' . $detail . '
-                ' . $approve . '
-                </ul>
-                ';
+                    return '<div class="btn-detail" id="btn-' . $action->id . '">
+                    <a href="" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
+                </div>';
                 })
                 ->addColumn('name', function ($action) {
                     return $action->user->name;

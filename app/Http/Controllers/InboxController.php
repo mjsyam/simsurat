@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 use Auth;
+use App\Models\LetterReceiver;
 
 class InboxController extends Controller
 {
@@ -14,23 +15,34 @@ class InboxController extends Controller
         return view("inbox.index");
     }
 
+    public function disposition($request){
+        LetterReceiver::update([
+            'disposition_id' => $request->disposition_id,
+        ]);
+    }
+
     public function tableInbox() {
         if (request()->ajax()) {
             $query = DB::table('letters')
             ->join('letter_receivers', 'letter_receivers.letter_id', '=', 'letters.id')
-            ->join('letter_statuses', 'letter_receivers.id', '=', 'letter_statuses.letter_receiver_id')
+            // ->join('letter_statuses', 'letter_receivers.id', '=', 'letter_statuses.letter_receiver_id')
             ->join('users', 'letters.user_id', '=', 'users.id')
-            ->where('letter_statuses.status', '=', 'sented')
-            ->where('letter_receivers.user_id', '=', Auth::user()->id)
-            ->orWhere('letter_statuses.status', '=', 'received')
-            ->orderBy('letters.id', 'DESC')
+            ->where('letter_receivers.user_id', Auth::user()->id)
             ->get();
+
+            // dd($query);
+
             return DataTables::of($query)
             ->addColumn('action', function ($action) {
                 $detail = '
                 <li>
-                    <div class="btn-detail" id="btn-'. $action->id . '">
-                        <a href="" data-bs-toggle="modal" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
+                    <div class="btn-detail">
+                        <a href="" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="btn-detail">
+                        <a href="/disposition/'. $action->letter_id .'" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Disposisi</a>
                     </div>
                 </li>
                 ';

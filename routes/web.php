@@ -33,9 +33,10 @@ Route::group(['middleware'=>['auth']], function () {
 Route::group(['middleware'=>['auth']], function () {
     Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');
     Route::get('/inbox/table', [InboxController::class, 'tableInbox'])->name('inbox.tableInbox');
+    Route::post('/disposition/{disposition_id}', [InboxController::class, 'disposition'])->name('inbox.disposition');
+
     Route::get('/approve', [ApproveController::class, 'index'])->name('approve.index');
     Route::get('/approve/table', [ApproveController::class, 'tableApprove'])->name('approve.tableApprove');
-    Route::post('/approve', [ApproveController::class, 'approveLetter'])->name('approve.approveLetter');
 });
 
 Route::prefix('admin')->group(function () {

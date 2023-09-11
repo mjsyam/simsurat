@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap">
+    {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap"> --}}
 </head>
 
 <body>
@@ -18,7 +18,7 @@
 
         <div class="items-center justify-center mt-4 flex">
             <div class="mr-7">
-                <img src="{{ asset('images/logo-itk.png') }}" class="h-[130px]">
+                <img src="{{ public_path('images/logo-itk.png') }}" class="h-[130px]">
             </div>
             <div class="mx-4 text-center">
                 <div class="uppercase text-lg font-medium">
@@ -71,7 +71,7 @@
                         {{-- <p>a.n. Andi Agung</p>
                         <p>Mahasiswa Informatika 2021</p> --}}
                     </div>
-                    <img src="{{ asset('images/ttd.png') }}" class="max-h-[50px] mt-4">
+                    <img src="{{ public_path('images/ttd.png') }}" class="max-h-[50px] mt-4">
                 </div>
             </div>
 
