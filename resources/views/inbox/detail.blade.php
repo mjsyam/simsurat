@@ -22,6 +22,7 @@
                   <button class="btn btn-success btn-sm">Submit</button>
                 </div>
             </div>
+            <a href="{{ route('pdf.letter', ['letter' => $letter->id]) }}" class="btn btn-success">PDF Version</a>
         </form>
     </div>
 
@@ -76,7 +77,7 @@
                     <div class="content">
                         <p>Yth. {{$letterReceiver->user->name}}</p>
                         <p>
-                            {{$letter->body}}
+                            {!!$letter->body!!}
                         </p>
                     </div>
                     <div class="signature">
@@ -102,8 +103,8 @@
 
         const users = @json($users);
         // dummy
-        // option.value = "1"; 
-        // option.text = "YourOptionText"; 
+        // option.value = "1";
+        // option.text = "YourOptionText";
         users.forEach(user => {
             if (user.id != {{Auth::user()->id}} && user.id != {{ $letter->user_id }}) {
                 var option = document.createElement("option");
