@@ -3,11 +3,6 @@
 @section('content')
     <div>
         <h3 class="">Surat Belum Dibaca</h3><br>
-        <div class="mb-4">
-            <a href="{{ route('sent.letter-create') }}" class="btn btn-success px-7">
-                Add
-            </a>
-        </div>
         <div class="bgc-white bd bdrs-3 p-20 mB-20 mt-4">
             <div class="table-responsive">
                 <table class="table table-striped" id="received_letter_table">
