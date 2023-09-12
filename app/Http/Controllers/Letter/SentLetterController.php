@@ -212,7 +212,7 @@ class SentLetterController extends Controller
         // }
     }
 
-    public function sentReceiver($id, $receiver_id)
+    public function sentReceiver($id)
     {
         $receiver = LetterReceiver::with([
             'user',
@@ -227,7 +227,7 @@ class SentLetterController extends Controller
                     'approver'
                 ])->orderBy('id', 'desc');
             },
-        ])->find($receiver_id);
+        ])->findOrFail($id);
         return view('sent-letter.receiver.index', compact(['receiver']));
     }
 }
