@@ -8,7 +8,7 @@ use Yajra\DataTables\Facades\DataTables;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Models\LetterReceiver;
 use App\Models\User;
 use App\Models\Letter;

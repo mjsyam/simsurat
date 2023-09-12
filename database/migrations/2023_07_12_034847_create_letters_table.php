@@ -20,12 +20,13 @@ return new class extends Migration
             $table->foreignId("letter_category_id")->constrained("letter_categories");
             $table->foreignId("role_id")->constrained("roles");
             $table->foreignId('identifier_id')->constrained("identifiers");
+            $table->string("institution", 35);
             $table->date("date");
             $table->string("title", 50);
             $table->string("refrences_number", 30);
             $table->string("letter_destination", 40)->nullable();
             $table->text("body");
-            $table->string("sender", 40)->nullable();
+            $table->foreignId("signed")->constrained("users");
             $table->timestamps();
         });
     }

@@ -43,7 +43,7 @@ class ApproveController extends Controller
             return DataTables::of($letters)
                 ->addColumn('action', function ($action) {
                     return '<div class="btn-detail" id="btn-' . $action->id . '">
-                    <a href="" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
+                    <a href="' . route('pdf.letter', ['letter' => $action->id]) . '" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
                 </div>';
                 })
                 ->addColumn('name', function ($action) {
