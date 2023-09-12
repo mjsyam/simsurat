@@ -7,8 +7,8 @@
           <a class='sidebar-link td-n' href="/">
             <div class="peers ai-c fxw-nw">
               <div class="peer">
-                <div class="logo">
-                  <img src="{{ asset('Logo.png') }}" style="border-radius: 50%;height: 4rem;width: 7.5rem;object-fit: contain;" alt="">
+                <div class="logo mt-5">
+                  <img src="{{ asset('images/logo.png') }}" style="border-radius: 50%;height: 4rem;width: 7.5rem;object-fit: contain;" alt="">
                 </div>
               </div>
               <div class="peer peer-greed">
@@ -80,7 +80,7 @@
             <a class="sidebar-link ">Menunggu Persetujuan</a>
             <a class="sidebar-link ">Disetujui</a>
             <a class="sidebar-link ">Selesai</a>
-          </li>               
+          </li>
         </ul>
       </li>
 
@@ -115,7 +115,7 @@
           <li>
             <a class="sidebar-link ">Surat Masuk</a>
             <a class="sidebar-link ">Surat Keluar</a>
-          </li>               
+          </li>
         </ul>
       </li>
 
@@ -139,7 +139,7 @@
             <a class="sidebar-link ">Menunggu Persetujuan</a>
             <a class="sidebar-link ">Disetujui</a>
             <a class="sidebar-link ">Selesai</a>
-          </li>               
+          </li>
         </ul>
       </li>
 
@@ -160,7 +160,7 @@
               <span class="title">Status Surat</span>
           </a>
       </li>
-      
+
       {{-- rektor --}}
       <li class="nav-item dropdown">
         <a class="dropdown-toggle" href="javascript:void(0);">
@@ -176,7 +176,7 @@
           <li>
             <a class="sidebar-link ">Menunggu Disposisi</a>
             <a class="sidebar-link ">Surat Masuk</a>
-          </li>               
+          </li>
         </ul>
       </li>
       <li class="nav-item">
@@ -249,7 +249,7 @@
           <li>
             <a class="sidebar-link ">Menunggu Persetujuan</a>
             <a class="sidebar-link ">Disetujui</a>
-          </li>               
+          </li>
         </ul>
       </li>
 
@@ -272,7 +272,7 @@
           <li>
             <a class="sidebar-link ">Menunggu Persetujuan</a>
             <a class="sidebar-link ">Disetujui</a>
-          </li>               
+          </li>
         </ul>
       </li>
       <li class="nav-item">
@@ -293,7 +293,7 @@
           <li>
             <a class="sidebar-link ">Menunggu Disposisi</a>
             <a class="sidebar-link ">Surat Masuk</a>
-          </li>               
+          </li>
         </ul>
       </li>
       <li class="nav-item">

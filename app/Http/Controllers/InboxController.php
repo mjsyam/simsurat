@@ -24,12 +24,10 @@ class InboxController extends Controller
 
             $letters = DB::table('letters')
             ->join('letter_receivers', 'letter_receivers.letter_id', '=', 'letters.id')
-            ->join('letter_statuses', 'letter_receivers.id', '=', 'letter_statuses.letter_receiver_id')
+            // ->join('letter_statuses', 'letter_receivers.id', '=', 'letter_statuses.letter_receiver_id')
             ->join('users', 'letters.user_id', '=', 'users.id')
-            ->where('letter_statuses.status', '=', 'sented')
-            ->where('letter_receivers.user_id', '=', Auth::user()->id)
-            ->orWhere('letter_statuses.status', '=', 'received')
-            ->orderBy('letters.id', 'DESC')
+            ->where('letter_receivers.user_id', Auth::user()->id)
+            ->orWhere('letter_receivers.disposition_id', Auth::user()->id)
             ->get();
 
             return DataTables::of($letters)

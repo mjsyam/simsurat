@@ -189,7 +189,7 @@ class SentLetterController extends Controller
 
     public function exportPdf(string $id)
     {
-        try {
+        // try {
             $userId = Auth::user()->id;
             $letter = Letter::whereId($id)->first();
 
@@ -205,11 +205,11 @@ class SentLetterController extends Controller
 
             $pdf = Pdf::loadView('letterPdf', compact(['letter']));
             return $pdf->download('sample.pdf');
-        } catch (\Throwable $th) {
-            $data = $this->errorHandler->handle($th);
+        // } catch (\Throwable $th) {
+        //     $data = $this->errorHandler->handle($th);
 
-            return response()->json($data["data"], $data["code"]);
-        }
+        //     return response()->json($data["data"], $data["code"]);
+        // }
     }
 
     public function sentReceiver($id, $receiver_id)

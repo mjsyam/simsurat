@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <a href="{{ route('sent.letter-exports', ['id' => $letter->id]) }}" target="_blank">Donwload</a>
+    <a href="{{ route('pdf.letter', ['letter' => $letter->id]) }}" target="_blank">Donwload</a>
 
     <div>Sent to</div>
 

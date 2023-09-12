@@ -31,7 +31,6 @@
         }
 
         #header_image {
-            margin-right: 1.75rem;
             width: 100px;
             float: left;
         }
@@ -106,13 +105,13 @@
 </head>
 
 <body>
-    <div id="container">
+    <div id="">
 
-        <header>
-            <div id="header_image">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Lambang_ITK.png">
+        <header style="text-align: center">
+            <div style="float: left; width: 10%;">
+                <img src="{{ public_path('images/Lambang_ITK.png') }}" style="height: 150px; margin-top: 20px; padding-left: 50px">
             </div>
-            <div id="header_text_container">
+            <div style="float: right; width: 90%;">
                 <div id="header_text_letter">
                     <p>kementerian pendidikan, kebudayaan,</p>
                     <p>riset, dan teknologi</p>
@@ -125,23 +124,26 @@
                     <p>Surat elektronik : lppm@itk.ac.id laman : www.itk.ac.id</p>
                 </div>
             </div>
+
         </header>
 
-        <hr class="border-2 border-black mt-1">
 
-        <section class="mx-8 mt-5">
+        <section class="mx-8" style="margin-top: 200px">
+            <hr class="border-2 border-black mt-1">
             <div class="flex">
                 <div>
-                    <div class="flex">
-                        <p id="nomor">Nomor</p>
-                        <p>: {{ $letter->refrences_number }}</p>
-                    </div>
-                    <div class="flex">
-                        <p id="hal">Hal</p>
-                        <p>: {{ $letter->letterCategory->name }}</p>
-                    </div>
+                    <table>
+                        <tr>
+                            <td style="width: 50px;"><span style="padding-right: 50px;">Nomor</span> </td>
+                            <td>: {{ $letter->refrences_number }}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 50px;"><span style="padding-right: 50px;">Hal</span> </td>
+                            <td>: {{ $letter->letterCategory->name }}</td>
+                        </tr>
+                    </table>
                 </div>
-                <div id="date">
+                <div id="date" style="float: right; margin-top:-48px">
                     <p>{{ Carbon::parse($letter->date)->format('j F Y') }}</p>
                 </div>
             </div>
@@ -156,7 +158,7 @@
                 {!! $letter->body !!}
             </div>
 
-            <footer>
+            <footer style="float: right;">
                 <div style="flex: 1 1 0%;"></div>
                 <div style="flex-shrink: 1; margin-right:1rem;">
                     <div>
@@ -169,6 +171,7 @@
                         <p>{{ $letter->user->name }}</p>
                         <p>NIP {{ $letter->user->nip }}</p>
                     </div>
+                    {{-- <img src="{{ public_path('images/ttd.png') }}" class="max-h-[50px] mt-4"> --}}
                 </div>
             </footer>
 

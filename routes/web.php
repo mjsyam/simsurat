@@ -9,6 +9,7 @@ use App\Http\Controllers\InboxController;
 use App\Http\Controllers\Letter\SentLetterController;
 use App\Http\Controllers\Letter\ReceivedLetterController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,14 +32,16 @@ Route::group(['middleware'=>['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
 
+Route::get('/pdf/letter/{letter}', [PDFController::class, 'index'])->name('pdf.letter');
+
 Route::group(['middleware'=>['auth']], function () {
     Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');
     Route::get('/inbox/table', [InboxController::class, 'tableInbox'])->name('inbox.tableInbox');
     Route::get('/inbox/detail/{letter}', [InboxController::class, 'detail'])->name('inbox.detail');
     Route::post('/inbox/disposition/{letterReceiver}', [InboxController::class, 'disposition'])->name('inbox.disposition');
+
     Route::get('/approve', [ApproveController::class, 'index'])->name('approve.index');
     Route::get('/approve/table', [ApproveController::class, 'tableApprove'])->name('approve.tableApprove');
-    Route::post('/approve', [ApproveController::class, 'approveLetter'])->name('approve.approveLetter');
 });
 
 Route::prefix('admin')->group(function () {
