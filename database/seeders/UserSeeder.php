@@ -27,6 +27,7 @@ class UserSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => Hash::make('123456789'),
                 'remember_token' => str::random(10),
+                'nip' => "78051851387412",
                 'signature' => "beta",
                 'avatar' => "beta",
             ]);

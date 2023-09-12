@@ -25,14 +25,15 @@
         }
 
         header {
-            justify-content: center;
-            align-items: center;
             display: flex;
+            margin: 0 50px;
             margin-top: 1rem;
         }
 
         #header_image {
             margin-right: 1.75rem;
+            width: 100px;
+            float: left;
         }
 
         #header_image img {
@@ -40,6 +41,7 @@
         }
 
         #header_text_container {
+            width: 100%;
             text-align: center;
             margin-left: 1rem;
             margin-right: 1rem;
@@ -115,7 +117,7 @@
                     <p>kementerian pendidikan, kebudayaan,</p>
                     <p>riset, dan teknologi</p>
                     <p>institut teknologi kalimantan</p>
-                    <p style="font-weight: 600;">lembaga penelitian dan pengabdian masyarakat</p>
+                    <p style="font-weight: 600;">{{ $letter->institution }}</p>
                 </div>
                 <div id="header_text_address">
                     <p>Kampus ITK Karang Joang, Balikpapan 76127</p>
@@ -158,7 +160,7 @@
                 <div style="flex: 1 1 0%;"></div>
                 <div style="flex-shrink: 1; margin-right:1rem;">
                     <div>
-                        <p>{{ $letter->role->role }} {{ $letter->identifiers->name }}</p>
+                        <p>{{ $letter->role->role }} {{-- $letter->identifiers->name --}}</p>
                     </div>
                     {{-- {{ public_path('images/' . $letter->user->signature) }} --}}
                     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Tanda_Tangan_Mick_Schumacher.png"

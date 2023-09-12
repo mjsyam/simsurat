@@ -8,6 +8,7 @@ use App\Http\Controllers\ApproveController;
 use App\Http\Controllers\InboxController;
 use App\Http\Controllers\Letter\SentLetterController;
 use App\Http\Controllers\Letter\ReceivedLetterController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,19 +70,35 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::group(['middleware'=>['auth']], function () {
-    Route::get('/letter/sent', [SentLetterController::class, 'index'])->name('sent.letter-index');
-    Route::get('/letter/sent/detail/{id}', [SentLetterController::class, 'show'])->name('sent.letter-detail');
-    Route::get('/letter/sent/detail/{id}/pdf', [SentLetterController::class, 'exportPdf'])->name('sent.letter-exports');
+    Route::prefix('letter')->group(function () {
+        Route::prefix('sent')->group(function () {
+            Route::controller(SentLetterController::class)->group(function () {
+                Route::get('/', 'index')->name('sent.letter-index');
+                Route::get('/detail/{id}', 'show')->name('sent.letter-detail');
+                Route::get('/detail/{id}/pdf', 'exportPdf')->name('sent.letter-exports');
 
-    Route::get('/letter/sent/table', [SentLetterController::class, 'sentLetterTable'])->name('sent.letter-table');
-    Route::get('/letter/sent/create', [SentLetterController::class, 'create'])->name('sent.letter-create');
-    Route::post('/letter/sent/create', [SentLetterController::class, 'store'])->name('sent.letter-store');
-    Route::get('/letter/sent/{id}', [SentLetterController::class, 'show'])->name('sent.letter-show');
-    Route::get('/letter/sent/{id}/receiver/{receiver_id}', [SentLetterController::class, 'sentReceiver'])->name('sent.receiver.show');
+                Route::get('/table', 'sentLetterTable')->name('sent.letter-table');
+                Route::get('/create', 'create')->name('sent.letter-create');
+                Route::post('/create', 'store')->name('sent.letter-store');
+                Route::get('/{id}', 'show')->name('sent.letter-show');
+                Route::get('/{id}/receiver/{receiver_id}', [SentLetterController::class, 'sentReceiver'])->name('sent.receiver.show');
+            });
+        });
 
-    Route::get('/letter/received', [ReceivedLetterController::class, 'index'])->name('received.letter-index');
-    Route::get('/letter/received/table', [ReceivedLetterController::class, 'receivedLetterTable'])->name('received.letter-table');
-    Route::get('/letter/received/{id}', [ReceivedLetterController::class, 'show'])->name('received.letter-show');
+        Route::prefix('received')->group(function () {
+            Route::controller(ReceivedLetterController::class)->group(function () {
+                Route::get('/', 'index')->name('received.letter-index');
+                Route::get('/table', 'receivedLetterTable')->name('received.letter-table');
+                Route::get('/{id}', 'show')->name('received.letter-show');
+            });
+        });
+    });
+
+    Route::prefix('user')->group(function () {
+        Route::controller(UserController::class)->group(function () {
+            Route::get('/role', 'getUserRole')->name('user.get-role');
+        });
+    });
 });
 
 // contoh menggunaan middleware untuk filter berdasarkan role

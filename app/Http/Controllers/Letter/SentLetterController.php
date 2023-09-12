@@ -18,6 +18,7 @@ use App\Models\Letter;
 use App\Models\LetterCategory;
 use App\Models\LetterReceiver;
 use App\Models\LetterStatus;
+use App\Models\UserRole;
 use App\Utils\ErrorHandler;
 
 class SentLetterController extends Controller
@@ -60,13 +61,13 @@ class SentLetterController extends Controller
             'refrences_number' => 'required',
             'letter_destination' => 'required|nullable',
             'body' => 'required',
-            'sender' => 'required|nullable',
+            'institution' => 'required',
+            'signed' => 'required',
+            'role_id' => 'required',
             'receivers' => 'required'
         ]);
 
-        $user = Auth::user();
-        $userRole = $user->userRoles->first()->id;
-        $identifiers = $user->identifiers->first()->id;
+        $userRole = UserRole::whereId($request->role_id)->first();
 
         $letter = Letter::create([
             'user_id' => Auth::user()->id,
@@ -76,17 +77,19 @@ class SentLetterController extends Controller
             'date' => $request->date,
             'refrences_number' => $request->refrences_number,
             'letter_destination' => $request->letter_destination,
+            'institution' => $request->institution,
             'body' => $request->body,
-            'sender' => $request->sender,
-            'role_id' => $userRole,
-            'identifier_id' => $identifiers,
+            'signed' => $request->signed,
+            'role_id' => $userRole->role_id,
+            'identifier_id' => $userRole->identifier_id,
         ]);
+
         foreach ($request->receivers as $receiver) {
             $data = User::whereId($receiver)->first();
             $role = $data->userRoles->first()->id;
             $identifier = $data->identifiers->first()->id;
 
-            $letter = LetterReceiver::create([
+            $sentLetter = LetterReceiver::create([
                 'user_id' => $receiver,
                 'role_id' => $role,
                 'letter_id' => $letter->id,
@@ -94,7 +97,7 @@ class SentLetterController extends Controller
             ]);
 
             LetterStatus::create([
-                'letter_receiver_id' => $letter->id,
+                'letter_receiver_id' => $sentLetter->id,
                 'status' => $this->constants->letter_status[1]
             ]);
         }
@@ -187,7 +190,7 @@ class SentLetterController extends Controller
             //     throw new AuthorizationError("Anda tidak berhak mengakses surat ini");
             // }
 
-            // return view('letterPdf', compact(['letter']));
+            return view('letterPdf', compact(['letter']));
 
             $pdf = Pdf::loadView('letterPdf', compact(['letter']));
             return $pdf->download('sample.pdf');
