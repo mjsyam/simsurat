@@ -108,11 +108,31 @@ class SentLetterController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function sentLetterTableDetail(Request $request)
     {
-        $letter = Letter::findOrFail($id);
+        if (request()->ajax()) {
+            $letter = LetterReceiver::where("letter_id", $request->id)
+                ->with(['user', 'role', 'identifiers']);
 
-        return view('sent-letter.detail', compact(['letter']));
+            return DataTables::of($letter)
+                ->addColumn('action', function ($letter) {
+                    return view('sent-letter.components.menu-detail', compact([
+                        'letter'
+                    ]));
+                })
+                ->addColumn('name', function ($letter) {
+                    return $letter->user->name;
+                })
+                ->addColumn('role', function ($letter) {
+                    return $letter->role->role;
+                })
+                ->addColumn('identifier', function ($letter) {
+                    return $letter->identifiers->name;
+                })
+                ->addIndexColumn()
+                ->rawColumns(['action'])
+                ->make(true);
+        }
     }
 
     /**
@@ -150,19 +170,10 @@ class SentLetterController extends Controller
 
             return DataTables::of($letters)
                 ->addColumn('action', function ($letter) {
-                    $detail = '
-                <li>
-                    <div class="btn-detail">
-                        <a href="' . route('sent.letter-detail', ['id' => $letter->id]) . '" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
-                    </div>
-                </li>
-                ';
-                    return '
-                <button type="button" class="btn btn-secondary btn-icon btn-sm" data-kt-menu-placement="bottom-end" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                <ul class="dropdown-menu">
-                ' . $detail . '
-                </ul>
-                ';
+                    $id = $letter->id;
+                    return view('sent-letter.components.menu', compact([
+                        'id'
+                    ]));
                 })
                 ->addColumn('category', function ($letter) {
                     return $letter->letterCategory->name;
