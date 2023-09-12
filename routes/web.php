@@ -77,14 +77,15 @@ Route::group(['middleware'=>['auth']], function () {
         Route::prefix('sent')->group(function () {
             Route::controller(SentLetterController::class)->group(function () {
                 Route::get('/', 'index')->name('sent.letter-index');
-                Route::get('/detail/{id}', 'show')->name('sent.letter-detail');
                 Route::get('/detail/{id}/pdf', 'exportPdf')->name('sent.letter-exports');
 
                 Route::get('/table', 'sentLetterTable')->name('sent.letter-table');
+                Route::get('/table/detail', 'sentLetterTableDetail')->name('sent.letter-table-detail');
+
                 Route::get('/create', 'create')->name('sent.letter-create');
                 Route::post('/create', 'store')->name('sent.letter-store');
                 Route::get('/{id}', 'show')->name('sent.letter-show');
-                Route::get('/{id}/receiver/{receiver_id}', [SentLetterController::class, 'sentReceiver'])->name('sent.receiver.show');
+                Route::get('/{id}/receiver/{receiver_id}', 'sentReceiver')->name('sent.receiver.show');
             });
         });
 
