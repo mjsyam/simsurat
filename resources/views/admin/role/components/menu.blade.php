@@ -3,7 +3,7 @@
 </button>
 <ul class="dropdown-menu">
     <li>
-        <a href="{{route('admin.role.detail', ["id" => $roleId])}}" class="dropdown-item py-2">
+        <a href="{{route('admin.role.detail', ["role" => $role])}}" class="dropdown-item py-2">
             <i class="fa-solid fa-id-badge me-3"></i>
             Detail
         </a>

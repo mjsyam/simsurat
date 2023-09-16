@@ -30,8 +30,4 @@ class Letter extends Model
     public function role() {
         return $this->belongsTo(Role::class);
     }
-
-    public function identifiers() {
-        return $this->belongsTo(Identifier::class, 'identifier_id');
-    }
 }

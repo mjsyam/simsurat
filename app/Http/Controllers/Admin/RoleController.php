@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Role;
+use Spatie\Permission\Models\Role;
 use Yajra\DataTables\Facades\DataTables;
 use Carbon\Carbon;
 use App\Utils\ErrorHandler;
 use App\Constants;
 use App\Models\User;
-use App\Models\UserRole;
 
 class RoleController extends Controller
 {
@@ -46,9 +45,9 @@ class RoleController extends Controller
                 //     return $formattedDate;
                 // })
                 ->addColumn('action', function ($query) {
-                    $roleId = $query->id;
+                    $role = $query->name;
 
-                    return view('admin.role.components.menu', compact(['roleId']));
+                    return view('admin.role.components.menu', compact(['role']));
                 })
                 ->addIndexColumn()
                 ->rawColumns(['action', 'DT_RowChecklist'])
@@ -57,83 +56,39 @@ class RoleController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $role)
     {
         //
-        $role = Role::with('userRoles')->findOrFail($id);
-        $not_assigned_users = User::whereDoesntHave('userRoles', function ($query) use ($id) {
-            $query->where('role_id', $id);
+        $role = Role::findOrFail($role)->get();
+        $not_assigned_users = User::whereDoesntHave('userRoles', function ($query) use ($role) {
+            $query->where('role_id', $role);
         })->get();
-        return view('admin.role.detail', compact(['role', 'not_assigned_users']));
+
+        $user = User::role($role)->get();
+        return view('admin.role.detail', compact(['role', 'not_assigned_users', 'user']));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
-
-    public function assignUser(Request $request, string $id)
-    {
-        $request->validate([
-            'user_id' => 'required|string',
-        ]);
-        
-        $userRole = UserRole::create([
-            'user_id' => $request->user_id,
-            'role_id' => $id,
-            'identifier_id' => '1'
-        ]);
-
-       return redirect()->route('admin.role.detail', $id);
-    }
-
-    public function removeUser(Request $request, string $id)
+    public function assignUser(Request $request, string $role)
     {
         $request->validate([
             'user_id' => 'required|string',
         ]);
 
-        $userRole = UserRole::where('user_id', $request->user_id)->where('role_id', $id)->first();
-        $userRole->delete();
+        User::whereId($request->user_id)->assignRole($role);
 
-        return redirect()->route('admin.role.detail', $id);
+       return redirect()->route('admin.role.detail', $role);
+    }
+
+    public function removeUser(Request $request, string $role)
+    {
+        $request->validate([
+            'user_id' => 'required|string',
+        ]);
+
+        User::whereId($request->user_id)->removeRole($role);
+
+        return redirect()->route('admin.role.detail', $role);
     }
 }

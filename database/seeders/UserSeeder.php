@@ -19,55 +19,21 @@ class UserSeeder extends Seeder
     {
         $faker = Faker::create();
         // \App\Models\User::factory(20)->create();
+
         User::create([
-            'name' => "Anggina Haraha",
-            'email' => "anggina@staff.itk.ac.id",
+            'name' => "Admin",
+            'email' => "superadmin@gmail.com",
             'status' => 'DOSEN',
+            'nip' => '0',
             'email_verified_at' => now(),
             'password' => Hash::make('123456789'),
             'remember_token' => str::random(10),
-            'nip' => "0",
+            'nip' => "78051851387412",
             'signature' => "beta",
             'avatar' => "beta",
         ]);
 
-        User::create([
-            'name' => "Prof. Erma Suryani, S.T., M.T., Ph.D",
-            'email' => "wr2@itk.ac.id",
-            'status' => 'DOSEN',
-            'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            'remember_token' => str::random(10),
-            'nip' => "197004272005012001",
-            'signature' => "beta",
-            'avatar' => "beta",
-        ]);
-
-        User::create([
-            'name' => "Irma Fitria, S.Si., M.Si",
-            'email' => "irma.fitria@lecturer.itk.ac.id",
-            'status' => 'DOSEN',
-            'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            'remember_token' => str::random(10),
-            'nip' => "0",
-            'signature' => "beta",
-            'avatar' => "beta",
-        ]);
-
-        User::create([
-            'name' => "Andi Idhil Ismail, S.T., M.Sc., Ph.D",
-            'email' => "a.idhil@lecturer.itk.ac.id",
-            'status' => 'DOSEN',
-            'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            'remember_token' => str::random(10),
-            'nip' => "0",
-            'signature' => "beta",
-            'avatar' => "beta",
-        ]);
-
-        for ($i = 0; $i <= 10; $i++){
+        for ($i = 0; $i <= 19; $i++){
             User::create([
                 'name' => $faker->name(),
                 'email' => $faker->unique()->safeEmail(),

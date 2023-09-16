@@ -63,7 +63,7 @@
                     searchable: false
                 },
                 {
-                    data: 'role'
+                    data: 'name'
                 },
                 {
                     data: 'action'

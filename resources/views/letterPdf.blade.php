@@ -128,8 +128,8 @@
         </header>
 
 
-        <section class="mx-8" style="margin-top: 200px">
-            <hr class="border-2 border-black mt-1">
+        <hr class="border-2 border-black mt-1" style="margin: 0 10px; margin-top: 200px;">
+        <section class="mx-8" style="padding: 0 20px;">
             <div class="flex">
                 <div>
                     <table>
@@ -154,7 +154,7 @@
                 <p>Yth. {{ $letter->letter_destination }}</p>
             </div>
 
-            <div id="body">
+            <div id="body" style="min-height: 400px;">
                 {!! $letter->body !!}
             </div>
 

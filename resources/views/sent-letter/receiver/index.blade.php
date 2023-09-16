@@ -2,8 +2,6 @@
 
 @section('content')
 
-<button>Donwload</button>
-
 <div>Sent to</div>
 
 <div>{{$receiver->user->name}}</div>

@@ -53,7 +53,7 @@ class InboxController extends Controller
     }
 
     public function detail(Letter $letter){
-        $letterReceiver = LetterReceiver::where('user_id', Auth::user()->id)->first();
+        $letterReceiver = LetterReceiver::where('user_id', Auth::user()->id)->orWhere('disposition_id', Auth::user()->id)->first();
         $users = User::select('id', 'name')->get();
         return view('inbox.detail', compact(['users', 'letter', 'letterReceiver']));
     }

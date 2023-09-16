@@ -35,6 +35,7 @@ Route::group(['middleware'=>['auth']], function () {
 Route::get('/pdf/letter/{letter}', [PDFController::class, 'index'])->name('pdf.letter');
 
 Route::group(['middleware'=>['auth']], function () {
+    // TODO : input user yang didisposisi diharapkan sesuai dengan aturan top down dan down top
     Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');
     Route::get('/inbox/table', [InboxController::class, 'tableInbox'])->name('inbox.tableInbox');
     Route::get('/inbox/detail/{letter}', [InboxController::class, 'detail'])->name('inbox.detail');
@@ -45,6 +46,7 @@ Route::group(['middleware'=>['auth']], function () {
 });
 
 Route::prefix('admin')->group(function () {
+    // TODO : perbaiki detial user
     Route::controller(Admin\UserController::class)->group(function () {
         Route::prefix('user')->group(function () {
             Route::get('/list', 'index')->name('admin.user.index');
@@ -57,15 +59,16 @@ Route::prefix('admin')->group(function () {
         });
     });
 
+    // TODO : role seharusnya tidak boleh dihapus, hanya boleh digantikan
     Route::controller(Admin\RoleController::class)->group(function () {
         Route::prefix('role')->group(function () {
             Route::get('/list', 'index')->name('admin.role.index');
-            Route::get('/detail/{id}', 'show')->name('admin.role.detail');
-            Route::delete('/update/{id}', 'update')->name('admin.role.update');
-            Route::delete('/delete/{id}', 'destroy')->name('admin.role.delete');
+            Route::get('/detail/{role}', 'show')->name('admin.role.detail');
+            Route::delete('/update/{role}', 'update')->name('admin.role.update');
+            Route::delete('/delete/{role}', 'destroy')->name('admin.role.delete');
             Route::post('/add', 'store')->name('admin.role.add');
-            Route::post('/assign-user/{id}', 'assignUser')->name('admin.role.assignUser');
-            Route::post('/remove-user/{id}', 'removeUser')->name('admin.role.removeUser');
+            Route::post('/assign-user/{role}', 'assignUser')->name('admin.role.assignUser');
+            Route::post('/remove-user/{role}', 'removeUser')->name('admin.role.removeUser');
 
             Route::get('/get-data/table', 'getRolesTable')->name('admin.role.table');
         });

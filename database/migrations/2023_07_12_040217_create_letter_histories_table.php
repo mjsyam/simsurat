@@ -23,7 +23,7 @@ return new class extends Migration
             $table->foreignId("letter_receiver_id")->constrained('letter_receivers');
             $table->string("note");
             $table->enum("status", $this->constants->letter_status);
-            $table->foreignId("approver_id")->nullable()->constrained("user_roles");
+            $table->foreignId("approver_id")->nullable()->constrained("roles");
             $table->timestamps();
         });
     }

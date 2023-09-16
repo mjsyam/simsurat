@@ -22,20 +22,13 @@ class ApproveController extends Controller
     {
         if (request()->ajax()) {
             $roleIds = Auth::user()->userRoles->first()->children->pluck("id");
-            $identifierId = Auth::user()->identifiers->first()->children->pluck("id");
 
-            $letters = Letter::where(function ($query) use ($roleIds, $identifierId) {
+            $letters = Letter::where(function ($query) use ($roleIds) {
                 $query->where(function ($subQuery) use ($roleIds) {
                     $subQuery->whereHas('role', function ($roleSubQuery) use ($roleIds) {
                         $roleSubQuery->whereIn('roles.id', $roleIds);
                     })->orWhereHas('letterReceivers', function ($receiverSubQuery) use ($roleIds) {
                         $receiverSubQuery->whereIn('letter_receivers.role_id', $roleIds);
-                    });
-                })->where(function ($subQuery) use ($identifierId) {
-                    $subQuery->whereHas('identifiers', function ($identifierSubQuery) use ($identifierId) {
-                        $identifierSubQuery->whereIn('identifiers.id', $identifierId);
-                    })->orWhereHas('letterReceivers', function ($receiverSubQuery) use ($identifierId) {
-                        $receiverSubQuery->whereIn('letter_receivers.identifier_id', $identifierId);
                     });
                 });
             })->get();

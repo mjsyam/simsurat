@@ -7,10 +7,10 @@
 
 <div class="bgc-white bd bdrs-3 p-20 mB-20 mt-4">
     <div class="table-responsive">
-        <h4 class="c-grey-900 mB-20">User dengan Role {{$role->role}}</h4>
+        <h4 class="c-grey-900 mB-20">User dengan Role {{$role->name}}</h4>
         <div>
             <div>
-                <form method="POST" action="{{ route('admin.role.assignUser',$role->id) }}">
+                <form method="POST" action="{{ route('admin.role.assignUser',$role->name) }}">
                     @csrf
                     <label>
                         Tambah User
@@ -26,14 +26,14 @@
                 </form>
             </div>
             <div>
-                <form method="POST" action="{{ route('admin.role.removeUser',$role->id) }}">
+                <form method="POST" action="{{ route('admin.role.removeUser',$role->name) }}">
                     @csrf
                     <label>
                         Hapus User
                     </label>
                     <select class="form-select" name="user_id" aria-label="Default select example">
-                        @foreach ($role->userRoles as $user)
-                        <option value="{{$user->id}}">{{$user->name}}</option>
+                        @foreach ($user as $data)
+                        <option value="{{$data->id}}">{{$user->name}}</option>
                         @endforeach
                     </select>
                     <button>
@@ -51,11 +51,11 @@
                 </tr>
             </thead>
             <tbody class="fs-7">
-                @foreach ($role->userRoles as $user)
+                @foreach ($user as $data)
                 <tr>
                     <td>{{$loop->iteration}}</td>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->email}}</td>
+                    <td>{{$data->name}}</td>
+                    <td>{{$data->email}}</td>
                 </tr>
                 @endforeach
             </tbody>

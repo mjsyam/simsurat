@@ -7,6 +7,7 @@
     <div style="background-color: #E6EEFA" class="mb-2 py-5 px-4">
         <h1>Tools</h1>
         <hr>
+
         <form action="{{ route('inbox.disposition', ['letterReceiver' => $letterReceiver]) }}" method="POST">
             @method('POST')
             @csrf
@@ -22,8 +23,9 @@
                   <button class="btn btn-success btn-sm">Submit</button>
                 </div>
             </div>
-            <a href="{{ route('pdf.letter', ['letter' => $letter->id]) }}" class="btn btn-success">PDF Version</a>
         </form>
+
+        <a href="{{ route('pdf.letter', ['letter' => $letter->id]) }}" class="btn btn-success">PDF Version</a>
     </div>
 
     <div style="background: white">

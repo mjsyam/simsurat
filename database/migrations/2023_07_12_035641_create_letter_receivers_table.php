@@ -20,7 +20,6 @@ return new class extends Migration
             // $table->foreignUuid("user_id")->constrained("users");
             // $table->foreignUuid("disposition_id")->nullable()->constrained("users");
             $table->foreignId("role_id")->constrained("roles");
-            $table->foreignId('identifier_id')->constrained("identifiers");
             // $table->foreignUuid("letter_id")->constrained("letters");
             $table->timestamps();
         });
