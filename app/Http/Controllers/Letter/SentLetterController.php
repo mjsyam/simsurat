@@ -67,8 +67,6 @@ class SentLetterController extends Controller
             'receivers' => 'required'
         ]);
 
-        $userRole = UserRole::whereId($request->role_id)->first();
-
         $letter = Letter::create([
             'user_id' => Auth::user()->id,
             'letter_category_id' => $request->letter_category_id,
@@ -80,20 +78,17 @@ class SentLetterController extends Controller
             'institution' => $request->institution,
             'body' => $request->body,
             'signed' => $request->signed,
-            'role_id' => $userRole->role_id,
-            'identifier_id' => $userRole->identifier_id,
+            'role_id' => $request->role_id,
         ]);
 
         foreach ($request->receivers as $receiver) {
             $data = User::whereId($receiver)->first();
-            $role = $data->userRoles->first()->id;
-            $identifier = $data->identifiers->first()->id;
+            $role = $data->roles->first()->id;
 
             $sentLetter = LetterReceiver::create([
                 'user_id' => $receiver,
                 'role_id' => $role,
                 'letter_id' => $letter->id,
-                'identifier_id' => $identifier,
             ]);
 
             LetterStatus::create([
@@ -162,7 +157,7 @@ class SentLetterController extends Controller
     public function sentLetterTable(Request $request)
     {
         if (request()->ajax()) {
-            $userRoleId = Auth::user()->userRoles->first()->id;
+            $userRoleId = Auth::user()->roles->first()->id;
             $letters = Letter::where(function ($query) use ($userRoleId) {
                 $query->where('user_id', Auth::user()->id)
                     ->orWhere('role_id', $userRoleId);
