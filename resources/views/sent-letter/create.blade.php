@@ -3,7 +3,7 @@
 @section('content')
     <div>
         <div class="col-md-9">
-            <form method="POST" action="{{ route('sent.letter-store') }}" class="card shadow mb-4">
+            <form method="POST" action="{{ route('sent.letter-store') }}" class="card shadow mb-4" enctype="multipart/form-data">
                 @csrf
                 <a href="#axe3" class="d-block card-header py-3 align-items-center d-flex" data-toggle="collapse"
                     role="button" aria-expanded="true" aria-controls="axe3">
@@ -15,24 +15,12 @@
 
                         <div class="form-group">
                             <div class="form-group col-md-8">
-                                <label for="letter_category_id">Kategori Surat *</label>
+                                <label for="letter_category_id" class="required">Kategori Surat</label>
                                 <select class="form-select" name="letter_category_id" aria-label="Default select example">
                                     @foreach ($letterCategories as $category)
                                         <option value="{{$category->id}}">{{$category->name}}</option>
                                     @endforeach
                                 </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="form-group col-md-8">
-                                <label for="institution" class="required">Institusi</label>
-                                <div class="input-group mb-3">
-                                    <input id="institution" type="text" name="institution"
-                                        class="form-control @error('institution') is-invalid @enderror"
-                                        autocomplete="institution" value="{{ old('institution') }}" required>
-                                </div>
-                                <small id="institution" class="form-text text-muted">Contoh : lembaga penelitian dan pengabdian masyarakat</small>
                             </div>
                         </div>
 
@@ -61,35 +49,11 @@
 
                         <div class="form-group">
                             <div class="form-group col-md-8">
-                                <label for="refrences_number" class="required">Nomor Surat</label>
+                                <label for="file" class="required">File</label>
                                 <div class="input-group mb-3">
-                                    <input id="refrences_number" type="text"
-                                        class="form-control @error('refrences_number') is-invalid @enderror" name="refrences_number"
-                                        autocomplete="no_surat" value="{{ old('refrences_number') }}" required>
-                                </div>
-                                <small id="refrences_number" class="form-text text-muted">Contoh : JMTI/SK/0112/08/2021</small>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="form-group col-md-8">
-                                <label for="letter_destination">Tujuan Surat (Tertulis)</label>
-                                <div class="input-group mb-3">
-                                    <input id="letter_destination" type="text"
-                                        class="form-control @error('letter_destination') is-invalid @enderror" name="letter_destination"
-                                        autocomplete="no_surat" value="{{ old('letter_destination') }}">
-                                </div>
-                                <small id="letter_destination" class="form-text text-muted">Contoh : Bapak/Ibu Dosen</small>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="form-group col-md-8">
-                                <label for="body" class="required">Isi Surat</label>
-                                <div class="input-group mb-3">
-                                    <textarea id="body" type="text"
-                                        class="form-control editor @error('body') is-invalid @enderror" name="body">
-                                    </textarea>
+                                    <input id="file" type="file" name="file"
+                                        class="form-control @error('file') is-invalid @enderror"
+                                        autocomplete="file" value="{{ old('file') }}" required>
                                 </div>
                             </div>
                         </div>
@@ -141,7 +105,6 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset("ckeditor/ckeditor.js") }}"></script>
     <script>
         $(document).ready(function() {
             function loadOptions(selectedValue) {
@@ -170,12 +133,6 @@
             });
 
             $('[name="signed"]').trigger('change');
-
-            ClassicEditor
-            .create(document.querySelector('.editor'))
-            .catch(error => {
-                console.error(error);
-            });
         });
     </script>
 @endsection

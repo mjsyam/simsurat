@@ -13,19 +13,13 @@ return new class extends Migration
     {
         Schema::create('letters', function (Blueprint $table) {
             $table->id();
-            // $table->uuid('id')->primary();
-            // $table->foreignUuid("user_id")->constrained("users");
             $table->foreignId("user_id")->constrained("users");
-            // $table->foreignUuid("letter_category_id")->constrained("letter_categories");
+            $table->foreignId("signed_id")->constrained("users");
             $table->foreignId("letter_category_id")->constrained("letter_categories");
             $table->foreignId("role_id")->constrained("roles");
-            $table->string("institution", 35);
-            $table->date("date");
-            $table->string("title", 50);
-            $table->string("refrences_number", 30);
-            $table->string("letter_destination", 40)->nullable();
-            $table->text("body");
-            $table->foreignId("signed")->constrained("users");
+            $table->string("title", 100);
+            $table->date("date")->index();
+            $table->text("file");
             $table->timestamps();
         });
     }

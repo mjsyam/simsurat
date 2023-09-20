@@ -31,17 +31,12 @@ class SentLetterController extends Controller
         $this->errorHandler = new ErrorHandler();
         $this->constants = new Constants();
     }
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         return view('sent-letter.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $letterCategories = LetterCategory::get();
@@ -49,45 +44,36 @@ class SentLetterController extends Controller
         return view('sent-letter.create', compact(['letterCategories', 'users']));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
             'letter_category_id' => 'required',
             'title' => 'required',
             'date' => 'required',
-            'refrences_number' => 'required',
-            'letter_destination' => 'required|nullable',
-            'body' => 'required',
-            'institution' => 'required',
             'signed' => 'required',
-            'role_id' => 'required',
-            'receivers' => 'required'
+            'file' => 'required',
+            'receivers' => 'required',
+            'role_id' => 'required'
         ]);
 
+        $file = $request->file('file');
+        $filename = time() . "_" . $file->getClientOriginalName();
+        $file->storeAs('letter', $filename, 'public');
+
         $letter = Letter::create([
-            'user_id' => Auth::user()->id,
-            'letter_category_id' => $request->letter_category_id,
-            'date' => $request->date,
-            'title' => $request->title,
-            'date' => $request->date,
-            'refrences_number' => $request->refrences_number,
-            'letter_destination' => $request->letter_destination,
-            'institution' => $request->institution,
-            'body' => $request->body,
-            'signed' => $request->signed,
-            'role_id' => $request->role_id,
+            "user_id" => Auth::user()->id,
+            "signed_id" => $request->signed,
+            "letter_category_id" => $request->letter_category_id,
+            "role_id" => $request->role_id,
+            "title" => $request->title,
+            "date" => $request->date,
+            "file" => $filename,
         ]);
 
         foreach ($request->receivers as $receiver) {
-            $data = User::whereId($receiver)->first();
-            $role = $data->roles->first()->id;
-
             $sentLetter = LetterReceiver::create([
                 'user_id' => $receiver,
-                'role_id' => $role,
+                'role_id' => "1", // TO DO
                 'letter_id' => $letter->id,
             ]);
 
@@ -100,14 +86,40 @@ class SentLetterController extends Controller
         return back()->with('success', 'Berhasil mengirim surat');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    public function sentLetterTable(Request $request)
+    {
+        if (request()->ajax()) {
+            $userRoleId = Auth::user()->roles->pluck('id');
+            $letters = Letter::where(function ($query) use ($userRoleId) {
+                $query->where('user_id', Auth::user()->id)
+                    ->orWhereIn('role_id', $userRoleId);
+            })->orderBy('created_at', 'desc')->with('LetterCategory');
+
+            return DataTables::of($letters)
+                ->addColumn('action', function ($letter) {
+                    $id = $letter->id;
+                    $fileLink = asset("/storage/letter/$letter->file");
+                    return view('sent-letter.components.menu', compact([
+                        'id', 'fileLink'
+                    ]));
+                })
+                ->addColumn('category', function ($letter) {
+                    return $letter->letterCategory->name;
+                })
+                ->addColumn('created_at', function ($letter) {
+                    return Carbon::parse($letter->created_at)->format('Y-m-d H:i:s');
+                })
+                ->addIndexColumn()
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+    }
+
     public function sentLetterTableDetail(Request $request)
     {
         if (request()->ajax()) {
             $letter = LetterReceiver::where("letter_id", $request->id)
-                ->with(['user', 'role', 'identifiers']);
+                ->with(['user', 'role']);
 
             return DataTables::of($letter)
                 ->addColumn('action', function ($letter) {
@@ -117,13 +129,13 @@ class SentLetterController extends Controller
                 })
                 ->addColumn('name', function ($letter) {
                     return $letter->user->name;
-                })
-                ->addColumn('role', function ($letter) {
-                    return $letter->role->role;
-                })
-                ->addColumn('identifier', function ($letter) {
-                    return $letter->identifiers->name;
-                })
+                }) // TO DO
+                // ->addColumn('role', function ($letter) {
+                //     return $letter->role->role;
+                // })
+                // ->addColumn('identifier', function ($letter) {
+                //     return $letter->identifiers->name;
+                // })
                 ->addIndexColumn()
                 ->rawColumns(['action'])
                 ->make(true);
@@ -152,59 +164,6 @@ class SentLetterController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-
-    public function sentLetterTable(Request $request)
-    {
-        if (request()->ajax()) {
-            $userRoleId = Auth::user()->roles->first()->id;
-            $letters = Letter::where(function ($query) use ($userRoleId) {
-                $query->where('user_id', Auth::user()->id)
-                    ->orWhere('role_id', $userRoleId);
-            })->orderBy('created_at', 'desc')->with('LetterCategory');
-
-            return DataTables::of($letters)
-                ->addColumn('action', function ($letter) {
-                    $id = $letter->id;
-                    return view('sent-letter.components.menu', compact([
-                        'id'
-                    ]));
-                })
-                ->addColumn('category', function ($letter) {
-                    return $letter->letterCategory->name;
-                })
-                ->addColumn('created_at', function ($letter) {
-                    return Carbon::parse($letter->created_at)->format('Y-m-d H:i:s');
-                })
-                ->addIndexColumn()
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-    }
-
-    public function exportPdf(string $id)
-    {
-        // try {
-            $userId = Auth::user()->id;
-            $letter = Letter::whereId($id)->first();
-
-            if (!$letter) {
-                throw new NotFoundError("Letter tidak ditemukan");
-            }
-
-            // if ($letter->user_id != $userId) {
-            //     throw new AuthorizationError("Anda tidak berhak mengakses surat ini");
-            // }
-
-            return view('letterPdf', compact(['letter']));
-
-            $pdf = Pdf::loadView('letterPdf', compact(['letter']));
-            return $pdf->download('sample.pdf');
-        // } catch (\Throwable $th) {
-        //     $data = $this->errorHandler->handle($th);
-
-        //     return response()->json($data["data"], $data["code"]);
-        // }
     }
 
     public function sentReceiver($id)

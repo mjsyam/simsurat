@@ -15,10 +15,13 @@ class LetterCategorySeeder extends Seeder
     {
         // For Dummy Purposes Not Real Datas
         $names = [
-            "Surat Masuk",
-            "Surat Keluar",
-            "Surat Internal",
-            "Surat Eksternal",
+            "Surat Permohonan",
+            "Surat Keputusan",
+            "Surat Kuasa",
+            "Surat Perintah",
+            "Surat Pengantar",
+            "Surat Edaran",
+            "Surat Undangan"
         ];
 
         foreach ($names as $name) {
@@ -26,6 +29,6 @@ class LetterCategorySeeder extends Seeder
                 "name" => $name,
             ]);
         }
-        
+
     }
 }

@@ -15,7 +15,6 @@
                 <thead>
                     <tr class="fw-bold fs-7 text-gray-500 text-uppercase">
                         <th>#</th>
-                        <th>Nomor Surat</th>
                         <th>Judul Surat</th>
                         <th>Kategori Surat</th>
                         <th>Tanggal dibuat</th>
@@ -73,7 +72,6 @@
 
             columns: [
             { data: 'DT_RowIndex'},
-            { data: 'refrences_number'},
             { data: 'title'},
             { data: 'category'},
             { data: 'created_at'},
@@ -114,13 +112,14 @@
                     ">",
 
                 columns: [
+                    { data: 'DT_RowIndex'},
                     { data: "name" },
-                    { data: "role" },
-                    { data: "identifier" },
+                    // { data: "role" },
+                    // { data: "identifier" },
                     { data: "action" },
                 ],
                 columnDefs: [{
-                    targets: [0, 1, 2, 3],
+                    targets: [0],
                     className: 'text-center',
                 }],
             });

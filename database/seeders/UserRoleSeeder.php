@@ -110,12 +110,12 @@ class UserRoleSeeder extends Seeder
             ],
 
              // 18
-             [
+            [
                 'parent_id' => 3,
                 'name' => "LPPM",
             ],
              // 19
-             [
+            [
                 'parent_id' => 3,
                 'name' => "Dosen dan JFT lainnya",
             ],

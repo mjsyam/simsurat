@@ -11,23 +11,33 @@ class Letter extends Model
 
     protected $guarded = [];
 
-    public function letterCategory() {
+    public function letterCategory()
+    {
         return $this->belongsTo(LetterCategory::class);
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function letterHistories() {
+    public function signed()
+    {
+        return $this->belongsTo(User::class, "signed_id");
+    }
+
+    public function letterHistories()
+    {
         return $this->hasMany(LetterHistory::class);
     }
 
-    public function letterReceivers() {
+    public function letterReceivers()
+    {
         return $this->hasMany(LetterReceiver::class);
     }
 
-    public function role() {
+    public function role()
+    {
         return $this->belongsTo(Role::class);
     }
 }

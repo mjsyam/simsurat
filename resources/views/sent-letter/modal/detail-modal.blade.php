@@ -15,9 +15,10 @@
                     <table class="table align-top border table-rounded gy-5" id="table_detail">
                         <thead class="">
                             <tr class="fw-bold fs-7 text-gray-500 text-uppercase overflow-y-auto w-full">
+                                <th class="w-50px">#</th>
                                 <th class="w-300px">Nama</th>
-                                <th class="w-200px">Role</th>
-                                <th class="w-200px">Identifier</th>
+                                {{-- <th class="w-200px">Role</th>
+                                <th class="w-200px">Identifier</th> --}}
                                 <th class="w-100px">Status</th>
                             </tr>
                         </thead>

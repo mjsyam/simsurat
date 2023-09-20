@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Constants;
 use App\Exceptions\NotFoundError;
+use App\Models\User;
 use App\Models\UserRole;
 use App\Utils\ErrorHandler;
 use Illuminate\Http\Request;
@@ -26,7 +27,7 @@ class UserController extends Controller
                 "id" => 'required',
             ]);
 
-            $userRoles = UserRole::where("user_id", $request->id)->get();
+            $userRoles = User::whereId($request->id)->first()->roles;
 
             if ($userRoles->isEmpty()) {
                 return response()->json([
@@ -39,7 +40,7 @@ class UserController extends Controller
 
             $data = [];
             foreach ($userRoles as $userRole) {
-                $data[] = ['id' => $userRole->id, 'text' => $userRole->role->role];
+                $data[] = ['id' => $userRole->id, 'text' => $userRole->name];
             }
 
             return response()->json([

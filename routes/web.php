@@ -81,7 +81,6 @@ Route::group(['middleware'=>['auth']], function () {
         Route::controller(SentLetterController::class)->group(function () {
             Route::prefix('sent')->group(function () {
                 Route::get('/', 'index')->name('sent.letter-index');
-                Route::get('/detail/{id}/pdf', 'exportPdf')->name('sent.letter-exports');
 
                 Route::get('/table', 'sentLetterTable')->name('sent.letter-table');
                 Route::get('/table/detail', 'sentLetterTableDetail')->name('sent.letter-table-detail');
