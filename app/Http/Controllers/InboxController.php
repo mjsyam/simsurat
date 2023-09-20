@@ -54,7 +54,24 @@ class InboxController extends Controller
 
     public function detail(Letter $letter){
         $letterReceiver = LetterReceiver::where('user_id', Auth::user()->id)->orWhere('disposition_id', Auth::user()->id)->first();
-        $users = User::select('id', 'name')->get();
+        
+        if(Auth::user()->roles->first()->children != null){
+            $roleIds = Auth::user()->roles->first()->children->pluck("id");
+        }
+
+        if(Auth::user()->roles->first()->parent != null){
+            $parentIds = collect(Auth::user()->roles->first()->parent_id);
+            $roleIds = $roleIds->concat($parentIds);
+        }
+
+        $users = User::get();
+        
+        $users = User::whereHas('roles', function ($query) use ($roleIds) {
+            $query->whereIn('roles.id', $roleIds);
+        })->get();
+        
+        // dd($letterReceiver->user_disposition);
+        
         return view('inbox.detail', compact(['users', 'letter', 'letterReceiver']));
     }
 

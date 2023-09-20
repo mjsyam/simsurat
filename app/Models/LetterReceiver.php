@@ -21,6 +21,11 @@ class LetterReceiver extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function user_disposition()
+    {
+        return $this->belongsTo(User::class, 'disposition_id', 'id'); 
+    }
+
     public function letterStatus()
     {
         return $this->hasOne(LetterStatus::class);

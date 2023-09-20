@@ -16,11 +16,17 @@
                     <h5>Disposisi : </h5>
                 </div>
                 <div class="col-md-6">
-                    <select class="dispositionSelect for" name="disposition_id" style="width: 100%">
-                    </select>
+                    @if ($letterReceiver->disposition_id == null)
+                        <select class="dispositionSelect for" name="disposition_id" style="width: 100%">
+                        </select>
+                    @else
+                    <div class="alert alert-success text-black" role="alert">
+                        Surat telah di disposisikan kepada {{$letterReceiver->user_disposition->name}}
+                    </div>                    
+                    @endif
                 </div>
                 <div class="col-md-2">
-                  <button class="btn btn-success btn-sm">Submit</button>
+                    <button class="btn btn-success btn-md">Submit</button>
                 </div>
             </div>
         </form>
@@ -28,7 +34,7 @@
         <a href="{{ route('pdf.letter', ['letter' => $letter->id]) }}" class="btn btn-success">PDF Version</a>
     </div>
 
-    <div style="background: white">
+    {{-- <div style="background: white">
         <div class="container">
             <div class="row">
                 <div class="col-md-2"></div>
@@ -87,7 +93,7 @@
                             <div class="col-md-8"></div>
                             <div class="col-md-4">
                                 <p>{{$letter->identifiers->name}}</p>
-                                <img src="@if($letter->signature != null) {{$letter->signature}} @else {{ asset('images/ttd.png') }} @endif" class="mt-4" style="max-height: 50px;">
+                                <img src="@if ($letter->signature != null) {{$letter->signature}} @else {{ asset('images/ttd.png') }} @endif" class="mt-4" style="max-height: 50px;">
                                 <p>{{ $letter->user->name }}</p>
                                 <p>NIP. 14022</p>
                             </div>
@@ -96,7 +102,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
 
 @section('script')
@@ -108,7 +114,7 @@
         // option.value = "1";
         // option.text = "YourOptionText";
         users.forEach(user => {
-            if (user.id != {{Auth::user()->id}} && user.id != {{ $letter->user_id }}) {
+            if (user.id != {{ Auth::user()->id }} && user.id != {{ $letter->user_id }}) {
                 var option = document.createElement("option");
                 option.value = user.id;
                 option.text = user.name;
