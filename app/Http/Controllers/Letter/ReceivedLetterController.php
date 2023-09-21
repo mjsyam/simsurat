@@ -2,17 +2,30 @@
 
 namespace App\Http\Controllers\Letter;
 
+use App\Constants;
 use App\Http\Controllers\Controller;
 use App\Models\Letter;
+use App\Models\LetterHistory;
 use App\Models\LetterReceiver;
 use App\Models\User;
+use App\Utils\ErrorHandler;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+
 class ReceivedLetterController extends Controller
 {
     //
+    private $errorHandler;
+    private $constants;
+
+    public function __construct()
+    {
+        $this->errorHandler = new ErrorHandler();
+        $this->constants = new Constants();
+    }
+
     public function index()
     {
         $letters = Letter::with([
@@ -31,10 +44,21 @@ class ReceivedLetterController extends Controller
     public function show(string $id)
     {
         //
-        $letter = Letter::with([ 'letterCategory'])->findOrFail($id);
-        $letterReceiver = LetterReceiver::where('user_id', Auth::user()->id)->first();
+        $letter = Letter::with([ 'letterCategory', 'signed'])->findOrFail($id);
+        $letterReceiver = LetterReceiver::with('letterHistories')->where('user_id', Auth::user()->id)->first();
+        $isRead = LetterHistory::where('letter_receiver_id', $letterReceiver->id)->where('status', $this->constants->letter_status[2])->first();
+        if (!$isRead) {
+            LetterHistory::create([
+                'letter_receiver_id' => $letterReceiver->id,
+                'note' => 'Surat telah dibaca oleh ' . Auth::user()->name . ' pada ' . Carbon::now()->format('Y-m-d H:i:s'),
+                'status' => $this->constants->letter_status[2],
+            ]);
+            $letterReceiver->letterStatus()->update([
+                'status' => $this->constants->letter_status[2],
+                'read' => 1,
+            ]);
+        }
         $users = User::select('id', 'name')->get();
-
         return view('inbox.detail', compact(['users', 'letter', 'letterReceiver']));
     }
 
