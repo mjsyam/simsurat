@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants;
+use App\Utils\ErrorHandler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
@@ -9,12 +11,23 @@ use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 use Illuminate\Support\Facades\Auth;
+use App\Models\LetterHistory;
 use App\Models\LetterReceiver;
 use App\Models\User;
 use App\Models\Letter;
 
 class InboxController extends Controller
 {
+
+    private $errorHandler;
+    private $constants;
+
+    public function __construct()
+    {
+        $this->errorHandler = new ErrorHandler();
+        $this->constants = new Constants();
+    }
+
     public function index() {
         return view("inbox.index");
     }
@@ -72,6 +85,20 @@ class InboxController extends Controller
         
         // dd($letterReceiver->user_disposition);
         
+        $isRead = LetterHistory::where('letter_receiver_id', $letterReceiver->id)->where('status', $this->constants->letter_status[2])->first();
+        if (!$isRead) {
+            dd('masuk');
+            LetterHistory::create([
+                'letter_receiver_id' => $letterReceiver->id,
+                'note' => 'Surat telah dibaca oleh ' . Auth::user()->name . ' pada ' . Carbon::now()->format('Y-m-d H:i:s'),
+                'status' => $this->constants->letter_status[2],
+            ]);
+            $letterReceiver->letterStatus()->update([
+                'status' => $this->constants->letter_status[2],
+                'read' => 1,
+            ]);
+
+        }
         return view('inbox.detail', compact(['users', 'letter', 'letterReceiver']));
     }
 
@@ -79,6 +106,14 @@ class InboxController extends Controller
         $users = User::select('id', 'name')->get();
         $letterReceiver->update([
             'disposition_id' => $request->disposition_id,
+        ]);
+        LetterHistory::create([
+            'letter_receiver_id' => $letterReceiver->id,
+            'note' => 'Surat didisposisikan kepada ' . $letterReceiver->disposition->name . ' pada ' . Carbon::now()->format('Y-m-d H:i:s'),
+            'status' => $this->constants->letter_status[3],
+        ]);
+        $letterReceiver->letterStatus()->update([
+            'status' => $this->constants->letter_status[3],
         ]);
         return redirect()->back()->with('success', 'disposisi berhasil')->with(compact('users', 'letterReceiver'));
     }

@@ -26,7 +26,7 @@
         Surat Dibaca :
     </label>
     <div>
-        {{$receiver->letterStatus->read ?? false ? 'Sudah' : 'Belum'}}
+        {{$receiver->letterStatus->read == false ? 'Belum' : 'Sudah'}}
     </div>
 </div>
 

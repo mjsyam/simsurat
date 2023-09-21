@@ -16,9 +16,9 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\User;
 use App\Models\Letter;
 use App\Models\LetterCategory;
+use App\Models\LetterHistory;
 use App\Models\LetterReceiver;
 use App\Models\LetterStatus;
-use App\Models\UserRole;
 use App\Utils\ErrorHandler;
 
 class SentLetterController extends Controller
@@ -79,6 +79,12 @@ class SentLetterController extends Controller
 
             LetterStatus::create([
                 'letter_receiver_id' => $sentLetter->id,
+                'status' => $this->constants->letter_status[1]
+            ]);
+
+            LetterHistory::create([
+                'letter_receiver_id' => $sentLetter->id,
+                'note' => 'Surat berhasil dikirim ke ' . $sentLetter->user->name . '',
                 'status' => $this->constants->letter_status[1]
             ]);
         }
@@ -173,7 +179,6 @@ class SentLetterController extends Controller
             'letter',
             'letterStatus' => function ($query) {
                 $query->with([
-                    'approver'
                 ])->orderBy('id', 'desc');
             },
             'letterHistories' => function ($query) {
