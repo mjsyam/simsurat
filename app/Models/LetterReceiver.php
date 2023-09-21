@@ -40,4 +40,9 @@ class LetterReceiver extends Model
     {
         return $this->hasMany(LetterHistory::class);
     }
+
+    public function disposition()
+    {
+        return $this->hasOne(User::class, 'id', 'disposition_id');
+    }
 }
