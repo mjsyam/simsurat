@@ -87,7 +87,6 @@ class InboxController extends Controller
         
         $isRead = LetterHistory::where('letter_receiver_id', $letterReceiver->id)->where('status', $this->constants->letter_status[2])->first();
         if (!$isRead) {
-            dd('masuk');
             LetterHistory::create([
                 'letter_receiver_id' => $letterReceiver->id,
                 'note' => 'Surat telah dibaca oleh ' . Auth::user()->name . ' pada ' . Carbon::now()->format('Y-m-d H:i:s'),
