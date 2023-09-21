@@ -21,7 +21,7 @@ class ApproveController extends Controller
     public function tableApprove()
     {
         if (request()->ajax()) {
-            $roleIds = Auth::user()->userRoles->first()->children->pluck("id");
+            $roleIds = Auth::user()->roles->first()->children->pluck("id");
 
             $letters = Letter::where(function ($query) use ($roleIds) {
                 $query->where(function ($subQuery) use ($roleIds) {
@@ -34,9 +34,9 @@ class ApproveController extends Controller
             })->get();
 
             return DataTables::of($letters)
-                ->addColumn('action', function ($action) {
-                    return '<div class="btn-detail" id="btn-' . $action->id . '">
-                    <a href="' . route('pdf.letter', ['letter' => $action->id]) . '" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
+                ->addColumn('action', function ($letter) {
+                    return '<div class="btn-detail" id="btn-' . $letter->id . '">
+                    <a href="' . asset("/storage/letter/$letter->file") . '" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
                 </div>';
                 })
                 ->addColumn('name', function ($action) {

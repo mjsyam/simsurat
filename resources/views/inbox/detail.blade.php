@@ -8,30 +8,34 @@
         <h1>Tools</h1>
         <hr>
 
-        <form action="{{ route('inbox.disposition', ['letterReceiver' => $letterReceiver]) }}" method="POST">
-            @method('POST')
-            @csrf
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>Disposisi : </h5>
-                </div>
-                <div class="col-md-6">
-                    @if ($letterReceiver->disposition_id == null)
-                        <select class="dispositionSelect for" name="disposition_id" style="width: 100%">
-                        </select>
-                    @else
+        @if ($letterReceiver->disposition_id == null)
+            <form action="{{ route('inbox.disposition', ['letterReceiver' => $letterReceiver]) }}" method="POST">
+                @method('POST')
+                @csrf
+        @endif
+        <div class="row">
+            <div class="col-md-4">
+                <h5>Disposisi : </h5>
+            </div>
+            <div class="col-md-6">
+                @if ($letterReceiver->disposition_id == null)
+                    <select class="dispositionSelect for" name="disposition_id" style="width: 100%">
+                    </select>
+                @else
                     <div class="alert alert-success text-black" role="alert">
-                        Surat telah di disposisikan kepada {{$letterReceiver->user_disposition->name}}
-                    </div>                    
-                    @endif
-                </div>
+                        Surat telah di disposisikan kepada {{ $letterReceiver->user_disposition->name }}
+                    </div>
+                @endif
+            </div>
+            @if ($letterReceiver->disposition_id == null)
                 <div class="col-md-2">
                     <button class="btn btn-success btn-md">Submit</button>
                 </div>
-            </div>
+            @endif
+        </div>
         </form>
 
-        <a href="{{ route('pdf.letter', ['letter' => $letter->id]) }}" class="btn btn-success">PDF Version</a>
+        <a href="{{ asset("/storage/letter/$letter->file") }}" class="btn btn-success">PDF Version</a>
     </div>
 
     {{-- <div style="background: white">
