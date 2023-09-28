@@ -58,16 +58,18 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $role)
+    public function show($role)
     {
         //
-        $role = Role::findOrFail($role)->get();
-        $not_assigned_users = User::whereDoesntHave('userRoles', function ($query) use ($role) {
-            $query->where('role_id', $role);
+        $role = Role::where('name',$role)->first();
+        $not_assigned_users = User::whereDoesntHave('roles', function ($query) use ($role) {
+            $query->where('name', $role);
         })->get();
 
-        $user = User::role($role)->get();
-        return view('admin.role.detail', compact(['role', 'not_assigned_users', 'user']));
+        $users = User::whereHas('roles', function ($query) use ($role) {
+            $query->where('name', $role->name);
+        })->get();
+        return view('admin.role.detail', compact(['role', 'not_assigned_users', 'users']));
     }
 
     public function assignUser(Request $request, string $role)
@@ -76,7 +78,7 @@ class RoleController extends Controller
             'user_id' => 'required|string',
         ]);
 
-        User::whereId($request->user_id)->assignRole($role);
+        $user = User::findOrFail($request->user_id)->assignRole($role);
 
        return redirect()->route('admin.role.detail', $role);
     }
@@ -87,8 +89,9 @@ class RoleController extends Controller
             'user_id' => 'required|string',
         ]);
 
-        User::whereId($request->user_id)->removeRole($role);
 
+        $user = User::findOrFail($request->user_id)->removeRole($role);
+        
         return redirect()->route('admin.role.detail', $role);
     }
 }
