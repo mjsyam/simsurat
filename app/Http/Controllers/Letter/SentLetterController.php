@@ -40,7 +40,7 @@ class SentLetterController extends Controller
     public function create()
     {
         $letterCategories = LetterCategory::get();
-        $users = User::where('id', '!=', Auth::user()->id)->get();
+        $users = User::where('id', '!=', Auth::user()->id)->with('roles')->get();
         return view('sent-letter.create', compact(['letterCategories', 'users']));
     }
 
@@ -71,9 +71,11 @@ class SentLetterController extends Controller
         ]);
 
         foreach ($request->receivers as $receiver) {
+            $receiver = explode('-', $receiver);
+
             $sentLetter = LetterReceiver::create([
-                'user_id' => $receiver,
-                'role_id' => "1", // TO DO
+                'user_id' => $receiver[0],
+                'role_id' => $receiver[1], // TO DO
                 'letter_id' => $letter->id,
             ]);
 
@@ -135,10 +137,10 @@ class SentLetterController extends Controller
                 })
                 ->addColumn('name', function ($letter) {
                     return $letter->user->name;
-                }) // TO DO
-                // ->addColumn('role', function ($letter) {
-                //     return $letter->role->role;
-                // })
+                })
+                ->addColumn('role', function ($letter) {
+                    return $letter->role->name;
+                })
                 // ->addColumn('identifier', function ($letter) {
                 //     return $letter->identifiers->name;
                 // })

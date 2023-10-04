@@ -82,7 +82,9 @@
                                 <label for="receivers">Penerima Surat</label>
                                 <select class="form-select" name="receivers[]" multiple>
                                     @foreach ($users as $user)
-                                        <option value="{{$user->id}}">{{$user->name}} | {{$user->email}}</option>
+                                        @foreach ($user->roles as $role)
+                                            <option value="{{$user->id}}-{{$role->id}}">{{$user->name}} | {{$role->name}}</option>
+                                        @endforeach
                                     @endforeach
                                 </select>
                             </div>
