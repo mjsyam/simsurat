@@ -114,7 +114,7 @@
                 columns: [
                     { data: 'DT_RowIndex'},
                     { data: "name" },
-                    // { data: "role" },
+                    { data: "role" },
                     // { data: "identifier" },
                     { data: "action" },
                 ],
