@@ -31,6 +31,11 @@ class Letter extends Model
         return $this->hasMany(LetterHistory::class);
     }
 
+    public function dispositions()
+    {
+        return $this->hasMany(Disposition::class);
+    }
+
     public function letterReceivers()
     {
         return $this->hasMany(LetterReceiver::class);

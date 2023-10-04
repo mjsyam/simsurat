@@ -26,4 +26,9 @@ class Role extends Model
     public function letterReceivers() {
         return $this->hasMany(letterReceiver::class);
     }
+
+    public function dispositionTos()
+    {
+        return $this->hasMany(DispositionTo::class);
+    }
 }

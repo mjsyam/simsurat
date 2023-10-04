@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Faker\Factory as Faker;
 
 use App\Models\User;
+use App\Models\Identifier;
 
 class UserSeeder extends Seeder
 {
@@ -20,10 +21,23 @@ class UserSeeder extends Seeder
         $faker = Faker::create();
         // \App\Models\User::factory(20)->create();
 
+        Identifier::create([
+            'name' => "JMTI"
+        ]);
+
+        Identifier::create([
+            'name' => "JTIP"
+        ]);
+
+        Identifier::create([
+            'name' => "JTSP"
+        ]);
+
         User::create([
             'name' => "Admin",
             'email' => "superadmin@gmail.com",
             'status' => 'DOSEN',
+            "identifier_id" => 1,
             'nip' => '0',
             'email_verified_at' => now(),
             'password' => Hash::make('123456789'),
@@ -40,6 +54,7 @@ class UserSeeder extends Seeder
                 'status' => 'DOSEN',
                 'nip' => '0',
                 'email_verified_at' => now(),
+                "identifier_id" => 1,
                 'password' => Hash::make('123456789'),
                 'remember_token' => str::random(10),
                 'nip' => "78051851387412",
