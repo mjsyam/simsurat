@@ -62,13 +62,13 @@ class RoleController extends Controller
     {
         //
         $role = Role::where('name',$role)->first();
-        $not_assigned_users = User::whereDoesntHave('roles', function ($query) use ($role) {
-            $query->where('name', $role);
-        })->get();
 
         $users = User::whereHas('roles', function ($query) use ($role) {
             $query->where('name', $role->name);
         })->get();
+        $user_ids = $users->pluck('id');
+
+        $not_assigned_users = User::whereNotIn('id', $user_ids)->get();
         return view('admin.role.detail', compact(['role', 'not_assigned_users', 'users']));
     }
 
