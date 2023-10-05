@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin;
 // use App\Http\Middleware\Role;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ApproveController;
+use App\Http\Controllers\Letter\OutGoingLetter;
+use App\Http\Controllers\Letter\ApproveLetterContoller;
 use App\Http\Controllers\InboxController;
 use App\Http\Controllers\Letter\SentLetterController;
 use App\Http\Controllers\Letter\ReceivedLetterController;
@@ -41,8 +42,12 @@ Route::group(['middleware'=>['auth']], function () {
     Route::get('/inbox/detail/{letter}', [InboxController::class, 'detail'])->name('inbox.detail');
     Route::post('/inbox/disposition/{letterReceiver}', [InboxController::class, 'disposition'])->name('inbox.disposition');
 
-    Route::get('/approve', [ApproveController::class, 'index'])->name('approve.index');
-    Route::get('/approve/table', [ApproveController::class, 'tableApprove'])->name('approve.tableApprove');
+    Route::get('/outgoing-letter', [OutGoingLetter::class, 'index'])->name('outgoing-letter.index');
+    Route::get('/outgoing-letter/table', [OutGoingLetter::class, 'tableApprove'])->name('outgoing-letter.tableApprove');
+
+
+    Route::get('/approve/letter', [ApproveLetterContoller::class, 'index'])->name('approve.letter.index');
+    Route::get('/approve/letter/table', [ApproveLetterContoller::class, 'tableApprove'])->name('approve.letter.tableApprove');
 });
 
 Route::prefix('admin')->group(function () {

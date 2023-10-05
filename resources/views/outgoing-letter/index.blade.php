@@ -3,10 +3,10 @@
 @section('content')
 
     <div>
-        <h3 class="">Surat yang perlu disetujui</h3><br>
+        <h3 class="">Outgoing Letter</h3><br>
         <div class="bgc-white bd bdrs-3 p-20 mB-20 mt-4">
             <div class="table-responsive">
-                <table class="table table-striped" id="tb_approve">
+                <table class="table table-striped" id="tb_outgoing-letter">
                     <thead>
                         <tr class="fw-bold fs-7 text-gray-500 text-uppercase">
                             <th>#</th>
@@ -25,7 +25,7 @@
 
     <script>
     $(document).ready(function() {
-        const dataTableEpprove = $('#tb_approve').DataTable({
+        const dataTableEpprove = $('#tb_outgoing-letter').DataTable({
             processing: true,
             serverSide: true,
             retrieve: true,
@@ -51,7 +51,7 @@
             "<'col-12 col-lg-7 d-flex align-items-center justify-content-center justify-content-lg-end'p>" +
             ">",
             ajax: {
-                url : "{{route('approve.letter.tableApprove')}}",
+                url : "{{route('outgoing-letter.tableApprove')}}",
             },
 
             columns: [
