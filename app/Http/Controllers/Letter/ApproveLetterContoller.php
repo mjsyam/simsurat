@@ -1,17 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Letter;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Letter;
-use App\Models\LetterHistory;
-use App\Models\LetterStatus;
 
-class ApproveController extends Controller
+class ApproveLetterContoller extends Controller
 {
     public function index()
     {
@@ -21,17 +19,9 @@ class ApproveController extends Controller
     public function tableApprove()
     {
         if (request()->ajax()) {
-            $roleIds = Auth::user()->roles->first()->children->pluck("id");
+            $user = Auth::user();
 
-            $letters = Letter::where(function ($query) use ($roleIds) {
-                $query->where(function ($subQuery) use ($roleIds) {
-                    $subQuery->whereHas('role', function ($roleSubQuery) use ($roleIds) {
-                        $roleSubQuery->whereIn('roles.id', $roleIds);
-                    })->orWhereHas('letterReceivers', function ($receiverSubQuery) use ($roleIds) {
-                        $receiverSubQuery->whereIn('letter_receivers.role_id', $roleIds);
-                    });
-                });
-            })->get();
+            $letters = Letter::where("signed_id", $user->id)->where("user_id", "!=", $user->id)->get();
 
             return DataTables::of($letters)
                 ->addColumn('action', function ($letter) {

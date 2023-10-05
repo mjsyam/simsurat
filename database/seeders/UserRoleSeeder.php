@@ -122,7 +122,7 @@ class UserRoleSeeder extends Seeder
             // 20
             [
                 'parent_id' => 3,
-                'name' => "Tekndik Rektorat",
+                'name' => "Tendik",
             ],
         ])->each(function($role){
             Role::create($role);
@@ -144,17 +144,17 @@ class UserRoleSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('123456789'),
             'remember_token' => str::random(10),
-            "identifier_id" => null,
+            "identifier_id" => 4,
             'nip' => "0",
             'signature' => "beta",
             'avatar' => "beta",
-        ])->assignRole('Tekndik Rektorat');
+        ])->assignRole('Tendik');
 
         User::create([
             'name' => "Prof. Erma Suryani, S.T., M.T., Ph.D",
             'email' => "wr2@itk.ac.id",
             'status' => 'DOSEN',
-            "identifier_id" => null,
+            "identifier_id" => 4,
             'email_verified_at' => now(),
             'password' => Hash::make('123456789'),
             'remember_token' => str::random(10),

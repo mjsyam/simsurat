@@ -33,6 +33,10 @@ class UserSeeder extends Seeder
             'name' => "JTSP"
         ]);
 
+        Identifier::create([
+            'name' => "Rektorat"
+        ]);
+
         User::create([
             'name' => "Admin",
             'email' => "superadmin@gmail.com",
