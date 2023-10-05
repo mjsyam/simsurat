@@ -39,6 +39,14 @@ $route = (isset($r['as'])) ? $r['as'] : '';
         <span class="">Surat Keluar</span>
     </a>
 </li>
+{{-- <li class="nav-item mt-3">
+    <a class="btn sidebar-link" href="{{route("approve.letter.index")}}">
+        <span class="icon-holder">
+            <i class="c-red-300 ti-settings"></i>
+        </span>
+        <span class="">Approve Surat</span>
+    </a>
+</li> --}}
 <li class="nav-item mt-3">
     <a class="btn sidebar-link" href="{{route("approve.letter.index")}}">
         <span class="icon-holder">
