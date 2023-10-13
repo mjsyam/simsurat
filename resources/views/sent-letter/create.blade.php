@@ -83,7 +83,7 @@
                                 <select class="form-select" name="receivers[]" multiple>
                                     @foreach ($users as $user)
                                         @foreach ($user->roles as $role)
-                                            <option value="{{$user->id}}-{{$role->id}}">{{$user->name}} | {{$role->name}}</option>
+                                            <option value="{{$user->id}}-{{$role->id}}">{{$user->name}} | {{$role->name}} {{$role->unit->name}}</option>
                                         @endforeach
                                     @endforeach
                                 </select>
