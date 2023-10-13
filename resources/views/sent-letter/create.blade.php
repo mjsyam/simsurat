@@ -62,20 +62,24 @@
                             <div class="form-group col-md-8">
                                 <label for="signed">Bertanda tangan</label>
                                 <select class="form-select" name="signed">
-                                    @foreach ($users as $user)
-                                        <option value="{{$user->id}}">{{$user->name}} | {{$user->email}}</option>
+                                    @foreach ($signed as $user)
+                                        @foreach ($user->roles as $role)
+                                            <option value="{{$user->id}}-{{$role->id}}-{{$role->unit->first()->id}}">
+                                                {{$user->name}} | {{$role->name}} {{$role->unit->first()->name}}
+                                            </option>
+                                        @endforeach
                                     @endforeach
                                 </select>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <div class="form-group col-md-8">
                                 <label for="role_id">Sebagai</label>
                                 <select class="form-select" name="role_id">
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
                             <div class="form-group col-md-8">
@@ -83,7 +87,9 @@
                                 <select class="form-select" name="receivers[]" multiple>
                                     @foreach ($users as $user)
                                         @foreach ($user->roles as $role)
-                                            <option value="{{$user->id}}-{{$role->id}}">{{$user->name}} | {{$role->name}} {{$role->unit->name}}</option>
+                                            <option value="{{$user->id}}-{{$role->id}}-{{$role->unit->first()->id}}">
+                                                {{$user->name}} | {{$role->name}} {{$role->unit->first()->name}}
+                                            </option>
                                         @endforeach
                                     @endforeach
                                 </select>
@@ -109,32 +115,32 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            function loadOptions(selectedValue) {
-                $.ajax({
-                    url: '{{ route("user.get-role") }}',
-                    dataType: 'json',
-                    data: {
-                        id: selectedValue,
-                    },
-                    success: function (data) {
-                        $('[name="role_id"]').empty();
+            // function loadOptions(selectedValue) {
+            //     $.ajax({
+            //         url: '{{ route("user.get-role") }}',
+            //         dataType: 'json',
+            //         data: {
+            //             id: selectedValue,
+            //         },
+            //         success: function (data) {
+            //             $('[name="role_id"]').empty();
 
-                        $('[name="role_id"]').select2({
-                            data: data.data
-                        });
-                    }
-                });
-            }
+            //             $('[name="role_id"]').select2({
+            //                 data: data.data
+            //             });
+            //         }
+            //     });
+            // }
 
             $('[name="receivers[]"]').select2();
             $('[name="signed"]').select2();
 
-            $('[name="signed"]').on('change', function () {
-                var selectedValue = $(this).val();
-                loadOptions(selectedValue);
-            });
+            // $('[name="signed"]').on('change', function () {
+            //     var selectedValue = $(this).val();
+            //     loadOptions(selectedValue);
+            // });
 
-            $('[name="signed"]').trigger('change');
+            // $('[name="signed"]').trigger('change');
         });
     </script>
 @endsection
