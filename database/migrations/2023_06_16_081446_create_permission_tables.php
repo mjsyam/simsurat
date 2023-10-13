@@ -97,7 +97,7 @@ class CreatePermissionTables extends Migration
                     'model_has_roles_role_model_type_primary');
             }
 
-            $table->foreignId("unit_id")->constrained("units");
+            $table->foreignId("unit_id")->nullable()->constrained("units");
         });
 
         Schema::create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames) {

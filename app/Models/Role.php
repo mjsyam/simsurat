@@ -20,7 +20,7 @@ class Role extends Model
     }
 
     public function unit() {
-        return $this->belongsTo(Unit::class);
+        return $this->belongsToMany(Unit::class, "model_has_roles", "model_id", "role_id");
     }
 
     public function letters() {

@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 use App\Models\User;
+use App\Models\Unit;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
@@ -109,12 +110,12 @@ class UserRoleSeeder extends Seeder
                 'name' => "Kepala Subbagian Keuangan dan Barang Milik Negara",
             ],
 
-             // 18
+            // 18
             [
                 'parent_id' => 3,
                 'name' => "LPPM",
             ],
-             // 19
+            // 19
             [
                 'parent_id' => 3,
                 'name' => "Dosen dan JFT lainnya",
@@ -124,16 +125,127 @@ class UserRoleSeeder extends Seeder
                 'parent_id' => 3,
                 'name' => "Tekndik Rektorat",
             ],
-        ])->each(function($role){
+        ])->each(function ($role) {
             Role::create($role);
+        });
+
+        collect([
+            [
+                'name' => "Rektorat",
+            ],
+            [
+                'name' => "JMTI"
+            ],
+            [
+                "name" => "JTSPK"
+            ],
+            [
+                "name" => "JTIP"
+            ],
+            [
+                "name" => "JSTP"
+            ],
+            [
+                "name" => "JIKL"
+            ],
+            [
+                "parent_id" => 2,
+                "name" => "Matematika"
+            ],
+            [
+                "parent_id" => 2,
+                "name" => "Informatika"
+            ],
+            [
+                "parent_id" => 2,
+                "name" => "Sistem Informasi"
+            ],
+            [
+                "parent_id" => 2,
+                "name" => "Ilmu Aktuaria"
+            ],
+            [
+                "parent_id" => 2,
+                "name" => "Statistika"
+            ],
+            [
+                "parent_id" => 2,
+                "name" => "Bisnis Digital"
+            ],
+            [
+                "parent_id" => 3,
+                "name" => "Fisika"
+            ],
+            [
+                "parent_id" => 3,
+                "name" => "Teknik Perkapalan"
+            ],
+            [
+                "parent_id" => 3,
+                "name" => "Teknik Kelautan"
+            ],
+            [
+                "parent_id" => 3,
+                "name" => "Teknologi Pangan"
+            ],
+            [
+                "parent_id" => 4,
+                "name" => "Teknik Elektro"
+            ],
+            [
+                "parent_id" => 4,
+                "name" => "Teknik Mesin"
+            ],
+            [
+                "parent_id" => 4,
+                "name" => "Teknik Kimira"
+            ],
+            [
+                "parent_id" => 4,
+                "name" => "Teknik Industri"
+            ],
+            [
+                "parent_id" => 4,
+                "name" => "Teknik Logistik"
+            ],
+            [
+                "parent_id" => 4,
+                "name" => "Rekayasa Keselamatan"
+            ],
+            [
+                "parent_id" => 5,
+                "name" => "Teknik Sipil"
+            ],
+            [
+                "parent_id" => 5,
+                "name" => "Perencanaan Wilayah dan Kota"
+            ],
+            [
+                "parent_id" => 5,
+                "name" => "Arsitektur"
+            ],
+            [
+                "parent_id" => 5,
+                "name" => "Desain Komunikasi Visual"
+            ],
+            [
+                "parent_id" => 6,
+                "name" => "Teknik Lingkungan"
+            ],
+            [
+                "parent_id" => 6,
+                "name" => "Teknik Material dan Metalurgi"
+            ]
+        ])->each(function ($unit) {
+            Unit::create($unit);
         });
 
 
         $roles = Role::all();
         $id = "1";
-        foreach($roles as $role){
-            User::whereId($id)->first()->assignRole($role);
-
+        foreach ($roles as $role) {
+            $user = User::whereId($id)->first();
+            $user->assignRole($role->name);
             $id++;
         }
 
