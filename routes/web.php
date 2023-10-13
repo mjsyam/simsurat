@@ -49,6 +49,7 @@ Route::group(['middleware'=>['auth']], function () {
 
     Route::get('/approve/letter', [ApproveLetterContoller::class, 'index'])->name('approve.letter.index');
     Route::get('/approve/letter/table', [ApproveLetterContoller::class, 'tableApprove'])->name('approve.letter.tableApprove');
+    Route::post('/approve/letter/{id}', [ApproveLetterContoller::class, 'approve'])->name('approve.letter.approve');
 });
 
 Route::prefix('admin')->group(function () {
