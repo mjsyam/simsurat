@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\UserRole;
 use App\Utils\ErrorHandler;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -20,14 +21,16 @@ class UserController extends Controller
         $this->constants = new Constants();
     }
 
-    public function getUserRole(Request $request)
+    public function getUserRoleByUnit(Request $request)
     {
         try {
             $request->validate([
                 "id" => 'required',
             ]);
 
-            $userRoles = User::whereId($request->id)->first()->roles;
+            $userRoles = User::whereId($request->id)->whereHas('user.roles.unit', function($query) {
+                $query->whereIn('id', Auth::user()->roles->pluck('unit_id')->toArray());
+            })->roles;
 
             if ($userRoles->isEmpty()) {
                 return response()->json([
