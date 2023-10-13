@@ -11,5 +11,7 @@ class Unit extends Model
 
     protected $guarded = [];
 
-
+    public function parent() {
+        return $this->belongsTo(Unit::class, "parent_id");
+    }
 }

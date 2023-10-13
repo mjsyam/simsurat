@@ -9,6 +9,7 @@ use Yajra\DataTables\Facades\DataTables;
 use Carbon\Carbon;
 use App\Utils\ErrorHandler;
 use App\Constants;
+use App\Models\Unit;
 use App\Models\User;
 
 class RoleController extends Controller
@@ -62,23 +63,28 @@ class RoleController extends Controller
     {
         //
         $role = Role::where('name',$role)->first();
+        $units = Unit::with('parent')->get();
 
-        $users = User::whereHas('roles', function ($query) use ($role) {
+        $users = User::with('roles.unit')->whereHas('roles', function ($query) use ($role) {
             $query->where('name', $role->name);
         })->get();
         $user_ids = $users->pluck('id');
 
         $not_assigned_users = User::whereNotIn('id', $user_ids)->get();
-        return view('admin.role.detail', compact(['role', 'not_assigned_users', 'users']));
+        return view('admin.role.detail', compact(['role', 'not_assigned_users', 'users', 'units']));
     }
 
     public function assignUser(Request $request, string $role)
     {
         $request->validate([
             'user_id' => 'required|string',
+            'unit_id' => 'required|string',
         ]);
 
         $user = User::findOrFail($request->user_id)->assignRole($role);
+        $user->roles()->where('name', $role)->first()->pivot->update([
+            'unit_id' => $request->unit_id
+        ]);
 
        return redirect()->route('admin.role.detail', $role);
     }

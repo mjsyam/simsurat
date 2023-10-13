@@ -93,7 +93,7 @@ class UserController extends Controller
 
     public function show(string $id)
     {
-        $user = User::whereId($id)->first();
+        $user = User::with('roles')->whereId($id)->first();
 
         return view('admin.user.detail', compact(['user']));
     }

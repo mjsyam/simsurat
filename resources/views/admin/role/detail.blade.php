@@ -16,6 +16,14 @@
                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                             @endforeach
                         </select>
+                        <label>
+                            Unit Kerja
+                        </label>
+                        <select class="form-select" name="unit_id" aria-label="Default select example">
+                            @foreach ($units as $unit)
+                                <option value="{{ $unit->id }}">{{ $unit->name}} {{$unit->parent ? " - ". $unit->parent->name : ""}}</option>
+                            @endforeach
+                        </select>
                         <button>
                             Tambah
                         </button>
@@ -44,6 +52,7 @@
                         <th>#</th>
                         <th>nama</th>
                         <th>email</th>
+                        <th>unit kerja</th>
                     </tr>
                 </thead>
                 <tbody class="fs-7">
@@ -52,6 +61,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $data->name }}</td>
                             <td>{{ $data->email }}</td>
+                            <td>{{ $data->units[0]->name }}</td>
                         </tr>
                     @endforeach
                 </tbody>
