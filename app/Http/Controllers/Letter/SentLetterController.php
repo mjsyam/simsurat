@@ -41,7 +41,13 @@ class SentLetterController extends Controller
     {
         $letterCategories = LetterCategory::get();
         $users = User::where('id', '!=', Auth::user()->id)->with('roles')->get();
-        return view('sent-letter.create', compact(['letterCategories', 'users']));
+        $signed = User::whereHas('roles', function ($query) {
+            $query->whereHas('unit', function ($query) {
+                $query->whereIn('id', Auth::user()->units->pluck('id')->toArray());
+            });
+        })->get();
+
+        return view('sent-letter.create', compact(['letterCategories', 'users', 'signed']));
     }
 
     public function store(Request $request)
@@ -53,18 +59,20 @@ class SentLetterController extends Controller
             'signed' => 'required',
             'file' => 'required',
             'receivers' => 'required',
-            'role_id' => 'required'
+            // 'role_id' => 'required'
         ]);
 
         $file = $request->file('file');
         $filename = time() . "_" . $file->getClientOriginalName();
         $file->storeAs('letter', $filename, 'public');
+        $signed = explode('-', $request->signed);
 
         $letter = Letter::create([
             "user_id" => Auth::user()->id,
-            "signed_id" => $request->signed,
+            "signed_id" => $signed[0],
             "letter_category_id" => $request->letter_category_id,
-            "role_id" => $request->role_id,
+            "role_id" => $signed[1],
+            "unit_id" => $signed[2],
             "title" => $request->title,
             "date" => $request->date,
             "file" => $filename,
@@ -75,7 +83,8 @@ class SentLetterController extends Controller
 
             $sentLetter = LetterReceiver::create([
                 'user_id' => $receiver[0],
-                'role_id' => $receiver[1], // TO DO
+                'role_id' => $receiver[1],
+                'unit_id' => $receiver[2],
                 'letter_id' => $letter->id,
             ]);
 
@@ -127,7 +136,7 @@ class SentLetterController extends Controller
     {
         if (request()->ajax()) {
             $letter = LetterReceiver::where("letter_id", $request->id)
-                ->with(['user', 'role']);
+                ->with(['user', 'role', 'unit']);
 
             return DataTables::of($letter)
                 ->addColumn('action', function ($letter) {
@@ -139,11 +148,8 @@ class SentLetterController extends Controller
                     return $letter->user->name;
                 })
                 ->addColumn('role', function ($letter) {
-                    return $letter->role->name;
+                    return $letter->role->name . " " . $letter->unit->name;
                 })
-                // ->addColumn('identifier', function ($letter) {
-                //     return $letter->identifiers->name;
-                // })
                 ->addIndexColumn()
                 ->rawColumns(['action'])
                 ->make(true);

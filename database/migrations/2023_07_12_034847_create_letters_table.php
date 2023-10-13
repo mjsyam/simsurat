@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId("signed_id")->constrained("users");
             $table->foreignId("letter_category_id")->constrained("letter_categories");
             $table->foreignId("role_id")->constrained("roles");
+            $table->foreignId("unit_id")->constrained('units');
             $table->string("title", 100);
             $table->date("date")->index();
             $table->text("file");

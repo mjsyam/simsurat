@@ -28,10 +28,12 @@ class UserController extends Controller
                 "id" => 'required',
             ]);
 
-            $userRoles = User::whereId($request->id)->whereHas('user.roles.unit', function($query) {
-                $query->whereIn('id', Auth::user()->roles->pluck('unit_id')->toArray());
+            $userRoles = User::whereId($request->id)->whereHas('roles', function ($query) {
+                $query->whereHas('unit', function ($query) {
+                    $query->whereIn('id', Auth::user()->units->pluck('id')->toArray());
+                });
             })->roles;
-
+dd($userRoles);
             if ($userRoles->isEmpty()) {
                 return response()->json([
                     "message" => "success",
