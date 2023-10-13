@@ -11,6 +11,7 @@ use App\Http\Controllers\Letter\SentLetterController;
 use App\Http\Controllers\Letter\ReceivedLetterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PDFController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,7 +110,7 @@ Route::group(['middleware'=>['auth']], function () {
 
     Route::prefix('user')->group(function () {
         Route::controller(UserController::class)->group(function () {
-            Route::get('/role', 'getUserRole')->name('user.get-role');
+            Route::get('/role', 'getUserRoleByUnit')->name('user.get-role');
         });
     });
 });

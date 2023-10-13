@@ -9,6 +9,7 @@ use Yajra\DataTables\Facades\DataTables;
 use Carbon\Carbon;
 use App\Utils\ErrorHandler;
 use App\Constants;
+use App\Models\Unit;
 use App\Models\User;
 
 class RoleController extends Controller
@@ -58,25 +59,32 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $role)
+    public function show($role)
     {
         //
-        $role = Role::findOrFail($role)->get();
-        $not_assigned_users = User::whereDoesntHave('userRoles', function ($query) use ($role) {
-            $query->where('role_id', $role);
-        })->get();
+        $role = Role::where('name',$role)->first();
+        $units = Unit::with('parent')->get();
 
-        $user = User::role($role)->get();
-        return view('admin.role.detail', compact(['role', 'not_assigned_users', 'user']));
+        $users = User::with('roles.unit')->whereHas('roles', function ($query) use ($role) {
+            $query->where('name', $role->name);
+        })->get();
+        $user_ids = $users->pluck('id');
+
+        $not_assigned_users = User::whereNotIn('id', $user_ids)->get();
+        return view('admin.role.detail', compact(['role', 'not_assigned_users', 'users', 'units']));
     }
 
     public function assignUser(Request $request, string $role)
     {
         $request->validate([
             'user_id' => 'required|string',
+            'unit_id' => 'required|string',
         ]);
 
-        User::whereId($request->user_id)->assignRole($role);
+        $user = User::findOrFail($request->user_id)->assignRole($role);
+        $user->roles()->where('name', $role)->first()->pivot->update([
+            'unit_id' => $request->unit_id
+        ]);
 
        return redirect()->route('admin.role.detail', $role);
     }
@@ -87,8 +95,9 @@ class RoleController extends Controller
             'user_id' => 'required|string',
         ]);
 
-        User::whereId($request->user_id)->removeRole($role);
 
+        $user = User::findOrFail($request->user_id)->removeRole($role);
+        
         return redirect()->route('admin.role.detail', $role);
     }
 }

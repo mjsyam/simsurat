@@ -116,7 +116,6 @@
                     { data: "name" },
                     { data: "role" },
                     // { data: "identifier" },
-                    { data: "action" },
                 ],
                 columnDefs: [{
                     targets: [0],

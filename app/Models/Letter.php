@@ -45,4 +45,9 @@ class Letter extends Model
     {
         return $this->belongsTo(Role::class);
     }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
+    }
 }

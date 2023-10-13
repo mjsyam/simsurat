@@ -19,6 +19,10 @@ class Role extends Model
         return $this->hasMany(Role::class, "parent_id");
     }
 
+    public function unit() {
+        return $this->belongsToMany(Unit::class, "model_has_roles", "model_id", "role_id");
+    }
+
     public function letters() {
         return $this->hasMany(Letter::class);
     }
