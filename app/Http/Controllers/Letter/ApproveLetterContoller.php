@@ -21,13 +21,17 @@ class ApproveLetterContoller extends Controller
         if (request()->ajax()) {
             $user = Auth::user();
 
-            $letters = Letter::where("signed_id", $user->id)->where("user_id", "!=", $user->id)->get();
+            $letters = Letter::where("signed_id", $user->id)->whereHas('letterReceivers', function($query){
+                return $query->whereHas('letterHistories', function($query){
+                    return $query->where('status', 'waiting');
+                });
+            })->get();
 
             return DataTables::of($letters)
                 ->addColumn('action', function ($letter) {
-                    return '<div class="btn-detail" id="btn-' . $letter->id . '">
-                    <a href="' . asset("/storage/letter/$letter->file") . '" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
-                </div>';
+                    return view('approve-letter.action-component', compact([
+                        'letter'
+                    ]));
                 })
                 ->addColumn('name', function ($action) {
                     return $action->user->name;
@@ -39,5 +43,23 @@ class ApproveLetterContoller extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
+    }
+
+    public function detail($id)
+    {
+        $letter = Letter::find($id);
+
+        return view("approve-letter.detail", compact("letter"));
+    }
+
+    public function approve($id)
+    {
+        $letter = Letter::find($id);
+
+        $letter->update([
+            "status" => "approved"
+        ]);
+
+        return redirect()->route("approve.letter.index")->with("success", "Berhasil menyetujui surat");
     }
 }

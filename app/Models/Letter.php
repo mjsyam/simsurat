@@ -26,11 +26,6 @@ class Letter extends Model
         return $this->belongsTo(User::class, "signed_id");
     }
 
-    public function letterHistories()
-    {
-        return $this->hasMany(LetterHistory::class);
-    }
-
     public function dispositions()
     {
         return $this->hasMany(Disposition::class);
