@@ -19,6 +19,8 @@ use App\Models\LetterCategory;
 use App\Models\LetterHistory;
 use App\Models\LetterReceiver;
 use App\Models\LetterStatus;
+use App\Models\ModelHasRole;
+use App\Models\Role;
 use App\Utils\ErrorHandler;
 
 class SentLetterController extends Controller
@@ -38,14 +40,12 @@ class SentLetterController extends Controller
     }
 
     public function create()
-    {
+    {   
         $letterCategories = LetterCategory::get();
         $users = User::where('id', '!=', Auth::user()->id)->with('roles')->get();
-        $signed = User::whereHas('roles', function ($query) {
-            $query->whereHas('unit', function ($query) {
-                $query->whereIn('id', Auth::user()->units->pluck('id')->toArray());
-            });
-        })->get();
+
+        $signed = ModelHasRole::where('unit_id', Auth::user()->units->first()->id)->get();
+
 
         return view('sent-letter.create', compact(['letterCategories', 'users', 'signed']));
     }
