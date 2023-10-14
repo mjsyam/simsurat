@@ -244,8 +244,11 @@ class UserRoleSeeder extends Seeder
         $roles = Role::all();
         $id = "1";
         foreach ($roles as $role) {
+            $unit_ids = Unit::all()->pluck('id')->toArray();
             $user = User::whereId($id)->first();
-            $user->assignRole($role->name);
+            $user->assignRole($role->name)->roles()->where('name', $role->name)->first()->pivot->update([
+                'unit_id' => array_rand($unit_ids, 1)
+            ]);
             $id++;
         }
 
@@ -260,7 +263,9 @@ class UserRoleSeeder extends Seeder
             'nip' => "0",
             'signature' => "beta",
             'avatar' => "beta",
-        ])->assignRole('Tekndik Rektorat');
+        ])->assignRole('Tekndik Rektorat')->roles()->where('name', 'Tekndik Rektorat')->first()->pivot->update([
+            'unit_id' => 1
+        ]);
 
         User::create([
             'name' => "Prof. Erma Suryani, S.T., M.T., Ph.D",
@@ -273,7 +278,9 @@ class UserRoleSeeder extends Seeder
             'nip' => "197004272005012001",
             'signature' => "beta",
             'avatar' => "beta",
-        ])->assignRole('Wakil Rektor');
+        ])->assignRole('Wakil Rektor')->roles()->where('name', 'Wakil Rektor')->first()->pivot->update([
+            'unit_id' => 1
+        ]);
 
         User::create([
             'name' => "Irma Fitria, S.Si., M.Si",
@@ -286,7 +293,9 @@ class UserRoleSeeder extends Seeder
             'nip' => "0",
             'signature' => "beta",
             'avatar' => "beta",
-        ])->assignRole('Ketua JMTI');
+        ])->assignRole('Ketua JMTI')->roles()->where('name', 'Ketua JMTI')->first()->pivot->update([
+            'unit_id' => 2
+        ]);
 
         User::create([
             'name' => "Andi Idhil Ismail, S.T., M.Sc., Ph.D",
@@ -299,6 +308,8 @@ class UserRoleSeeder extends Seeder
             'nip' => "0",
             'signature' => "beta",
             'avatar' => "beta",
-        ])->assignRole('Ketua JTIP');
+        ])->assignRole('Ketua JTIP')->roles()->where('name', 'Ketua JTIP')->first()->pivot->update([
+            'unit_id' => 4
+        ]);
     }
 }
