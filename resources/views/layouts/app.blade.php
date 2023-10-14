@@ -23,7 +23,7 @@
             <!-- ### $App Screen Footer ### -->
             <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600">
                 <span>Copyright © {{ date('Y') }} Designed by
-                    <a>Colorlib</a>. Created By Patrick Polii All rights
+                    <a>Colorlib</a>. Created By UPT TIK All rights
                     reserved.</span>
             </footer>
         </div>

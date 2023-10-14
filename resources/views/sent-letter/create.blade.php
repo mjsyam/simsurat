@@ -62,13 +62,14 @@
                             <div class="form-group col-md-8">
                                 <label for="signed">Bertanda tangan</label>
                                 <select class="form-select" name="signed">
-                                    @foreach ($signed as $user)
-                                        @foreach ($user->roles as $role)
-                                            <option value="{{$user->id}}-{{$role->id}}-{{$role->unit->first()->id}}">
-                                                {{$user->name}} | {{$role->name}} {{$role->unit->first()->name}}
-                                            </option>
-                                        @endforeach
+                                    @foreach($signed as $modelHasRole)
+                                        <option value="{{$modelHasRole->user->id}}-{{$modelHasRole->role->id}}-{{$modelHasRole->unit->id}}">
+                                            {{$modelHasRole->user->name}} | {{$modelHasRole->role->name}} {{$modelHasRole->unit->name}}
+                                        </option>
                                     @endforeach
+
+
+                                 
                                 </select>
                             </div>
                         </div>
@@ -86,9 +87,9 @@
                                 <label for="receivers">Penerima Surat</label>
                                 <select class="form-select" name="receivers[]" multiple>
                                     @foreach ($users as $user)
-                                        @foreach ($user->roles as $role)
-                                            <option value="{{$user->id}}-{{$role->id}}-{{$role->unit->first()->id}}">
-                                                {{$user->name}} | {{$role->name}} {{$role->unit->first()->name}}
+                                        @foreach ($user->modelHasRoles as $modelHasRole)
+                                            <option value="{{$user->id}}-{{$modelHasRole->role->id}}-{{$modelHasRole->unit->id ?? ''}}">
+                                                {{$user->name}} | {{$modelHasRole->role->name}} {{$modelHasRole->unit->name ?? ''}}
                                             </option>
                                         @endforeach
                                     @endforeach
