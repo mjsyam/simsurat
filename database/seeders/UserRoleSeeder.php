@@ -245,106 +245,76 @@ class UserRoleSeeder extends Seeder
             Unit::create($unit);
         });
 
-        $faker = Faker::create();
 
-        collect([
-            [
-                'name' => "Admin",
-                'email' => "superadmin@gmail.com",
-                'status' => 'DOSEN',
-                'number' => '0',
-                'email_verified_at' => now(),
-                'password' => Hash::make('123456789'),
-                'remember_token' => str::random(10),
-                'number' => "78051851387412",
-                'signature' => "beta",
-                'avatar' => "beta",
-            ],
-            [
-                'name' => "Anggina Haraha",
-                'email' => "anggina@staff.itk.ac.id",
-                'status' => 'TENDIK',
-                'email_verified_at' => now(),
-                'password' => Hash::make('123456789'),
-                'remember_token' => str::random(10),
-                'number' => "0",
-                'signature' => "beta",
-                'avatar' => "beta",
-            ],
-            [
-                'name' => "Prof. Erma Suryani, S.T., M.T., Ph.D",
-                'email' => "wr2@itk.ac.id",
-                'status' => 'DOSEN',
-                'email_verified_at' => now(),
-                'password' => Hash::make('123456789'),
-                'remember_token' => str::random(10),
-                'number' => "197004272005012001",
-                'signature' => "beta",
-                'avatar' => "beta",
-            ],
-            [
-                'name' => "Irma Fitria, S.Si., M.Si",
-                'email' => "irma.fitria@lecturer.itk.ac.id",
-                'status' => 'DOSEN',
-                'email_verified_at' => now(),
-                'password' => Hash::make('123456789'),
-                'remember_token' => str::random(10),
-                'number' => "0",
-                'signature' => "beta",
-                'avatar' => "beta",
-            ],
-            [
-                'name' => "Andi Idhil Ismail, S.T., M.Sc., Ph.D",
-                'email' => "a.idhil@lecturer.itk.ac.id",
-                'status' => 'DOSEN',
-                'email_verified_at' => now(),
-                'password' => Hash::make('123456789'),
-                'remember_token' => str::random(10),
-                'number' => "0",
-                'signature' => "beta",
-                'avatar' => "beta",
-            ]
-        ])->map(function ($user) {
-            User::create($user);
-        });
-
-        for ($i = 0; $i <= 19; $i++){
-            User::create([
-                'name' => $faker->name(),
-                'email' => $faker->unique()->safeEmail(),
-                'status' => 'DOSEN',
-                'number' => '0',
-                'email_verified_at' => now(),
-                'password' => Hash::make('123456789'),
-                'remember_token' => str::random(10),
-                'number' => "78051851387412",
-                'signature' => "beta",
-                'avatar' => "beta",
+        $roles = Role::all();
+        $id = "1";
+        foreach ($roles as $role) {
+            $unit_ids = Unit::all()->pluck('id')->toArray();
+            $user = User::whereId($id)->first();
+            $user->assignRole($role->name)->roles()->where('name', $role->name)->first()->pivot->update([
+                'unit_id' => array_rand($unit_ids, 1)
             ]);
+            $id++;
         }
 
-        collect([
-            [1, 1, 1],
-            [20, 2, 2],
-            [2, 2, 3],
-            [7, 3, 4],
-            [9, 5, 5]
-        ])->map(function ($data) {
-            ModelHasRole::create([
-                "role_id" => $data[0],
-                "unit_id" => $data[1],
-                "model_type" => "App\Models\User",
-                "model_id" => $data[2]
-            ]);
-        });
+        User::create([
+            'name' => "Anggina Haraha",
+            'email' => "anggina@staff.itk.ac.id",
+            'status' => 'DOSEN',
+            'email_verified_at' => now(),
+            'password' => Hash::make('123456789'),
+            'remember_token' => str::random(10),
+            "identifier_id" => null,
+            'nip' => "0",
+            'signature' => "beta",
+            'avatar' => "beta",
+        ])->assignRole('Tekndik Rektorat')->roles()->where('name', 'Tekndik Rektorat')->first()->pivot->update([
+            'unit_id' => 1
+        ]);
 
-        for ($i = 6; $i <= 20; $i++) {
-            ModelHasRole::create([
-                "role_id" => random_int(10, 20),
-                "unit_id" => random_int(6, 20),
-                "model_type" => "App\Models\User",
-                "model_id" => $i
-            ]);
-        }
+        User::create([
+            'name' => "Prof. Erma Suryani, S.T., M.T., Ph.D",
+            'email' => "wr2@itk.ac.id",
+            'status' => 'DOSEN',
+            "identifier_id" => null,
+            'email_verified_at' => now(),
+            'password' => Hash::make('123456789'),
+            'remember_token' => str::random(10),
+            'nip' => "197004272005012001",
+            'signature' => "beta",
+            'avatar' => "beta",
+        ])->assignRole('Wakil Rektor')->roles()->where('name', 'Wakil Rektor')->first()->pivot->update([
+            'unit_id' => 1
+        ]);
+
+        User::create([
+            'name' => "Irma Fitria, S.Si., M.Si",
+            'email' => "irma.fitria@lecturer.itk.ac.id",
+            'status' => 'DOSEN',
+            "identifier_id" => 1,
+            'email_verified_at' => now(),
+            'password' => Hash::make('123456789'),
+            'remember_token' => str::random(10),
+            'nip' => "0",
+            'signature' => "beta",
+            'avatar' => "beta",
+        ])->assignRole('Ketua JMTI')->roles()->where('name', 'Ketua JMTI')->first()->pivot->update([
+            'unit_id' => 2
+        ]);
+
+        User::create([
+            'name' => "Andi Idhil Ismail, S.T., M.Sc., Ph.D",
+            'email' => "a.idhil@lecturer.itk.ac.id",
+            'status' => 'DOSEN',
+            'email_verified_at' => now(),
+            'password' => Hash::make('123456789'),
+            "identifier_id" => 2,
+            'remember_token' => str::random(10),
+            'nip' => "0",
+            'signature' => "beta",
+            'avatar' => "beta",
+        ])->assignRole('Ketua JTIP')->roles()->where('name', 'Ketua JTIP')->first()->pivot->update([
+            'unit_id' => 4
+        ]);
     }
 }
