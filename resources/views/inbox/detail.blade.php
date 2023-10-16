@@ -1,5 +1,15 @@
 @extends('layouts.app')
 
+@section('css')
+    <style>
+        .letter-content,
+        td {
+            border: 1px solid black;
+            padding: 2px 5px;
+        }
+    </style>
+@endsection
+
 @section('content')
     @php
         use Carbon\Carbon;
@@ -8,37 +18,38 @@
         <h1>Tools</h1>
         <hr>
 
-        @if ($letterReceiver->disposition_id == null)
-            <form action="{{ route('inbox.disposition', ['letterReceiver' => $letterReceiver]) }}" method="POST">
+        {{-- @if ($letterReceiver->disposition_id == null) --}}
+            {{-- <form action="{{ route('inbox.disposition', ['letterReceiver' => $letterReceiver]) }}" method="POST">
                 @method('POST')
                 @csrf
-        @endif
-        <div class="row">
-            <div class="col-md-4">
-                <h5>Disposisi : </h5>
-            </div>
-            <div class="col-md-6">
-                @if ($letterReceiver->disposition_id == null)
-                    <select class="dispositionSelect for" name="disposition_id" style="width: 100%">
-                    </select>
-                @else
-                    <div class="alert alert-success text-black" role="alert">
-                        Surat telah di disposisikan kepada {{ $letterReceiver->user_disposition->name }}
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>Disposisi : </h5>
                     </div>
-                @endif
-            </div>
-            @if ($letterReceiver->disposition_id == null)
-                <div class="col-md-2">
-                    <button class="btn btn-success btn-md">Submit</button>
+                    <div class="col-md-6">
+                        @if ($letterReceiver->disposition_id == null)
+                            <select class="dispositionSelect for" name="disposition_id" style="width: 100%">
+                            </select>
+                        @else
+                            <div class="alert alert-success text-black" role="alert">
+                                Surat telah di disposisikan kepada {{ $letterReceiver->user_disposition->name }}
+                            </div>
+                        @endif
+                    </div>
+                    @if ($letterReceiver->disposition_id == null)
+                        <div class="col-md-2">
+                            <button class="btn btn-success btn-md">Submit</button>
+                        </div>
+                    @endif
                 </div>
-            @endif
-        </div>
-        </form>
+            </form> --}}
+        {{-- @endif --}}
 
-        <a href="{{ asset("/storage/letter/$letter->file") }}" class="btn btn-success">PDF Version</a>
+
+        <a href="{{ asset("/storage/letter/$letter->file") }}" class="btn btn-success">Download Letters</a>
     </div>
 
-    {{-- <div style="background: white">
+    <div style="background: white">
         <div class="container">
             <div class="row">
                 <div class="col-md-2"></div>
@@ -52,7 +63,7 @@
                                 <p class="fs-3 mb-0">KEMENTERIAN PENDIDIKAN, KEBUDAYAAN,</p>
                                 <p class="fs-3 mb-0">RISET, DAN TEKNOLOGI</p>
                                 <p class="fs-3 mb-0">INSTITUT TEKNOLOGI KALIMANTAN</p>
-                                <p class="fs-3 mb-0 font-weight-bold">{{$letter->title}}</p>
+                                <p class="fs-3 mb-0 font-weight-bold">{{ $letter->title }}</p>
                             </div>
                             <div>
                                 <p class="fs-6 mb-0">Kampus ITK Karang Joang, Balikpapan 76127</p>
@@ -66,47 +77,174 @@
             </div>
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="row">
-                        <div class="col-md-6">
+        @if($letterReceiver->disposition_id == null)
+        <form action="{{ route('inbox.disposition', ['letterReceiver' => $letterReceiver->letter_id ]) }}" method="POST">
+            @method('POST')
+            @csrf
+        @endif
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="letter-content pt-3" style="display: flex;  justify-content: space-between;">
                             <div>
-                                <div class="row mb-3">
-                                    <div class="col-md-2">Nomor</div>
-                                    <div class="col-md-5">: {{$letter->refrences_number}}</div>
+                                <input id="sangatRahasia" type="radio" name="security_level" value="Sangat Rahasia" @if($letterReceiver->disposition_id != null && $disposition->security_level == "Sangat Rahasia") checked @endif> 
+                                <label for="sangatRahasia">
+                                    Sangat Rahasia
+                                </label>
+                            </div>
+                            <div>
+                                <input id="rahasia" type="radio" name="security_level" value="Rahasia" @if($letterReceiver->disposition_id != null && $disposition->security_level == "Rahasia") checked @endif> 
+                                <label for="rahasia">
+                                    Rahasia
+                                </label>
+                            </div>
+                            <div>
+                                <input id="sangatSegera" type="radio" name="security_level" value="Sangat Segera" @if($letterReceiver->disposition_id != null && $disposition->security_level == "Sangat Segera") checked @endif> 
+                                <label for="sangatSegera">
+                                    Sangat Segera
+                                </label>
+                            </div>
+                            <div>
+                                <input id="segera" type="radio" name="security_level" value="Segera" @if($letterReceiver->disposition_id != null && $disposition->security_level == "Segera") checked @endif> 
+                                <label for="segera">
+                                    Segera
+                                </label>
+                            </div>
+                            <div>
+                                <input id="biasa" type="radio" name="security_level" value="Biasa" @if($letterReceiver->disposition_id != null && $disposition->security_level == "Biasa") checked @endif> 
+                                <label for="biasa">
+                                    Biasa
+                                </label>
+                            </div>
+                        </div>
+                        <table style="width: 100%">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 20%;">Nomor Agenda</td>
+                                    <td style="width: 2%">:</td>
+                                    <td>
+                                        <input type="text" name="agenda_number" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" placeholder="30" value=@if($disposition != null) {{$disposition->agenda_number}} @endif>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tanggal Terima</td>
+                                    <td>:</td>
+                                    <td>
+                                        <input type="date" name="receive_date" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" value=@if($disposition != null) {{$disposition->receive_date}} @endif>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tanggal Surat</td>
+                                    <td>:</td>
+                                    <td>
+                                        <input type="date" name="purpose" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" value=@if($disposition != null) {{$disposition->purpose}} @endif>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Asal Surat</td>
+                                    <td>:</td>
+                                    <td>
+                                        <input type="text" name="from" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" placeholder="PUSAT DATA" value=@if($disposition != null) {{$disposition->from}} @endif>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Hal</td>
+                                    <td>:</td>
+                                    <td>                                                
+                                        <input type="text" name="point" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" placeholder="192" value=@if($disposition != null) {{$disposition->point}} @endif>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        {{-- disposisiton section --}}
+                        <div class="letter-content" style="margin: 0; padding: 0">
+                            <h5>Diteruskan Kepada :</h5>
+                            <div class="row">
+                                <div class="col-md-6" style="margin-right: 0; padding-right: 0">
+                                    @if($role1 != null)
+                                        @foreach ($role1 as $role)
+                                            <div class="letter-content">
+                                                <input id="role2-{{ $role->id }}" type="checkbox" name="disposition_to[]" value="{{ $role->id }}" @if()>
+                                                <label for="role2-{{ $role->id }}">
+                                                    {{ $role->name }}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                    @endif
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-2">Hal</div>
-                                    <div class="col-md-5">: -</div>
+                                <div class="col-md-6" style="margin-left: 0; padding-left: 0">
+                                    @if($role2 != null)
+                                        @foreach ($role2 as $role)
+                                            <div class="letter-content">
+                                                <input id="role2-{{ $role->id }}" type="checkbox" name="disposition_to[]" value="{{ $role->id }}">
+                                                <label for="role2-{{ $role->id }}">
+                                                    {{ $role->name }}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                    <div class="letter-content">
+                                        <div class="row">
+                                            <div class="col-md-1 margin-right: 0; padding-right: 0">
+                                                <label for="" style="padding-left: 5px; padding-top: 3px;">
+                                                    Sdr</label>
+                                            </div>
+                                            <div class="col-md-11 margin-left: 0; padding-left: 0">
+                                                <input type="text" name="intended_person" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3"></div>
-                        <div class="col-md-3">{{ Carbon::parse($letter->date)->format('j F Y') }}</div>
-                    </div>
-                    <div class="content">
-                        <p>Yth. {{$letterReceiver->user->name}}</p>
-                        <p>
-                            {!!$letter->body!!}
-                        </p>
-                    </div>
-                    <div class="signature">
-                        <div class="row">
-                            <div class="col-md-8"></div>
-                            <div class="col-md-4">
-                                <p>{{$letter->identifiers->name}}</p>
-                                <img src="@if ($letter->signature != null) {{$letter->signature}} @else {{ asset('images/ttd.png') }} @endif" class="mt-4" style="max-height: 50px;">
-                                <p>{{ $letter->user->name }}</p>
-                                <p>NIP. 14022</p>
+                        {{-- information section --}}
+                        <div class="letter-content" style="margin: 0; padding: 0">
+                            <h5>Untuk :</h5>
+                            <div class="row">
+                                <div class="col-md-6" style="margin-right: 0; padding-right: 0">
+                                    @foreach ($information1 as $information)
+                                        <div class="letter-content">
+                                            <input id="information1-{{ $role->id }}" type="checkbox" name="information[]" value="{{ $information->id }}">
+                                            <label for="information1-{{ $role->id }}">
+                                                {{ $information->name }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="col-md-6" style="margin-left: 0; padding-left: 0">
+                                    @foreach ($information2 as $information)
+                                        <div class="letter-content">
+                                            <input id="information2-{{ $role->id }}" type="checkbox" name="information[]" value="{{ $information->id }}">
+                                            <label for="information2-{{ $role->id }}">
+                                                {{ $information->name }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
+                        </div>
+                        {{-- description --}}
+                        <div class="letter-content">
+                            <h5>Keterangan : </h5>
+                            <textarea class="form-control" rows="4" name="description">@if($disposition != null){{$disposition->information}} @endif</textarea>
+                            {{-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga reprehenderit est nam eius
+                                doloribus inventore a deleniti, aperiam quisquam unde doloremque similique deserunt eligendi
+                                magnam aut fugit in quas! Eligendi.</p> --}}
+                        </div>
+                        
+                        <div class="text-right my-5">
+                            <button class="btn btn-success btn-md" disabled>Disposisi</button>
                         </div>
                     </div>
                 </div>
+               
             </div>
-        </div>
-    </div> --}}
+            
+        </form>
+
+    </div>
 @endsection
 
 @section('script')
@@ -114,9 +252,6 @@
         var selectDisposition = document.querySelector(".dispositionSelect");
 
         const users = @json($users);
-        // dummy
-        // option.value = "1";
-        // option.text = "YourOptionText";
         users.forEach(user => {
             if (user.id != {{ Auth::user()->id }} && user.id != {{ $letter->user_id }}) {
                 var option = document.createElement("option");

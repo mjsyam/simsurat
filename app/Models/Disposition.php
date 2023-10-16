@@ -19,4 +19,9 @@ class Disposition extends Model
     {
         return $this->hasMany(DispositionTo::class);
     }
+
+    public function DispositionInformations()
+    {
+        return $this->hasMany(DispositionInformation::class);
+    }
 }

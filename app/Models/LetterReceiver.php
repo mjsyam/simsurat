@@ -43,6 +43,6 @@ class LetterReceiver extends Model
 
     public function disposition()
     {
-        return $this->hasOne(User::class, 'id', 'disposition_id');
+        return $this->hasOne(Disposition::class, 'id', 'disposition_id');
     }
 }
