@@ -38,7 +38,7 @@ class LetterReceiver extends Model
 
     public function letterHistories()
     {
-        return $this->hasMany(LetterHistory::class);
+        return $this->hasMany(LetterHistory::class)->orderBy("created_at", "desc");
     }
 
     public function disposition()
