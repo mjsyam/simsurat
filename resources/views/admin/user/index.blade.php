@@ -2,6 +2,7 @@
 
 @section('content')
     @include('admin.user.components.add-modal')
+    @include('admin.user.components.edit-modal')
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <div>
         <h3 class="">Users</h3><br>
@@ -31,6 +32,20 @@
     </div>
 
     <script>
+        const onEditUserModalOpen = ({
+            id,
+            name,
+            number,
+            status,
+            email,
+        }) => {
+            $('#edit_user_modal_form [name="id"]').val(id);
+            $('#edit_user_modal_form [name="name"]').val(name);
+            $('#edit_user_modal_form [name="email"]').val(email);
+            $('#edit_user_modal_form [name="status"]').val(status);
+            $('#edit_user_modal_form [name="number"]').val(number);
+        };
+
         $(document).ready(function() {
             const userTable = $('#user_table').DataTable({
                 processing: true,
@@ -95,6 +110,28 @@
                 $.ajax({
                     url: "{{ route('admin.user.add') }}",
                     type: 'POST',
+                    data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(data) {
+                        userTable.ajax.reload();
+                        toastr.success(data.message,'Selamat 🚀 !');
+                    },
+                    error: function(xhr, status, error) {
+                        const data = xhr.responseJSON;
+                        toastr.error(data.message, 'Opps!');
+                    }
+                });
+            });
+
+            $('#edit_user_modal_form').submit(function (event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                console.log(formData)
+                $.ajax({
+                    url: "{{ route('admin.user.update') }}",
+                    type: 'PUT',
                     data: formData,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

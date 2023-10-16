@@ -33,7 +33,7 @@ class UserController extends Controller
                     $query->whereIn('id', Auth::user()->units->pluck('id')->toArray());
                 });
             })->roles;
-dd($userRoles);
+
             if ($userRoles->isEmpty()) {
                 return response()->json([
                     "message" => "success",
