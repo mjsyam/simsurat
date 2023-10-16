@@ -11,6 +11,7 @@ use App\Models\Unit;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
+use Faker\Factory as Faker;
 
 class UserRoleSeeder extends Seeder
 {
@@ -132,6 +133,9 @@ class UserRoleSeeder extends Seeder
 
         collect([
             [
+                'name' => 'admin'
+            ],
+            [
                 'name' => "Rektorat",
             ],
             [
@@ -241,11 +245,25 @@ class UserRoleSeeder extends Seeder
             Unit::create($unit);
         });
 
+        $faker = Faker::create();
+
         collect([
+            [
+                'name' => "Admin",
+                'email' => "superadmin@gmail.com",
+                'status' => 'DOSEN',
+                'number' => '0',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => str::random(10),
+                'number' => "78051851387412",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
             [
                 'name' => "Anggina Haraha",
                 'email' => "anggina@staff.itk.ac.id",
-                'status' => 'DOSEN',
+                'status' => 'TENDIK',
                 'email_verified_at' => now(),
                 'password' => Hash::make('123456789'),
                 'remember_token' => str::random(10),
@@ -290,10 +308,40 @@ class UserRoleSeeder extends Seeder
             User::create($user);
         });
 
-        for ($i = 1; $i <= 19; $i++) {
+        for ($i = 0; $i <= 19; $i++){
+            User::create([
+                'name' => $faker->name(),
+                'email' => $faker->unique()->safeEmail(),
+                'status' => 'DOSEN',
+                'number' => '0',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => str::random(10),
+                'number' => "78051851387412",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ]);
+        }
+
+        collect([
+            [1, 1, 1],
+            [20, 2, 2],
+            [2, 2, 3],
+            [7, 3, 4],
+            [9, 5, 5]
+        ])->map(function ($data) {
             ModelHasRole::create([
-                "role_id" => $i,
-                "unit_id" => random_int(1, 4),
+                "role_id" => $data[0],
+                "unit_id" => $data[1],
+                "model_type" => "App\Models\User",
+                "model_id" => $data[2]
+            ]);
+        });
+
+        for ($i = 6; $i <= 20; $i++) {
+            ModelHasRole::create([
+                "role_id" => random_int(10, 20),
+                "unit_id" => random_int(6, 20),
                 "model_type" => "App\Models\User",
                 "model_id" => $i
             ]);

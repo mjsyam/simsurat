@@ -71,13 +71,27 @@ Route::prefix('admin')->group(function () {
         Route::prefix('role')->group(function () {
             Route::get('/list', 'index')->name('admin.role.index');
             Route::get('/detail/{role}', 'show')->name('admin.role.detail');
-            Route::delete('/update/{role}', 'update')->name('admin.role.update');
+            Route::put('/update/{role}', 'update')->name('admin.role.update');
             Route::delete('/delete/{role}', 'destroy')->name('admin.role.delete');
             Route::post('/add', 'store')->name('admin.role.add');
             Route::post('/assign-user/{role}', 'assignUser')->name('admin.role.assignUser');
             Route::post('/remove-user/{role}', 'removeUser')->name('admin.role.removeUser');
 
             Route::get('/get-data/table', 'getRolesTable')->name('admin.role.table');
+        });
+    });
+
+    Route::controller(Admin\UnitController::class)->group(function () {
+        Route::prefix('unit')->group(function () {
+            Route::get('/list', 'index')->name('admin.unit.index');
+            Route::get('/detail/{unit}', 'show')->name('admin.unit.detail');
+            Route::put('/update/{unit}', 'update')->name('admin.unit.update');
+            Route::delete('/delete/{unit}', 'destroy')->name('admin.unit.delete');
+            Route::post('/add', 'store')->name('admin.unit.add');
+            Route::post('/assign-user/{unit}', 'assignUser')->name('admin.unit.assignUser');
+            Route::post('/remove-user/{unit}', 'removeUser')->name('admin.unit.removeUser');
+
+            Route::get('/get-data/table', 'getUnitsTable')->name('admin.unit.table');
         });
     });
 });

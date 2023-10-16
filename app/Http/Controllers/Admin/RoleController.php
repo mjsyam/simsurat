@@ -11,6 +11,7 @@ use App\Utils\ErrorHandler;
 use App\Constants;
 use App\Models\Unit;
 use App\Models\User;
+use App\Models\ModelHasRole;
 
 class RoleController extends Controller
 {
@@ -46,7 +47,7 @@ class RoleController extends Controller
                 //     return $formattedDate;
                 // })
                 ->addColumn('action', function ($query) {
-                    $role = $query->name;
+                    $role = $query->id;
 
                     return view('admin.role.components.menu', compact(['role']));
                 })
@@ -59,16 +60,17 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($role)
+    public function show($id)
     {
         //
-        $role = Role::where('name',$role)->first();
-        $units = Unit::with('parent')->get();
+        $role = Role::findOrFail($id);
 
         $users = User::with('roles.unit')->whereHas('roles', function ($query) use ($role) {
-            $query->where('name', $role->name);
+            $query->where('id', $role->id);
         })->get();
         $user_ids = $users->pluck('id');
+
+        $units = Unit::all();
 
         $not_assigned_users = User::whereNotIn('id', $user_ids)->get();
         return view('admin.role.detail', compact(['role', 'not_assigned_users', 'users', 'units']));
@@ -81,23 +83,27 @@ class RoleController extends Controller
             'unit_id' => 'required|string',
         ]);
 
-        $user = User::findOrFail($request->user_id)->assignRole($role);
-        $user->roles()->where('name', $role)->first()->pivot->update([
-            'unit_id' => $request->unit_id
+        ModelHasRole::create([
+            "role_id" => $role,
+            "unit_id" => $request->unit_id,
+            "model_type" => "App\Models\User",
+            "model_id" => $request->user_id
         ]);
+       
 
        return redirect()->route('admin.role.detail', $role);
     }
 
-    public function removeUser(Request $request, string $role)
+    public function removeUser(Request $request, string $id)
     {
         $request->validate([
             'user_id' => 'required|string',
         ]);
 
 
-        $user = User::findOrFail($request->user_id)->removeRole($role);
+        $role = Role::findOrFail($id);
+        User::findOrFail($request->user_id)->removeRole($role->name);
         
-        return redirect()->route('admin.role.detail', $role);
+        return redirect()->route('admin.role.detail', $role->id);
     }
 }
