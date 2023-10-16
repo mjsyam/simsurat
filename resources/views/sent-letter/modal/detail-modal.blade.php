@@ -18,6 +18,7 @@
                                 <th class="w-50px">#</th>
                                 <th class="w-300px">Nama</th>
                                 <th class="w-200px">Role</th>
+                                <th class="w-150px">Action</th>
                             </tr>
                         </thead>
                         <tbody class="fs-7">
