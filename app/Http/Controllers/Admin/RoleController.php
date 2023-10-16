@@ -57,6 +57,18 @@ class RoleController extends Controller
         }
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+        ]);
+
+        Role::create([
+            "name" => $request->name,
+        ]);
+
+        return redirect()->route('admin.role.index');
+    }
     /**
      * Display the specified resource.
      */
@@ -89,9 +101,9 @@ class RoleController extends Controller
             "model_type" => "App\Models\User",
             "model_id" => $request->user_id
         ]);
-       
 
-       return redirect()->route('admin.role.detail', $role);
+
+        return redirect()->route('admin.role.detail', $role);
     }
 
     public function removeUser(Request $request, string $id)
@@ -103,7 +115,7 @@ class RoleController extends Controller
 
         $role = Role::findOrFail($id);
         User::findOrFail($request->user_id)->removeRole($role->name);
-        
+
         return redirect()->route('admin.role.detail', $role->id);
     }
 }
