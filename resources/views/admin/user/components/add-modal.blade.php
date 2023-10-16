@@ -19,7 +19,16 @@
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                     <span class="required fw-bold">Nama</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" id="name" name="name">
+                                <input type="text" class="form-control form-control-solid" id="name"
+                                    name="name">
+                            </div>
+
+                            <div class="col-lg-12 mb-3">
+                                <label class="d-flex align-items-center fs-6 form-label mb-2">
+                                    <span class="required fw-bold">NIK/NIP/NIM</span>
+                                </label>
+                                <input type="text" class="form-control form-control-solid" id="number"
+                                    name="number">
                             </div>
 
                             <div class="col-lg-12 mb-3">
@@ -28,7 +37,29 @@
                                 </label>
                                 <select class="drop-data form-select form-select-solid" name="status" required>
                                     @foreach ($userStatus as $option)
-                                        <option value="{{$option}}">{{$option}}</option>
+                                        <option value="{{ $option }}">{{ $option }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-lg-6 mb-3">
+                                <label class="d-flex align-items-center fs-6 form-label mb-2">
+                                    <span class="required fw-bold">Role</span>
+                                </label>
+                                <select class="drop-data form-select form-select-solid" name="role_id" required>
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-lg-6 mb-3">
+                                <label class="d-flex align-items-center fs-6 form-label mb-2">
+                                    <span class="required fw-bold">Unit</span>
+                                </label>
+                                <select class="drop-data form-select form-select-solid" name="unit_id" required>
+                                    @foreach ($units as $unit)
+                                        <option value="{{ $unit->id }}">{{ $unit->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -37,20 +68,22 @@
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                     <span class="required fw-bold">Email</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" id="email" name="email">
+                                <input type="text" class="form-control form-control-solid" id="email"
+                                    name="email">
                             </div>
 
                             <div class="col-lg-12 mb-3">
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                     <span class="required fw-bold">Password</span>
                                 </label>
-                                <input type="text" class="form-control form-control-solid" id="password" name="password">
+                                <input type="text" class="form-control form-control-solid" id="password"
+                                    name="password">
                             </div>
                         </div>
                     </div>
                     <div class="text-center mt-3">
-                        <button type="reset" id="add_user_modal_cancel"
-                            class="btn btn-sm btn-light me-3 w-lg-200px" data-bs-dismiss="modal">Cancel</button>
+                        <button type="reset" id="add_user_modal_cancel" class="btn btn-sm btn-light me-3 w-lg-200px"
+                            data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" id="add_user_modal_submit" class="btn btn-sm btn-success w-lg-200px"
                             data-bs-dismiss="modal">
                             <span class="indicator-label">Submit</span>

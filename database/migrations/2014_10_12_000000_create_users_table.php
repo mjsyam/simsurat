@@ -19,25 +19,18 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('identifiers', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
-        });
-
         Schema::create('users', function (Blueprint $table) {
             // $table->uuid('id')->primary();
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('nip');
+            $table->string('number');
             $table->enum("status", $this->constants->user_status);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->string('signature', 255)->nullable();
             $table->string('avatar', 255)->nullable();
-            $table->foreignId("identifier_id")->nullable()->constrained("identifiers");
             $table->timestamps();
         });
 

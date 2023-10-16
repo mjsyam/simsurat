@@ -169,7 +169,7 @@
                         id="ttd">
                     <div>
                         <p>{{ $letter->user->name }}</p>
-                        <p>NIP {{ $letter->user->nip }}</p>
+                        <p>NIP {{ $letter->user->number }}</p>
                     </div>
                     {{-- <img src="{{ public_path('images/ttd.png') }}" class="max-h-[50px] mt-4"> --}}
                 </div>

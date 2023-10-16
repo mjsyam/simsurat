@@ -21,32 +21,15 @@ class UserSeeder extends Seeder
         $faker = Faker::create();
         // \App\Models\User::factory(20)->create();
 
-        Identifier::create([
-            'name' => "JMTI"
-        ]);
-
-        Identifier::create([
-            'name' => "JTIP"
-        ]);
-
-        Identifier::create([
-            'name' => "JTSP"
-        ]);
-
-        Identifier::create([
-            'name' => "Rektorat"
-        ]);
-
         User::create([
             'name' => "Admin",
             'email' => "superadmin@gmail.com",
             'status' => 'DOSEN',
-            "identifier_id" => 1,
-            'nip' => '0',
+            'number' => '0',
             'email_verified_at' => now(),
             'password' => Hash::make('123456789'),
             'remember_token' => str::random(10),
-            'nip' => "78051851387412",
+            'number' => "78051851387412",
             'signature' => "beta",
             'avatar' => "beta",
         ]);
@@ -56,12 +39,11 @@ class UserSeeder extends Seeder
                 'name' => $faker->name(),
                 'email' => $faker->unique()->safeEmail(),
                 'status' => 'DOSEN',
-                'nip' => '0',
+                'number' => '0',
                 'email_verified_at' => now(),
-                "identifier_id" => 1,
                 'password' => Hash::make('123456789'),
                 'remember_token' => str::random(10),
-                'nip' => "78051851387412",
+                'number' => "78051851387412",
                 'signature' => "beta",
                 'avatar' => "beta",
             ]);
