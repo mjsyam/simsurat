@@ -9,6 +9,7 @@ use App\Utils\ErrorHandler;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use App\Constants;
+use App\Exceptions\NotFoundError;
 use App\Models\ModelHasRole;
 use App\Models\Role;
 use App\Models\Unit;
@@ -65,10 +66,10 @@ class UserController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'string',
-                'number' => 'string',
-                'email' => 'string|unique:users,email',
-                'password' => 'string|min:8',
+                'name' => 'required|string',
+                'number' => 'required|string',
+                'email' => 'required|string|unique:users,email',
+                'password' => 'required|string|min:8',
                 'status' => ['nullable', Rule::in($this->constants->user_status)],
                 'role_id' => 'nullable|exists:roles,id',
                 'unit_id' => 'nullable|exists:units,id',
