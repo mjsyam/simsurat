@@ -18,35 +18,6 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
-        // \App\Models\User::factory(20)->create();
-
-        User::create([
-            'name' => "Admin",
-            'email' => "superadmin@gmail.com",
-            'status' => 'DOSEN',
-            'number' => '0',
-            'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            'remember_token' => str::random(10),
-            'number' => "78051851387412",
-            'signature' => "beta",
-            'avatar' => "beta",
-        ]);
-
-        for ($i = 0; $i <= 19; $i++){
-            User::create([
-                'name' => $faker->name(),
-                'email' => $faker->unique()->safeEmail(),
-                'status' => 'DOSEN',
-                'number' => '0',
-                'email_verified_at' => now(),
-                'password' => Hash::make('123456789'),
-                'remember_token' => str::random(10),
-                'number' => "78051851387412",
-                'signature' => "beta",
-                'avatar' => "beta",
-            ]);
-        }
+        //
     }
 }
