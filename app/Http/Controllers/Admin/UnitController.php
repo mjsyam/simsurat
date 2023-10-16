@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\Unit;
 use App\Models\User;
+use App\Models\ModelHasRole;
 use App\Utils\ErrorHandler;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -117,12 +118,14 @@ class UnitController extends Controller
     {
         $request->validate([
             'user_id' => 'required|string',
-            'role' => 'required|string',
+            'role_id' => 'required|string',
         ]);
 
-        $user = User::with('roles.unit')->findOrFail($request->user_id)->assignRole($request->role);
-        $user->roles()->where('name', $request->role)->first()->pivot->update([
-            'unit_id' => $unit
+        ModelHasRole::create([
+            "role_id" => $request->role,
+            "unit_id" => $unit,
+            "model_type" => "App\Models\User",
+            "model_id" => $request->user_id
         ]);
 
         return redirect()->route('admin.unit.detail', $unit);

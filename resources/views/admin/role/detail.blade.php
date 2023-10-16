@@ -6,7 +6,7 @@
             <h4 class="c-grey-900 mB-20">User dengan Role {{ $role->name }}</h4>
             <div>
                 <div>
-                    <form method="POST" action="{{ route('admin.role.assignUser', $role->name) }}">
+                    <form method="POST" action="{{ route('admin.role.assignUser', $role->id) }}">
                         @csrf
                         <label>
                             Tambah User
@@ -30,7 +30,7 @@
                     </form>
                 </div>
                 <div>
-                    <form method="POST" action="{{ route('admin.role.removeUser', $role->name) }}">
+                    <form method="POST" action="{{ route('admin.role.removeUser', $role->id) }}">
                         @csrf
                         <label>
                             Hapus User
