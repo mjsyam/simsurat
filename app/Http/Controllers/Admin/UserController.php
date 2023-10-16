@@ -9,6 +9,10 @@ use App\Utils\ErrorHandler;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use App\Constants;
+use App\Exceptions\NotFoundError;
+use App\Models\ModelHasRole;
+use App\Models\Role;
+use App\Models\Unit;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -25,7 +29,12 @@ class UserController extends Controller
     public function index()
     {
         $userStatus = $this->constants->user_status;
-        return view('admin.user.index', compact(['userStatus']));
+        $roles = Role::all();
+        $units = Unit::all();
+
+        return view('admin.user.index', compact([
+            'userStatus', 'roles', 'units'
+        ]));
     }
 
     public function getUsersTable()
@@ -43,12 +52,12 @@ class UserController extends Controller
                     return $formattedDate;
                 })
                 ->addColumn('action', function ($query) {
-                    $userId = $query->id;
-
-                    return view('admin.user.components.menu', compact(['userId']));
+                    return view('admin.user.components.menu', compact([
+                        'query'
+                    ]));
                 })
                 ->addIndexColumn()
-                ->rawColumns(['action','DT_RowChecklist'])
+                ->rawColumns(['action', 'DT_RowChecklist'])
                 ->make(true);
         }
     }
@@ -57,10 +66,13 @@ class UserController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'string',
-                'email' => 'string|unique:users,email',
-                'password' => 'string|min:8',
+                'name' => 'required|string',
+                'number' => 'required|string',
+                'email' => 'required|string|unique:users,email',
+                'password' => 'required|string|min:8',
                 'status' => ['nullable', Rule::in($this->constants->user_status)],
+                'role_id' => 'nullable|exists:roles,id',
+                'unit_id' => 'nullable|exists:units,id',
                 'signature' => 'string|nullable',
                 'avatar' => 'string|nullable',
             ]);
@@ -71,13 +83,20 @@ class UserController extends Controller
                 $data['password'] = bcrypt($data['password']);
             }
 
-            User::create([
+            $user = User::create([
                 "name" => $request->name,
+                "number" => $request->number,
                 "email" => $request->email,
                 "password" => bcrypt($data['password']),
                 "signature" => $request->signature,
                 "avatar" => $request->avatar,
                 "status" => $request->status
+            ]);
+
+            ModelHasRole::create([
+                "role_id" => $request->role_id,
+                "model_type" => "App\Models\User",
+                "model_id" => $user->id
             ]);
 
             return response()->json([
@@ -93,31 +112,43 @@ class UserController extends Controller
 
     public function show(string $id)
     {
-        $user = User::whereId($id)->first();
+        $user = User::with('roles')->whereId($id)->first();
 
         return view('admin.user.detail', compact(['user']));
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        $request->validate([
-            'name' => 'string|nullable',
-            'email' => 'string|nullable',
-            'status' => 'string|nullable',
-            'password' => 'string|nullable|min:8|confirmed',
-            'signature' => 'string|nullable',
-            'avatar' => 'string|nullable',
-        ]);
+        try {
+            $user = User::whereId($request->id)->first();
 
-        $user = User::findOrFail($id);
+            if (!$user) {
+                throw new NotFoundError("User tidak ditemukan");
+            }
 
-        $data = $request->all();
-        if (isset($data['password'])) {
-            $data['password'] = bcrypt($data['password']); // Hash the password
+            $request->validate([
+                'name' => 'required|string',
+                'number' => 'required|string',
+                'email' => ['required', 'string', Rule::unique('users')->ignore($user->id)],
+                'status' => ['nullable', Rule::in($this->constants->user_status)],
+            ]);
+
+            $user->update([
+                "name" => $request->name,
+                "number" => $request->number,
+                "email" => $request->email,
+                "status" => $request->status
+            ]);
+
+            return response()->json([
+                "status" => "success",
+                "message" => "Berhasil melakukan edit user",
+            ]);
+        } catch (\Throwable $th) {
+            $data = $this->errorHandler->handle($th);
+
+            return response()->json($data["data"], $data["code"]);
         }
-        $user->update($data);
-
-        return response()->json($request);
     }
 
     public function destroy(string $id)

@@ -2,13 +2,16 @@
 
 namespace Database\Seeders;
 
+use App\Models\ModelHasRole;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 use App\Models\User;
+use App\Models\Unit;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
+use Faker\Factory as Faker;
 
 class UserRoleSeeder extends Seeder
 {
@@ -109,12 +112,12 @@ class UserRoleSeeder extends Seeder
                 'name' => "Kepala Subbagian Keuangan dan Barang Milik Negara",
             ],
 
-             // 18
+            // 18
             [
                 'parent_id' => 3,
                 'name' => "LPPM",
             ],
-             // 19
+            // 19
             [
                 'parent_id' => 3,
                 'name' => "Dosen dan JFT lainnya",
@@ -122,71 +125,226 @@ class UserRoleSeeder extends Seeder
             // 20
             [
                 'parent_id' => 3,
-                'name' => "Tekndik Rektorat",
+                'name' => "Tendik",
             ],
-        ])->each(function($role){
+        ])->each(function ($role) {
             Role::create($role);
         });
 
+        collect([
+            [
+                'name' => 'admin'
+            ],
+            [
+                'name' => "Rektorat",
+            ],
+            [
+                'name' => "JMTI"
+            ],
+            [
+                "name" => "JTSPK"
+            ],
+            [
+                "name" => "JTIP"
+            ],
+            [
+                "name" => "JSTP"
+            ],
+            [
+                "name" => "JIKL"
+            ],
+            [
+                "parent_id" => 2,
+                "name" => "Matematika"
+            ],
+            [
+                "parent_id" => 2,
+                "name" => "Informatika"
+            ],
+            [
+                "parent_id" => 2,
+                "name" => "Sistem Informasi"
+            ],
+            [
+                "parent_id" => 2,
+                "name" => "Ilmu Aktuaria"
+            ],
+            [
+                "parent_id" => 2,
+                "name" => "Statistika"
+            ],
+            [
+                "parent_id" => 2,
+                "name" => "Bisnis Digital"
+            ],
+            [
+                "parent_id" => 3,
+                "name" => "Fisika"
+            ],
+            [
+                "parent_id" => 3,
+                "name" => "Teknik Perkapalan"
+            ],
+            [
+                "parent_id" => 3,
+                "name" => "Teknik Kelautan"
+            ],
+            [
+                "parent_id" => 3,
+                "name" => "Teknologi Pangan"
+            ],
+            [
+                "parent_id" => 4,
+                "name" => "Teknik Elektro"
+            ],
+            [
+                "parent_id" => 4,
+                "name" => "Teknik Mesin"
+            ],
+            [
+                "parent_id" => 4,
+                "name" => "Teknik Kimira"
+            ],
+            [
+                "parent_id" => 4,
+                "name" => "Teknik Industri"
+            ],
+            [
+                "parent_id" => 4,
+                "name" => "Teknik Logistik"
+            ],
+            [
+                "parent_id" => 4,
+                "name" => "Rekayasa Keselamatan"
+            ],
+            [
+                "parent_id" => 5,
+                "name" => "Teknik Sipil"
+            ],
+            [
+                "parent_id" => 5,
+                "name" => "Perencanaan Wilayah dan Kota"
+            ],
+            [
+                "parent_id" => 5,
+                "name" => "Arsitektur"
+            ],
+            [
+                "parent_id" => 5,
+                "name" => "Desain Komunikasi Visual"
+            ],
+            [
+                "parent_id" => 6,
+                "name" => "Teknik Lingkungan"
+            ],
+            [
+                "parent_id" => 6,
+                "name" => "Teknik Material dan Metalurgi"
+            ]
+        ])->each(function ($unit) {
+            Unit::create($unit);
+        });
 
-        $roles = Role::all();
-        $id = "1";
-        foreach($roles as $role){
-            User::whereId($id)->first()->assignRole($role);
+        $faker = Faker::create();
 
-            $id++;
+        collect([
+            [
+                'name' => "Admin",
+                'email' => "superadmin@gmail.com",
+                'status' => 'DOSEN',
+                'number' => '0',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => str::random(10),
+                'number' => "78051851387412",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            [
+                'name' => "Anggina Haraha",
+                'email' => "anggina@staff.itk.ac.id",
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            [
+                'name' => "Prof. Erma Suryani, S.T., M.T., Ph.D",
+                'email' => "wr2@itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => str::random(10),
+                'number' => "197004272005012001",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            [
+                'name' => "Irma Fitria, S.Si., M.Si",
+                'email' => "irma.fitria@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            [
+                'name' => "Andi Idhil Ismail, S.T., M.Sc., Ph.D",
+                'email' => "a.idhil@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ]
+        ])->map(function ($user) {
+            User::create($user);
+        });
+
+        for ($i = 0; $i <= 19; $i++){
+            User::create([
+                'name' => $faker->name(),
+                'email' => $faker->unique()->safeEmail(),
+                'status' => 'DOSEN',
+                'number' => '0',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => str::random(10),
+                'number' => "78051851387412",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ]);
         }
 
-        User::create([
-            'name' => "Anggina Haraha",
-            'email' => "anggina@staff.itk.ac.id",
-            'status' => 'DOSEN',
-            'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            'remember_token' => str::random(10),
-            "identifier_id" => null,
-            'nip' => "0",
-            'signature' => "beta",
-            'avatar' => "beta",
-        ])->assignRole('Tekndik Rektorat');
+        collect([
+            [1, 1, 1],
+            [20, 2, 2],
+            [2, 2, 3],
+            [7, 3, 4],
+            [9, 5, 5]
+        ])->map(function ($data) {
+            ModelHasRole::create([
+                "role_id" => $data[0],
+                "unit_id" => $data[1],
+                "model_type" => "App\Models\User",
+                "model_id" => $data[2]
+            ]);
+        });
 
-        User::create([
-            'name' => "Prof. Erma Suryani, S.T., M.T., Ph.D",
-            'email' => "wr2@itk.ac.id",
-            'status' => 'DOSEN',
-            "identifier_id" => null,
-            'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            'remember_token' => str::random(10),
-            'nip' => "197004272005012001",
-            'signature' => "beta",
-            'avatar' => "beta",
-        ])->assignRole('Wakil Rektor');
-
-        User::create([
-            'name' => "Irma Fitria, S.Si., M.Si",
-            'email' => "irma.fitria@lecturer.itk.ac.id",
-            'status' => 'DOSEN',
-            "identifier_id" => 1,
-            'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            'remember_token' => str::random(10),
-            'nip' => "0",
-            'signature' => "beta",
-            'avatar' => "beta",
-        ])->assignRole('Ketua JMTI');
-
-        User::create([
-            'name' => "Andi Idhil Ismail, S.T., M.Sc., Ph.D",
-            'email' => "a.idhil@lecturer.itk.ac.id",
-            'status' => 'DOSEN',
-            'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            "identifier_id" => 2,
-            'remember_token' => str::random(10),
-            'nip' => "0",
-            'signature' => "beta",
-            'avatar' => "beta",
-        ])->assignRole('Ketua JTIP');
+        for ($i = 6; $i <= 20; $i++) {
+            ModelHasRole::create([
+                "role_id" => random_int(10, 20),
+                "unit_id" => random_int(6, 20),
+                "model_type" => "App\Models\User",
+                "model_id" => $i
+            ]);
+        }
     }
 }

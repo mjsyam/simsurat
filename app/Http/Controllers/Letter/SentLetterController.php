@@ -19,6 +19,8 @@ use App\Models\LetterCategory;
 use App\Models\LetterHistory;
 use App\Models\LetterReceiver;
 use App\Models\LetterStatus;
+use App\Models\ModelHasRole;
+use App\Models\Role;
 use App\Utils\ErrorHandler;
 
 class SentLetterController extends Controller
@@ -40,8 +42,12 @@ class SentLetterController extends Controller
     public function create()
     {
         $letterCategories = LetterCategory::get();
+        // TO DO : TENDIK DAN FILTER USER YANG MEMILIKI ROLE TERTENTU
         $users = User::where('id', '!=', Auth::user()->id)->with('roles')->get();
-        return view('sent-letter.create', compact(['letterCategories', 'users']));
+
+        $signed = ModelHasRole::where('unit_id', Auth::user()->units->first()->id)->get();
+
+        return view('sent-letter.create', compact(['letterCategories', 'users', 'signed']));
     }
 
     public function store(Request $request)
@@ -53,41 +59,45 @@ class SentLetterController extends Controller
             'signed' => 'required',
             'file' => 'required',
             'receivers' => 'required',
-            'role_id' => 'required'
         ]);
 
         $file = $request->file('file');
         $filename = time() . "_" . $file->getClientOriginalName();
         $file->storeAs('letter', $filename, 'public');
+        $signed = explode('-', $request->signed);
 
         $letter = Letter::create([
             "user_id" => Auth::user()->id,
-            "signed_id" => $request->signed,
+            "signed_id" => $signed[0],
             "letter_category_id" => $request->letter_category_id,
-            "role_id" => $request->role_id,
+            "role_id" => $signed[1],
+            "unit_id" => $signed[2],
             "title" => $request->title,
             "date" => $request->date,
             "file" => $filename,
         ]);
+
+        $letterStatus = Auth::user()->id == $signed[0] ? $this->constants->letter_status[1] : $this->constants->letter_status[0];
 
         foreach ($request->receivers as $receiver) {
             $receiver = explode('-', $receiver);
 
             $sentLetter = LetterReceiver::create([
                 'user_id' => $receiver[0],
-                'role_id' => $receiver[1], // TO DO
+                'role_id' => $receiver[1],
+                'unit_id' => $receiver[2],
                 'letter_id' => $letter->id,
             ]);
 
             LetterStatus::create([
                 'letter_receiver_id' => $sentLetter->id,
-                'status' => $this->constants->letter_status[1]
+                'status' => $letterStatus
             ]);
 
             LetterHistory::create([
                 'letter_receiver_id' => $sentLetter->id,
                 'note' => 'Surat berhasil dikirim ke ' . $sentLetter->user->name . '',
-                'status' => $this->constants->letter_status[1]
+                'status' => $letterStatus
             ]);
         }
 
@@ -127,7 +137,7 @@ class SentLetterController extends Controller
     {
         if (request()->ajax()) {
             $letter = LetterReceiver::where("letter_id", $request->id)
-                ->with(['user', 'role']);
+                ->with(['user', 'role', 'unit']);
 
             return DataTables::of($letter)
                 ->addColumn('action', function ($letter) {
@@ -139,11 +149,8 @@ class SentLetterController extends Controller
                     return $letter->user->name;
                 })
                 ->addColumn('role', function ($letter) {
-                    return $letter->role->name;
+                    return $letter->role->name . " " . $letter->unit->name;
                 })
-                // ->addColumn('identifier', function ($letter) {
-                //     return $letter->identifiers->name;
-                // })
                 ->addIndexColumn()
                 ->rawColumns(['action'])
                 ->make(true);

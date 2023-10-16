@@ -1,21 +1,18 @@
 <?php
+namespace App\Http\Controllers\Letter;
 
-namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Letter;
-use App\Models\LetterHistory;
-use App\Models\LetterStatus;
 
-class ApproveController extends Controller
+class OutGoingLetter extends Controller
 {
     public function index()
     {
-        return view("approve-letter.index");
+        return view("outgoing-letter.index");
     }
 
     public function tableApprove()

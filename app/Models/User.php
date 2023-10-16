@@ -62,6 +62,16 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, "model_has_roles", "model_id", "role_id");
     }
 
+    public function units()
+    {
+        return $this->belongsToMany(Unit::class, "model_has_roles", "model_id", "unit_id")->orderBy("created_at", "desc");
+    }
+
+    public function modelHasRoles()
+    {
+        return $this->hasMany(ModelHasRole::class, "model_id");
+    }
+
     public function Identifier()
     {
         return $this->belongsTo(Identifier::class);

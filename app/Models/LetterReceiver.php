@@ -23,7 +23,7 @@ class LetterReceiver extends Model
 
     public function user_disposition()
     {
-        return $this->belongsTo(User::class, 'disposition_id', 'id'); 
+        return $this->belongsTo(User::class, 'disposition_id', 'id');
     }
 
     public function letterStatus()
@@ -44,5 +44,10 @@ class LetterReceiver extends Model
     public function disposition()
     {
         return $this->hasOne(Disposition::class, 'id', 'disposition_id');
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
     }
 }
