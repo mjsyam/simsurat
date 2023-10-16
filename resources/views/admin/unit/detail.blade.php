@@ -19,9 +19,9 @@
                         <label>
                             Role Akun
                         </label>
-                        <select class="form-select" name="role" aria-label="Default select example">
+                        <select class="form-select" name="role_id" aria-label="Default select example">
                             @foreach ($roles as $role)
-                                <option value="{{ $role->name }}">{{ $role->name}}</option>
+                                <option value="{{ $role->id }}">{{ $role->name}}</option>
                             @endforeach
                         </select>
                         <button>

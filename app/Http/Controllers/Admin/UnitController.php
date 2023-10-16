@@ -114,7 +114,7 @@ class UnitController extends Controller
         return redirect()->back()->with('success', 'Unit berhasil dihapus');
     }
 
-    public function assignUser(Request $request, string $unit)
+    public function assignUser(Request $request, $unit)
     {
         $request->validate([
             'user_id' => 'required|string',
@@ -122,7 +122,7 @@ class UnitController extends Controller
         ]);
 
         ModelHasRole::create([
-            "role_id" => $request->role,
+            "role_id" => $request->role_id,
             "unit_id" => $unit,
             "model_type" => "App\Models\User",
             "model_id" => $request->user_id
