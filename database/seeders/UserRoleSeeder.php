@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ModelHasRole;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -240,76 +241,62 @@ class UserRoleSeeder extends Seeder
             Unit::create($unit);
         });
 
+        collect([
+            [
+                'name' => "Anggina Haraha",
+                'email' => "anggina@staff.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            [
+                'name' => "Prof. Erma Suryani, S.T., M.T., Ph.D",
+                'email' => "wr2@itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => str::random(10),
+                'number' => "197004272005012001",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            [
+                'name' => "Irma Fitria, S.Si., M.Si",
+                'email' => "irma.fitria@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            [
+                'name' => "Andi Idhil Ismail, S.T., M.Sc., Ph.D",
+                'email' => "a.idhil@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ]
+        ])->map(function ($user) {
+            User::create($user);
+        });
 
-        $roles = Role::all();
-        $id = "1";
-        foreach ($roles as $role) {
-            $unit_ids = Unit::all()->pluck('id')->toArray();
-            $user = User::whereId($id)->first();
-            $user->assignRole($role->name)->roles()->where('name', $role->name)->first()->pivot->update([
-                'unit_id' => array_rand($unit_ids, 1)
+        for ($i = 1; $i <= 19; $i++) {
+            ModelHasRole::create([
+                "role_id" => $i,
+                "unit_id" => random_int(1, 4),
+                "model_type" => "App\Models\User",
+                "model_id" => $i
             ]);
-            $id++;
         }
-
-        User::create([
-            'name' => "Anggina Haraha",
-            'email' => "anggina@staff.itk.ac.id",
-            'status' => 'DOSEN',
-            'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            'remember_token' => str::random(10),
-            "identifier_id" => 4,
-            'nip' => "0",
-            'signature' => "beta",
-            'avatar' => "beta",
-        ])->assignRole('Tekndik Rektorat')->roles()->where('name', 'Tekndik Rektorat')->first()->pivot->update([
-            'unit_id' => 1
-        ]);
-
-        User::create([
-            'name' => "Prof. Erma Suryani, S.T., M.T., Ph.D",
-            'email' => "wr2@itk.ac.id",
-            'status' => 'DOSEN',
-            "identifier_id" => 4,
-            'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            'remember_token' => str::random(10),
-            'nip' => "197004272005012001",
-            'signature' => "beta",
-            'avatar' => "beta",
-        ])->assignRole('Wakil Rektor')->roles()->where('name', 'Wakil Rektor')->first()->pivot->update([
-            'unit_id' => 1
-        ]);
-
-        User::create([
-            'name' => "Irma Fitria, S.Si., M.Si",
-            'email' => "irma.fitria@lecturer.itk.ac.id",
-            'status' => 'DOSEN',
-            "identifier_id" => 1,
-            'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            'remember_token' => str::random(10),
-            'nip' => "0",
-            'signature' => "beta",
-            'avatar' => "beta",
-        ])->assignRole('Ketua JMTI')->roles()->where('name', 'Ketua JMTI')->first()->pivot->update([
-            'unit_id' => 2
-        ]);
-
-        User::create([
-            'name' => "Andi Idhil Ismail, S.T., M.Sc., Ph.D",
-            'email' => "a.idhil@lecturer.itk.ac.id",
-            'status' => 'DOSEN',
-            'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            "identifier_id" => 2,
-            'remember_token' => str::random(10),
-            'nip' => "0",
-            'signature' => "beta",
-            'avatar' => "beta",
-        ])->assignRole('Ketua JTIP')->roles()->where('name', 'Ketua JTIP')->first()->pivot->update([
-            'unit_id' => 4
-        ]);
     }
 }

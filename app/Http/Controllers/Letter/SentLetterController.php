@@ -40,12 +40,12 @@ class SentLetterController extends Controller
     }
 
     public function create()
-    {   
+    {
         $letterCategories = LetterCategory::get();
+        // TO DO : TENDIK DAN FILTER USER YANG MEMILIKI ROLE TERTENTU
         $users = User::where('id', '!=', Auth::user()->id)->with('roles')->get();
 
         $signed = ModelHasRole::where('unit_id', Auth::user()->units->first()->id)->get();
-
 
         return view('sent-letter.create', compact(['letterCategories', 'users', 'signed']));
     }
@@ -59,7 +59,6 @@ class SentLetterController extends Controller
             'signed' => 'required',
             'file' => 'required',
             'receivers' => 'required',
-            // 'role_id' => 'required'
         ]);
 
         $file = $request->file('file');
@@ -78,6 +77,8 @@ class SentLetterController extends Controller
             "file" => $filename,
         ]);
 
+        $letterStatus = Auth::user()->id == $signed[0] ? $this->constants->letter_status[1] : $this->constants->letter_status[0];
+
         foreach ($request->receivers as $receiver) {
             $receiver = explode('-', $receiver);
 
@@ -90,13 +91,13 @@ class SentLetterController extends Controller
 
             LetterStatus::create([
                 'letter_receiver_id' => $sentLetter->id,
-                'status' => $this->constants->letter_status[1]
+                'status' => $letterStatus
             ]);
 
             LetterHistory::create([
                 'letter_receiver_id' => $sentLetter->id,
                 'note' => 'Surat berhasil dikirim ke ' . $sentLetter->user->name . '',
-                'status' => $this->constants->letter_status[1]
+                'status' => $letterStatus
             ]);
         }
 

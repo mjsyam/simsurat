@@ -9,6 +9,9 @@ use App\Utils\ErrorHandler;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use App\Constants;
+use App\Models\ModelHasRole;
+use App\Models\Role;
+use App\Models\Unit;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -25,7 +28,12 @@ class UserController extends Controller
     public function index()
     {
         $userStatus = $this->constants->user_status;
-        return view('admin.user.index', compact(['userStatus']));
+        $roles = Role::all();
+        $units = Unit::all();
+
+        return view('admin.user.index', compact([
+            'userStatus', 'roles', 'units'
+        ]));
     }
 
     public function getUsersTable()
@@ -58,9 +66,12 @@ class UserController extends Controller
         try {
             $request->validate([
                 'name' => 'string',
+                'number' => 'string',
                 'email' => 'string|unique:users,email',
                 'password' => 'string|min:8',
                 'status' => ['nullable', Rule::in($this->constants->user_status)],
+                'role_id' => 'nullable|exists:roles,id',
+                'unit_id' => 'nullable|exists:units,id',
                 'signature' => 'string|nullable',
                 'avatar' => 'string|nullable',
             ]);
@@ -71,13 +82,20 @@ class UserController extends Controller
                 $data['password'] = bcrypt($data['password']);
             }
 
-            User::create([
+            $user = User::create([
                 "name" => $request->name,
+                "number" => $request->number,
                 "email" => $request->email,
                 "password" => bcrypt($data['password']),
                 "signature" => $request->signature,
                 "avatar" => $request->avatar,
                 "status" => $request->status
+            ]);
+
+            ModelHasRole::create([
+                "role_id" => $request->role_id,
+                "model_type" => "App\Models\User",
+                "model_id" => $user->id
             ]);
 
             return response()->json([
