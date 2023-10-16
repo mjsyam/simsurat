@@ -58,7 +58,7 @@ Route::prefix('admin')->group(function () {
         Route::prefix('user')->group(function () {
             Route::get('/list', 'index')->name('admin.user.index');
             Route::get('/detail/{id}', 'show')->name('admin.user.detail');
-            Route::delete('/update/{id}', 'update')->name('admin.user.update');
+            Route::put('/update', 'update')->name('admin.user.update');
             Route::delete('/delete/{id}', 'destroy')->name('admin.user.delete');
             Route::post('/add', 'store')->name('admin.user.add');
 
