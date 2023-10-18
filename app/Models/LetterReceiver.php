@@ -16,6 +16,11 @@ class LetterReceiver extends Model
         return $this->belongsTo(Letter::class);
     }
 
+    public function disposition()
+    {
+        return $this->hasOne(Disposition::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -39,11 +44,6 @@ class LetterReceiver extends Model
     public function letterHistories()
     {
         return $this->hasMany(LetterHistory::class);
-    }
-
-    public function disposition()
-    {
-        return $this->hasOne(Disposition::class, 'id', 'disposition_id');
     }
 
     public function unit()

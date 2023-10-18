@@ -15,10 +15,16 @@ class Disposition extends Model
         return $this->belongsTo(Letter::class);
     }
 
+    public function letterReceiver()
+    {
+        return $this->belongsTo(LetterReceiver::class);
+    }
+
     public function dispositionTos()
     {
         return $this->hasMany(DispositionTo::class);
     }
+    
 
     public function DispositionInformations()
     {

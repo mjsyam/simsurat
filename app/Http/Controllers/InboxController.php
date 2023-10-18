@@ -64,29 +64,36 @@ class InboxController extends Controller
             // // ->orWhere('letter_receivers.disposition_id', Auth::user()->id)
             // ->get();
 
-            $letters = Letter::with(['letterReceivers', 'user', 'dispositions.dispositionTos'])
-            ->whereHas('letterReceivers', function ($q){
-                return $q->where('user_id', Auth::user()->id);
-            })->orWhereHas('dispositions.dispositionTos', function($q){
-                return $q->where('role_id', Auth::user()->roles->first()->id);
-            })
-            ->get();
+            // $letters = Letter::with(['letterReceivers', 'user', 'dispositions.dispositionTos'])
+            // ->whereHas('letterReceivers', function ($q){
+            //     return $q->where('user_id', Auth::user()->id);
+            // })->orWhereHas('dispositions.dispositionTos', function($q){
+            //     return $q->where('role_id', Auth::user()->roles->first()->id);
+            // })
+            // ->get();
 
-            return DataTables::of($letters)
-            ->addColumn('title', function($letter) {
-                return $letter->title;
+            $letterReceivers = LetterReceiver::where('user_id', Auth::user()->id)
+            ->orWhereHas('disposition.dispositionTos', function($q){
+                $q->whereIn('role_id', Auth::user()->roles->pluck('id'));
+            })->with(['letter', 'user', 'disposition.dispositionTos']);
+
+            // dd($letterReceivers);
+
+            return DataTables::of($letterReceivers)
+            ->addColumn('title', function($letterReceivers) {
+                return $letterReceivers->letter->title;
             })
-            ->addColumn('name', function($letter) {
-                return $letter->user->name;
+            ->addColumn('name', function($letterReceivers) {
+                return $letterReceivers->letter->user->name;
             })
-            ->addColumn('email', function($letter) {
-                return $letter->user->email;
+            ->addColumn('email', function($letterReceivers) {
+                return $letterReceivers->letter->user->email;
             })
-            ->addColumn('action', function ($letter) {
+            ->addColumn('action', function ($letterReceivers) {
                 $detail = '
                 <li>
                     <div class="btn-detail">
-                        <a href="/inbox/detail/'. $letter->id .'" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
+                        <a href="/inbox/detail/'. $letterReceivers->id .'" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
                     </div>
                 </li>
                 ';
@@ -103,16 +110,16 @@ class InboxController extends Controller
         }
     }
 
-    public function detail(Letter $letter){
-        $letterReceiver = LetterReceiver::where('user_id', Auth::user()->id)->where('letter_id', $letter->id)->first();
+    public function detail(LetterReceiver $letterReceiver){
+        $letter = $letterReceiver->letter;
         $disposition = $letterReceiver->disposition;
-        // dd($letterReceiver->disposition);
-        
-        if(Auth::user()->roles->first()->children != null){
+        // dd($letterReceiver);
+
+        if(Auth::user()->roles->first()->children){
             $roleIds = Auth::user()->roles->first()->children->pluck("id");
         }
 
-        if(Auth::user()->roles->first()->parent != null){
+        if(Auth::user()->roles->first()->parent){
             $parentIds = collect(Auth::user()->roles->first()->parent_id);
             $roleIds = $roleIds->concat($parentIds);
         }
@@ -122,20 +129,17 @@ class InboxController extends Controller
         $users = User::whereHas('roles', function ($query) use ($roleIds) {
             $query->whereIn('roles.id', $roleIds);
         })->get();
-        
+
+        $role1 = null;
+        $role2 = null;
         if($roles->count() == 1 ) {
             $role1 = $roles;
-            $role2 = null;
         } elseif ($roles->count() >= 2) {
             list($role1, $role2) = $roles->split(2);
-        } else {
-            $role1 = null;
-            $role2 = null;
         }
-
-        $dispositionTos = Disposition::where('letter_id', $letter->id)->first()->dispositionTos;
-        $information = Information::all();
-        list($information1, $information2) = $information->split(2);
+          
+        
+        list($information1, $information2) = Information::all()->split(2);
 
         $isRead = LetterHistory::where('letter_receiver_id', $letterReceiver->id)->where('status', $this->constants->letter_status[2])->first();
         if (!$isRead) {
@@ -148,18 +152,30 @@ class InboxController extends Controller
                 'status' => $this->constants->letter_status[2],
                 'read' => 1,
             ]);
-
         }
-        
-        return view('inbox.detail', compact(['users', 'letter', 'letterReceiver', 'role1', 'role2', 'information1', 'information2', 'disposition']));
+
+        if($disposition){
+            $dispositionTos = $disposition->dispositionTos->pluck('role_id');
+            $informations = $disposition->DispositionInformations->pluck('information_id');
+        } else{
+            $dispositionTos = null;
+            $informations = null;
+        }
+
+        // dd($information);
+        return view('inbox.detail', compact([
+            'users', 'letter', 'letterReceiver', 'role1', 'role2', 'informations', 'information1', 'information2', 'disposition', 'dispositionTos'
+        ]));
     }
 
     public function disposition(LetterReceiver $letterReceiver, Request $request){
+        // dd($letterReceiver);
         $users = User::select('id', 'name')->get();
 
         $disposition = Disposition::create([
             'letter_id' => $letterReceiver->letter->id,
-            'security_level' => $security_level,
+            'letter_receiver_id' => $letterReceiver->id,
+            'security_level' => $request->security_level,
             'agenda_number' => $request->agenda_number,
             'receive_date' => $request->receive_date,
             'purpose' => $request->purpose,
@@ -173,7 +189,7 @@ class InboxController extends Controller
             $DispotionTo = DispositionTo::create([
                 'disposition_id' => $disposition->id,
                 'role_id' => $dispositionTo,
-                'user_id' => 1
+                'user_id' => Auth::user()->id,
             ]);
         }
 
@@ -183,10 +199,6 @@ class InboxController extends Controller
                 'information_id' => $information,
             ]);
         }
-
-        $letterReceiver->update([
-            'disposition_id' => $disposition->id,
-        ]);
 
         
         LetterHistory::create([

@@ -11,10 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create('letter_receivers', function (Blueprint $table) {
+            $table->id();
+            // $table->uuid('id')->primary();
+            $table->foreignId("letter_id")->constrained("letters");
+            $table->foreignId("user_id")->constrained("users");
+            // $table->foreignId("disposition_id")->nullable()->constrained("dispositions");
+            // $table->foreignUuid("user_id")->constrained("users");
+            // $table->foreignUuid("disposition_id")->nullable()->constrained("users");
+            $table->foreignId("role_id")->constrained("roles");
+            $table->foreignId("unit_id")->constrained('units');
+            // $table->foreignUuid("letter_id")->constrained("letters");
+            $table->timestamps();
+        });
+
         Schema::create('dispositions', function (Blueprint $table) {
             $table->id();
             $table->foreignId("letter_id")->constrained("letters");
-            $table->integer("security_level");
+            $table->foreignId("letter_receiver_id")->constrained("letter_receivers");
+            $table->string("security_level");
             $table->integer("agenda_number");
             $table->date("receive_date");
             $table->string("purpose");
@@ -29,7 +44,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId("disposition_id")->constrained("dispositions");
             $table->foreignId("role_id")->constrained("roles");
-            $table->foreignId("unit_id")->constrained('units');
+            // $table->foreignId("unit_id")->constrained('units');
             $table->foreignId("user_id")->constrained("users");
             $table->timestamps();
         });
@@ -41,19 +56,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('letter_receivers', function (Blueprint $table) {
-            $table->id();
-            // $table->uuid('id')->primary();
-            $table->foreignId("letter_id")->constrained("letters");
-            $table->foreignId("user_id")->constrained("users");
-            $table->foreignId("disposition_id")->nullable()->constrained("dispositions");
-            // $table->foreignUuid("user_id")->constrained("users");
-            // $table->foreignUuid("disposition_id")->nullable()->constrained("users");
-            $table->foreignId("role_id")->constrained("roles");
-            $table->foreignId("unit_id")->constrained('units');
-            // $table->foreignUuid("letter_id")->constrained("letters");
-            $table->timestamps();
-        });
+
     }
 
     /**

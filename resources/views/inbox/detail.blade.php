@@ -77,8 +77,8 @@
             </div>
         </div>
 
-        @if($letterReceiver->disposition_id == null)
-        <form action="{{ route('inbox.disposition', ['letterReceiver' => $letterReceiver->letter_id ]) }}" method="POST">
+        @if(!$letterReceiver->disposition)
+        <form action="{{ route('inbox.disposition', ['letterReceiver' => $letterReceiver->id ]) }}" method="POST">
             @method('POST')
             @csrf
         @endif
@@ -89,31 +89,31 @@
                     <div class="col-md-8">
                         <div class="letter-content pt-3" style="display: flex;  justify-content: space-between;">
                             <div>
-                                <input id="sangatRahasia" type="radio" name="security_level" value="Sangat Rahasia" @if($letterReceiver->disposition_id != null && $disposition->security_level == "Sangat Rahasia") checked @endif> 
+                                <input id="sangatRahasia" type="radio" name="security_level" value="Sangat Rahasia" @if($disposition && $disposition->security_level == "Sangat Rahasia") checked @endif> 
                                 <label for="sangatRahasia">
                                     Sangat Rahasia
                                 </label>
                             </div>
                             <div>
-                                <input id="rahasia" type="radio" name="security_level" value="Rahasia" @if($letterReceiver->disposition_id != null && $disposition->security_level == "Rahasia") checked @endif> 
+                                <input id="rahasia" type="radio" name="security_level" value="Rahasia" @if($disposition && $disposition->security_level == "Rahasia") checked @endif> 
                                 <label for="rahasia">
                                     Rahasia
                                 </label>
                             </div>
                             <div>
-                                <input id="sangatSegera" type="radio" name="security_level" value="Sangat Segera" @if($letterReceiver->disposition_id != null && $disposition->security_level == "Sangat Segera") checked @endif> 
+                                <input id="sangatSegera" type="radio" name="security_level" value="Sangat Segera" @if($disposition && $disposition->security_level == "Sangat Segera") checked @endif> 
                                 <label for="sangatSegera">
                                     Sangat Segera
                                 </label>
                             </div>
                             <div>
-                                <input id="segera" type="radio" name="security_level" value="Segera" @if($letterReceiver->disposition_id != null && $disposition->security_level == "Segera") checked @endif> 
+                                <input id="segera" type="radio" name="security_level" value="Segera" @if($disposition && $disposition->security_level == "Segera") checked @endif> 
                                 <label for="segera">
                                     Segera
                                 </label>
                             </div>
                             <div>
-                                <input id="biasa" type="radio" name="security_level" value="Biasa" @if($letterReceiver->disposition_id != null && $disposition->security_level == "Biasa") checked @endif> 
+                                <input id="biasa" type="radio" name="security_level" value="Biasa" @if($disposition && $disposition->security_level == "Biasa") checked @endif> 
                                 <label for="biasa">
                                     Biasa
                                 </label>
@@ -125,35 +125,35 @@
                                     <td style="width: 20%;">Nomor Agenda</td>
                                     <td style="width: 2%">:</td>
                                     <td>
-                                        <input type="text" name="agenda_number" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" placeholder="30" value=@if($disposition != null) {{$disposition->agenda_number}} @endif>
+                                        <input type="text" name="agenda_number" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" value=@if($disposition) {{$disposition->agenda_number}} @endif>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Tanggal Terima</td>
                                     <td>:</td>
                                     <td>
-                                        <input type="date" name="receive_date" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" value=@if($disposition != null) {{$disposition->receive_date}} @endif>
+                                        <input type="date" name="receive_date" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" value=@if($disposition) {{$disposition->receive_date}} @endif>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Tanggal Surat</td>
                                     <td>:</td>
                                     <td>
-                                        <input type="date" name="purpose" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" value=@if($disposition != null) {{$disposition->purpose}} @endif>
+                                        <input type="date" name="purpose" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" value=@if($disposition) {{$disposition->purpose}} @endif>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Asal Surat</td>
                                     <td>:</td>
                                     <td>
-                                        <input type="text" name="from" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" placeholder="PUSAT DATA" value=@if($disposition != null) {{$disposition->from}} @endif>
+                                        <input type="text" name="from" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" value=@if($disposition) {{$disposition->from}} @endif>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Hal</td>
                                     <td>:</td>
                                     <td>                                                
-                                        <input type="text" name="point" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" placeholder="192" value=@if($disposition != null) {{$disposition->point}} @endif>
+                                        <input type="text" name="point" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" value=@if($disposition) {{$disposition->point}} @endif>
                                     </td>
                                 </tr>
                             </tbody>
@@ -163,10 +163,10 @@
                             <h5>Diteruskan Kepada :</h5>
                             <div class="row">
                                 <div class="col-md-6" style="margin-right: 0; padding-right: 0">
-                                    @if($role1 != null)
+                                    @if($role1)
                                         @foreach ($role1 as $role)
                                             <div class="letter-content">
-                                                <input id="role2-{{ $role->id }}" type="checkbox" name="disposition_to[]" value="{{ $role->id }}" @if()>
+                                                <input id="role2-{{ $role->id }}" type="checkbox" name="disposition_to[]" value="{{ $role->id }}" @if( $dispositionTos && in_array($role->id, $dispositionTos->toArray())) checked @endif>
                                                 <label for="role2-{{ $role->id }}">
                                                     {{ $role->name }}
                                                 </label>
@@ -175,10 +175,10 @@
                                     @endif
                                 </div>
                                 <div class="col-md-6" style="margin-left: 0; padding-left: 0">
-                                    @if($role2 != null)
+                                    @if($role2)
                                         @foreach ($role2 as $role)
                                             <div class="letter-content">
-                                                <input id="role2-{{ $role->id }}" type="checkbox" name="disposition_to[]" value="{{ $role->id }}">
+                                                <input id="role2-{{ $role->id }}" type="checkbox" name="disposition_to[]" value="{{ $role->id }}" @if( $dispositionTos && in_array($role->id, $dispositionTos->toArray())) checked @endif>
                                                 <label for="role2-{{ $role->id }}">
                                                     {{ $role->name }}
                                                 </label>
@@ -206,8 +206,8 @@
                                 <div class="col-md-6" style="margin-right: 0; padding-right: 0">
                                     @foreach ($information1 as $information)
                                         <div class="letter-content">
-                                            <input id="information1-{{ $role->id }}" type="checkbox" name="information[]" value="{{ $information->id }}">
-                                            <label for="information1-{{ $role->id }}">
+                                            <input id="information1-{{ $information->id }}" type="checkbox" name="information[]" value="{{ $information->id }}" @if($informations && in_array($information->id, $informations->toArray())) checked @endif>
+                                            <label for="information1-{{ $information->id }}">
                                                 {{ $information->name }}
                                             </label>
                                         </div>
@@ -216,8 +216,8 @@
                                 <div class="col-md-6" style="margin-left: 0; padding-left: 0">
                                     @foreach ($information2 as $information)
                                         <div class="letter-content">
-                                            <input id="information2-{{ $role->id }}" type="checkbox" name="information[]" value="{{ $information->id }}">
-                                            <label for="information2-{{ $role->id }}">
+                                            <input id="information2-{{ $information->id }}" type="checkbox" name="information[]" value="{{ $information->id }}" @if($informations && in_array($information->id, $informations->toArray())) checked @endif>
+                                            <label for="information2-{{ $information->id }}">
                                                 {{ $information->name }}
                                             </label>
                                         </div>
@@ -228,15 +228,13 @@
                         {{-- description --}}
                         <div class="letter-content">
                             <h5>Keterangan : </h5>
-                            <textarea class="form-control" rows="4" name="description">@if($disposition != null){{$disposition->information}} @endif</textarea>
-                            {{-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga reprehenderit est nam eius
-                                doloribus inventore a deleniti, aperiam quisquam unde doloremque similique deserunt eligendi
-                                magnam aut fugit in quas! Eligendi.</p> --}}
+                            <textarea class="form-control" rows="4" name="description">@if($disposition){{$disposition->information}} @endif</textarea>
                         </div>
-                        
-                        <div class="text-right my-5">
-                            <button class="btn btn-success btn-md" disabled>Disposisi</button>
-                        </div>
+                        @if(!$disposition)
+                            <div class="text-right my-5">
+                                <button class="btn btn-success btn-md">Disposisi</button>
+                            </div>
+                        @endif
                     </div>
                 </div>
                
