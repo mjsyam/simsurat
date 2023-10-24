@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('letters', function (Blueprint $table) {
+        Schema::create('user_identifiers', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id")->constrained("users");
-            $table->foreignId("signed_id")->constrained("users");
-            $table->foreignId("letter_category_id")->constrained("letter_categories");
             $table->foreignId("identifier_id")->constrained("identifiers");
-            $table->string("title", 100);
-            $table->date("date")->index();
-            $table->text("file");
             $table->timestamps();
         });
     }
@@ -29,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('letters');
+        Schema::dropIfExists('user_identifiers');
     }
 };
