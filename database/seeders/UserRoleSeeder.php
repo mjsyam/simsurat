@@ -2,15 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\ModelHasRole;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+use App\Models\Role;
+use App\Models\Identifier;
 use App\Models\User;
+use App\Models\UserIdentifier;
 use App\Models\Unit;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Spatie\Permission\Models\Role;
 use Faker\Factory as Faker;
 
 class UserRoleSeeder extends Seeder
@@ -286,14 +287,26 @@ class UserRoleSeeder extends Seeder
             ], [
                 'unit_id' => 7,
                 'role_id' => 3,
-            ],[
+            ], [
                 'unit_id' => 7,
                 'role_id' => 3,
             ]
         ])->each(function ($identifier) {
+            Identifier::create($identifier);
         });
 
         collect([
+            [
+                'name' => "Admin",
+                'email' => "superadmin@gmail.com",
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
             [
                 'name' => "Anggina Haraha",
                 'email' => "anggina@staff.itk.ac.id",
@@ -342,13 +355,9 @@ class UserRoleSeeder extends Seeder
             User::create($user);
         });
 
-        // for ($i = 1; $i <= 19; $i++) {
-        //     ModelHasRole::create([
-        //         "role_id" => $i,
-        //         "unit_id" => random_int(1, 4),
-        //         "model_type" => "App\Models\User",
-        //         "model_id" => $i
-        //     ]);
-        // }
+        UserIdentifier::create([
+            'user_id' => 1,
+            'identifier_id' => 1,
+        ]);
     }
 }

@@ -6,22 +6,18 @@
             <h4 class="c-grey-900 mB-20">User dengan Unit Kerja {{ $unit->name }}</h4>
             <div>
                 <div>
-                    <form method="POST" action="{{ route('admin.unit.assignUser', $unit->id) }}">
+                    <form method="POST" action="{{ route('admin.unit.assignIdentifier', $unit->id) }}">
                         @csrf
                         <label>
-                            Tambah User
+                            Tambah Identifier
                         </label>
-                        <select class="form-select" name="user_id" aria-label="Default select example">
-                            @foreach ($not_assigned_users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                            @endforeach
-                        </select>
                         <label>
                             Role Akun
                         </label>
                         <select class="form-select" name="role_id" aria-label="Default select example">
                             @foreach ($roles as $role)
-                                <option value="{{ $role->id }}">{{ $role->name}}</option>
+                                 <option value="{{ $role->id }}">{{ $role->name }}
+                                    {{ $role->parent ? ' - ' . $role->parent->name : '' }}</option>
                             @endforeach
                         </select>
                         <button>
@@ -30,14 +26,17 @@
                     </form>
                 </div>
                 <div>
-                    <form method="POST" action="{{ route('admin.unit.removeUser', $unit->id) }}">
+                    <form method="POST" action="{{ route('admin.unit.removeIdentifier', $unit->id) }}">
                         @csrf
                         <label>
-                            Hapus User
+                            Hapus Identifier
                         </label>
-                        <select class="form-select" name="user_id" aria-label="Default select example">
-                            @foreach ($users as $data)
-                                <option value="{{ $data->id }}">{{ $data->name }}</option>
+                         <label>
+                            Role Akun
+                        </label>
+                        <select class="form-select" name="role_id" aria-label="Default select example">
+                            @foreach ($identifiers as $data)
+                                <option value="{{ $data->role_id }}">{{ $data->role->name }}</option>
                             @endforeach
                         </select>
                         <button>
@@ -51,17 +50,15 @@
                     <tr class="fw-bold fs-7 text-gray-500 text-uppercase">
                         <th>#</th>
                         <th>nama</th>
-                        <th>email</th>
-                        <th>role</th>
+                        <th>Induk</th>
                     </tr>
                 </thead>
                 <tbody class="fs-7">
-                    @foreach ($users as $data)
+                   @foreach ($identifiers as $data)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $data->name }}</td>
-                            <td>{{ $data->email }}</td>
-                            <td>{{ $data->roles[0]->name }}</td>
+                            <td>{{ $data->role->name }}</td>
+                            <td>{{ $data->role->parent ? $data->role->parent->name : '-' }}</td>
                         </tr>
                     @endforeach
                 </tbody>

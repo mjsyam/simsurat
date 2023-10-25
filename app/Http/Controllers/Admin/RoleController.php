@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Spatie\Permission\Models\Role;
 use Yajra\DataTables\Facades\DataTables;
 use Carbon\Carbon;
 use App\Utils\ErrorHandler;
 use App\Constants;
+use App\Models\Identifier;
 use App\Models\Unit;
 use App\Models\User;
-use App\Models\ModelHasRole;
+use App\Models\Role;
 
 class RoleController extends Controller
 {
@@ -35,7 +35,7 @@ class RoleController extends Controller
     public function getRolesTable()
     {
         if (request()->ajax()) {
-            $query = Role::orderBy('created_at', 'desc');
+            $query = Role::with('parent')->orderBy('created_at', 'desc');
 
             return DataTables::of($query)
                 // ->addColumn('created_at', function ($query) {
@@ -50,6 +50,11 @@ class RoleController extends Controller
                     $role = $query->id;
 
                     return view('admin.role.components.menu', compact(['role']));
+                })
+                ->addColumn('parent', function ($query) {
+                    $parent = $query->parent->name ?? '-';
+
+                    return $parent;
                 })
                 ->addIndexColumn()
                 ->rawColumns(['action', 'DT_RowChecklist'])
@@ -77,45 +82,41 @@ class RoleController extends Controller
         //
         $role = Role::findOrFail($id);
 
-        $users = User::with('roles.unit')->whereHas('roles', function ($query) use ($role) {
-            $query->where('id', $role->id);
+        $identifiers = $role->identifiers()->get();
+
+        $units = Unit::whereDoesntHave('identifiers', function ($query) use ($id) {
+            $query->where('role_id', $id);
         })->get();
-        $user_ids = $users->pluck('id');
 
-        $units = Unit::all();
-
-        $not_assigned_users = User::whereNotIn('id', $user_ids)->get();
-        return view('admin.role.detail', compact(['role', 'not_assigned_users', 'users', 'units']));
+        return view('admin.role.detail', compact(['role', 'identifiers', 'units']));
     }
 
-    public function assignUser(Request $request, string $role)
+    public function assignIdentifier(Request $request, string $role)
     {
         $request->validate([
-            'user_id' => 'required|string',
             'unit_id' => 'required|string',
         ]);
 
-        ModelHasRole::create([
-            "role_id" => $role,
-            "unit_id" => $request->unit_id,
-            "model_type" => "App\Models\User",
-            "model_id" => $request->user_id
+        Identifier::create([
+            'unit_id' => $request->unit_id,
+            'role_id' => $role,
         ]);
 
 
         return redirect()->route('admin.role.detail', $role);
     }
 
-    public function removeUser(Request $request, string $id)
+    public function removeIdentifier(Request $request, string $id)
     {
         $request->validate([
-            'user_id' => 'required|string',
+            'unit_id' => 'required|string',
         ]);
 
+        $identifier = Identifier::where('unit_id', $request->unit_id)->where('role_id', $id)->firstOrFail();
 
-        $role = Role::findOrFail($id);
-        User::findOrFail($request->user_id)->removeRole($role->name);
+        $identifier->delete();
 
-        return redirect()->route('admin.role.detail', $role->id);
+
+        return redirect()->route('admin.role.detail', $id);
     }
 }

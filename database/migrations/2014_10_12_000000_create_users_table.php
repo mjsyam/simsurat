@@ -26,7 +26,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('number');
             $table->enum("status", $this->constants->user_status);
-            $table->foreignId("unit_id")->constrained("units");
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
