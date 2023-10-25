@@ -2,12 +2,14 @@
 
 @section('content')
     @include('admin.user.components.add-modal')
+    @include('admin.user.components.delete-modal')
     @include('admin.user.components.edit-modal')
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <div>
         <h3 class="">Users</h3><br>
         <div class="mb-4">
-            <a href="#add_user_modal" class="dropdown-item py-2 btn btn-success px-7" style="width: 80px" data-bs-toggle="modal">
+            <a href="#add_user_modal" class="dropdown-item py-2 btn btn-success px-7" style="width: 80px"
+                data-bs-toggle="modal">
                 Add
             </a>
         </div>
@@ -44,6 +46,14 @@
             $('#edit_user_modal_form [name="email"]').val(email);
             $('#edit_user_modal_form [name="status"]').val(status);
             $('#edit_user_modal_form [name="number"]').val(number);
+        };
+
+        const onDeleteUserModalOpen = ({
+            id,
+            name,
+        }) => {
+            $('#delete_user_modal_form [name="id"]').val(id);
+            $('#delete_user_modal_form [name="name"]').val(name);
         };
 
         $(document).ready(function() {
@@ -103,7 +113,7 @@
                 }, ],
             });
 
-            $('#add_user_modal_form').submit(function (event) {
+            $('#add_user_modal_form').submit(function(event) {
                 event.preventDefault();
                 var formData = $(this).serialize();
 
@@ -116,7 +126,7 @@
                     },
                     success: function(data) {
                         userTable.ajax.reload();
-                        toastr.success(data.message,'Selamat 🚀 !');
+                        toastr.success(data.message, 'Selamat 🚀 !');
                     },
                     error: function(xhr, status, error) {
                         const data = xhr.responseJSON;
@@ -125,12 +135,12 @@
                 });
             });
 
-            $('#edit_user_modal_form').submit(function (event) {
+            $('#edit_user_modal_form').submit(function(event) {
                 event.preventDefault();
                 var formData = $(this).serialize();
                 console.log(formData)
                 $.ajax({
-                    url: "{{ route('admin.user.update') }}",
+                    url: "{{ route('admin.user.update', 'formData.attr.id') }}",
                     type: 'PUT',
                     data: formData,
                     headers: {
@@ -138,7 +148,30 @@
                     },
                     success: function(data) {
                         userTable.ajax.reload();
-                        toastr.success(data.message,'Selamat 🚀 !');
+                        toastr.success(data.message, 'Selamat 🚀 !');
+                    },
+                    error: function(xhr, status, error) {
+                        const data = xhr.responseJSON;
+                        toastr.error(data.message, 'Opps!');
+                    }
+                });
+            });
+
+            $('#delete_user_modal_form').submit(function(event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                console.log(formData)
+
+                $.ajax({
+                    url: "{{ route('admin.user.delete', 'formData.attr.id') }}",
+                    type: 'DELETE',
+                    data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(data) {
+                        userTable.ajax.reload();
+                        toastr.success(data.message, 'Selamat 🚀 !');
                     },
                     error: function(xhr, status, error) {
                         const data = xhr.responseJSON;
