@@ -30,13 +30,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['middleware'=>['auth']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
 
 Route::get('/pdf/letter/{letter}', [PDFController::class, 'index'])->name('pdf.letter');
 
-Route::group(['middleware'=>['auth']], function () {
+Route::group(['middleware' => ['auth']], function () {
     // TODO : input user yang didisposisi diharapkan sesuai dengan aturan top down dan down top
     Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');
     Route::get('/inbox/table', [InboxController::class, 'tableInbox'])->name('inbox.tableInbox');
@@ -63,6 +63,7 @@ Route::prefix('admin')->group(function () {
             Route::post('/add', 'store')->name('admin.user.add');
 
             Route::get('/get-data/table', 'getUsersTable')->name('admin.user.table');
+            Route::post('/assign-identifier/{id}','assignIdentifier')->name('admin.user.assignIdentifier');
         });
     });
 
@@ -94,9 +95,21 @@ Route::prefix('admin')->group(function () {
             Route::get('/get-data/table', 'getUnitsTable')->name('admin.unit.table');
         });
     });
+
+    Route::controller(Admin\IdentifierController::class)->group(function () {
+        Route::prefix('identifier')->group(function () {
+            Route::get('/list', 'index')->name('admin.identifier.index');
+            Route::get('/detail/{identifier}', 'show')->name('admin.identifier.detail');
+            Route::put('/update/{identifier}', 'update')->name('admin.identifier.update');
+            Route::delete('/delete/{identifier}', 'destroy')->name('admin.identifier.delete');
+            Route::post('/add', 'store')->name('admin.identifier.add');
+
+            Route::get('/get-data/table', 'getIdentifiersTable')->name('admin.identifier.table');
+        });
+    });
 });
 
-Route::group(['middleware'=>['auth']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::prefix('letter')->group(function () {
 
         Route::controller(SentLetterController::class)->group(function () {
