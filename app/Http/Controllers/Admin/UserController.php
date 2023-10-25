@@ -15,6 +15,7 @@ use App\Models\ModelHasRole;
 use App\Models\Role;
 use App\Models\Unit;
 use Illuminate\Validation\Rule;
+use Svg\Tag\Rect;
 
 class UserController extends Controller
 {
@@ -108,9 +109,12 @@ class UserController extends Controller
 
     public function show(string $id)
     {
-        $user = User::with('roles')->whereId($id)->first();
+        $user = User::with('identifiers')->whereId($id)->first();
 
-        return view('admin.user.detail', compact(['user']));
+        $identifiers = Identifier::all();
+
+
+        return view('admin.user.detail', compact(['user', 'identifiers']));
     }
 
     public function update(Request $request)
@@ -170,5 +174,18 @@ class UserController extends Controller
 
             return response()->json($data["data"], $data["code"]);
         }
+    }
+
+    public function assignIdentifier(Request $request)
+    {
+        $user = User::findOrFail($request->id);
+
+        $request->validate([
+            'identifiers' => 'required|array|min:1|exists:identifiers,id',
+        ]);
+
+        $user->identifiers()->sync($request->identifiers);
+
+        return redirect()->route('admin.user.detail', $request->id);
     }
 }
