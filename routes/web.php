@@ -105,6 +105,8 @@ Route::prefix('admin')->group(function () {
             Route::post('/add', 'store')->name('admin.identifier.add');
 
             Route::get('/get-data/table', 'getIdentifiersTable')->name('admin.identifier.table');
+            Route::post('/assign-user/{identifier}', 'assignUser')->name('admin.identifier.assignUser');
+            Route::post('/remove-user/{identifier}', 'removeUser')->name('admin.identifier.removeUser');
         });
     });
 });
