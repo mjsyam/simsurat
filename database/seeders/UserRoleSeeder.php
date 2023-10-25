@@ -135,114 +135,162 @@ class UserRoleSeeder extends Seeder
             [
                 'name' => 'admin'
             ],
+            // 1
             [
                 'name' => "Rektorat",
             ],
+            // 2
             [
-                'name' => "JMTI"
+                "name" => "JMTI"
             ],
+            // 3
             [
                 "name" => "JTSPK"
             ],
+            // 4
             [
                 "name" => "JTIP"
             ],
+            // 5
             [
                 "name" => "JSTP"
             ],
+            // 6
             [
                 "name" => "JIKL"
             ],
+            // 7
             [
                 "parent_id" => 2,
                 "name" => "Matematika"
             ],
+            // 8
             [
                 "parent_id" => 2,
                 "name" => "Informatika"
             ],
+            // 9
             [
                 "parent_id" => 2,
                 "name" => "Sistem Informasi"
             ],
+            // 10
             [
                 "parent_id" => 2,
                 "name" => "Ilmu Aktuaria"
             ],
+            // 11
             [
                 "parent_id" => 2,
                 "name" => "Statistika"
             ],
+            // 12
             [
                 "parent_id" => 2,
                 "name" => "Bisnis Digital"
             ],
+            // 13
             [
                 "parent_id" => 3,
                 "name" => "Fisika"
             ],
+            // 14
             [
                 "parent_id" => 3,
                 "name" => "Teknik Perkapalan"
             ],
+            // 15
             [
                 "parent_id" => 3,
                 "name" => "Teknik Kelautan"
             ],
+            // 16
             [
                 "parent_id" => 3,
                 "name" => "Teknologi Pangan"
             ],
+            // 17
             [
                 "parent_id" => 4,
                 "name" => "Teknik Elektro"
             ],
+            // 18
             [
                 "parent_id" => 4,
                 "name" => "Teknik Mesin"
             ],
+            // 19
             [
                 "parent_id" => 4,
                 "name" => "Teknik Kimira"
             ],
+            // 20
             [
                 "parent_id" => 4,
                 "name" => "Teknik Industri"
             ],
+            // 21
             [
                 "parent_id" => 4,
                 "name" => "Teknik Logistik"
             ],
+            // 22
             [
                 "parent_id" => 4,
                 "name" => "Rekayasa Keselamatan"
             ],
+            // 23
             [
                 "parent_id" => 5,
                 "name" => "Teknik Sipil"
             ],
+            // 24
             [
                 "parent_id" => 5,
                 "name" => "Perencanaan Wilayah dan Kota"
             ],
+            // 25
             [
                 "parent_id" => 5,
                 "name" => "Arsitektur"
             ],
+            // 26
             [
                 "parent_id" => 5,
                 "name" => "Desain Komunikasi Visual"
             ],
+            // 27
             [
                 "parent_id" => 6,
                 "name" => "Teknik Lingkungan"
             ],
+            // 28
             [
                 "parent_id" => 6,
                 "name" => "Teknik Material dan Metalurgi"
             ]
         ])->each(function ($unit) {
             Unit::create($unit);
+        });
+
+        collect([
+            [
+                'unit_id' => 1,
+                'role_id' => 1,
+            ], [
+                'unit_id' => 2,
+                'role_id' => 2,
+            ], [
+                'unit_id' => 2,
+                'role_id' => 3,
+            ], [
+                'unit_id' => 7,
+                'role_id' => 3,
+            ],[
+                'unit_id' => 7,
+                'role_id' => 3,
+            ]
+        ])->each(function ($identifier) {
         });
 
         collect([
@@ -294,13 +342,13 @@ class UserRoleSeeder extends Seeder
             User::create($user);
         });
 
-        for ($i = 1; $i <= 19; $i++) {
-            ModelHasRole::create([
-                "role_id" => $i,
-                "unit_id" => random_int(1, 4),
-                "model_type" => "App\Models\User",
-                "model_id" => $i
-            ]);
-        }
+        // for ($i = 1; $i <= 19; $i++) {
+        //     ModelHasRole::create([
+        //         "role_id" => $i,
+        //         "unit_id" => random_int(1, 4),
+        //         "model_type" => "App\Models\User",
+        //         "model_id" => $i
+        //     ]);
+        // }
     }
 }
