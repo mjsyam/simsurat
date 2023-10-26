@@ -2,15 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\ModelHasRole;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+use App\Models\Role;
+use App\Models\Identifier;
 use App\Models\User;
+use App\Models\UserIdentifier;
 use App\Models\Unit;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Spatie\Permission\Models\Role;
 use Faker\Factory as Faker;
 
 class UserRoleSeeder extends Seeder
@@ -135,108 +136,136 @@ class UserRoleSeeder extends Seeder
             [
                 'name' => 'admin'
             ],
+            // 1
             [
                 'name' => "Rektorat",
             ],
+            // 2
             [
-                'name' => "JMTI"
+                "name" => "JMTI"
             ],
+            // 3
             [
                 "name" => "JTSPK"
             ],
+            // 4
             [
                 "name" => "JTIP"
             ],
+            // 5
             [
                 "name" => "JSTP"
             ],
+            // 6
             [
                 "name" => "JIKL"
             ],
+            // 7
             [
                 "parent_id" => 2,
                 "name" => "Matematika"
             ],
+            // 8
             [
                 "parent_id" => 2,
                 "name" => "Informatika"
             ],
+            // 9
             [
                 "parent_id" => 2,
                 "name" => "Sistem Informasi"
             ],
+            // 10
             [
                 "parent_id" => 2,
                 "name" => "Ilmu Aktuaria"
             ],
+            // 11
             [
                 "parent_id" => 2,
                 "name" => "Statistika"
             ],
+            // 12
             [
                 "parent_id" => 2,
                 "name" => "Bisnis Digital"
             ],
+            // 13
             [
                 "parent_id" => 3,
                 "name" => "Fisika"
             ],
+            // 14
             [
                 "parent_id" => 3,
                 "name" => "Teknik Perkapalan"
             ],
+            // 15
             [
                 "parent_id" => 3,
                 "name" => "Teknik Kelautan"
             ],
+            // 16
             [
                 "parent_id" => 3,
                 "name" => "Teknologi Pangan"
             ],
+            // 17
             [
                 "parent_id" => 4,
                 "name" => "Teknik Elektro"
             ],
+            // 18
             [
                 "parent_id" => 4,
                 "name" => "Teknik Mesin"
             ],
+            // 19
             [
                 "parent_id" => 4,
                 "name" => "Teknik Kimira"
             ],
+            // 20
             [
                 "parent_id" => 4,
                 "name" => "Teknik Industri"
             ],
+            // 21
             [
                 "parent_id" => 4,
                 "name" => "Teknik Logistik"
             ],
+            // 22
             [
                 "parent_id" => 4,
                 "name" => "Rekayasa Keselamatan"
             ],
+            // 23
             [
                 "parent_id" => 5,
                 "name" => "Teknik Sipil"
             ],
+            // 24
             [
                 "parent_id" => 5,
                 "name" => "Perencanaan Wilayah dan Kota"
             ],
+            // 25
             [
                 "parent_id" => 5,
                 "name" => "Arsitektur"
             ],
+            // 26
             [
                 "parent_id" => 5,
                 "name" => "Desain Komunikasi Visual"
             ],
+            // 27
             [
                 "parent_id" => 6,
                 "name" => "Teknik Lingkungan"
             ],
+            // 28
             [
                 "parent_id" => 6,
                 "name" => "Teknik Material dan Metalurgi"
@@ -245,25 +274,43 @@ class UserRoleSeeder extends Seeder
             Unit::create($unit);
         });
 
-        $faker = Faker::create();
+        collect([
+            [
+                'unit_id' => 1,
+                'role_id' => 1,
+            ], [
+                'unit_id' => 2,
+                'role_id' => 2,
+            ], [
+                'unit_id' => 2,
+                'role_id' => 3,
+            ], [
+                'unit_id' => 7,
+                'role_id' => 3,
+            ], [
+                'unit_id' => 7,
+                'role_id' => 3,
+            ]
+        ])->each(function ($identifier) {
+            Identifier::create($identifier);
+        });
 
         collect([
             [
                 'name' => "Admin",
                 'email' => "superadmin@gmail.com",
-                'status' => 'DOSEN',
-                'number' => '0',
+                'status' => 'TENDIK',
                 'email_verified_at' => now(),
                 'password' => Hash::make('123456789'),
                 'remember_token' => str::random(10),
-                'number' => "78051851387412",
+                'number' => "0",
                 'signature' => "beta",
                 'avatar' => "beta",
             ],
             [
                 'name' => "Anggina Haraha",
                 'email' => "anggina@staff.itk.ac.id",
-                'status' => 'TENDIK',
+                'status' => 'DOSEN',
                 'email_verified_at' => now(),
                 'password' => Hash::make('123456789'),
                 'remember_token' => str::random(10),
@@ -308,43 +355,9 @@ class UserRoleSeeder extends Seeder
             User::create($user);
         });
 
-        for ($i = 0; $i <= 19; $i++){
-            User::create([
-                'name' => $faker->name(),
-                'email' => $faker->unique()->safeEmail(),
-                'status' => 'DOSEN',
-                'number' => '0',
-                'email_verified_at' => now(),
-                'password' => Hash::make('123456789'),
-                'remember_token' => str::random(10),
-                'number' => "78051851387412",
-                'signature' => "beta",
-                'avatar' => "beta",
-            ]);
-        }
-
-        collect([
-            [1, 1, 1],
-            [20, 2, 2],
-            [2, 2, 3],
-            [7, 3, 4],
-            [9, 5, 5]
-        ])->map(function ($data) {
-            ModelHasRole::create([
-                "role_id" => $data[0],
-                "unit_id" => $data[1],
-                "model_type" => "App\Models\User",
-                "model_id" => $data[2]
-            ]);
-        });
-
-        for ($i = 6; $i <= 20; $i++) {
-            ModelHasRole::create([
-                "role_id" => random_int(10, 20),
-                "unit_id" => random_int(6, 20),
-                "model_type" => "App\Models\User",
-                "model_id" => $i
-            ]);
-        }
+        UserIdentifier::create([
+            'user_id' => 1,
+            'identifier_id' => 1,
+        ]);
     }
 }

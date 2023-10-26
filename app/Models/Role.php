@@ -18,4 +18,19 @@ class Role extends Model
     public function children() {
         return $this->hasMany(Role::class, "parent_id");
     }
+
+    public function identifiers()
+    {
+        return $this->hasMany(Identifier::class);
+    }
+
+    public function users()
+    {
+        return $this->identifiers()->users();
+    }
+
+    public function units()
+    {
+        return $this->belongsToMany(Unit::class, 'identifiers');
+    }
 }

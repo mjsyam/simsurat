@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("parent_id")->nullable()->constrained("units");
+            $table->foreignId("parent_id")->nullable()->constrained("roles");
             $table->string('name');
             $table->timestamps();
         });

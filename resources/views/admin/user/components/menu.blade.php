@@ -19,7 +19,12 @@
             <i class="fa-solid fa-pen  me-3"></i>
             Edit
         </a>
-        <a href="" class="dropdown-item py-2" data-bs-toggle="modal">
+        <a href="#delete_user_modal" class="dropdown-item py-2" data-bs-toggle="modal"
+            onclick="onDeleteUserModalOpen({
+                id: '{{ $query->id }}',
+                name: '{{ $query->name }}',
+            })"
+        >
             <i class="fa-solid fa-trash me-3"></i>
             Delete
         </a>

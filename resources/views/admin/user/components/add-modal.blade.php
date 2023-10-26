@@ -42,24 +42,13 @@
                                 </select>
                             </div>
 
-                            <div class="col-lg-6 mb-3">
+                            <div class="col-lg-12 mb-3">
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
-                                    <span class="required fw-bold">Role</span>
+                                    <span class="required fw-bold">identifier</span>
                                 </label>
-                                <select class="drop-data form-select form-select-solid" name="role_id" required>
-                                    @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="col-lg-6 mb-3">
-                                <label class="d-flex align-items-center fs-6 form-label mb-2">
-                                    <span class="required fw-bold">Unit</span>
-                                </label>
-                                <select class="drop-data form-select form-select-solid" name="unit_id" required>
-                                    @foreach ($units as $unit)
-                                        <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                <select class="drop-data form-select form-select-solid" name="identifiers[]" required multiple>
+                                    @foreach ($identifiers as $identifier)
+                                        <option value="{{ $identifier->id }}">{{ $identifier->role->name }}- {{ $identifier->unit->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -94,3 +83,36 @@
         </div>
     </div>
 </div>
+@section('script')
+    <script>
+        $(document).ready(function() {
+            // function loadOptions(selectedValue) {
+            //     $.ajax({
+            //         url: '{{ route('user.get-role') }}',
+            //         dataType: 'json',
+            //         data: {
+            //             id: selectedValue,
+            //         },
+            //         success: function (data) {
+            //             $('[name="role_id"]').empty();
+
+            //             $('[name="role_id"]').select2({
+            //                 data: data.data
+            //             });
+            //         }
+            //     });
+            // }
+
+            $('[name="identifiers[]"]').select2({
+                theme: 'bootstrap5',
+            });
+
+            // $('[name="signed"]').on('change', function () {
+            //     var selectedValue = $(this).val();
+            //     loadOptions(selectedValue);
+            // });
+
+            // $('[name="signed"]').trigger('change');
+        });
+    </script>
+@endsection

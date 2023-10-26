@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Constants;
 use App\Http\Controllers\Controller;
+use App\Models\Identifier;
 use App\Models\Role;
 use App\Models\Unit;
 use App\Models\User;
@@ -64,15 +65,14 @@ class UnitController extends Controller
     public function show($unit)
     {
         $unit = Unit::find($unit);
-        $roles = Role::all();
 
-        $users = $unit->users;
-        $user_ids = $users->pluck('id')->toArray();
+        $identifiers = $unit->identifiers()->get();
 
-        $not_assigned_users = User::whereNotIn('id', $user_ids)->get();
+        $roles = Role::whereDoesntHave('identifiers', function ($query) use ($unit) {
+            $query->where('unit_id', $unit->id);
+        })->get();
 
-
-        return view('admin.unit.detail', compact(['unit', 'roles', 'users', 'not_assigned_users']));
+        return view('admin.unit.detail', compact(['unit', 'roles', 'identifiers']));
     }
 
     public function store(Request $request)
@@ -114,36 +114,29 @@ class UnitController extends Controller
         return redirect()->back()->with('success', 'Unit berhasil dihapus');
     }
 
-    public function assignUser(Request $request, string $unit)
+    public function assignIdentifier(Request $request, $unit)
     {
         $request->validate([
-            'user_id' => 'required|string',
             'role_id' => 'required|string',
         ]);
 
-        ModelHasRole::create([
-            "role_id" => $request->role,
-            "unit_id" => $unit,
-            "model_type" => "App\Models\User",
-            "model_id" => $request->user_id
+        Identifier::create([
+            'unit_id' => $unit,
+            'role_id' => $request->role_id,
         ]);
 
         return redirect()->route('admin.unit.detail', $unit);
     }
 
-    public function removeUser(Request $request, string $unit)
+    public function removeIdentifier(Request $request, string $unit)
     {
         $request->validate([
-            'user_id' => 'required|string',
+            'role_id' => 'required|string',
         ]);
 
-        $user = User::with([
-            'roles.unit' => function ($query) use ($unit) {
-                $query->where('unit_id', $unit);
-            }
-        ])->findOrFail($request->user_id);
+        $identifier = Identifier::where('unit_id', $unit)->where('role_id', $request->role_id)->firstOrFail();
+        $identifier->delete();
 
-        $user->removeRole($user->roles[0]->name);
         return redirect()->route('admin.unit.detail', $unit);
     }
 }

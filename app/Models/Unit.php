@@ -18,4 +18,18 @@ class Unit extends Model
     public function children() {
         return $this->hasMany(Unit::class, "parent_id");
     }
+
+    public function identifiers()
+    {
+        return $this->hasMany(Identifier::class);
+    }
+
+    // public function users() {
+    //     return $this->belongsToMany(
+    //         User::class,
+    //         "model_has_roles", 
+    //         "unit_id",
+    //         "model_id", 
+    //     );
+    // }
 }

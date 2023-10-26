@@ -1,4 +1,4 @@
-<div class="modal fade" id="add_user_modal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="add_role_modal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered mw-650px">
         <div class="modal-content">
             <div class="modal-header pb-0 border-0 justify-content-end">
@@ -7,7 +7,7 @@
                 </div>
             </div>
             <div class="modal-body mx-5 mx-lg-15 mb-7">
-                <form id="add_user_modal_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
+                <form id="add_role_modal_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
                     <div class="scroll-y me-n10 pe-10" data-kt-scroll-max-height="auto" data-kt-scroll-offset="300px">
                         <div class="row mb-9">
                             <div class="col-lg-12 text-center mb-9">
@@ -24,9 +24,9 @@
                         </div>
                     </div>
                     <div class="text-center mt-3">
-                        <button type="reset" id="add_user_modal_cancel"
+                        <button type="reset" id="add_role_modal_cancel"
                             class="btn btn-sm btn-light me-3 w-lg-200px" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" id="add_user_modal_submit" class="btn btn-sm btn-success w-lg-200px"
+                        <button type="submit" id="add_role_modal_submit" class="btn btn-sm btn-success w-lg-200px"
                             data-bs-dismiss="modal">
                             <span class="indicator-label">Submit</span>
                         </button>
