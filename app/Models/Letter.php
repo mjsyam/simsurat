@@ -36,13 +36,8 @@ class Letter extends Model
         return $this->hasMany(LetterReceiver::class);
     }
 
-    public function role()
+    public function identifier()
     {
-        return $this->belongsTo(Role::class);
-    }
-
-    public function unit()
-    {
-        return $this->belongsTo(Unit::class);
+        return $this->belongsTo(Identifier::class);
     }
 }

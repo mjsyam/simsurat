@@ -31,9 +31,9 @@ class LetterReceiver extends Model
         return $this->hasOne(LetterStatus::class);
     }
 
-    public function role()
+    public function identifier()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Identifier::class);
     }
 
     public function letterHistories()
@@ -44,10 +44,5 @@ class LetterReceiver extends Model
     public function disposition()
     {
         return $this->hasOne(User::class, 'id', 'disposition_id');
-    }
-
-    public function unit()
-    {
-        return $this->belongsTo(Unit::class);
     }
 }
