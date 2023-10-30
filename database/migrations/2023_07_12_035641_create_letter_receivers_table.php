@@ -40,6 +40,15 @@ return new class extends Migration
             $table->foreignId("identifier_id")->constrained("identifiers");
             $table->timestamps();
         });
+
+        Schema::create('disposition_information', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId("disposition_id")->constrained("dispositions");
+            $table->foreignId("information_id")->constrained("informations");
+            $table->timestamps();
+        });
+
+
     }
 
     /**
@@ -48,7 +57,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('dispositions');
+        Schema::dropIfExists('disposition_to');
         Schema::dropIfExists('letter_receivers');
-        Schema::dropIfExists('letter_receivers');
+        Schema::dropIfExists('disposition_information');
     }
 };

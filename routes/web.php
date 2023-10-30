@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     // TODO : input user yang didisposisi diharapkan sesuai dengan aturan top down dan down top
     Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');
     Route::get('/inbox/table', [InboxController::class, 'tableInbox'])->name('inbox.tableInbox');
-    Route::get('/inbox/detail/{letter}', [InboxController::class, 'detail'])->name('inbox.detail');
+    Route::get('/inbox/detail/{letterReceiver}', [InboxController::class, 'detail'])->name('inbox.detail');
     Route::post('/inbox/disposition/{letterReceiver}', [InboxController::class, 'disposition'])->name('inbox.disposition');
 
     Route::get('/outgoing-letter', [OutGoingLetter::class, 'index'])->name('outgoing-letter.index');

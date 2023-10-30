@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class DispositionTo extends Model
 {
     use HasFactory;
+    protected $table = 'disposition_to'; 
     protected $guarded = [];
 
     public function role()

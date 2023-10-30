@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Information extends Model
+{
+    protected $table = 'informations'; 
+    use HasFactory;
+
+    
+    public function dispositionInformations()
+    {
+        return $this->hasMany(DispositionInformation::class);
+    }
+}

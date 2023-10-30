@@ -2,6 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
 
 @include('layouts.head')
+@yield('css')
 
 <body>
     <div>
