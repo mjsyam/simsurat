@@ -275,22 +275,37 @@ class UserRoleSeeder extends Seeder
         });
 
         collect([
+            // admin admin 1
             [
                 'unit_id' => 1,
                 'role_id' => 1,
-            ], [
+            ],
+            // rektor rektorat 2
+            [
                 'unit_id' => 2,
                 'role_id' => 2,
-            ], [
+            ],
+            // Wakil Rektor Rektorat 3
+            [
                 'unit_id' => 2,
                 'role_id' => 3,
-            ], [
-                'unit_id' => 7,
-                'role_id' => 3,
-            ], [
-                'unit_id' => 7,
-                'role_id' => 3,
-            ]
+            ],
+            // Tendik Rektorat 4
+            [
+                'unit_id' => 2,
+                'role_id' => 20,
+            ],
+            // Ketua JMTI JMTI 5
+            [
+                'unit_id' => 2,
+                'role_id' => 6,
+            ],
+            // Ketua JTIP JTIP 6
+            [
+                'unit_id' => 4,
+                'role_id' => 8,
+            ],
+
         ])->each(function ($identifier) {
             Identifier::create($identifier);
         });
@@ -358,6 +373,22 @@ class UserRoleSeeder extends Seeder
         UserIdentifier::create([
             'user_id' => 1,
             'identifier_id' => 1,
+        ]);
+        UserIdentifier::create([
+            'user_id' => 2,
+            'identifier_id' => 4,
+        ]);
+        UserIdentifier::create([
+            'user_id' => 3,
+            'identifier_id' => 3,
+        ]);
+        UserIdentifier::create([
+            'user_id' => 4,
+            'identifier_id' => 5,
+        ]);
+        UserIdentifier::create([
+            'user_id' => 5,
+            'identifier_id' => 6,
         ]);
     }
 }
