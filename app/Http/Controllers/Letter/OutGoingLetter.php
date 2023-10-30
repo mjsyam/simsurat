@@ -7,6 +7,7 @@ use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Letter;
+use App\Models\Role;
 
 class OutGoingLetter extends Controller
 {
@@ -14,18 +15,21 @@ class OutGoingLetter extends Controller
     {
         return view("outgoing-letter.index");
     }
-
     public function tableApprove()
     {
         if (request()->ajax()) {
-            $roleIds = Auth::user()->roles->first()->children->pluck("id");
+            $user = Auth::user();
+            $roleIds = $user->identifiers->first()->role->pluck('id')->toArray();
+            $childRoleIds = array_unique($this->getChildRoleIds($roleIds));
 
-            $letters = Letter::where(function ($query) use ($roleIds) {
-                $query->where(function ($subQuery) use ($roleIds) {
-                    $subQuery->whereHas('role', function ($roleSubQuery) use ($roleIds) {
-                        $roleSubQuery->whereIn('roles.id', $roleIds);
-                    })->orWhereHas('letterReceivers', function ($receiverSubQuery) use ($roleIds) {
-                        $receiverSubQuery->whereIn('letter_receivers.role_id', $roleIds);
+            $letters = Letter::where(function ($query) use ($childRoleIds) {
+                $query->where(function ($subQuery) use ($childRoleIds) {
+                    $subQuery->whereHas('identifier', function ($roleSubQuery) use ($childRoleIds) {
+                        $roleSubQuery->whereIn('role_id', $childRoleIds);
+                    })->orWhereHas('letterReceivers', function ($receiverSubQuery) use ($childRoleIds) {
+                        $receiverSubQuery->whereHas("identifier", function($q) use ($childRoleIds) {
+                            $q->whereIn('role_id', $childRoleIds);
+                        });
                     });
                 });
             })->get();
@@ -46,5 +50,14 @@ class OutGoingLetter extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
+    }
+
+    private function getChildRoleIds($roleIds)
+    {
+        $childRoleIds = Role::whereIn('parent_id', $roleIds)->pluck('id')->toArray();
+        if (!empty($childRoleIds)) {
+            $childRoleIds = array_merge($childRoleIds, $this->getChildRoleIds($childRoleIds));
+        }
+        return $childRoleIds;
     }
 }

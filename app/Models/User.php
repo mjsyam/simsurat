@@ -41,11 +41,6 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function userRoles()
-    {
-        return $this->belongsToMany(Role::class, UserRole::class)->orderBy('user_roles.created_at', 'desc');
-    }
-
     public function letterReceivers()
     {
         return $this->hasMany(LetterReceiver::class);

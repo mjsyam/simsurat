@@ -8,7 +8,6 @@ use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Letter;
-use App\Models\LetterHistory;
 
 class ApproveLetterContoller extends Controller
 {
