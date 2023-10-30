@@ -36,18 +36,13 @@ class LetterReceiver extends Model
         return $this->hasOne(LetterStatus::class);
     }
 
-    public function role()
+    public function identifier()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Identifier::class);
     }
 
     public function letterHistories()
     {
         return $this->hasMany(LetterHistory::class)->orderBy("created_at", "desc");
-    }
-
-    public function unit()
-    {
-        return $this->belongsTo(Unit::class);
     }
 }

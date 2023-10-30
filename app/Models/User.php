@@ -9,11 +9,10 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 use App\Models\Role;
-use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -57,24 +56,9 @@ class User extends Authenticatable
         return $this->hasMany(Letter::class);
     }
 
-    public function roles()
+    public function identifiers()
     {
-        return $this->belongsToMany(Role::class, "model_has_roles", "model_id", "role_id");
-    }
-
-    public function units()
-    {
-        return $this->belongsToMany(Unit::class, "model_has_roles", "model_id", "unit_id")->orderBy("created_at", "desc");
-    }
-
-    public function modelHasRoles()
-    {
-        return $this->hasMany(ModelHasRole::class, "model_id");
-    }
-
-    public function Identifier()
-    {
-        return $this->belongsTo(Identifier::class);
+        return $this->hasMany(Identifier::class);
     }
 
     public function dispositionTos()

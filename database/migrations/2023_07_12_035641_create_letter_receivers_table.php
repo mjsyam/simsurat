@@ -43,16 +43,18 @@ return new class extends Migration
         Schema::create('disposition_to', function (Blueprint $table) {
             $table->id();
             $table->foreignId("disposition_id")->constrained("dispositions");
-            $table->foreignId("role_id")->constrained("roles");
-            // $table->foreignId("unit_id")->constrained('units');
+            $table->foreignId("identifier_id")->constrained("identifiers");
             $table->foreignId("user_id")->constrained("users");
             $table->timestamps();
         });
 
         Schema::create('disposition_information', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("disposition_id")->constrained("dispositions");
-            $table->foreignId("information_id")->constrained("informations");
+            // $table->uuid('id')->primary();
+            $table->foreignId("letter_id")->constrained("letters");
+            $table->foreignId("user_id")->constrained("users");
+            $table->foreignId("disposition_id")->nullable()->constrained("dispositions");
+            $table->foreignId("identifier_id")->constrained("identifiers");
             $table->timestamps();
         });
 
