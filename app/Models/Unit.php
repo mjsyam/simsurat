@@ -18,4 +18,9 @@ class Unit extends Model
     public function children() {
         return $this->hasMany(Unit::class, "parent_id");
     }
+
+    public function identifiers()
+    {
+        return $this->hasMany(Identifier::class);
+    }
 }

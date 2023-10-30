@@ -10,10 +10,12 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use App\Constants;
 use App\Exceptions\NotFoundError;
+use App\Models\Identifier;
 use App\Models\ModelHasRole;
 use App\Models\Role;
 use App\Models\Unit;
 use Illuminate\Validation\Rule;
+use Svg\Tag\Rect;
 
 class UserController extends Controller
 {
@@ -29,11 +31,11 @@ class UserController extends Controller
     public function index()
     {
         $userStatus = $this->constants->user_status;
-        $roles = Role::all();
-        $units = Unit::all();
+
+        $identifiers = Identifier::all();
 
         return view('admin.user.index', compact([
-            'userStatus', 'roles', 'units'
+            'userStatus', 'identifiers'
         ]));
     }
 
@@ -71,8 +73,7 @@ class UserController extends Controller
                 'email' => 'required|string|unique:users,email',
                 'password' => 'required|string|min:8',
                 'status' => ['nullable', Rule::in($this->constants->user_status)],
-                'role_id' => 'nullable|exists:roles,id',
-                'unit_id' => 'nullable|exists:units,id',
+                'identifiers' => 'required|array|min:1|exists:identifiers,id',
                 'signature' => 'string|nullable',
                 'avatar' => 'string|nullable',
             ]);
@@ -93,11 +94,7 @@ class UserController extends Controller
                 "status" => $request->status
             ]);
 
-            ModelHasRole::create([
-                "role_id" => $request->role_id,
-                "model_type" => "App\Models\User",
-                "model_id" => $user->id
-            ]);
+            $user->identifiers()->attach($request->identifiers);
 
             return response()->json([
                 "status" => "success",
@@ -112,9 +109,12 @@ class UserController extends Controller
 
     public function show(string $id)
     {
-        $user = User::with('roles')->whereId($id)->first();
+        $user = User::with('identifiers')->whereId($id)->first();
 
-        return view('admin.user.detail', compact(['user']));
+        $identifiers = Identifier::all();
+
+
+        return view('admin.user.detail', compact(['user', 'identifiers']));
     }
 
     public function update(Request $request)
@@ -151,10 +151,17 @@ class UserController extends Controller
         }
     }
 
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
         try {
-            $user = User::findOrFail($id);
+            $user = User::findOrFail($request->id);
+
+
+            if (!$user) {
+                throw new NotFoundError("User tidak ditemukan");
+            }
+
+            $user->identifiers()->detach();
 
             $user->delete();
 
@@ -167,5 +174,18 @@ class UserController extends Controller
 
             return response()->json($data["data"], $data["code"]);
         }
+    }
+
+    public function assignIdentifier(Request $request)
+    {
+        $user = User::findOrFail($request->id);
+
+        $request->validate([
+            'identifiers' => 'required|array|min:1|exists:identifiers,id',
+        ]);
+
+        $user->identifiers()->sync($request->identifiers);
+
+        return redirect()->route('admin.user.detail', $request->id);
     }
 }

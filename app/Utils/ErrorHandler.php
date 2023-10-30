@@ -41,7 +41,7 @@ class ErrorHandler
         return [
             "data" => [
                 "status" => "error",
-                "message" => "Terjadi kesalahan pada server kami",
+                "message" => "Terjadi kesalahan pada server kami: ",
             ],
             "code" => 500,
         ];

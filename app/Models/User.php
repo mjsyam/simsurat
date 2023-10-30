@@ -58,7 +58,7 @@ class User extends Authenticatable
 
     public function identifiers()
     {
-        return $this->hasMany(Identifier::class);
+        return $this->belongsToMany(Identifier::class, UserIdentifier::class)->orderBy('user_identifiers.created_at', 'desc');
     }
 
     public function dispositionTos()

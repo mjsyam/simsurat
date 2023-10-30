@@ -10,9 +10,9 @@ class Identifier extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class, 'user_identifiers');
     }
 
     public function unit()

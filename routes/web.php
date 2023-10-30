@@ -30,13 +30,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['middleware'=>['auth']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
 
 Route::get('/pdf/letter/{letter}', [PDFController::class, 'index'])->name('pdf.letter');
 
-Route::group(['middleware'=>['auth']], function () {
+Route::group(['middleware' => ['auth']], function () {
     // TODO : input user yang didisposisi diharapkan sesuai dengan aturan top down dan down top
     Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');
     Route::get('/inbox/table', [InboxController::class, 'tableInbox'])->name('inbox.tableInbox');
@@ -58,11 +58,12 @@ Route::prefix('admin')->group(function () {
         Route::prefix('user')->group(function () {
             Route::get('/list', 'index')->name('admin.user.index');
             Route::get('/detail/{id}', 'show')->name('admin.user.detail');
-            Route::put('/update', 'update')->name('admin.user.update');
+            Route::put('/update/{id}', 'update')->name('admin.user.update');
             Route::delete('/delete/{id}', 'destroy')->name('admin.user.delete');
             Route::post('/add', 'store')->name('admin.user.add');
 
             Route::get('/get-data/table', 'getUsersTable')->name('admin.user.table');
+            Route::post('/assign-identifier/{id}','assignIdentifier')->name('admin.user.assignIdentifier');
         });
     });
 
@@ -74,8 +75,8 @@ Route::prefix('admin')->group(function () {
             Route::put('/update/{role}', 'update')->name('admin.role.update');
             Route::delete('/delete/{role}', 'destroy')->name('admin.role.delete');
             Route::post('/add', 'store')->name('admin.role.add');
-            Route::post('/assign-user/{role}', 'assignUser')->name('admin.role.assignUser');
-            Route::post('/remove-user/{role}', 'removeUser')->name('admin.role.removeUser');
+            Route::post('/assign-identifier/{role}', 'assignIdentifier')->name('admin.role.assignIdentifier');
+            Route::post('/remove-identifier/{role}', 'removeIdentifier')->name('admin.role.removeIdentifier');
 
             Route::get('/get-data/table', 'getRolesTable')->name('admin.role.table');
         });
@@ -88,15 +89,29 @@ Route::prefix('admin')->group(function () {
             Route::put('/update/{unit}', 'update')->name('admin.unit.update');
             Route::delete('/delete/{unit}', 'destroy')->name('admin.unit.delete');
             Route::post('/add', 'store')->name('admin.unit.add');
-            Route::post('/assign-user/{unit}', 'assignUser')->name('admin.unit.assignUser');
-            Route::post('/remove-user/{unit}', 'removeUser')->name('admin.unit.removeUser');
+            Route::post('/assign-identifier/{unit}', 'assignIdentifier')->name('admin.unit.assignIdentifier');
+            Route::post('/remove-identifier/{unit}', 'removeIdentifier')->name('admin.unit.removeIdentifier');
 
             Route::get('/get-data/table', 'getUnitsTable')->name('admin.unit.table');
         });
     });
+
+    Route::controller(Admin\IdentifierController::class)->group(function () {
+        Route::prefix('identifier')->group(function () {
+            Route::get('/list', 'index')->name('admin.identifier.index');
+            Route::get('/detail/{identifier}', 'show')->name('admin.identifier.detail');
+            Route::put('/update/{identifier}', 'update')->name('admin.identifier.update');
+            Route::delete('/delete/{identifier}', 'destroy')->name('admin.identifier.delete');
+            Route::post('/add', 'store')->name('admin.identifier.add');
+
+            Route::get('/get-data/table', 'getIdentifiersTable')->name('admin.identifier.table');
+            Route::post('/assign-user/{identifier}', 'assignUser')->name('admin.identifier.assignUser');
+            Route::post('/remove-user/{identifier}', 'removeUser')->name('admin.identifier.removeUser');
+        });
+    });
 });
 
-Route::group(['middleware'=>['auth']], function () {
+Route::group(['middleware' => ['auth']], function () {
     Route::prefix('letter')->group(function () {
 
         Route::controller(SentLetterController::class)->group(function () {
