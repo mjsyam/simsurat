@@ -8,6 +8,7 @@ use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Letter;
+use App\Models\LetterHistory;
 
 class ApproveLetterContoller extends Controller
 {
@@ -25,7 +26,7 @@ class ApproveLetterContoller extends Controller
                 return $query->whereHas('letterHistories', function($query){
                     return $query->where('status', 'waiting');
                 });
-            })->get();
+            })->with("letterReceivers.letterHistories");
 
             return DataTables::of($letters)
                 ->addColumn('action', function ($letter) {
@@ -45,20 +46,40 @@ class ApproveLetterContoller extends Controller
         }
     }
 
-    public function detail($id)
+    public function approve(Request $request, $id)
     {
         $letter = Letter::find($id);
 
-        return view("approve-letter.detail", compact("letter"));
-    }
+        foreach ($letter->letterReceivers as $letterReceiver) {
+            $letterReceiver->letterStatus()->update([
+                "status" => $request->action,
+            ]);
 
-    public function approve($id)
-    {
-        $letter = Letter::find($id);
+            if ($request->action == "approved") {
+                $letterReceiver->letterHistories()->create([
+                    "letter_receiver_id" => $letterReceiver->id,
+                    "note" => "Surat berhasil disetujui",
+                    "status" => $request->action,
+                ]);
 
-        $letter->update([
-            "status" => "approved"
-        ]);
+                $letterReceiver->letterHistories()->create([
+                    "letter_receiver_id" => $letterReceiver->id,
+                    "note" => "Surat berhasil dikirim",
+                    "status" => "sented",
+                ]);
+
+                $letterReceiver->letterStatus()->update([
+                    "status" => "sented",
+                ]);
+            } else {
+                $letterReceiver->letterHistories()->create([
+                    "letter_receiver_id" => $letterReceiver->id,
+                    "note" => "Surat berhasil ditolak",
+                    "status" => $request->action,
+                ]);
+            }
+        }
+
 
         return redirect()->route("approve.letter.index")->with("success", "Berhasil menyetujui surat");
     }

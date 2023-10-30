@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ModelHasRole extends Model
 {
     use HasFactory;
-
+    protected $primaryKey = null;
+    public $incrementing = false;
     protected $guarded = [];
 
     public function unit()
