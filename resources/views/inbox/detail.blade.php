@@ -153,7 +153,7 @@
                                     <td>Hal</td>
                                     <td>:</td>
                                     <td>                                                
-                                        <input type="number" name="point" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" value=@if($disposition) {{$disposition->point}} @endif>
+                                        <input type="text" name="point" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" value=@if($disposition) {{$disposition->point}} @endif>
                                     </td>
                                 </tr>
                             </tbody>
