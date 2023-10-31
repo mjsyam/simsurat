@@ -8,7 +8,6 @@ use App\Models\Identifier;
 use App\Models\Role;
 use App\Models\Unit;
 use App\Models\User;
-use App\Models\ModelHasRole;
 use App\Utils\ErrorHandler;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;

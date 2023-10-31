@@ -11,7 +11,6 @@ use Yajra\DataTables\Facades\DataTables;
 use App\Constants;
 use App\Exceptions\NotFoundError;
 use App\Models\Identifier;
-use App\Models\ModelHasRole;
 use App\Models\Role;
 use App\Models\Unit;
 use Illuminate\Validation\Rule;

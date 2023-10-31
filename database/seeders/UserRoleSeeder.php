@@ -297,7 +297,7 @@ class UserRoleSeeder extends Seeder
             ],
             // Ketua JMTI JMTI 5
             [
-                'unit_id' => 2,
+                'unit_id' => 3,
                 'role_id' => 6,
             ],
             // Ketua JTIP JTIP 6
@@ -312,6 +312,7 @@ class UserRoleSeeder extends Seeder
 
         collect([
             [
+                'unit_id' => 1,
                 'name' => "Admin",
                 'email' => "superadmin@gmail.com",
                 'status' => 'TENDIK',
@@ -323,9 +324,10 @@ class UserRoleSeeder extends Seeder
                 'avatar' => "beta",
             ],
             [
+                'unit_id' => 2,
                 'name' => "Anggina Haraha",
                 'email' => "anggina@staff.itk.ac.id",
-                'status' => 'DOSEN',
+                'status' => 'TENDIK',
                 'email_verified_at' => now(),
                 'password' => Hash::make('123456789'),
                 'remember_token' => str::random(10),
@@ -334,6 +336,7 @@ class UserRoleSeeder extends Seeder
                 'avatar' => "beta",
             ],
             [
+                'unit_id' => 2,
                 'name' => "Prof. Erma Suryani, S.T., M.T., Ph.D",
                 'email' => "wr2@itk.ac.id",
                 'status' => 'DOSEN',
@@ -345,6 +348,7 @@ class UserRoleSeeder extends Seeder
                 'avatar' => "beta",
             ],
             [
+                'unit_id' => 3,
                 'name' => "Irma Fitria, S.Si., M.Si",
                 'email' => "irma.fitria@lecturer.itk.ac.id",
                 'status' => 'DOSEN',
@@ -356,6 +360,7 @@ class UserRoleSeeder extends Seeder
                 'avatar' => "beta",
             ],
             [
+                'unit_id' => 4,
                 'name' => "Andi Idhil Ismail, S.T., M.Sc., Ph.D",
                 'email' => "a.idhil@lecturer.itk.ac.id",
                 'status' => 'DOSEN',
@@ -374,10 +379,10 @@ class UserRoleSeeder extends Seeder
             'user_id' => 1,
             'identifier_id' => 1,
         ]);
-        UserIdentifier::create([
-            'user_id' => 2,
-            'identifier_id' => 4,
-        ]);
+        // UserIdentifier::create([
+        //     'user_id' => 2,
+        //     'identifier_id' => 4,
+        // ]);
         UserIdentifier::create([
             'user_id' => 3,
             'identifier_id' => 3,
