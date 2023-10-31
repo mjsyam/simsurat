@@ -379,10 +379,10 @@ class UserRoleSeeder extends Seeder
             'user_id' => 1,
             'identifier_id' => 1,
         ]);
-        // UserIdentifier::create([
-        //     'user_id' => 2,
-        //     'identifier_id' => 4,
-        // ]);
+        UserIdentifier::create([
+            'user_id' => 2,
+            'identifier_id' => 4,
+        ]);
         UserIdentifier::create([
             'user_id' => 3,
             'identifier_id' => 3,
