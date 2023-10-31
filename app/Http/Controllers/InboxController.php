@@ -74,7 +74,7 @@ class InboxController extends Controller
 
             $letterReceivers = LetterReceiver::where('user_id', Auth::user()->id)
             ->orWhereHas('disposition.dispositionTos', function($q){
-                $q->whereIn('role_id', Auth::user()->roles->pluck('id'));
+                $q->whereIn('identifier_id', Auth::user()->identifiers->pluck('id'));
             })->with(['letter', 'user', 'disposition.dispositionTos']);
 
             // dd($letterReceivers);
@@ -110,24 +110,34 @@ class InboxController extends Controller
         }
     }
 
+
     public function detail(LetterReceiver $letterReceiver){
         $letter = $letterReceiver->letter;
         $disposition = $letterReceiver->disposition;
         // dd($letterReceiver);
+        $roleIds = [];
 
-        if(Auth::user()->roles->first()->children){
-            $roleIds = Auth::user()->roles->first()->children->pluck("id");
+        
+        if(Auth::user()->identifiers->first()->role->children){
+            $roleIds = Auth::user()->identifiers->first()->role->pluck("id");
+            $roleIds = $this->getChildRoleIds($roleIds);
         }
 
-        if(Auth::user()->roles->first()->parent){
-            $parentIds = collect(Auth::user()->roles->first()->parent_id);
-            $roleIds = $roleIds->concat($parentIds);
+        if(Auth::user()->identifiers->first()->role->parent){
+            $parentIds = Auth::user()->identifiers->first()->role->parent;
+            if( $parentIds){
+                $uncleIds = $parentIds->children()->pluck("id")->toArray();
+                $roleIds = array_merge($roleIds, $uncleIds);
+            }
+            $roleIds[] = $parentIds->id;
         }
+
+        // $roleIds = array_unique($roleIds);
 
         $roles = Role::whereIn('id', $roleIds)->get();
         
-        $users = User::whereHas('roles', function ($query) use ($roleIds) {
-            $query->whereIn('roles.id', $roleIds);
+        $users = User::whereHas('identifiers', function ($query) use ($roleIds) {
+            $query->whereIn('role_id', $roleIds);
         })->get();
 
         $role1 = null;
@@ -214,5 +224,13 @@ class InboxController extends Controller
         ]);
         
         return redirect()->back()->with('success', 'disposisi berhasil')->with(compact('users', 'letterReceiver'));
+    }
+
+    private function getChildRoleIds($roleIds){
+        $childRoleIds = Role::whereIn('parent_id', $roleIds)->pluck('id')->toArray();
+        if (!empty($childRoleIds)) {
+            $childRoleIds = array_merge($childRoleIds, $this->getChildRoleIds($childRoleIds));
+        }
+        return $childRoleIds;
     }
 }
