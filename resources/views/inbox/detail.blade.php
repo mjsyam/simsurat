@@ -125,7 +125,7 @@
                                     <td style="width: 20%;">Nomor Agenda</td>
                                     <td style="width: 2%">:</td>
                                     <td>
-                                        <input type="text" name="agenda_number" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" value=@if($disposition) {{$disposition->agenda_number}} @endif>
+                                        <input type="number" name="agenda_number" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" value=@if($disposition) {{$disposition->agenda_number}} @endif>
                                     </td>
                                 </tr>
                                 <tr>
@@ -153,7 +153,7 @@
                                     <td>Hal</td>
                                     <td>:</td>
                                     <td>                                                
-                                        <input type="text" name="point" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" value=@if($disposition) {{$disposition->point}} @endif>
+                                        <input type="number" name="point" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" value=@if($disposition) {{$disposition->point}} @endif>
                                     </td>
                                 </tr>
                             </tbody>
@@ -185,17 +185,6 @@
                                             </div>
                                         @endforeach
                                     @endif
-                                    <div class="letter-content">
-                                        <div class="row">
-                                            <div class="col-md-1 margin-right: 0; padding-right: 0">
-                                                <label for="" style="padding-left: 5px; padding-top: 3px;">
-                                                    Sdr</label>
-                                            </div>
-                                            <div class="col-md-11 margin-left: 0; padding-left: 0">
-                                                <input type="text" name="intended_person" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;">
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -206,9 +195,9 @@
                                 <div class="col-md-6" style="margin-right: 0; padding-right: 0">
                                     @foreach ($information1 as $information)
                                         <div class="letter-content">
-                                            <input id="information1-{{ $information->id }}" type="checkbox" name="information[]" value="{{ $information->id }}" @if($informations && in_array($information->id, $informations->toArray())) checked @endif>
-                                            <label for="information1-{{ $information->id }}">
-                                                {{ $information->name }}
+                                            <input id="information1-{{ $information }}" type="checkbox" name="information[]" value="{{ $information }}" @if($informations && in_array($information, $informations->toArray())) checked @endif>
+                                            <label for="information1-{{ $information }}">
+                                                {{ $information }}
                                             </label>
                                         </div>
                                     @endforeach
@@ -216,9 +205,9 @@
                                 <div class="col-md-6" style="margin-left: 0; padding-left: 0">
                                     @foreach ($information2 as $information)
                                         <div class="letter-content">
-                                            <input id="information2-{{ $information->id }}" type="checkbox" name="information[]" value="{{ $information->id }}" @if($informations && in_array($information->id, $informations->toArray())) checked @endif>
-                                            <label for="information2-{{ $information->id }}">
-                                                {{ $information->name }}
+                                            <input id="information2-{{ $information }}" type="checkbox" name="information[]" value="{{ $information }}" @if($informations && in_array($information, $informations->toArray())) checked @endif>
+                                            <label for="information2-{{ $information }}">
+                                                {{ $information }}
                                             </label>
                                         </div>
                                     @endforeach

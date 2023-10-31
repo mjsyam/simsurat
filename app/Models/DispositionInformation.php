@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class DispositionInformation extends Model
 {
     use HasFactory;
-    protected $fillable = ['disposition_id', 'information_id'];
+    protected $guarded = [];
 
     public function information()
     {

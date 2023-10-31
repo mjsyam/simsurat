@@ -24,6 +24,11 @@ class Role extends Model
         return $this->hasMany(Identifier::class);
     }
 
+    public function dispositionTo()
+    {
+        return $this->hasMany(dispositionTo::class);
+    }
+
     public function users()
     {
         return $this->identifiers()->users();

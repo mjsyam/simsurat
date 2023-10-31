@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('dispositions', function (Blueprint $table) {
             $table->id();
             $table->foreignId("letter_id")->constrained("letters");
+            $table->string("security_level");
             $table->integer("agenda_number");
             $table->date("receive_date");
             $table->string("purpose");
@@ -26,7 +27,7 @@ return new class extends Migration
         Schema::create('disposition_to', function (Blueprint $table) {
             $table->id();
             $table->foreignId("disposition_id")->constrained("dispositions");
-            $table->foreignId("identifier_id")->constrained("identifiers");
+            $table->foreignId("role_id")->constrained("roles");
             $table->foreignId("user_id")->constrained("users");
             $table->timestamps();
         });
@@ -44,7 +45,7 @@ return new class extends Migration
         Schema::create('disposition_information', function (Blueprint $table) {
             $table->id();
             $table->foreignId("disposition_id")->constrained("dispositions");
-            $table->foreignId("information_id")->constrained("informations");
+            $table->string("information");
             $table->timestamps();
         });
 
