@@ -293,17 +293,17 @@ class UserRoleSeeder extends Seeder
             // Tendik Rektorat 4
             [
                 'unit_id' => 2,
-                'role_id' => 20,
+                'role_id' => 21,
             ],
             // Ketua JMTI JMTI 5
             [
                 'unit_id' => 3,
-                'role_id' => 6,
+                'role_id' => 7,
             ],
             // Ketua JTIP JTIP 6
             [
                 'unit_id' => 4,
-                'role_id' => 8,
+                'role_id' => 9,
             ],
 
         ])->each(function ($identifier) {
