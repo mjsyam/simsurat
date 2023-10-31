@@ -74,7 +74,7 @@ class InboxController extends Controller
 
             $letterReceivers = LetterReceiver::where('user_id', Auth::user()->id)
             ->orWhereHas('disposition.dispositionTos', function($q){
-                $q->whereIn('identifier_id', Auth::user()->identifiers->pluck('id'));
+                $q->whereIn('role_id', Auth::user()->identifiers->pluck('role_id'));
             })->with(['letter', 'user', 'disposition.dispositionTos']);
 
             // dd($letterReceivers);
@@ -117,7 +117,6 @@ class InboxController extends Controller
         // dd($letterReceiver);
         $roleIds = [];
 
-        
         if(Auth::user()->identifiers->first()->role->children){
             $roleIds = Auth::user()->identifiers->first()->role->pluck("id");
             $roleIds = $this->getChildRoleIds($roleIds);
@@ -149,7 +148,38 @@ class InboxController extends Controller
         }
           
         
-        list($information1, $information2) = Information::all()->split(2);
+        $information = [
+            "Ikuti Disposisi Mentri",
+            "Proses Sesuai Prosedur",
+            "Selesaikan",
+            "Tanggapan/Suara Tertulis",
+            "Pelajari",
+            "Untuk Pertimbangan",
+            "Perbaiki",
+            "Siapkan dan Buatkan konsep/bahan",
+            "Untuk Diketahui/ diperhatikan",
+            "Check status perkembangan",
+            "Laporkan",
+            "Dibantu",
+            "Dapat disetujui",
+            "Temui saya",
+            "Adakan rapat",
+            "Jadwalkan/ ingatkan",
+            "Kirimkan segera",
+            "Fotokopi/ arsipkan",
+            "Buatkan undangan",
+            "Untuk digunakan/ ditindaklanjuti",
+            "Tangani bersama",
+            "Hadiri/ wakili",
+        ];
+
+        $split_point = count($information) / 2;
+        $information1 = array_slice($information, 0, $split_point);
+        $information2 = array_slice($information, $split_point);
+        // dd($information1);
+        // list($information1, $information2) = $information;
+        // dd($information1);
+        // dd($information);
 
         $isRead = LetterHistory::where('letter_receiver_id', $letterReceiver->id)->where('status', $this->constants->letter_status[2])->first();
         if (!$isRead) {
@@ -181,10 +211,8 @@ class InboxController extends Controller
     public function disposition(LetterReceiver $letterReceiver, Request $request){
         // dd($letterReceiver);
         $users = User::select('id', 'name')->get();
-
         $disposition = Disposition::create([
             'letter_id' => $letterReceiver->letter->id,
-            'letter_receiver_id' => $letterReceiver->id,
             'security_level' => $request->security_level,
             'agenda_number' => $request->agenda_number,
             'receive_date' => $request->receive_date,
@@ -192,7 +220,6 @@ class InboxController extends Controller
             'from' => $request->from,
             'point' => $request->point,
             'information' => $request->description,
-            'intended_person' => $request->intended_person,
         ]);
 
         foreach($request->disposition_to as $dispositionTo){
@@ -201,21 +228,21 @@ class InboxController extends Controller
                 'role_id' => $dispositionTo,
                 'user_id' => Auth::user()->id,
             ]);
+
+            LetterHistory::create([
+                'letter_receiver_id' => $letterReceiver->id,
+                'note' => 'Surat didisposisikan kepada ' . Role::where("id", $dispositionTo)->first()->name . ' pada ' . Carbon::now()->format('Y-m-d H:i:s'),
+                'status' => $this->constants->letter_status[3],
+            ]);
         }
+
 
         foreach($request->information as $information){
             $dispositionInformation = DispositionInformation::create([
                 'disposition_id' => $disposition->id,
-                'information_id' => $information,
+                'information' => $information,
             ]);
         }
-
-        
-        LetterHistory::create([
-            'letter_receiver_id' => $letterReceiver->id,
-            'note' => 'Surat didisposisikan kepada ' . $letterReceiver->disposition->name . ' pada ' . Carbon::now()->format('Y-m-d H:i:s'),
-            'status' => $this->constants->letter_status[3],
-        ]);
 
 
 
