@@ -176,11 +176,7 @@ class InboxController extends Controller
         $split_point = count($information) / 2;
         $information1 = array_slice($information, 0, $split_point);
         $information2 = array_slice($information, $split_point);
-        // dd($information1);
-        // list($information1, $information2) = $information;
-        // dd($information1);
-        // dd($information);
-
+        
         $isRead = LetterHistory::where('letter_receiver_id', $letterReceiver->id)->where('status', $this->constants->letter_status[2])->first();
         if (!$isRead) {
             LetterHistory::create([
@@ -245,6 +241,9 @@ class InboxController extends Controller
         }
 
 
+        $letterReceiver->update([
+            "disposition_id" =>  $disposition->id,
+        ]);
 
         $letterReceiver->letterStatus()->update([
             'status' => $this->constants->letter_status[3],
