@@ -18,7 +18,7 @@ class LetterReceiver extends Model
 
     public function disposition()
     {
-        return $this->hasOne(Disposition::class);
+        return $this->belongsTo(Disposition::class);
     }
 
     public function user()

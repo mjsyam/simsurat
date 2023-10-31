@@ -23,13 +23,4 @@ class Unit extends Model
     {
         return $this->hasMany(Identifier::class);
     }
-
-    // public function users() {
-    //     return $this->belongsToMany(
-    //         User::class,
-    //         "model_has_roles", 
-    //         "unit_id",
-    //         "model_id", 
-    //     );
-    // }
 }
