@@ -181,7 +181,7 @@ class UserController extends Controller
         $user = User::findOrFail($request->id);
 
         $request->validate([
-            'identifiers' => 'required|array|min:1|exists:identifiers,id',
+            'identifiers' => 'required|array|exists:identifiers,id',
         ]);
 
         $user->identifiers()->sync($request->identifiers);
