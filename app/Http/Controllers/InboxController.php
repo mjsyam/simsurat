@@ -134,21 +134,20 @@ class InboxController extends Controller
         // $roleIds = array_unique($roleIds);
 
         $roles = Role::whereIn('id', $roleIds)->get();
-        
         $users = User::whereHas('identifiers', function ($query) use ($roleIds) {
             $query->whereIn('role_id', $roleIds);
         })->get();
 
-        $role1 = null;
-        $role2 = null;
-        if($roles->count() == 1 ) {
-            $role1 = $roles;
-        } elseif ($roles->count() >= 2) {
-            list($role1, $role2) = $roles->split(2);
-        }
+        // $role1 = null;
+        // $role2 = null;
+        // if($roles->count() == 1 ) {
+        //     $role1 = $roles;
+        // } elseif ($roles->count() >= 2) {
+        //     list($role1, $role2) = $roles->split(2);
+        // }
           
         
-        $information = [
+        $informations = [
             "Ikuti Disposisi Mentri",
             "Proses Sesuai Prosedur",
             "Selesaikan",
@@ -173,9 +172,9 @@ class InboxController extends Controller
             "Hadiri/ wakili",
         ];
 
-        $split_point = count($information) / 2;
-        $information1 = array_slice($information, 0, $split_point);
-        $information2 = array_slice($information, $split_point);
+        // $split_point = count($informations) / 2;
+        // $information1 = array_slice($informations, 0, $split_point);
+        // $information2 = array_slice($informations, $split_point);
         
         $isRead = LetterHistory::where('letter_receiver_id', $letterReceiver->id)->where('status', $this->constants->letter_status[2])->first();
         if (!$isRead) {
@@ -192,20 +191,20 @@ class InboxController extends Controller
 
         if($disposition){
             $dispositionTos = $disposition->dispositionTos->pluck('role_id');
-            $informations = $disposition->DispositionInformations->pluck('information_id');
+            // $informations = $disposition->DispositionInformations->pluck('information_id');
         } else{
             $dispositionTos = null;
-            $informations = null;
+            // $informations = null;
         }
 
-        // dd($information);
+        // dd($roles);
         return view('inbox.detail', compact([
-            'users', 'letter', 'letterReceiver', 'role1', 'role2', 'informations', 'information1', 'information2', 'disposition', 'dispositionTos'
+            'users', 'letter', 'letterReceiver', 'roles', 'informations', 'informations', 'disposition', 'dispositionTos'
         ]));
     }
 
     public function disposition(LetterReceiver $letterReceiver, Request $request){
-        // dd($letterReceiver);
+        // dd($request);
         $users = User::select('id', 'name')->get();
         $disposition = Disposition::create([
             'letter_id' => $letterReceiver->letter->id,
@@ -218,22 +217,22 @@ class InboxController extends Controller
             'information' => $request->description,
         ]);
 
-        foreach($request->disposition_to as $dispositionTo){
-            $DispotionTo = DispositionTo::create([
+        foreach($request->roles as $role){
+            $role = DispositionTo::create([
                 'disposition_id' => $disposition->id,
-                'role_id' => $dispositionTo,
+                'role_id' => $role,
                 'user_id' => Auth::user()->id,
             ]);
 
             LetterHistory::create([
                 'letter_receiver_id' => $letterReceiver->id,
-                'note' => 'Surat didisposisikan kepada ' . Role::where("id", $dispositionTo)->first()->name . ' pada ' . Carbon::now()->format('Y-m-d H:i:s'),
+                'note' => 'Surat didisposisikan kepada ' . Role::where("id", $role->role_id)->first()->name . ' pada ' . Carbon::now()->format('Y-m-d H:i:s'),
                 'status' => $this->constants->letter_status[3],
             ]);
         }
 
 
-        foreach($request->information as $information){
+        foreach($request->informations as $information){
             $dispositionInformation = DispositionInformation::create([
                 'disposition_id' => $disposition->id,
                 'information' => $information,
