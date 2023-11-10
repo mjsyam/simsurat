@@ -24,827 +24,1481 @@ class UserRoleSeeder extends Seeder
         collect([
             // 1
             [
-                'name' => "Rektor",
+                'name' => "Ketua Jurusan Ilmu Kebumian dan Lingkungan",
             ],
             // 2
             [
-                'name' => "Wakil Rektor Bidang Akademik",
+                'name' => "Koordinator Prodi Teknik Material dan Metalurgi",
             ],
             // 3
             [
-                'name' => "Wakil Rektor Bidang Non Akademik",
+                'name' => "Koordinator Prodi Teknik Lingkungan",
             ],
-            // 4 
+            // 4
             [
-                "name" => "Koordinator"
+                'name' => "Ketua Jurusan Matematika dan Teknologi Informasi",
             ],
             // 5
             [
-                "name" => "Wakil Koordinator"
+                'name' => "Koordinator Prodi Matematika",
             ],
             // 6
             [
-                "name" => "Ketua"
+                'name' => "Koordinator Prodi Sistem Informasi",
             ],
             // 7
             [
-                "name" => "Sekretaris"
+                'name' => "Koordinator Prodi Informatika",
             ],
             // 8
             [
-                "name" => "Kepala"
-            ]
-
-            // 3
-            // [
-            //     'parent_id' => 3,
-            //     'name' => "Kepala UPT Perpustakaan",
-            // ],
-            // // 4
-            // [
-            //     'parent_id' => 3,
-            //     'name' => "Kepala UPT Teknologi Informasi",
-            // ],
-            // // 5
-            // [
-            //     'parent_id' => 3,
-            //     'name' => "kepala UPT Bahasa",
-            // ],
-            // // 6
-            // [
-            //     'parent_id' => 3,
-            //     'name' => "Ketua JMTI",
-            // ],
-            // // 7
-            // [
-            //     'parent_id' => 3,
-            //     'name' => "Ketua JSTPM",
-            // ],
-            // // 8
-            // [
-            //     'parent_id' => 3,
-            //     'name' => "Ketua JTIP",
-            // ],
-            // // 9
-            // [
-            //     'parent_id' => 3,
-            //     'name' => "Ketua JTSP",
-            // ],
-            // // 10
-            // [
-            //     'parent_id' => 3,
-            //     'name' => "Ketua JIKL",
-            // ],
-
-            // // 11
-            // [
-            //     'parent_id' => 3,
-            //     'name' => "Kepala Biro Umum dan Akademik",
-            // ],
-            // // 12
-            // [
-            //     'parent_id' => 11,
-            //     'name' => "Kepala Bagian Akademik dan Perencanaan",
-            // ],
-            // // 13
-            // [
-            //     'parent_id' => 11,
-            //     'name' => "Kepala Bagian Umum dan Keuangan",
-            // ],
-
-            // // 14
-            // [
-            //     'parent_id' => 12,
-            //     'name' => "Kepala Subbagian Akademik dan Kemahasiswaan",
-            // ],
-            // // 15
-            // [
-            //     'parent_id' => 12,
-            //     'name' => "Kepala Subbagian Perencanaan",
-            // ],
-
-            // // 16
-            // [
-            //     'parent_id' => 13,
-            //     'name' => "Kepala Subbagian Umum dan Kepegawaian",
-            // ],
-            // // 17
-            // [
-            //     'parent_id' => 13,
-            //     'name' => "Kepala Subbagian Keuangan dan Barang Milik Negara",
-            // ],
-
-            // // 18
-            // [
-            //     'parent_id' => 3,
-            //     'name' => "LPPM",
-            // ],
-            // // 19
-            // [
-            //     'parent_id' => 3,
-            //     'name' => "Dosen dan JFT lainnya",
-            // ],
-            // // 20
-            // [
-            //     'parent_id' => 3,
-            //     'name' => "Tendik",
-            // ],
+                'name' => "Koordinator Prodi Ilmu Aktuaria",
+            ],
+            // 9
+            [
+                'name' => "Koordinator Prodi Statistika",
+            ],
+            // 10
+            [
+                'name' => "Koordinator Prodi Bisnis Digital",
+            ],
+            // 11
+            [
+                'name' => "Ketua Jurusan Sains, Teknik Perkapalan, dan Kemariti",
+            ],
+            // 12
+            [
+                'name' => "Koordinator Prodi Fisika",
+            ],
+            // 13
+            [
+                'name' => "Koordinator Prodi Teknik Perkapalan",
+            ],
+            // 14
+            [
+                'name' => "Koordinator Prodi Teknik Kelautan",
+            ],
+            // 15
+            [
+                'name' => "Koordinator Prodi Teknologi Pangan",
+            ],
+            // 16
+            [
+                'name' => "Ketua Jurusan Teknik Sipil dan Perencanaan",
+            ],
+            // 17
+            [
+                'name' => "Koordinator Prodi Teknik Sipil",
+            ],
+            // 18
+            [
+                'name' => "Koordinator Prodi PWK",
+            ],
+            // 19
+            [
+                'name' => "Koordinator Prodi Arsitektur",
+            ],
+            // 20
+            [
+                'name' => "Koordinator Prodi Desain Komunikasi Visual",
+            ],
+            // 21
+            [
+                'name' => "Ketua Jurusan Teknologi Industri dan Proses",
+            ],
+            // 22
+            [
+                'name' => "Koordinator Prodi Teknik Mesin",
+            ],
+            // 23
+            [
+                'name' => "Koordinator Prodi Teknik Elektro",
+            ],
+            // 24
+            [
+                'name' => "Koordinator Prodi Teknik Kimia",
+            ],
+            // 25
+            [
+                'name' => "Koordinator Prodi Teknik Industri",
+            ],
+            // 26
+            [
+                'name' => "Koordinator Prodi Rekayasa Keselamatan",
+            ],
+            // 27
+            [
+                'name' => "Koordinator Prodi Teknik Logistik",
+            ],
+            // 28
+            [
+                'name' => "Ketua Lembaga Penelitian dan Pengabdian kepada Masyarakat",
+            ],
+            // 29
+            [
+                'name' => "Sekretaris Lembaga Penelitian dan Pengabdian kepada Masyarakat",
+            ],
+            // 30
+            [
+                'name' => "Koordinator Pusat Penelitian dan Publikasi Ilmiah",
+            ],
+            // 31
+            [
+                'name' => "Koordinator Pusat IBT",
+            ],
+            // 32
+            [
+                'name' => "Koordinator Pusat International Office",
+            ],
+            // 33
+            [
+                'name' => "Koordinator Pusat Pengembangan Pendidikan",
+            ],
+            // 34
+            [
+                'name' => "Wakil Koordinator Pusat Pengembangan Pendidikan",
+            ],
+            // 35
+            [
+                'name' => "Koordinator Pusat Pembinaan Kemahasiswaan dan Alumni",
+            ],
+            // 36
+            [
+                'name' => "Koordinator Pusat Penjaminan Mutu",
+            ],
+            // 37
+            [
+                'name' => "Koordinator Pusat E-Learning",
+            ],
+            // 38
+            [
+                'name' => "Koordinator Pusat Penelitian",
+            ],
+            // 39
+            [
+                'name' => "Koordinator Pusat Penelitian Energi",
+            ],
+            // 40
+            [
+                'name' => "Koordinator Pusat Penelitian Pangan Pertanian",
+            ],
+            // 41
+            [
+                'name' => "Koordinator Pusat Penelitian Smart City",
+            ],
+            // 42
+            [
+                'name' => "Koordinator Pusat HaKI",
+            ],
+            // 43
+            [
+                'name' => "Koordinator Pusat Laboratorium Terpadu",
+            ],
+            // 44
+            [
+                'name' => "Koordinator Pusat Pengembangan SDM",
+            ],
+            // 45
+            [
+                'name' => "Wakil Koordinator Pusat Pengembangan SDM",
+            ],
+            // 46
+            [
+                'name' => "Koordinator Pusat Pengembangan Strategis dan Infrastruktur",
+            ],
+            // 47
+            [
+                'name' => "Koordinator Pusat TPB dan MKU",
+            ],
+            // 48
+            [
+                'name' => "Koordinator Pusat ITK Press",
+            ],
+            // 49
+            [
+                'name' => "Koordinator Pusat Halal Center",
+            ],
+            // 50
+            [
+                'name' => "Koordinator Pusat Kerja sama dan Pengabdian kepada Masyarakat",
+            ],
+            // 51
+            [
+                'name' => "Koordinator PLP",
+            ],
+            // 52
+            [
+                'name' => "Rektor",
+            ],
+            // 53
+            [
+                'name' => "Wakil Rektor Bidang Akademik",
+            ],
+            // 54
+            [
+                'name' => "Wakil Rektor Bidang Non Akademik",
+            ],
+            // 55
+            [
+                'name' => "Koordinator Rumpun Akademik dan Kemahasiswaan",
+            ],
+            // 56
+            [
+                'name' => "Koordinator Rumpun Hubungan Masyarakat",
+            ],
+            // 57
+            [
+                'name' => "Koordinator Rumpun Kepegawaian",
+            ],
+            // 58
+            [
+                'name' => "Koordinator Rumpun Keuangan dan BMN",
+            ],
+            // 59
+            [
+                'name' => "Koordinator Rumpun Pengadaan",
+            ],
+            // 60
+            [
+                'name' => "Koordinator Rumpun Perencanaan",
+            ],
+            // 61
+            [
+                'name' => "Koordinator Rumpun Sarana Prasarana",
+            ],
+            // 62
+            [
+                'name' => "Ketua Tim Satuan Pengawas Internal (SPI)",
+            ],
+            // 63
+            [
+                'name' => "Kepala UPT Bahasa",
+            ],
+            // 64
+            [
+                'name' => "Kepala UPT Perpustakaan",
+            ],
+            // 65
+            [
+                'name' => "Kepala UPT Teknologi Informasi dan Komunikasi",
+            ],
         ])->each(function ($role) {
             Role::create($role);
         });
 
         collect([
-                // 1
-                [
-                    'name' => "Rektorat",
-                ],
-                // 2
-                [
-                    "parent_id" => 1,
-                    "name" => "Rumpun Keuangan dan BMN"
-                ],
-                // 3
-                [
-                    "parent_id" => 1,
-                    "name" => "Rumpun Kepegawaian"
-                ],
-                // 4
-                [
-                    "parent_id" => 1,
-                    "name" => "Rumpun Sarana dan Prasarana"
-                ],
-                // 5
-                [
-                    "parent_id" => 1,
-                    "name" => "Rumpun Hubungan Masyarakat"
-                ],
-                // 6
-                [
-                    "parent_id" => 1,
-                    "name" => "Rumpun Perencanaan"
-                ],
-                // 7
-                [
-                    "parent_id" => 1,
-                    "name" => "Rumpun Pengadaan"
-                ],
-                // 8
-                [
-                    "parent_id" => 1,
-                    "name" => "Rumpun Akademik dan Kemahasiswaan"
-                ],
-                // 9
-                [
-                    "parent_id" => 1,
-                    "name" => "Rumpun PLP"
-                ],
-                // 10
-                [
-                    'name' => "JMTI"
-                ],
-                // 11
-                [
-                    'name' => "JTSPK"
-                ],
-                // 12
-                [
-                    'name' => "JTIP"
-                ],
-                // 13
-                [
-                    'name' => "JSTP"
-                ],
-                // 14
-                [
-                    'name' => "JIKL"
-                ],
-                // 15
-                [
-                    "parent_id" => 11,
-                    "name" => "Fisika"
-                ],
-                // 16
-                [
-                    "parent_id" => 10,
-                    "name" => "Matematika"
-                ],
-                // 17
-                [
-                    "parent_id" => 12,
-                    "name" => "Teknik Mesin"
-                ],
-                // 18
-                [
-                    "parent_id" => 12,
-                    "name" => "Teknik Elektro"
-                ],
-                // 19
-                [
-                    "parent_id" => 12,
-                    "name" => "Teknik Kimia"
-                ],
-                // 20
-                [
-                    "parent_id" => 14,
-                    "name" => "Teknik Material dan Metalurgi"
-                ],
-                // 21
-                [
-                    "parent_id" => 13,
-                    "name" => "Teknik Sipil"
-                ],
-                // 22
-                [
-                    "parent_id" => 13,
-                    "name" => "Perencanaan Wilayah dan Kota"
-                ],
-                // 23
-                [
-                    "parent_id" => 11,
-                    "name" => "Teknik Perkapalan"
-                ],
-                // 24
-                [
-                    "parent_id" => 10,
-                    "name" => "Sistem Informasi"
-                ],
-                // 25
-                [
-                    "parent_id" => 10,
-                    "name" => "Informatika"
-                ],
-                // 26
-                [
-                    "parent_id" => 12,
-                    "name" => "Teknik Industri"
-                ],
-                // 27
-                [
-                    "parent_id" => 14,
-                    "name" => "Teknik Lingkungan"
-                ],
-                // 28
-                [
-                    "parent_id" => 11,
-                    "name" => "Teknik Kelautan"
-                ],
-                // 29
-                [
-                    "parent_id" => 10,
-                    "name" => "Ilmu Aktuaria"
-                ],
-                // 30
-                [
-                    "parent_id" => 10,
-                    "name" => "Statistika"
-                ],
-                // 31
-                [
-                    "parent_id" => 12,
-                    "name" => "Arsitektur"
-                ],
-                // 32
-                [
-                    "parent_id" => 11,
-                    "name" => "Teknologi Pangan"
-                ],
-                // 33
-                [
-                    "parent_id" => 13,
-                    "name" => "Rekayasa Keselamatan"
-                ],
-                // 34
-                [
-                    "parent_id" => 10,
-                    "name" => "Bisnis Digital"
-                ],
-                // 35
-                [
-                    "parent_id" => 11,
-                    "name" => "Teknik Logistik"
-                ],
-                // 36
-                [
-                    "parent_id" => 12,
-                    "name" => "Desain Komunikasi Visual"
-                ],
-                // 37
-                [
-                    'name' => "UPT Teknologi Informasi dan Komunikasi"
-                ],
-                // 38
-                [
-                    'name' => "UPT Bahasa"
-                ],
-                // 39
-                [
-                    'name' => "UPT Perpustakaan"
-                ],
-                // 40
-                [
-                    'name' => "Lembaga Penelitian dan Pengabdian kepada Masyarakat"
-                ],
-                // 41
-                [
-                    "parent_id" => 37,
-                    "name" => "Pusat Penelitian dan Publikasi Ilmiah"
-                ],
-                // 42
-                [
-                    "parent_id" => 37,
-                    "name" => "Inkubator Bisnis Teknologi"
-                ],
-                // 43
-                [
-                    "parent_id" => 37,
-                    "name" => "International Office"
-                ],
-                // 44
-                [
-                    "parent_id" => 37,
-                    "name" => "Pusat Pengembangan Pendidikan"
-                ],
-                // 45
-                [
-                    "parent_id" => 37,
-                    "name" => "Pusat Pembinaan Kemahasiswaan dan Alumni"
-                ],
-                // 46
-                [
-                    "parent_id" => 37,
-                    "name" => "Pusat Penjaminan Mutu"
-                ],
-                // 47
-                [
-                    "parent_id" => 37,
-                    "name" => "Pusat E-Learning"
-                ],
-                // 48
-                [
-                    "parent_id" => 37,
-                    "name" => "Pusat Penelitian"
-                ],
-                // 49
-                [
-                    "parent_id" => 37,
-                    "name" => "Pusat Penelitian Energi"
-                ],
-                // 50
-                [
-                    "parent_id" => 37,
-                    "name" => "Pusat Penelitian Pangan Pertanian"
-                ],
-                // 51
-                [
-                    "parent_id" => 37,
-                    "name" => "Pusat Penelitian Smart City"
-                ],
-                // 52
-                [
-                    "parent_id" => 37,
-                    "name" => "Pusat HaKI"
-                ],
-                // 53
-                [
-                    "parent_id" => 37,
-                    "name" => "Pusat Laboratorium Terpadu"
-                ],
-                // 54
-                [
-                    "parent_id" => 37,
-                    "name" => "Pusat Pengembangan SDM"
-                ],
-                // 55
-                [
-                    "parent_id" => 37,
-                    "name" => "Pusat Pengembangan Strategis dan Infrastruktur"
-                ],
-                // 56
-                [
-                    "parent_id" => 37,
-                    "name" => "Pusat TPB dan MKU"
-                ],
-                // 57
-                [
-                    "parent_id" => 37,
-                    "name" => "Pusat ITK Press"
-                ],
-                // 58
-                [
-                    "parent_id" => 37,
-                    "name" => "Pusat Halal Center"
-                ],
-                // 59
-                [
-                    "parent_id" => 37,
-                    "name" => "Pusat Kerja sama dan Pengabdian kepada Masyarakat"
-                ],
-                // 60
-                [
-                    "parent_id" => 37,
-                    "name" => "Tim Satuan Pengawas Internal (SPI)"
-                ]
-
-
-            ]
-        )->each(function ($unit) {
+            // 1
+            [
+                'name' => "Jurusan Ilmu Kebumian dan Lingkungan",
+            ],
+            // 2
+            [
+                'name' => "Jurusan Matematika dan Teknologi Informasi",
+            ],
+            // 3
+            [
+                'name' => "Jurusan Sains, Teknik Perkapalan, dan Kemaritiman",
+            ],
+            // 4
+            [
+                'name' => "Jurusan Teknik Sipil dan Perencanaan",
+            ],
+            // 5
+            [
+                'name' => "Jurusan Teknologi Industri dan Proses",
+            ],
+            // 6
+            [
+                'name' => "Lembaga Penelitian dan Pengabdian kepada Masyarakat",
+            ],
+            // 7
+            [
+                'name' => "PLP",
+            ],
+            // 8
+            [
+                'name' => "Rektorat",
+            ],
+            // 9
+            [
+                'name' => "Rumpun Akademik dan Kemahasiswaan",
+            ],
+            // 10
+            [
+                'name' => "Rumpun Hubungan Masyarakat",
+            ],
+            // 11
+            [
+                'name' => "Rumpun Kepegawaian",
+            ],
+            // 12
+            [
+                'name' => "Rumpun Keuangan dan BMN",
+            ],
+            // 13
+            [
+                'name' => "Rumpun Pengadaan",
+            ],
+            // 14
+            [
+                'name' => "Rumpun Perencanaan",
+            ],
+            // 15
+            [
+                'name' => "Rumpun Sarana Prasarana",
+            ],
+            // 16
+            [
+                'name' => "Satuan Pengawas Internal (SPI)",
+            ],
+            // 17
+            [
+                'name' => "UPT Bahasa",
+            ],
+            // 18
+            [
+                'name' => "UPT Perpustakaan",
+            ],
+            // 19
+            [
+                'name' => "UPT Teknologi Informasi dan Komunikasi",
+            ],
+        ])->each(function ($unit) {
             Unit::create($unit);
         });
 
         collect([
-            // 1 Rektor - Rektorat
+            // 1 Ketua Jurusan Imu Kebumian dan Lingkungan - Jurusan Imu Kebumian dan Lingkungan
             [
                 'unit_id' => 1,
                 'role_id' => 1,
             ],
-            // 2 Wakil Rektor Bidang Akademik - Rektorat
+            // 2 Koordinator Prodi Teknik Material dan Metalurgi - Jurusan Imu Kebumian dan Lingkungan
             [
                 'unit_id' => 1,
                 'role_id' => 2,
             ],
-            // 3 Wakil Rektor Bidang Non Akademik - Rektorat
+            // 3 Koordinator Prodi Teknik Lingkungan - Jurusan Imu Kebumian dan Lingkungan
             [
                 'unit_id' => 1,
                 'role_id' => 3,
             ],
-            // 4 Koordinator - Rumpun Keuangan dan BMN
+            // 4 Ketua Jurusan Matematika dan Teknologi Informasi - Jurusan Matematika dan Teknologi Informasi
             [
                 'unit_id' => 2,
                 'role_id' => 4,
             ],
-            // 5 Koordinator - Rumpun Kepegawaian
+            // 5 Koordinator Prodi Matematika - Jurusan Matematika dan Teknologi Informasi
             [
-                'unit_id' => 3,
-                'role_id' => 4,
+                'unit_id' => 2,
+                'role_id' => 5,
             ],
-            // 6 Koordinator - Rumpun Sarana dan Prasarana
+            // 6 Koordinator Prodi Sistem Informasi - Jurusan Matematika dan Teknologi Informasi
             [
-                'unit_id' => 4,
-                'role_id' => 4,
-            ],
-            // 7 Koordinator - Rumpun Hubungan Masyarakat
-            [
-                'unit_id' => 5,
-                'role_id' => 4,
-            ],
-            // 8 Koordinator - Rumpun Perencanaan
-            [
-                'unit_id' => 6,
-                'role_id' => 4,
-            ],
-            // 9 Koordinator - Rumpun Pengadaan
-            [
-                'unit_id' => 7,
-                'role_id' => 4,
-            ],
-            // 10 Koordinator - Rumpun Akademik dan Kemahasiswaan
-            [
-                'unit_id' => 8,
-                'role_id' => 4,
-            ],
-            // 11 Koordinator - Rumpun PLP
-            [
-                'unit_id' => 9,
-                'role_id' => 4,
-            ],
-            // 12 Ketua - JMTI
-            [
-                'unit_id' => 10,
+                'unit_id' => 2,
                 'role_id' => 6,
             ],
-            // 13 Ketua - JTSPK
+            // 7 Koordinator Prodi Informatika - Jurusan Matematika dan Teknologi Informasi
             [
-                'unit_id' => 11,
-                'role_id' => 6,
-            ],
-            // 14 Ketua - JTIP
-            [
-                'unit_id' => 12,
-                'role_id' => 6,
-            ],
-            // 15 Ketua - JSTP
-            [
-                'unit_id' => 13,
-                'role_id' => 6,
-            ],
-            // 16 Ketua - JIKL
-            [
-                'unit_id' => 14,
-                'role_id' => 6,
-            ],
-            // 17 Koordinator - Fisika
-            [
-                'unit_id' => 15,
-                'role_id' => 5,
-            ],
-            // 18 Koordinator - Matematika
-            [
-                'unit_id' => 16,
-                'role_id' => 5,
-            ],
-            // 19 Koordinator - Teknik Mesin
-            [
-                'unit_id' => 17,
-                'role_id' => 5,
-            ],
-            // 20 Koordinator - Teknik Elektro
-            [
-                'unit_id' => 18,
-                'role_id' => 5,
-            ],
-            // 21 Koordinator - Teknik Kimia
-            [
-                'unit_id' => 19,
-                'role_id' => 5,
-            ],
-            // 22 Koordinator - Teknik Material dan Metalurgi
-            [
-                'unit_id' => 20,
-                'role_id' => 5,
-            ],
-            // 23 Koordinator - Teknik Sipil
-            [
-                'unit_id' => 21,
-                'role_id' => 5,
-            ],
-            // 24 Koordinator - Perencanaan Wilayah dan Kota
-            [
-                'unit_id' => 22,
-                'role_id' => 5,
-            ],
-            // 25 Koordinator - Teknik Perkapalan
-            [
-                'unit_id' => 23,
-                'role_id' => 5,
-            ],
-            // 26 Koordinator - Sistem Informasi
-            [
-                'unit_id' => 24,
-                'role_id' => 5,
-            ],
-            // 27 Koordinator - Informatika
-            [
-                'unit_id' => 25,
-                'role_id' => 5,
-            ],
-            // 28 Koordinator - Teknik Industri
-            [
-                'unit_id' => 26,
-                'role_id' => 5,
-            ],
-            // 29 Koordinator - Teknik Lingkungan
-            [
-                'unit_id' => 27,
-                'role_id' => 5,
-            ],
-            // 30 Koordinator - Teknik Kelautan
-            [
-                'unit_id' => 28,
-                'role_id' => 5,
-            ],
-            // 31 Koordinator - Ilmu Aktuaria
-            [
-                'unit_id' => 29,
-                'role_id' => 5,
-            ],
-            // 32 Koordinator - Statistika
-            [
-                'unit_id' => 30,
-                'role_id' => 5,
-            ],
-            // 33 Koordinator - Arsitektur
-            [
-                'unit_id' => 31,
-                'role_id' => 5,
-            ],
-            // 34 Koordinator - Teknologi Pangan
-            [
-                'unit_id' => 32,
-                'role_id' => 5,
-            ],
-            // 35 Koordinator - Rekayasa Keselamatan
-            [
-                'unit_id' => 33,
-                'role_id' => 5,
-            ],
-            // 36 Koordinator - Bisnis Digital
-            [
-                'unit_id' => 34,
-                'role_id' => 5,
-            ],
-            // 37 Koordinator - Teknik Logistik
-            [
-                'unit_id' => 35,
-                'role_id' => 5,
-            ],
-            // 38 Koordinator - Desain Komunikasi Visual
-            [
-                'unit_id' => 36,
-                'role_id' => 5,
-            ],
-            // 39 Kepala - UPT Teknologi Informasi dan Komunikasi
-            [
-                'unit_id' => 37,
-                'role_id' => 8,
-            ],
-            // 40 Kepala - UPT Bahasa
-            [
-                'unit_id' => 38,
-                'role_id' => 8,
-            ],
-            // 41 Kepala - UPT Perpustakaan
-            [
-                'unit_id' => 39,
-                'role_id' => 8,
-            ],
-            // 42 Ketua - Lembaga Penelitian dan Pengabdian kepada Masyarakat
-            [
-                'unit_id' => 40,
-                'role_id' => 6,
-            ],
-            // 43 Sekretaris - Lembaga Penelitian dan Pengabdian kepada Masyarakat
-            [
-                'unit_id' => 40,
+                'unit_id' => 2,
                 'role_id' => 7,
             ],
-            // 44 Koordinator - Pusat Penelitian dan Publikasi Ilmiah
+            // 8 Koordinator Prodi Ilmu Aktuaria - Jurusan Matematika dan Teknologi Informasi
             [
-                'unit_id' => 41,
-                'role_id' => 5,
+                'unit_id' => 2,
+                'role_id' => 8,
             ],
-            // 45 Koordinator - Inkubator Bisnis Teknologi
+            // 9 Koordinator Prodi Statistika - Jurusan Matematika dan Teknologi Informasi
             [
-                'unit_id' => 42,
-                'role_id' => 5,
+                'unit_id' => 2,
+                'role_id' => 9,
             ],
-            // 46 Koordinator - International Office
+            // 10 Koordinator Prodi Bisnis Digital - Jurusan Matematika dan Teknologi Informasi
             [
-                'unit_id' => 43,
-                'role_id' => 5,
+                'unit_id' => 2,
+                'role_id' => 10,
             ],
-            // 47 Koordinator - Pusat Pengembangan Pendidikan
+            // 11 Ketua Jurusan Sains, Teknik Perkapalan, dan Kemaritiman - Jurusan Sains, Teknik Perkapalan, dan Kemaritiman
             [
-                'unit_id' => 44,
-                'role_id' => 5,
+                'unit_id' => 3,
+                'role_id' => 11,
             ],
-            // 49 Wakil Koordinator - Pusat Pengembangan Pendidikan
+            // 12 Koordinator Prodi Fisika - Jurusan Sains, Teknik Perkapalan, dan Kemaritiman
             [
-                'unit_id' => 44,
-                'role_id' => 5,
+                'unit_id' => 3,
+                'role_id' => 12,
             ],
-            // 50 Koordinator - Pusat Pembinaan Kemahasiswaan dan Alumni
+            // 13 Koordinator Prodi Teknik Perkapalan  
             [
-                'unit_id' => 45,
-                'role_id' => 5,
+                'unit_id' => 3,
+                'role_id' => 13,
             ],
-            // 51 Koordinator - Pusat Penjaminan Mutu
+            // 14 Koordinator Prodi Teknik Kelautan - Jurusan Sains, Teknik Perkapalan, dan Kemaritiman
             [
-                'unit_id' => 46,
-                'role_id' => 5,
+                'unit_id' => 3,
+                'role_id' => 14,
             ],
-            // 52 Koordinator - Pusat E-Learning
+            // 15 Koordinator Prodi Teknologi Pangan - Jurusan Sains, Teknik Perkapalan, dan Kemaritiman
             [
-                'unit_id' => 47,
-                'role_id' => 5,
+                'unit_id' => 3,
+                'role_id' => 15,
             ],
-            // 53 Koordinator - Pusat Penelitian
+            // 16 Ketua Jurusan Teknik Sipil dan Perencanaan - Jurusan Teknik Sipil dan Perencanaan
             [
-                'unit_id' => 48,
-                'role_id' => 5,
+                'unit_id' => 4,
+                'role_id' => 16,
             ],
-            // 54 Koordinator - Pusat Penelitian Energi
+            // 17 Koordinator Prodi Teknik Sipil - Jurusan Teknik Sipil dan Perencanaan
             [
-                'unit_id' => 49,
-                'role_id' => 5,
+                'unit_id' => 4,
+                'role_id' => 17,
             ],
-            // 55 Koordinator - Pusat Penelitian Pangan Pertanian
+            // 18 Koordinator Prodi PWK - Jurusan Teknik Sipil dan Perencanaan
             [
-                'unit_id' => 50,
-                'role_id' => 5,
+                'unit_id' => 4,
+                'role_id' => 18,
             ],
-            // 56 Koordinator - Pusat Penelitian Smart City
+            // 19 Koordinator Prodi Arsitektur - Jurusan Teknik Sipil dan Perencanaan
             [
-                'unit_id' => 51,
-                'role_id' => 5,
+                'unit_id' => 4,
+                'role_id' => 19,
             ],
-            // 57 Koordinator - Pusat HaKI
+            // 20 Koordinator Prodi Desain Komunikasi Visual - Jurusan Teknik Sipil dan Perencanaan
             [
-                'unit_id' => 52,
-                'role_id' => 5,
+                'unit_id' => 4,
+                'role_id' => 20,
             ],
-            // 58 Koordinator - Pusat Laboratorium Terpadu
+            // 21 Ketua Jurusan Teknologi Industri dan Proses - Jurusan Teknologi Industri dan Proses
             [
-                'unit_id' => 53,
-                'role_id' => 5,
+                'unit_id' => 5,
+                'role_id' => 21,
             ],
-            // 59 Koordinator - Pusat Pengembangan SDM
+            // 22 Koordinator Prodi Teknik Mesin - Jurusan Teknologi Industri dan Proses
             [
-                'unit_id' => 54,
-                'role_id' => 5,
+                'unit_id' => 5,
+                'role_id' => 22,
             ],
-            // 60 Wakil Koordinator - Pusat Pengembangan SDM
+            // 23 Koordinator Prodi Teknik Elektro - Jurusan Teknologi Industri dan Proses
             [
-                'unit_id' => 54,
-                'role_id' => 5,
+                'unit_id' => 5,
+                'role_id' => 23,
             ],
-            // 61 Koordinator - Pusat Pengembangan Strategis dan Infrastruktur
+            // 24 Koordinator Prodi Teknik Kimia - Jurusan Teknologi Industri dan Proses
             [
-                'unit_id' => 55,
-                'role_id' => 5,
+                'unit_id' => 5,
+                'role_id' => 24,
             ],
-            // 62 Koordinator - Pusat TPB dan MKU
+            // 25 Koordinator Prodi Teknik Industri - Jurusan Teknologi Industri dan Proses
             [
-                'unit_id' => 56,
-                'role_id' => 5,
+                'unit_id' => 5,
+                'role_id' => 25,
             ],
-            // 63 Koordinator - Pusat ITK Press
+            // 26 Koordinator Prodi Rekayasa Keselamatan - Jurusan Teknologi Industri dan Proses
             [
-                'unit_id' => 57,
-                'role_id' => 5,
+                'unit_id' => 5,
+                'role_id' => 26,
             ],
-            // 64 Koordinator - Pusat Halal Center
+            // 27 Koordinator Prodi Teknik Logistik - Jurusan Teknologi Industri dan Proses
             [
-                'unit_id' => 58,
-                'role_id' => 5,
+                'unit_id' => 5,
+                'role_id' => 27,
             ],
-            // 65 Koordinator - Pusat Kerja sama dan Pengabdian kepada Masyarakat
+            // 28 Ketua Lembaga Penelitian dan Pengabdian kepada Masyarakat - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
-                'unit_id' => 59,
-                'role_id' => 5,
+                'unit_id' => 6,
+                'role_id' => 28,
             ],
-            // 66 Koordinator - Tim Satuan Pengawas Internal (SPI)
+            // 29 Sekretaris Lembaga Penelitian dan Pengabdian kepada Masyarakat - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
-                'unit_id' => 60,
-                'role_id' => 5,
+                'unit_id' => 6,
+                'role_id' => 29,
             ],
-
+            // 30 Koordinator Pusat Penelitian dan Publikasi Ilmiah - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 30,
+            ],
+            // 31 Koordinator Pusat IBT - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 31,
+            ],
+            // 32 Koordinator Pusat International Office - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 32,
+            ],
+            // 33 Koordinator Pusat Pengembangan Pendidikan - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 33,
+            ],
+            // 34 Wakil Koordinator Pusat Pengembangan Pendidikan - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 34,
+            ],
+            // 35 Koordinator Pusat Pembinaan Kemahasiswaan dan Alumni - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 35,
+            ],
+            // 36 Koordinator Pusat Penjaminan Mutu - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 36,
+            ],
+            // 37 Koordinator Pusat E-Learning - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 37,
+            ],
+            // 38 Koordinator Pusat Penelitian - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 38,
+            ],
+            // 39 Koordinator Pusat Penelitian Energi - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 39,
+            ],
+            // 40 Koordinator Pusat Penelitian Pangan Pertanian - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 40,
+            ],
+            // 41 Koordinator Pusat Penelitian Smart City - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 41,
+            ],
+            // 42 Koordinator Pusat HaKI - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 42,
+            ],
+            // 43 Koordinator Pusat Laboratorium Terpadu - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 43,
+            ],
+            // 44 Koordinator Pusat Pengembangan SDM - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 44,
+            ],
+            // 45 Wakil Koordinator Pusat Pengembangan SDM - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 45,
+            ],
+            // 46 Koordinator Pusat Pengembangan Strategis dan Infrastruktur - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 46,
+            ],
+            // 47 Koordinator Pusat TPB dan MKU - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 47,
+            ],
+            // 48 Koordinator Pusat ITK Press - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 48,
+            ],
+            // 49 Koordinator Pusat Halal Center - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 49,
+            ],
+            // 50 Koordinator Pusat Kerja sama dan Pengabdian kepada Masyarakat - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            [
+                'unit_id' => 6,
+                'role_id' => 50,
+            ],
+            // 51 Koordinator PLP - PLP
+            [
+                'unit_id' => 7,
+                'role_id' => 51,
+            ],
+            // 52 Rektor - Rektorat
+            [
+                'unit_id' => 8,
+                'role_id' => 52,
+            ],
+            // 53 Wakil Rektor Bidang Akademik - Rektorat
+            [
+                'unit_id' => 8,
+                'role_id' => 53,
+            ],
+            // 54 Wakil Rektor Bidang Non Akademik - Rektorat
+            [
+                'unit_id' => 8,
+                'role_id' => 54,
+            ],
+            // 55 Koordinator Rumpun Akademik dan Kemahasiswaan - Rumpun Akademik dan Kemahasiswaan
+            [
+                'unit_id' => 9,
+                'role_id' => 55,
+            ],
+            // 56 Koordinator Rumpun Hubungan Masyarakat - Rumpun Hubungan Masyarakat
+            [
+                'unit_id' => 10,
+                'role_id' => 56,
+            ],
+            // 57 Koordinator Rumpun Kepegawaian - Rumpun Kepegawaian
+            [
+                'unit_id' => 11,
+                'role_id' => 57,
+            ],
+            // 58 Koordinator Rumpun Keuangan dan BMN - Rumpun Keuangan dan BMN
+            [
+                'unit_id' => 12,
+                'role_id' => 58,
+            ],
+            // 59 Koordinator Rumpun Pengadaan - Rumpun Pengadaan
+            [
+                'unit_id' => 13,
+                'role_id' => 59,
+            ],
+            // 60 Koordinator Rumpun Perencanaan - Rumpun Perencanaan
+            [
+                'unit_id' => 14,
+                'role_id' => 60,
+            ],
+            // 61 Koordinator Rumpun Sarana Prasarana - Rumpun Sarana Prasarana
+            [
+                'unit_id' => 15,
+                'role_id' => 61,
+            ],
+            // 62 Ketua Tim Satuan Pengawas Internal (SPI) - Satuan Pengawas Internal (SPI)
+            [
+                'unit_id' => 16,
+                'role_id' => 62,
+            ],
+            // 63 Kepala UPT Bahasa - UPT Bahasa
+            [
+                'unit_id' => 17,
+                'role_id' => 63,
+            ],
+            // 64 Kepala UPT Perpustakaan - UPT Perpustakaan
+            [
+                'unit_id' => 18,
+                'role_id' => 64,
+            ],
+            // 65 Kepala UPT Teknologi Informasi dan Komunikasi - UPT Teknologi Informasi dan Komunikasi
+            [
+                'unit_id' => 19,
+                'role_id' => 65,
+            ],
         ])->each(function ($identifier) {
             Identifier::create($identifier);
         });
 
         collect([
+            // [
+            //     'name' => "Admin",
+            //     'email' => "superadmin@gmail.com",
+            //     'status' => 'TENDIK',
+            //     'email_verified_at' => now(),
+            //     'password' => Hash::make('123456789'),
+            //     'remember_token' => str::random(10),
+            //     'number' => "0",
+            //     'signature' => "beta",
+            //     'avatar' => "beta",
+            // ],
+
+            // 1
             [
-                'name' => "Admin",
-                'email' => "superadmin@gmail.com",
-                'status' => 'TENDIK',
-                'email_verified_at' => now(),
-                'password' => Hash::make('123456789'),
-                'remember_token' => str::random(10),
-                'number' => "0",
-                'signature' => "beta",
-                'avatar' => "beta",
-            ],
-            [
-                'name' => "Anggina Haraha",
-                'email' => "anggina@staff.itk.ac.id",
+                'name' => "Jatmoko Awali, S.T., M.T.",
+                'email' => "jatmoko.awali@lecturer.itk.ac.id",
                 'status' => 'DOSEN',
                 'email_verified_at' => now(),
                 'password' => Hash::make('123456789'),
-                'remember_token' => str::random(10),
-                'number' => "0",
+                'remember_token' => Str::random(10),
+                'number' => "1",
                 'signature' => "beta",
                 'avatar' => "beta",
             ],
+            // 2
             [
-                'name' => "Prof. Erma Suryani, S.T., M.T., Ph.D",
-                'email' => "wr2@itk.ac.id",
+                'name' => "Fikan Mubarok Rohimsyah S.T., M.Sc",
+                'email' => "fikan.mubarok@lecturer.itk.ac.id",
                 'status' => 'DOSEN',
                 'email_verified_at' => now(),
                 'password' => Hash::make('123456789'),
-                'remember_token' => str::random(10),
-                'number' => "197004272005012001",
+                'remember_token' => Str::random(10),
+                'number' => "2",
                 'signature' => "beta",
                 'avatar' => "beta",
             ],
+            // 3
+            [
+                'name' => "Chandra Suryani Rahendaputri, B.Sc., M.Sc",
+                'email' => "chandra.suryani03@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "3",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 4
             [
                 'name' => "Irma Fitria, S.Si., M.Si",
                 'email' => "irma.fitria@lecturer.itk.ac.id",
                 'status' => 'DOSEN',
                 'email_verified_at' => now(),
                 'password' => Hash::make('123456789'),
-                'remember_token' => str::random(10),
-                'number' => "0",
+                'remember_token' => Str::random(10),
+                'number' => "4",
                 'signature' => "beta",
                 'avatar' => "beta",
             ],
+            // 5
             [
-                'name' => "Andi Idhil Ismail, S.T., M.Sc., Ph.D",
+                'name' => "Kartika Nugraheni, S.Si., M.Si",
+                'email' => "kartikanheni@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "5",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 6
+            [
+                'name' => "Sri Rahayu Natasia, S.Komp., M.Si., M.Sc",
+                'email' => "natasia.ayu@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "6",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 7
+            [
+                'name' => "Nisa Rizqiya Fadhliana, S.Kom., M.T.",
+                'email' => "nisafadhliana@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "7",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 8
+            [
+                'name' => "Muhammad Azka, S.Si., M.Sc.",
+                'email' => "muhammad.azka@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "8",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 9
+            [
+                'name' => "Syalam Ali Wira Dinata Simatupang, S.Si., M.Si.",
+                'email' => "syalam_ali_wira_dinata@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "9",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 10
+            [
+                'name' => "Deli Yansyah, S.E., M.Acc., Ak., CA",
+                'email' => "deli.yansyah@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "10",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 11
+            [
+                'name' => "Alamsyah, S.T., M.T.",
+                'email' => "alamsyah@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "11",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 12
+            [
+                'name' => "Febrian Dedi Sastrawan, S.Si., M.Sc.",
+                'email' => "febrian.dedi@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "12",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 13
+            [
+                'name' => "Suardi, S.T., M.T.",
+                'email' => "suardi@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "13",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 14
+            [
+                'name' => "Destyariani Liana Putri, S.T., M.T.",
+                'email' => "putridestyariani@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "14",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 15
+            [
+                'name' => "Anggela, S.TP., M.Sc.",
+                'email' => "anggela@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "15",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 16
+            [
+                'name' => "Rizky Arif Nugroho, S.T., M.T.",
+                'email' => "arif.rizky@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "16",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 17
+            [
+                'name' => "Dr. Hijriah",
+                'email' => "hijriah@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "17",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 18
+            [
+                'name' => "Dr. Eng. Arief Hidayat",
+                'email' => "arief.hidayat@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "18",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 19
+            [
+                'name' => "Sherlia, S.T., M.Eng.",
+                'email' => "sherlia@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "19",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 20
+            [
+                'name' => "Supratiwi Amir, S.Ds., M.Sn.",
+                'email' => "supratiwi.amir@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "20",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 21
+            [
+                'name' => "Andi Idhil Ismail, S.T., M.Sc., Ph.D.",
                 'email' => "a.idhil@lecturer.itk.ac.id",
                 'status' => 'DOSEN',
                 'email_verified_at' => now(),
                 'password' => Hash::make('123456789'),
-                'remember_token' => str::random(10),
+                'remember_token' => Str::random(10),
+                'number' => "21",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 22
+            [
+                'name' => "Gad Gunawan, S.T., M.T.",
+                'email' => "gad_gunawan@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "22",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 23
+            [
+                'name' => "Kharis Sugiarto, S.ST., M.T.",
+                'email' => "kharis.sugiarto@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "23",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 24
+            [
+                'name' => "Lusi Ernawati, S.T., M.Sc.",
+                'email' => "lusiernawati@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "24",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 25
+            [
+                'name' => "Muqimuddin, S.T., M.T.",
+                'email' => "muqimuddin@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "25",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 26
+            [
+                'name' => "Adiek Astika Clara Sudarni, S. ST., M.T.",
+                'email' => "adiek.astika@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "26",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 27
+            [
+                'name' => "Amanda Dwi Wantira, S.Tr., M.T.",
+                'email' => "amanda.dwi@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "27",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 28
+            [
+                'name' => "Nita, S.Si.,M.Si., Ph.D.",
+                'email' => "nita@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "28",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 29
+            [
+                'name' => "Barokatun Hasanah, S.T., M.T.",
+                'email' => "barokatun.hasanah@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "29",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 30
+            [
+                'name' => "Nadia Almira Jordan, S.T., M.T.",
+                'email' => "nadiajordan@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "30",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 31
+            [
+                'name' => "Himawan Wicaksono, S.ST., M.T.",
+                'email' => "himawan@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "31",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 32
+            [
+                'name' => "Dr. Musyarofah, S.Pd., M.Si.",
+                'email' => "musyarofah@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "32",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 33
+            [
+                'name' => "Happy Aprillia, S.ST., M.T., M.Eng., Ph.D",
+                'email' => "happy.aprillia@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "33",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 34
+            [
+                'name' => "Amalia Nur Kumalaningrum, M.Agr.Sc.",
+                'email' => "amalia.nur@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "34",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 35
+            [
+                'name' => "Chaerul Qalbi. AM, S.T., M.Sc.",
+                'email' => "chaerul.qalbi@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "35",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 36
+            [
+                'name' => "Rifqi Aulia Tanjung, S.T., M.T.",
+                'email' => "rifqi.aulia@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "36",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 37
+            [
+                'name' => "Ramadhan Paninggalih S.Si., M.Si., M.Sc.",
+                'email' => "ramadhanpaninggalih@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "37",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 38
+            [
+                'name' => "M. Uswah Pawara, ST., M.Sus Sci",
+                'email' => "uswah.pawara@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "38",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 39
+            [
+                'name' => "Dr. Swastya Rahastama, S.Si., M.Si.",
+                'email' => "swastya.r@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "39",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 40
+            [
+                'name' => "Rahmi Azzahra, S.T.P., M.Sc",
+                'email' => "rahmi.azzahra@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "40",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 41
+            [
+                'name' => "Maryo Inri Pratama, S.T., M.T.",
+                'email' => "maryo.inri@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "41",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 42
+            [
+                'name' => "Dian Rahmawati, S.T.,M.EngSc.",
+                'email' => "dian.rahmawati@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "42",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 43
+            [
+                'name' => "Adi Mahmud Jaya Marindra, S.T., M.Eng., Ph.D.",
+                'email' => "adi.marindra@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "43",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 44
+            [
+                'name' => "Doddy Suanggana, S.T., M.T.",
+                'email' => "doddy.suanggana@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "44",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 45
+            [
+                'name' => "Tiara Rukmaya Dewi, S.T., M.Sc.",
+                'email' => "tiara.rukmaya@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
                 'number' => "0",
                 'signature' => "beta",
                 'avatar' => "beta",
-            ]
+            ],
+            // 46
+            [
+                'name' => "Firilia Filiana, S.T., M.T.",
+                'email' => "firilia.filiana@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 47
+            [
+                'name' => "Eko Agung Syaputra, M.Ds.",
+                'email' => "eko.agung@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 48
+            [
+                'name' => "Fadeli Muhammad Habibie, S.T.P., M.P., M.Sc.",
+                'email' => "fadeli.muhammad@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 49
+            [
+                'name' => "Azmia Riska Nafisah, S.T.,M.T.",
+                'email' => "azmia.rizka@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 50
+            [
+                'name' => "Aries Rohiyanto, A.Md.",
+                'email' => "aries.rohiyanto@staff.itk.ac.id",
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 51
+            [
+                'name' => "Prof. Dr. Agus Rubiyanto, M.Eng.Sc.",
+                'email' => "rektor@itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 52
+            [
+                'name' => "Prof. Erma Suryani, S.T., M.T., Ph.D.",
+                'email' => "wr1@itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 53
+            [
+                'name' => "Ir. Khakim Ghozali, M.MT.",
+                'email' => "wr2@itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 54
+            [
+                'name' => "Ike Wayan Norma Yunita, S.Pd.",
+                'email' => "wayanike@staff.itk.ac.id",
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 55
+            [
+                'name' => "Nabila Khaerunnisa, S.Kom",
+                'email' => "nabila.khaerunnisa@staff.itk.ac.id",
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 56
+            [
+                'name' => "Reo Surya Delma, S.H.",
+                'email' => "reo.delma@staff.itk.ac.id",
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 57
+            [
+                'name' => "Putri Sekar Wilis, S.E.",
+                'email' => "putri.sekar@staff.itk.ac.id",
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 58
+            [
+                'name' => "Irfan Aprison, S. Kom.",
+                'email' => "irfanaprison@staff.itk.ac.id",
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 59
+            [
+                'name' => "Muhammad Zulfikhar, S.E.",
+                'email' => "muhammadzulfikar@staff.itk.ac.id",
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 60
+            [
+                'name' => "Ramdan Indra Lesmana, S.IP.",
+                'email' => "ramdan.indra@itk.ac.id",
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 61
+            [
+                'name' => "Taufik Hidayat, S.T., M.T.",
+                'email' => "taufik.hidayat@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 62
+            [
+                'name' => "Healty Susantiningdyah, S.Pd., MAppLing.",
+                'email' => "susan@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 63
+            [
+                'name' => "Winarni, S.Si., M.Si.",
+                'email' => "winarni@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
+            // 64
+            [
+                'name' => "Syamsul Mujahidin, S.Kom., M.Eng.",
+                'email' => "syamsul@lecturer.itk.ac.id",
+                'status' => 'DOSEN',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+            ],
         ])->map(function ($user) {
             User::create($user);
         });
 
-        UserIdentifier::create([
-            'user_id' => 1,
-            'identifier_id' => 1,
-        ]);
+        foreach (Identifier::all() as $key => $identifier) {
+            if ($key + 1 == 45) {
+                UserIdentifier::create([
+                    'user_id' => 21,
+                    'identifier_id' => $identifier->id,
+                ]);
+            }else if($key > 45){
+                UserIdentifier::create([
+                    'user_id' => $key,
+                    'identifier_id' => $identifier->id,
+                ]);
+            }else{
+                UserIdentifier::create([
+                    'user_id' => $key + 1,
+                    'identifier_id' => $identifier->id,
+                ]);
+            }
+        }
     }
 }
