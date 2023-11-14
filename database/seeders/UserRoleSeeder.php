@@ -22,266 +22,377 @@ class UserRoleSeeder extends Seeder
     public function run(): void
     {
         collect([
+            // lapisan 1
             // 1
-            [
-                'name' => "Ketua Jurusan Ilmu Kebumian dan Lingkungan",
-            ],
-            // 2
-            [
-                'name' => "Koordinator Prodi Teknik Material dan Metalurgi",
-            ],
-            // 3
-            [
-                'name' => "Koordinator Prodi Teknik Lingkungan",
-            ],
-            // 4
-            [
-                'name' => "Ketua Jurusan Matematika dan Teknologi Informasi",
-            ],
-            // 5
-            [
-                'name' => "Koordinator Prodi Matematika",
-            ],
-            // 6
-            [
-                'name' => "Koordinator Prodi Sistem Informasi",
-            ],
-            // 7
-            [
-                'name' => "Koordinator Prodi Informatika",
-            ],
-            // 8
-            [
-                'name' => "Koordinator Prodi Ilmu Aktuaria",
-            ],
-            // 9
-            [
-                'name' => "Koordinator Prodi Statistika",
-            ],
-            // 10
-            [
-                'name' => "Koordinator Prodi Bisnis Digital",
-            ],
-            // 11
-            [
-                'name' => "Ketua Jurusan Sains, Teknik Perkapalan, dan Kemariti",
-            ],
-            // 12
-            [
-                'name' => "Koordinator Prodi Fisika",
-            ],
-            // 13
-            [
-                'name' => "Koordinator Prodi Teknik Perkapalan",
-            ],
-            // 14
-            [
-                'name' => "Koordinator Prodi Teknik Kelautan",
-            ],
-            // 15
-            [
-                'name' => "Koordinator Prodi Teknologi Pangan",
-            ],
-            // 16
-            [
-                'name' => "Ketua Jurusan Teknik Sipil dan Perencanaan",
-            ],
-            // 17
-            [
-                'name' => "Koordinator Prodi Teknik Sipil",
-            ],
-            // 18
-            [
-                'name' => "Koordinator Prodi PWK",
-            ],
-            // 19
-            [
-                'name' => "Koordinator Prodi Arsitektur",
-            ],
-            // 20
-            [
-                'name' => "Koordinator Prodi Desain Komunikasi Visual",
-            ],
-            // 21
-            [
-                'name' => "Ketua Jurusan Teknologi Industri dan Proses",
-            ],
-            // 22
-            [
-                'name' => "Koordinator Prodi Teknik Mesin",
-            ],
-            // 23
-            [
-                'name' => "Koordinator Prodi Teknik Elektro",
-            ],
-            // 24
-            [
-                'name' => "Koordinator Prodi Teknik Kimia",
-            ],
-            // 25
-            [
-                'name' => "Koordinator Prodi Teknik Industri",
-            ],
-            // 26
-            [
-                'name' => "Koordinator Prodi Rekayasa Keselamatan",
-            ],
-            // 27
-            [
-                'name' => "Koordinator Prodi Teknik Logistik",
-            ],
-            // 28
-            [
-                'name' => "Ketua Lembaga Penelitian dan Pengabdian kepada Masyarakat",
-            ],
-            // 29
-            [
-                'name' => "Sekretaris Lembaga Penelitian dan Pengabdian kepada Masyarakat",
-            ],
-            // 30
-            [
-                'name' => "Koordinator Pusat Penelitian dan Publikasi Ilmiah",
-            ],
-            // 31
-            [
-                'name' => "Koordinator Pusat IBT",
-            ],
-            // 32
-            [
-                'name' => "Koordinator Pusat International Office",
-            ],
-            // 33
-            [
-                'name' => "Koordinator Pusat Pengembangan Pendidikan",
-            ],
-            // 34
-            [
-                'name' => "Wakil Koordinator Pusat Pengembangan Pendidikan",
-            ],
-            // 35
-            [
-                'name' => "Koordinator Pusat Pembinaan Kemahasiswaan dan Alumni",
-            ],
-            // 36
-            [
-                'name' => "Koordinator Pusat Penjaminan Mutu",
-            ],
-            // 37
-            [
-                'name' => "Koordinator Pusat E-Learning",
-            ],
-            // 38
-            [
-                'name' => "Koordinator Pusat Penelitian",
-            ],
-            // 39
-            [
-                'name' => "Koordinator Pusat Penelitian Energi",
-            ],
-            // 40
-            [
-                'name' => "Koordinator Pusat Penelitian Pangan Pertanian",
-            ],
-            // 41
-            [
-                'name' => "Koordinator Pusat Penelitian Smart City",
-            ],
-            // 42
-            [
-                'name' => "Koordinator Pusat HaKI",
-            ],
-            // 43
-            [
-                'name' => "Koordinator Pusat Laboratorium Terpadu",
-            ],
-            // 44
-            [
-                'name' => "Koordinator Pusat Pengembangan SDM",
-            ],
-            // 45
-            [
-                'name' => "Wakil Koordinator Pusat Pengembangan SDM",
-            ],
-            // 46
-            [
-                'name' => "Koordinator Pusat Pengembangan Strategis dan Infrastruktur",
-            ],
-            // 47
-            [
-                'name' => "Koordinator Pusat TPB dan MKU",
-            ],
-            // 48
-            [
-                'name' => "Koordinator Pusat ITK Press",
-            ],
-            // 49
-            [
-                'name' => "Koordinator Pusat Halal Center",
-            ],
-            // 50
-            [
-                'name' => "Koordinator Pusat Kerja sama dan Pengabdian kepada Masyarakat",
-            ],
-            // 51
-            [
-                'name' => "Koordinator PLP",
-            ],
-            // 52
             [
                 'name' => "Rektor",
             ],
-            // 53
+
+            // lapisan 2
+            // 2
             [
                 'name' => "Wakil Rektor Bidang Akademik",
+                "parent_id" => "1",
             ],
-            // 54
+            // 3
             [
                 'name' => "Wakil Rektor Bidang Non Akademik",
+                "parent_id" => "1",
             ],
-            // 55
-            [
-                'name' => "Koordinator Rumpun Akademik dan Kemahasiswaan",
-            ],
-            // 56
-            [
-                'name' => "Koordinator Rumpun Hubungan Masyarakat",
-            ],
-            // 57
-            [
-                'name' => "Koordinator Rumpun Kepegawaian",
-            ],
-            // 58
-            [
-                'name' => "Koordinator Rumpun Keuangan dan BMN",
-            ],
-            // 59
-            [
-                'name' => "Koordinator Rumpun Pengadaan",
-            ],
-            // 60
-            [
-                'name' => "Koordinator Rumpun Perencanaan",
-            ],
-            // 61
-            [
-                'name' => "Koordinator Rumpun Sarana Prasarana",
-            ],
+
+            // lapisan 3
+            // 3.2 {
+                // 4
+                [
+                    'name' => "Kepala UPT Teknologi Informasi dan Komunikasi",
+                    "parent_id" => "2",
+                ],
+                // 5
+                [
+                    'name' => "Koordinator Rumpun Perencanaan",
+                    "parent_id" => "2",
+                ],
+                // 6
+                [
+                    'name' => "Koordinator Rumpun Hubungan Masyarakat",
+                    "parent_id" => "2",
+                ],
+                // 7
+                [
+                    'name' => "Koordinator Rumpun Kepegawaian",
+                    "parent_id" => "2",
+                ],
+                // 8
+                [
+                    'name' => "Koordinator Rumpun Keuangan dan BMN",
+                    "parent_id" => "2",
+                ],
+                // 9
+                [
+                    'name' => "Koordinator Rumpun Pengadaan",
+                    "parent_id" => "2",
+                ],
+                // 10
+                [
+                    'name' => "Koordinator Rumpun Sarana Prasarana",
+                    "parent_id" => "2",
+                ],
+                // 11
+                [
+                    'name' => "Ketua Tim Satuan Pengawas Internal (SPI)",
+                    "parent_id" => "2",
+                ],
+            // }
+
+            // 3.3 {
+                // 12
+                [
+                    'name' => "Ketua Jurusan Matematika dan Teknologi Informasi",
+                    "parent_id" => "3",
+                ],
+                // 13
+                [
+                    'name' => "Ketua Jurusan Sains, Teknik Perkapalan, dan Kemaritiman",
+                    "parent_id" => "3",
+                ],
+                // 14
+                [
+                    'name' => "Ketua Jurusan Teknologi Industri dan Proses",
+                    "parent_id" => "3",
+                ],
+                // 15
+                [
+                    'name' => "Ketua Jurusan Teknik Sipil dan Perencanaan",
+                    "parent_id" => "3",
+                ],
+                // 16
+                [
+                    'name' => "Ketua Jurusan Ilmu Kebumian dan Lingkungan",
+                    "parent_id" => "3",
+                ],
+                // 17
+                [
+                    'name' => "Kepala UPT Bahasa",
+                    "parent_id" => "3",
+                ],
+                // 18
+                [
+                    'name' => "Kepala UPT Perpustakaan",
+                    "parent_id" => "3",
+                ],
+                // 19
+                [
+                    'name' => "Ketua Lembaga Penelitian dan Pengabdian kepada Masyarakat",
+                    "parent_id" => "3",
+                ],
+                // 20
+                [
+                    'name' => "Koordinator Rumpun Akademik dan Kemahasiswaan",
+                    "parent_id" => "3",
+                ],
+            // }
+
+            // lapisan 4
+            // 4.12 {
+                // 21
+                [
+                    'name' => "Koordinator Prodi Matematika",
+                    "parent_id" => "12",
+                ],
+                // 22
+                [
+                    'name' => "Koordinator Prodi Informatika",
+                    "parent_id" => "12",
+                ],
+                // 23
+                [
+                    'name' => "Koordinator Prodi Sistem Informasi",
+                    "parent_id" => "12",
+                ],
+                // 24
+                [
+                    'name' => "Koordinator Prodi Ilmu Aktuaria",
+                    "parent_id" => "12",
+                ],
+                // 25
+                [
+                    'name' => "Koordinator Prodi Statistika",
+                    "parent_id" => "12",
+                ],
+                // 26
+                [
+                    'name' => "Koordinator Prodi Bisnis Digital",
+                    "parent_id" => "12",
+                ],
+            // }
+
+            // lapisan 4
+            // 4.13 {
+                // 27
+                [
+                    'name' => "Koordinator Prodi Fisika",
+                    "parent_id" => "13",
+                ],
+                // 28
+                [
+                    'name' => "Koordinator Prodi Teknik Perkapalan",
+                    "parent_id" => "13",
+                ],
+                // 29
+                [
+                    'name' => "Koordinator Prodi Teknik Kelautan",
+                    "parent_id" => "13",
+                ],
+                // 30
+                [
+                    'name' => "Koordinator Prodi Teknologi Pangan",
+                    "parent_id" => "13",
+                ],
+            // }
+
+            // lapisan 4
+            // 4.14 {
+                // 31
+                [
+                    'name' => "Koordinator Prodi Teknik Mesin",
+                    "parent_id" => "14",
+                ],
+                // 32
+                [
+                    'name' => "Koordinator Prodi Teknik Elektro",
+                    "parent_id" => "14",
+                ],
+                // 33
+                [
+                    'name' => "Koordinator Prodi Teknik Kimia",
+                    "parent_id" => "14",
+                ],
+                // 34
+                [
+                    'name' => "Koordinator Prodi Teknik Industri",
+                    "parent_id" => "14",
+                ],
+                // 35
+                [
+                    'name' => "Koordinator Prodi Rekayasa Keselamatan",
+                    "parent_id" => "14",
+                ],
+                // 36
+                [
+                    'name' => "Koordinator Prodi Teknik Logistik",
+                    "parent_id" => "14",
+                ],
+            // }
+
+            // lapisan 4
+            // 4.15 {
+                // 37
+                [
+                    'name' => "Koordinator Prodi Teknik Sipil",
+                    "parent_id" => "15",
+                ],
+                // 38
+                [
+                    'name' => "Koordinator Prodi Perencanaan Wilayah dan Kota",
+                    "parent_id" => "15",
+                ],
+                // 39
+                [
+                    'name' => "Koordinator Prodi Arsitektur",
+                    "parent_id" => "15",
+                ],
+                // 40
+                [
+                    'name' => "Koordinator Prodi Desain Komunikasi Visual",
+                    "parent_id" => "15",
+                ],
+            // }
+
+            // lapisan 4
+            // 4.16 {
+                // 41
+                [
+                    'name' => "Koordinator Prodi Teknik Lingkungan",
+                    "parent_id" => "16",
+                ],
+                // 42
+                [
+                    'name' => "Koordinator Prodi Teknik Material dan Metalurgi",
+                    "parent_id" => "16",
+                ],
+            // }
+
+            // Lapisan 4
+            // 4.19 {
+                // 43
+                [
+                    'name' => "Koordinator Pusat Penelitian dan Publikasi Ilmiah",
+                    "parent_id" => "19",
+                ],
+                // 44
+                [
+                    'name' => "Koordinator Pusat Pengabdian Kepada Masyarakat dan Kerja sama ",
+                    "parent_id" => "19",
+                ],
+                // 45
+                [
+                    'name' => "Koordinator Pusat Hak atas Kekayaan Intelektual",
+                    "parent_id" => "19",
+                ],
+                // 46
+                [
+                    // Koordinator Pusat IBT
+                    'name' => "Koordinator Pusat Inkubator Bisnis Teknologi",
+                    "parent_id" => "19",
+                ],
+                // 47
+                [
+                    'name' => "Koordinator Pusat Pengembangan Pendidikan",
+                    "parent_id" => "19",
+                ],
+                // 48
+                [
+                    'name' => "Koordinator Pusat Pembinaan Kemahasiswaan dan Alumni",
+                    "parent_id" => "19",
+                ],
+                // 49
+                [
+                    'name' => "Koordinator Pusat Penjaminan Mutu",
+                    "parent_id" => "19",
+                ],
+                // 50
+                [
+                    // Koordinator Pusat TPB dan MKU
+                    'name' => "Koordinator Pusat Tahap Persiapan Bersama dan Mata Kuliah Umum",
+                    "parent_id" => "19",
+                ],
+                // 51
+                [
+                    'name' => "Koordinator Pusat E-Learning",
+                    "parent_id" => "19",
+                ],
+                // 52
+                [
+                    'name' => "Koordinator Pusat Penelitian Kemaritiman",
+                    "parent_id" => "19",
+                ],
+                // 53
+                [
+                    'name' => "Koordinator Pusat Penelitian Energi",
+                    "parent_id" => "19",
+                ],
+                // 54
+                [
+                    'name' => "Koordinator Pusat Penelitian Pangan Pertanian",
+                    "parent_id" => "19",
+                ],
+                // 55
+                [
+                    'name' => "Koordinator Pusat Penelitian Smart City",
+                    "parent_id" => "19",
+                ],
+                // 56
+                [
+                    'name' => "Koordinator Pusat Laboratorium Terpadu",
+                    "parent_id" => "19",
+                ],
+                // 57
+                [
+                    'name' => "Koordinator Pusat Pengembangan SDM",
+                    "parent_id" => "19",
+                ],
+                // 58
+                [
+                    'name' => "Koordinator Pusat Pengembangan Strategis dan Infrastruktur",
+                    "parent_id" => "19",
+                ],
+                // 59
+                [
+                    'name' => "Koordinator Pusat International Office",
+                    "parent_id" => "19",
+                ],
+                // 60
+                [
+                    'name' => "Koordinator Pusat Halal Center",
+                    "parent_id" => "19",
+                ],
+                // 61
+                [
+                    'name' => "Sekretaris Lembaga Penelitian dan Pengabdian kepada Masyarakat",
+                    "parent_id" => "19",
+                ],
+
+            // }
+
+            // Lapisan 5
+            // 5.57
             // 62
             [
-                'name' => "Ketua Tim Satuan Pengawas Internal (SPI)",
+                'name' => "Wakil Koordinator Pusat Pengembangan SDM",
+                "parent_id" => "57",
             ],
+            // 5.47
             // 63
             [
-                'name' => "Kepala UPT Bahasa",
+                'name' => "Wakil Koordinator Pusat Pengembangan Pendidikan",
+                "parent_id" => "47",
             ],
+
             // 64
             [
-                'name' => "Kepala UPT Perpustakaan",
+                'name' => "Koordinator Pusat Penelitian",
             ],
             // 65
             [
-                'name' => "Kepala UPT Teknologi Informasi dan Komunikasi",
+                'name' => "Koordinator Pusat ITK Press",
             ],
+            // 66
+            [
+                'name' => "Koordinator PLP",
+            ],
+
+
+
         ])->each(function ($role) {
             Role::create($role);
         });
@@ -368,330 +479,330 @@ class UserRoleSeeder extends Seeder
         });
 
         collect([
-            // 1 Ketua Jurusan Imu Kebumian dan Lingkungan - Jurusan Imu Kebumian dan Lingkungan
+            // 1 Ketua Jurusan Ilmu Kebumian dan Lingkungan - Jurusan Imu Kebumian dan Lingkungan
             [
                 'unit_id' => 1,
-                'role_id' => 1,
+                'role_id' => 16,
             ],
             // 2 Koordinator Prodi Teknik Material dan Metalurgi - Jurusan Imu Kebumian dan Lingkungan
             [
                 'unit_id' => 1,
-                'role_id' => 2,
+                'role_id' => 42,
             ],
             // 3 Koordinator Prodi Teknik Lingkungan - Jurusan Imu Kebumian dan Lingkungan
             [
                 'unit_id' => 1,
-                'role_id' => 3,
+                'role_id' => 41,
             ],
             // 4 Ketua Jurusan Matematika dan Teknologi Informasi - Jurusan Matematika dan Teknologi Informasi
             [
                 'unit_id' => 2,
-                'role_id' => 4,
+                'role_id' => 12,
             ],
             // 5 Koordinator Prodi Matematika - Jurusan Matematika dan Teknologi Informasi
             [
                 'unit_id' => 2,
-                'role_id' => 5,
+                'role_id' => 21,
             ],
             // 6 Koordinator Prodi Sistem Informasi - Jurusan Matematika dan Teknologi Informasi
             [
                 'unit_id' => 2,
-                'role_id' => 6,
+                'role_id' => 23,
             ],
             // 7 Koordinator Prodi Informatika - Jurusan Matematika dan Teknologi Informasi
             [
                 'unit_id' => 2,
-                'role_id' => 7,
+                'role_id' => 22,
             ],
             // 8 Koordinator Prodi Ilmu Aktuaria - Jurusan Matematika dan Teknologi Informasi
             [
                 'unit_id' => 2,
-                'role_id' => 8,
+                'role_id' => 24,
             ],
             // 9 Koordinator Prodi Statistika - Jurusan Matematika dan Teknologi Informasi
             [
                 'unit_id' => 2,
-                'role_id' => 9,
+                'role_id' => 25,
             ],
             // 10 Koordinator Prodi Bisnis Digital - Jurusan Matematika dan Teknologi Informasi
             [
                 'unit_id' => 2,
-                'role_id' => 10,
+                'role_id' => 26,
             ],
             // 11 Ketua Jurusan Sains, Teknik Perkapalan, dan Kemaritiman - Jurusan Sains, Teknik Perkapalan, dan Kemaritiman
             [
                 'unit_id' => 3,
-                'role_id' => 11,
+                'role_id' => 13,
             ],
             // 12 Koordinator Prodi Fisika - Jurusan Sains, Teknik Perkapalan, dan Kemaritiman
             [
                 'unit_id' => 3,
-                'role_id' => 12,
+                'role_id' => 27,
             ],
             // 13 Koordinator Prodi Teknik Perkapalan
             [
                 'unit_id' => 3,
-                'role_id' => 13,
+                'role_id' => 28,
             ],
             // 14 Koordinator Prodi Teknik Kelautan - Jurusan Sains, Teknik Perkapalan, dan Kemaritiman
             [
                 'unit_id' => 3,
-                'role_id' => 14,
+                'role_id' => 29,
             ],
             // 15 Koordinator Prodi Teknologi Pangan - Jurusan Sains, Teknik Perkapalan, dan Kemaritiman
             [
                 'unit_id' => 3,
-                'role_id' => 15,
+                'role_id' => 30,
             ],
             // 16 Ketua Jurusan Teknik Sipil dan Perencanaan - Jurusan Teknik Sipil dan Perencanaan
             [
                 'unit_id' => 4,
-                'role_id' => 16,
+                'role_id' => 15,
             ],
             // 17 Koordinator Prodi Teknik Sipil - Jurusan Teknik Sipil dan Perencanaan
             [
                 'unit_id' => 4,
-                'role_id' => 17,
+                'role_id' => 37,
             ],
             // 18 Koordinator Prodi PWK - Jurusan Teknik Sipil dan Perencanaan
             [
                 'unit_id' => 4,
-                'role_id' => 18,
+                'role_id' => 38,
             ],
             // 19 Koordinator Prodi Arsitektur - Jurusan Teknik Sipil dan Perencanaan
             [
                 'unit_id' => 4,
-                'role_id' => 19,
+                'role_id' => 39,
             ],
             // 20 Koordinator Prodi Desain Komunikasi Visual - Jurusan Teknik Sipil dan Perencanaan
             [
                 'unit_id' => 4,
-                'role_id' => 20,
+                'role_id' => 40,
             ],
             // 21 Ketua Jurusan Teknologi Industri dan Proses - Jurusan Teknologi Industri dan Proses
             [
                 'unit_id' => 5,
-                'role_id' => 21,
+                'role_id' => 14,
             ],
             // 22 Koordinator Prodi Teknik Mesin - Jurusan Teknologi Industri dan Proses
             [
                 'unit_id' => 5,
-                'role_id' => 22,
+                'role_id' => 31,
             ],
             // 23 Koordinator Prodi Teknik Elektro - Jurusan Teknologi Industri dan Proses
             [
                 'unit_id' => 5,
-                'role_id' => 23,
+                'role_id' => 32,
             ],
             // 24 Koordinator Prodi Teknik Kimia - Jurusan Teknologi Industri dan Proses
             [
                 'unit_id' => 5,
-                'role_id' => 24,
+                'role_id' => 33,
             ],
             // 25 Koordinator Prodi Teknik Industri - Jurusan Teknologi Industri dan Proses
             [
                 'unit_id' => 5,
-                'role_id' => 25,
+                'role_id' => 34,
             ],
             // 26 Koordinator Prodi Rekayasa Keselamatan - Jurusan Teknologi Industri dan Proses
             [
                 'unit_id' => 5,
-                'role_id' => 26,
+                'role_id' => 35,
             ],
             // 27 Koordinator Prodi Teknik Logistik - Jurusan Teknologi Industri dan Proses
             [
                 'unit_id' => 5,
-                'role_id' => 27,
+                'role_id' => 36,
             ],
             // 28 Ketua Lembaga Penelitian dan Pengabdian kepada Masyarakat - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 28,
+                'role_id' => 19,
             ],
             // 29 Sekretaris Lembaga Penelitian dan Pengabdian kepada Masyarakat - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 29,
+                'role_id' => 61,
             ],
             // 30 Koordinator Pusat Penelitian dan Publikasi Ilmiah - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 30,
+                'role_id' => 43,
             ],
             // 31 Koordinator Pusat IBT - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 31,
+                'role_id' => 46,
             ],
             // 32 Koordinator Pusat International Office - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 32,
+                'role_id' => 59,
             ],
             // 33 Koordinator Pusat Pengembangan Pendidikan - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 33,
+                'role_id' => 63,
             ],
             // 34 Wakil Koordinator Pusat Pengembangan Pendidikan - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 34,
+                'role_id' => 63,
             ],
             // 35 Koordinator Pusat Pembinaan Kemahasiswaan dan Alumni - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 35,
+                'role_id' => 48,
             ],
             // 36 Koordinator Pusat Penjaminan Mutu - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 36,
+                'role_id' => 49,
             ],
             // 37 Koordinator Pusat E-Learning - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 37,
+                'role_id' => 51,
             ],
             // 38 Koordinator Pusat Penelitian - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 38,
+                'role_id' => 64,
             ],
             // 39 Koordinator Pusat Penelitian Energi - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 39,
+                'role_id' => 53,
             ],
             // 40 Koordinator Pusat Penelitian Pangan Pertanian - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 40,
+                'role_id' => 54,
             ],
             // 41 Koordinator Pusat Penelitian Smart City - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 41,
+                'role_id' => 55,
             ],
             // 42 Koordinator Pusat HaKI - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 42,
+                'role_id' => 45,
             ],
             // 43 Koordinator Pusat Laboratorium Terpadu - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 43,
+                'role_id' => 56,
             ],
             // 44 Koordinator Pusat Pengembangan SDM - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 44,
+                'role_id' => 57,
             ],
             // 45 Wakil Koordinator Pusat Pengembangan SDM - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 45,
+                'role_id' => 62,
             ],
             // 46 Koordinator Pusat Pengembangan Strategis dan Infrastruktur - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 46,
+                'role_id' => 58,
             ],
             // 47 Koordinator Pusat TPB dan MKU - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 47,
+                'role_id' => 50,
             ],
             // 48 Koordinator Pusat ITK Press - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 48,
+                'role_id' => 65,
             ],
             // 49 Koordinator Pusat Halal Center - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 49,
+                'role_id' => 19,
             ],
-            // 50 Koordinator Pusat Kerja sama dan Pengabdian kepada Masyarakat - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            // 50 Koordinator Pusat Pengabdian kepada Masyarakat dan Kerja sama - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 50,
+                'role_id' => 44,
             ],
             // 51 Koordinator PLP - PLP
             [
                 'unit_id' => 7,
-                'role_id' => 51,
+                'role_id' => 66,
             ],
             // 52 Rektor - Rektorat
             [
                 'unit_id' => 8,
-                'role_id' => 52,
+                'role_id' => 1,
             ],
             // 53 Wakil Rektor Bidang Akademik - Rektorat
             [
                 'unit_id' => 8,
-                'role_id' => 53,
+                'role_id' => 2,
             ],
             // 54 Wakil Rektor Bidang Non Akademik - Rektorat
             [
                 'unit_id' => 8,
-                'role_id' => 54,
+                'role_id' => 3,
             ],
             // 55 Koordinator Rumpun Akademik dan Kemahasiswaan - Rumpun Akademik dan Kemahasiswaan
             [
                 'unit_id' => 9,
-                'role_id' => 55,
+                'role_id' => 20,
             ],
             // 56 Koordinator Rumpun Hubungan Masyarakat - Rumpun Hubungan Masyarakat
             [
                 'unit_id' => 10,
-                'role_id' => 56,
+                'role_id' => 6,
             ],
             // 57 Koordinator Rumpun Kepegawaian - Rumpun Kepegawaian
             [
                 'unit_id' => 11,
-                'role_id' => 57,
+                'role_id' => 7,
             ],
             // 58 Koordinator Rumpun Keuangan dan BMN - Rumpun Keuangan dan BMN
             [
                 'unit_id' => 12,
-                'role_id' => 58,
+                'role_id' => 8,
             ],
             // 59 Koordinator Rumpun Pengadaan - Rumpun Pengadaan
             [
                 'unit_id' => 13,
-                'role_id' => 59,
+                'role_id' => 9,
             ],
             // 60 Koordinator Rumpun Perencanaan - Rumpun Perencanaan
             [
                 'unit_id' => 14,
-                'role_id' => 60,
+                'role_id' => 5,
             ],
             // 61 Koordinator Rumpun Sarana Prasarana - Rumpun Sarana Prasarana
             [
                 'unit_id' => 15,
-                'role_id' => 61,
+                'role_id' => 10,
             ],
             // 62 Ketua Tim Satuan Pengawas Internal (SPI) - Satuan Pengawas Internal (SPI)
             [
                 'unit_id' => 16,
-                'role_id' => 62,
+                'role_id' => 11,
             ],
             // 63 Kepala UPT Bahasa - UPT Bahasa
             [
                 'unit_id' => 17,
-                'role_id' => 63,
+                'role_id' => 17,
             ],
             // 64 Kepala UPT Perpustakaan - UPT Perpustakaan
             [
                 'unit_id' => 18,
-                'role_id' => 64,
+                'role_id' => 18,
             ],
             // 65 Kepala UPT Teknologi Informasi dan Komunikasi - UPT Teknologi Informasi dan Komunikasi
             [
                 'unit_id' => 19,
-                'role_id' => 65,
+                'role_id' => 4,
             ],
         ])->each(function ($identifier) {
             Identifier::create($identifier);
