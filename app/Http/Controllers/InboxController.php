@@ -145,8 +145,8 @@ class InboxController extends Controller
         // } elseif ($roles->count() >= 2) {
         //     list($role1, $role2) = $roles->split(2);
         // }
-          
-        
+
+
         $informations = [
             "Ikuti Disposisi Mentri",
             "Proses Sesuai Prosedur",
@@ -175,7 +175,7 @@ class InboxController extends Controller
         // $split_point = count($informations) / 2;
         // $information1 = array_slice($informations, 0, $split_point);
         // $information2 = array_slice($informations, $split_point);
-        
+
         $isRead = LetterHistory::where('letter_receiver_id', $letterReceiver->id)->where('status', $this->constants->letter_status[2])->first();
         if (!$isRead) {
             LetterHistory::create([
@@ -226,7 +226,7 @@ class InboxController extends Controller
 
             LetterHistory::create([
                 'letter_receiver_id' => $letterReceiver->id,
-                'note' => 'Surat didisposisikan kepada ' . Role::where("id", $role->role_id)->first()->name . ' pada ' . Carbon::now()->format('Y-m-d H:i:s'),
+                'note' => 'Surat didisposisikan kepada ' . Role::where("id", $role->role_id)->first()->name . ', Hal: ' . $disposition->information,
                 'status' => $this->constants->letter_status[3],
             ]);
         }
@@ -247,7 +247,7 @@ class InboxController extends Controller
         $letterReceiver->letterStatus()->update([
             'status' => $this->constants->letter_status[3],
         ]);
-        
+
         return redirect()->back()->with('success', 'disposisi berhasil')->with(compact('users', 'letterReceiver'));
     }
 

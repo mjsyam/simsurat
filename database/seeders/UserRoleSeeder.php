@@ -13,6 +13,7 @@ use App\Models\Unit;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Log;
 
 class UserRoleSeeder extends Seeder
 {
@@ -42,325 +43,326 @@ class UserRoleSeeder extends Seeder
 
             // lapisan 3
             // 3.2 {
-                // 4
-                [
-                    'name' => "Kepala UPT Teknologi Informasi dan Komunikasi",
-                    "parent_id" => "2",
-                ],
-                // 5
-                [
-                    'name' => "Koordinator Rumpun Perencanaan",
-                    "parent_id" => "2",
-                ],
-                // 6
-                [
-                    'name' => "Koordinator Rumpun Hubungan Masyarakat",
-                    "parent_id" => "2",
-                ],
-                // 7
-                [
-                    'name' => "Koordinator Rumpun Kepegawaian",
-                    "parent_id" => "2",
-                ],
-                // 8
-                [
-                    'name' => "Koordinator Rumpun Keuangan dan BMN",
-                    "parent_id" => "2",
-                ],
-                // 9
-                [
-                    'name' => "Koordinator Rumpun Pengadaan",
-                    "parent_id" => "2",
-                ],
-                // 10
-                [
-                    'name' => "Koordinator Rumpun Sarana Prasarana",
-                    "parent_id" => "2",
-                ],
-                // 11
-                [
-                    'name' => "Ketua Tim Satuan Pengawas Internal (SPI)",
-                    "parent_id" => "2",
-                ],
+            // 4
+            [
+                'name' => "Kepala UPT Teknologi Informasi dan Komunikasi",
+                "parent_id" => "2",
+            ],
+            // 5
+            [
+                'name' => "Koordinator Rumpun Perencanaan",
+                "parent_id" => "2",
+            ],
+            // 6
+            [
+                'name' => "Koordinator Rumpun Hubungan Masyarakat",
+                "parent_id" => "2",
+            ],
+            // 7
+            [
+                'name' => "Koordinator Rumpun Kepegawaian",
+                "parent_id" => "2",
+            ],
+            // 8
+            [
+                'name' => "Koordinator Rumpun Keuangan dan BMN",
+                "parent_id" => "2",
+            ],
+            // 9
+            [
+                'name' => "Koordinator Rumpun Pengadaan",
+                "parent_id" => "2",
+            ],
+            // 10
+            [
+                'name' => "Koordinator Rumpun Sarana Prasarana",
+                "parent_id" => "2",
+            ],
+            // 11
+            [
+                'name' => "Ketua Tim Satuan Pengawas Internal (SPI)",
+                "parent_id" => "2",
+            ],
             // }
 
             // 3.3 {
-                // 12
-                [
-                    'name' => "Ketua Jurusan Matematika dan Teknologi Informasi",
-                    "parent_id" => "3",
-                ],
-                // 13
-                [
-                    'name' => "Ketua Jurusan Sains, Teknik Perkapalan, dan Kemaritiman",
-                    "parent_id" => "3",
-                ],
-                // 14
-                [
-                    'name' => "Ketua Jurusan Teknologi Industri dan Proses",
-                    "parent_id" => "3",
-                ],
-                // 15
-                [
-                    'name' => "Ketua Jurusan Teknik Sipil dan Perencanaan",
-                    "parent_id" => "3",
-                ],
-                // 16
-                [
-                    'name' => "Ketua Jurusan Ilmu Kebumian dan Lingkungan",
-                    "parent_id" => "3",
-                ],
-                // 17
-                [
-                    'name' => "Kepala UPT Bahasa",
-                    "parent_id" => "3",
-                ],
-                // 18
-                [
-                    'name' => "Kepala UPT Perpustakaan",
-                    "parent_id" => "3",
-                ],
-                // 19
-                [
-                    'name' => "Ketua Lembaga Penelitian dan Pengabdian kepada Masyarakat",
-                    "parent_id" => "3",
-                ],
-                // 20
-                [
-                    'name' => "Koordinator Rumpun Akademik dan Kemahasiswaan",
-                    "parent_id" => "3",
-                ],
+            // 12
+            [
+                'name' => "Ketua Jurusan Matematika dan Teknologi Informasi",
+                "parent_id" => "3",
+            ],
+            // 13
+            [
+                'name' => "Ketua Jurusan Sains, Teknik Perkapalan, dan Kemaritiman",
+                "parent_id" => "3",
+            ],
+            // 14
+            [
+                'name' => "Ketua Jurusan Teknologi Industri dan Proses",
+                "parent_id" => "3",
+            ],
+            // 15
+            [
+                'name' => "Ketua Jurusan Teknik Sipil dan Perencanaan",
+                "parent_id" => "3",
+            ],
+            // 16
+            [
+                'name' => "Ketua Jurusan Ilmu Kebumian dan Lingkungan",
+                "parent_id" => "3",
+            ],
+            // 17
+            [
+                'name' => "Kepala UPT Bahasa",
+                "parent_id" => "3",
+            ],
+            // 18
+            [
+                'name' => "Kepala UPT Perpustakaan",
+                "parent_id" => "3",
+            ],
+            // 19
+            [
+                'name' => "Ketua Lembaga Penelitian dan Pengabdian kepada Masyarakat",
+                "parent_id" => "3",
+            ],
+            // 20
+            [
+                'name' => "Koordinator Rumpun Akademik dan Kemahasiswaan",
+                "parent_id" => "3",
+            ],
             // }
 
             // lapisan 4
             // 4.12 {
-                // 21
-                [
-                    'name' => "Koordinator Prodi Matematika",
-                    "parent_id" => "12",
-                ],
-                // 22
-                [
-                    'name' => "Koordinator Prodi Informatika",
-                    "parent_id" => "12",
-                ],
-                // 23
-                [
-                    'name' => "Koordinator Prodi Sistem Informasi",
-                    "parent_id" => "12",
-                ],
-                // 24
-                [
-                    'name' => "Koordinator Prodi Ilmu Aktuaria",
-                    "parent_id" => "12",
-                ],
-                // 25
-                [
-                    'name' => "Koordinator Prodi Statistika",
-                    "parent_id" => "12",
-                ],
-                // 26
-                [
-                    'name' => "Koordinator Prodi Bisnis Digital",
-                    "parent_id" => "12",
-                ],
+            // 21
+            [
+                'name' => "Koordinator Prodi Matematika",
+                "parent_id" => "12",
+            ],
+            // 22
+            [
+                'name' => "Koordinator Prodi Informatika",
+                "parent_id" => "12",
+            ],
+            // 23
+            [
+                'name' => "Koordinator Prodi Sistem Informasi",
+                "parent_id" => "12",
+            ],
+            // 24
+            [
+                'name' => "Koordinator Prodi Ilmu Aktuaria",
+                "parent_id" => "12",
+            ],
+            // 25
+            [
+                'name' => "Koordinator Prodi Statistika",
+                "parent_id" => "12",
+            ],
+            // 26
+            [
+                'name' => "Koordinator Prodi Bisnis Digital",
+                "parent_id" => "12",
+            ],
             // }
 
             // lapisan 4
             // 4.13 {
-                // 27
-                [
-                    'name' => "Koordinator Prodi Fisika",
-                    "parent_id" => "13",
-                ],
-                // 28
-                [
-                    'name' => "Koordinator Prodi Teknik Perkapalan",
-                    "parent_id" => "13",
-                ],
-                // 29
-                [
-                    'name' => "Koordinator Prodi Teknik Kelautan",
-                    "parent_id" => "13",
-                ],
-                // 30
-                [
-                    'name' => "Koordinator Prodi Teknologi Pangan",
-                    "parent_id" => "13",
-                ],
+            // 27
+            [
+                'name' => "Koordinator Prodi Fisika",
+                "parent_id" => "13",
+            ],
+            // 28
+            [
+                'name' => "Koordinator Prodi Teknik Perkapalan",
+                "parent_id" => "13",
+            ],
+            // 29
+            [
+                'name' => "Koordinator Prodi Teknik Kelautan",
+                "parent_id" => "13",
+            ],
+            // 30
+            [
+                'name' => "Koordinator Prodi Teknologi Pangan",
+                "parent_id" => "13",
+            ],
             // }
 
             // lapisan 4
             // 4.14 {
-                // 31
-                [
-                    'name' => "Koordinator Prodi Teknik Mesin",
-                    "parent_id" => "14",
-                ],
-                // 32
-                [
-                    'name' => "Koordinator Prodi Teknik Elektro",
-                    "parent_id" => "14",
-                ],
-                // 33
-                [
-                    'name' => "Koordinator Prodi Teknik Kimia",
-                    "parent_id" => "14",
-                ],
-                // 34
-                [
-                    'name' => "Koordinator Prodi Teknik Industri",
-                    "parent_id" => "14",
-                ],
-                // 35
-                [
-                    'name' => "Koordinator Prodi Rekayasa Keselamatan",
-                    "parent_id" => "14",
-                ],
-                // 36
-                [
-                    'name' => "Koordinator Prodi Teknik Logistik",
-                    "parent_id" => "14",
-                ],
+            // 31
+            [
+                'name' => "Koordinator Prodi Teknik Mesin",
+                "parent_id" => "14",
+            ],
+            // 32
+            [
+                'name' => "Koordinator Prodi Teknik Elektro",
+                "parent_id" => "14",
+            ],
+            // 33
+            [
+                'name' => "Koordinator Prodi Teknik Kimia",
+                "parent_id" => "14",
+            ],
+            // 34
+            [
+                'name' => "Koordinator Prodi Teknik Industri",
+                "parent_id" => "14",
+            ],
+            // 35
+            [
+                'name' => "Koordinator Prodi Rekayasa Keselamatan",
+                "parent_id" => "14",
+            ],
+            // 36
+            [
+                'name' => "Koordinator Prodi Teknik Logistik",
+                "parent_id" => "14",
+            ],
             // }
 
             // lapisan 4
             // 4.15 {
-                // 37
-                [
-                    'name' => "Koordinator Prodi Teknik Sipil",
-                    "parent_id" => "15",
-                ],
-                // 38
-                [
-                    'name' => "Koordinator Prodi Perencanaan Wilayah dan Kota",
-                    "parent_id" => "15",
-                ],
-                // 39
-                [
-                    'name' => "Koordinator Prodi Arsitektur",
-                    "parent_id" => "15",
-                ],
-                // 40
-                [
-                    'name' => "Koordinator Prodi Desain Komunikasi Visual",
-                    "parent_id" => "15",
-                ],
+            // 37
+            [
+                'name' => "Koordinator Prodi Teknik Sipil",
+                "parent_id" => "15",
+            ],
+            // 38
+            [
+                'name' => "Koordinator Prodi Perencanaan Wilayah dan Kota",
+                "parent_id" => "15",
+            ],
+            // 39
+            [
+                'name' => "Koordinator Prodi Arsitektur",
+                "parent_id" => "15",
+            ],
+            // 40
+            [
+                'name' => "Koordinator Prodi Desain Komunikasi Visual",
+                "parent_id" => "15",
+            ],
             // }
 
             // lapisan 4
             // 4.16 {
-                // 41
-                [
-                    'name' => "Koordinator Prodi Teknik Lingkungan",
-                    "parent_id" => "16",
-                ],
-                // 42
-                [
-                    'name' => "Koordinator Prodi Teknik Material dan Metalurgi",
-                    "parent_id" => "16",
-                ],
+            // 41
+            [
+                'name' => "Koordinator Prodi Teknik Lingkungan",
+                "parent_id" => "16",
+            ],
+            // 42
+            [
+                'name' => "Koordinator Prodi Teknik Material dan Metalurgi",
+                "parent_id" => "16",
+            ],
             // }
 
             // Lapisan 4
             // 4.19 {
-                // 43
-                [
-                    'name' => "Koordinator Pusat Penelitian dan Publikasi Ilmiah",
-                    "parent_id" => "19",
-                ],
-                // 44
-                [
-                    'name' => "Koordinator Pusat Pengabdian Kepada Masyarakat dan Kerja sama ",
-                    "parent_id" => "19",
-                ],
-                // 45
-                [
-                    'name' => "Koordinator Pusat Hak atas Kekayaan Intelektual",
-                    "parent_id" => "19",
-                ],
-                // 46
-                [
-                    // Koordinator Pusat IBT
-                    'name' => "Koordinator Pusat Inkubator Bisnis Teknologi",
-                    "parent_id" => "19",
-                ],
-                // 47
-                [
-                    'name' => "Koordinator Pusat Pengembangan Pendidikan",
-                    "parent_id" => "19",
-                ],
-                // 48
-                [
-                    'name' => "Koordinator Pusat Pembinaan Kemahasiswaan dan Alumni",
-                    "parent_id" => "19",
-                ],
-                // 49
-                [
-                    'name' => "Koordinator Pusat Penjaminan Mutu",
-                    "parent_id" => "19",
-                ],
-                // 50
-                [
-                    // Koordinator Pusat TPB dan MKU
-                    'name' => "Koordinator Pusat Tahap Persiapan Bersama dan Mata Kuliah Umum",
-                    "parent_id" => "19",
-                ],
-                // 51
-                [
-                    'name' => "Koordinator Pusat E-Learning",
-                    "parent_id" => "19",
-                ],
-                // 52
-                [
-                    'name' => "Koordinator Pusat Penelitian Kemaritiman",
-                    "parent_id" => "19",
-                ],
-                // 53
-                [
-                    'name' => "Koordinator Pusat Penelitian Energi",
-                    "parent_id" => "19",
-                ],
-                // 54
-                [
-                    'name' => "Koordinator Pusat Penelitian Pangan Pertanian",
-                    "parent_id" => "19",
-                ],
-                // 55
-                [
-                    'name' => "Koordinator Pusat Penelitian Smart City",
-                    "parent_id" => "19",
-                ],
-                // 56
-                [
-                    'name' => "Koordinator Pusat Laboratorium Terpadu",
-                    "parent_id" => "19",
-                ],
-                // 57
-                [
-                    'name' => "Koordinator Pusat Pengembangan SDM",
-                    "parent_id" => "19",
-                ],
-                // 58
-                [
-                    'name' => "Koordinator Pusat Pengembangan Strategis dan Infrastruktur",
-                    "parent_id" => "19",
-                ],
-                // 59
-                [
-                    'name' => "Koordinator Pusat International Office",
-                    "parent_id" => "19",
-                ],
-                // 60
-                [
-                    'name' => "Koordinator Pusat Halal Center",
-                    "parent_id" => "19",
-                ],
-                // 61
-                [
-                    'name' => "Sekretaris Lembaga Penelitian dan Pengabdian kepada Masyarakat",
-                    "parent_id" => "19",
-                ],
+            // 43
+            [
+                'name' => "Koordinator Pusat Penelitian dan Publikasi Ilmiah",
+                "parent_id" => "19",
+            ],
+            // 44
+            [
+                'name' => "Koordinator Pusat Pengabdian Kepada Masyarakat dan Kerja sama ",
+                "parent_id" => "19",
+            ],
+            // 45
+            [
+                // Koordinator Pusat HaKI
+                'name' => "Koordinator Pusat Hak atas Kekayaan Intelektual",
+                "parent_id" => "19",
+            ],
+            // 46
+            [
+                // Koordinator Pusat IBT
+                'name' => "Koordinator Pusat Inkubator Bisnis Teknologi",
+                "parent_id" => "19",
+            ],
+            // 47
+            [
+                'name' => "Koordinator Pusat Pengembangan Pendidikan",
+                "parent_id" => "19",
+            ],
+            // 48
+            [
+                'name' => "Koordinator Pusat Pembinaan Kemahasiswaan dan Alumni",
+                "parent_id" => "19",
+            ],
+            // 49
+            [
+                'name' => "Koordinator Pusat Penjaminan Mutu",
+                "parent_id" => "19",
+            ],
+            // 50
+            [
+                // Koordinator Pusat TPB dan MKU
+                'name' => "Koordinator Pusat Tahap Persiapan Bersama dan Mata Kuliah Umum",
+                "parent_id" => "19",
+            ],
+            // 51
+            [
+                'name' => "Koordinator Pusat E-Learning",
+                "parent_id" => "19",
+            ],
+            // 52
+            [
+                'name' => "Koordinator Pusat Penelitian Kemaritiman",
+                "parent_id" => "19",
+            ],
+            // 53
+            [
+                'name' => "Koordinator Pusat Penelitian Energi",
+                "parent_id" => "19",
+            ],
+            // 54
+            [
+                'name' => "Koordinator Pusat Penelitian Pangan Pertanian",
+                "parent_id" => "19",
+            ],
+            // 55
+            [
+                'name' => "Koordinator Pusat Penelitian Smart City",
+                "parent_id" => "19",
+            ],
+            // 56
+            [
+                'name' => "Koordinator Pusat Laboratorium Terpadu",
+                "parent_id" => "19",
+            ],
+            // 57
+            [
+                'name' => "Koordinator Pusat Pengembangan SDM",
+                "parent_id" => "19",
+            ],
+            // 58
+            [
+                'name' => "Koordinator Pusat Pengembangan Strategis dan Infrastruktur",
+                "parent_id" => "19",
+            ],
+            // 59
+            [
+                'name' => "Koordinator Pusat International Office",
+                "parent_id" => "19",
+            ],
+            // 60
+            [
+                'name' => "Koordinator Pusat Halal Center",
+                "parent_id" => "19",
+            ],
+            // 61
+            [
+                'name' => "Sekretaris Lembaga Penelitian dan Pengabdian kepada Masyarakat",
+                "parent_id" => "19",
+            ],
 
             // }
 
@@ -378,21 +380,27 @@ class UserRoleSeeder extends Seeder
                 "parent_id" => "47",
             ],
 
+            // agak ramdom
             // 64
             [
                 'name' => "Koordinator Pusat Penelitian",
+                "parent_id" => "19",
             ],
             // 65
             [
                 'name' => "Koordinator Pusat ITK Press",
+                "parent_id" => "19",
             ],
             // 66
             [
                 'name' => "Koordinator PLP",
+                "parent_id" => "3",
             ],
-
-
-
+            // 67
+            [
+                'name' => "Kepala Biro Umum dan Akademik",
+                "parent_id" => "3",
+            ],
         ])->each(function ($role) {
             Role::create($role);
         });
@@ -479,17 +487,17 @@ class UserRoleSeeder extends Seeder
         });
 
         collect([
-            // 1 Ketua Jurusan Ilmu Kebumian dan Lingkungan - Jurusan Imu Kebumian dan Lingkungan
+            // 1 Ketua Jurusan Ilmu Kebumian dan Lingkungan - Jurusan Ilmu Kebumian dan Lingkungan
             [
                 'unit_id' => 1,
                 'role_id' => 16,
             ],
-            // 2 Koordinator Prodi Teknik Material dan Metalurgi - Jurusan Imu Kebumian dan Lingkungan
+            // 2 Koordinator Prodi Teknik Material dan Metalurgi - Jurusan Ilmu Kebumian dan Lingkungan
             [
                 'unit_id' => 1,
                 'role_id' => 42,
             ],
-            // 3 Koordinator Prodi Teknik Lingkungan - Jurusan Imu Kebumian dan Lingkungan
+            // 3 Koordinator Prodi Teknik Lingkungan - Jurusan Ilmu Kebumian dan Lingkungan
             [
                 'unit_id' => 1,
                 'role_id' => 41,
@@ -642,7 +650,7 @@ class UserRoleSeeder extends Seeder
             // 33 Koordinator Pusat Pengembangan Pendidikan - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 63,
+                'role_id' => 47,
             ],
             // 34 Wakil Koordinator Pusat Pengembangan Pendidikan - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
@@ -722,9 +730,9 @@ class UserRoleSeeder extends Seeder
             // 49 Koordinator Pusat Halal Center - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
-                'role_id' => 19,
+                'role_id' => 60,
             ],
-            // 50 Koordinator Pusat Pengabdian kepada Masyarakat dan Kerja sama - Lembaga Penelitian dan Pengabdian kepada Masyarakat
+            // 50 Koordinator Pusat Pengabdian Kepada Masyarakat dan Kerja sama - Lembaga Penelitian dan Pengabdian kepada Masyarakat
             [
                 'unit_id' => 6,
                 'role_id' => 44,
@@ -804,22 +812,29 @@ class UserRoleSeeder extends Seeder
                 'unit_id' => 19,
                 'role_id' => 4,
             ],
+            // 66 Kepala Biro Umum dan Akademik - Rektorat
+            [
+                'unit_id' => 8,
+                'role_id' => 67,
+            ],
         ])->each(function ($identifier) {
             Identifier::create($identifier);
         });
 
         collect([
-            // [
-            //     'name' => "Admin",
-            //     'email' => "superadmin@gmail.com",
-            //     'status' => 'TENDIK',
-            //     'email_verified_at' => now(),
-            //     'password' => Hash::make('123456789'),
-            //     'remember_token' => str::random(10),
-            //     'number' => "0",
-            //     'signature' => "beta",
-            //     'avatar' => "beta",
-            // ],
+            [
+                "unit_id" => "8",
+                'name' => "Admin",
+                'email' => "superadmin@gmail.com",
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => str::random(10),
+                'number' => "0",
+                'signature' => "beta",
+                'avatar' => "beta",
+                "identifier_id" => "1",
+            ],
 
             // 1
             [
@@ -833,6 +848,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "1",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "1",
             ],
             // 2
             [
@@ -846,6 +862,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "1",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "2",
             ],
             // 3
             [
@@ -859,6 +876,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "1",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "3",
             ],
             // 4
             [
@@ -873,6 +891,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "2",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "4",
             ],
             // 5
             [
@@ -886,6 +905,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "2",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "5",
             ],
             // 6
             [
@@ -899,6 +919,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "2",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "6",
             ],
             // 7
             [
@@ -912,6 +933,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "2",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "7",
             ],
             // 8
             [
@@ -925,6 +947,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "2",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "8",
             ],
             // 9
             [
@@ -938,6 +961,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "2",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "9",
             ],
             // 10
             [
@@ -951,6 +975,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "2",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "10",
             ],
             // 11
             [
@@ -964,6 +989,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "3",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "11",
             ],
             // 12
             [
@@ -977,6 +1003,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "3",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "12",
             ],
             // 13
             [
@@ -990,6 +1017,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "3",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "13",
             ],
             // 14
             [
@@ -1003,6 +1031,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "3",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "14",
             ],
             // 15
             [
@@ -1016,6 +1045,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "3",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "15",
             ],
             // 16
             [
@@ -1029,6 +1059,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "4",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "16",
             ],
             // 17
             [
@@ -1042,6 +1073,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "4",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "17",
             ],
             // 18
             [
@@ -1055,6 +1087,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "4",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "18",
             ],
             // 19
             [
@@ -1068,6 +1101,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "4",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "19",
             ],
             // 20
             [
@@ -1081,6 +1115,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "4",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "20",
             ],
             // 21
             [
@@ -1094,6 +1129,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "5",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "21",
             ],
             // 22
             [
@@ -1107,6 +1143,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "5",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "22",
             ],
             // 23
             [
@@ -1120,6 +1157,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "5",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "23",
             ],
             // 24
             [
@@ -1133,6 +1171,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "5",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "24",
             ],
             // 25
             [
@@ -1146,6 +1185,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "5",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "25",
             ],
             // 26
             [
@@ -1159,6 +1199,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "5",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "26",
             ],
             // 27
             [
@@ -1172,6 +1213,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "5",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "27",
             ],
             // 28
             [
@@ -1185,6 +1227,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "28",
             ],
             // 29
             [
@@ -1198,6 +1241,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "29",
             ],
             // 30
             [
@@ -1211,6 +1255,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "30",
             ],
             // 31
             [
@@ -1224,6 +1269,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "31",
             ],
             // 32
             [
@@ -1237,6 +1283,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "32",
             ],
             // 33
             [
@@ -1250,6 +1297,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "33",
             ],
             // 34
             [
@@ -1263,6 +1311,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "34",
             ],
             // 35
             [
@@ -1276,6 +1325,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "35",
             ],
             // 36
             [
@@ -1289,6 +1339,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "36",
             ],
             // 37
             [
@@ -1302,6 +1353,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "37",
             ],
             // 38
             [
@@ -1315,6 +1367,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "38",
             ],
             // 39
             [
@@ -1328,6 +1381,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "39",
             ],
             // 40
             [
@@ -1341,6 +1395,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "40",
             ],
             // 41
             [
@@ -1354,6 +1409,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "41",
             ],
             // 42
             [
@@ -1367,6 +1423,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                "identifier_id" => "42",
             ],
             // 43
             [
@@ -1380,6 +1437,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "43", // Add identifier_id
             ],
             // 44
             [
@@ -1393,8 +1451,23 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "44", // Add identifier_id
             ],
             // 45
+            // [
+            //     'name' => "Andi Idhil Ismail, S.T., M.Sc., Ph.D.",
+            //     'email' => "a.idhil@lecturer.itk.ac.id",
+            //     'status' => 'DOSEN',
+            //     'email_verified_at' => now(),
+            //     'password' => Hash::make('123456789'),
+            //     'remember_token' => Str::random(10),
+            //     'number' => "44",
+            //     "unit_id" => "6",
+            //     'signature' => "beta",
+            //     'avatar' => "beta",
+            //     'identifier_id' => "45", // Add identifier_id
+            // ],
+            // 46
             [
                 'name' => "Tiara Rukmaya Dewi, S.T., M.Sc.",
                 'email' => "tiara.rukmaya@lecturer.itk.ac.id",
@@ -1406,8 +1479,9 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "46", // Add identifier_id
             ],
-            // 46
+            // 47
             [
                 'name' => "Firilia Filiana, S.T., M.T.",
                 'email' => "firilia.filiana@lecturer.itk.ac.id",
@@ -1419,8 +1493,9 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "47", // Add identifier_id
             ],
-            // 47
+            // 48
             [
                 'name' => "Eko Agung Syaputra, M.Ds.",
                 'email' => "eko.agung@lecturer.itk.ac.id",
@@ -1432,8 +1507,9 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "48", // Add identifier_id
             ],
-            // 48
+            // 49
             [
                 'name' => "Fadeli Muhammad Habibie, S.T.P., M.P., M.Sc.",
                 'email' => "fadeli.muhammad@lecturer.itk.ac.id",
@@ -1445,8 +1521,9 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "49", // Add identifier_id
             ],
-            // 49
+            // 50
             [
                 'name' => "Azmia Riska Nafisah, S.T.,M.T.",
                 'email' => "azmia.rizka@lecturer.itk.ac.id",
@@ -1458,8 +1535,9 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "50", // Add identifier_id
             ],
-            // 50
+            // 51
             [
                 'name' => "Aries Rohiyanto, A.Md.",
                 'email' => "aries.rohiyanto@staff.itk.ac.id",
@@ -1471,8 +1549,9 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "7",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "51", // Add identifier_id
             ],
-            // 51
+            // 52
             [
                 'name' => "Prof. Dr. Agus Rubiyanto, M.Eng.Sc.",
                 'email' => "rektor@itk.ac.id",
@@ -1484,8 +1563,9 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "8",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "52", // Add identifier_id
             ],
-            // 52
+            // 53
             [
                 'name' => "Prof. Erma Suryani, S.T., M.T., Ph.D.",
                 'email' => "wr1@itk.ac.id",
@@ -1497,8 +1577,9 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "8",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "53", // Add identifier_id
             ],
-            // 53
+            // 54
             [
                 'name' => "Ir. Khakim Ghozali, M.MT.",
                 'email' => "wr2@itk.ac.id",
@@ -1510,8 +1591,9 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "8",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "54", // Add identifier_id
             ],
-            // 54
+            // 55
             [
                 'name' => "Ike Wayan Norma Yunita, S.Pd.",
                 'email' => "wayanike@staff.itk.ac.id",
@@ -1523,8 +1605,9 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "9",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "55", // Add identifier_id
             ],
-            // 55
+            // 56
             [
                 'name' => "Nabila Khaerunnisa, S.Kom",
                 'email' => "nabila.khaerunnisa@staff.itk.ac.id",
@@ -1536,8 +1619,9 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "10",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "56", // Add identifier_id
             ],
-            // 56
+            // 57
             [
                 'name' => "Reo Surya Delma, S.H.",
                 'email' => "reo.delma@staff.itk.ac.id",
@@ -1549,8 +1633,9 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "11",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "57", // Add identifier_id
             ],
-            // 57
+            // 58
             [
                 'name' => "Putri Sekar Wilis, S.E.",
                 'email' => "putri.sekar@staff.itk.ac.id",
@@ -1562,8 +1647,9 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "12",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "58", // Add identifier_id
             ],
-            // 58
+            // 59
             [
                 'name' => "Irfan Aprison, S. Kom.",
                 'email' => "irfanaprison@staff.itk.ac.id",
@@ -1575,8 +1661,9 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "13",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "59", // Add identifier_id
             ],
-            // 59
+            // 60
             [
                 'name' => "Muhammad Zulfikhar, S.E.",
                 'email' => "muhammadzulfikar@staff.itk.ac.id",
@@ -1588,8 +1675,9 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "14",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "60", // Add identifier_id
             ],
-            // 60
+            // 61
             [
                 'name' => "Ramdan Indra Lesmana, S.IP.",
                 'email' => "ramdan.indra@itk.ac.id",
@@ -1601,8 +1689,9 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "15",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "61", // Add identifier_id
             ],
-            // 61
+            // 62
             [
                 'name' => "Taufik Hidayat, S.T., M.T.",
                 'email' => "taufik.hidayat@lecturer.itk.ac.id",
@@ -1614,8 +1703,9 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "16",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "62", // Add identifier_id
             ],
-            // 62
+            // 63
             [
                 'name' => "Healty Susantiningdyah, S.Pd., MAppLing.",
                 'email' => "susan@lecturer.itk.ac.id",
@@ -1627,8 +1717,9 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "17",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "63", // Add identifier_id
             ],
-            // 63
+            // 64
             [
                 'name' => "Winarni, S.Si., M.Si.",
                 'email' => "winarni@lecturer.itk.ac.id",
@@ -1640,8 +1731,9 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "18",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "64", // Add identifier_id
             ],
-            // 64
+            // 65
             [
                 'name' => "Syamsul Mujahidin, S.Kom., M.Eng.",
                 'email' => "syamsul@lecturer.itk.ac.id",
@@ -1653,28 +1745,98 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "19",
                 'signature' => "beta",
                 'avatar' => "beta",
+                'identifier_id' => "65", // Add identifier_id
+            ],
+            // 66
+            [
+                'name' => "Yuspian, S.Sos., M.I.R.",
+                'email' => "kabua@itk.ac.id",
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => "0",
+                "unit_id" => "8",
+                'signature' => "beta",
+                'avatar' => "beta",
+                "identifier_id" => "66",
             ],
         ])->map(function ($user) {
-            User::create($user);
+            Log::info($user);
+            $newUser = User::create([
+                'name' => $user["name"],
+                'email' => $user["email"],
+                'status' => $user["status"],
+                'email_verified_at' => $user["email_verified_at"],
+                'password' => $user["password"],
+                'remember_token' => $user["remember_token"],
+                'number' => $user["number"],
+                "unit_id" => $user["unit_id"],
+                'signature' => $user["signature"],
+                'avatar' => $user["avatar"],
+            ]);
+
+            UserIdentifier::create([
+                'user_id' => $newUser->id,
+                'identifier_id' => $user["identifier_id"],
+            ]);
         });
 
-        foreach (Identifier::all() as $key => $identifier) {
-            if ($key + 1 == 45) {
-                UserIdentifier::create([
-                    'user_id' => 21,
-                    'identifier_id' => $identifier->id,
-                ]);
-            }else if($key > 45){
-                UserIdentifier::create([
-                    'user_id' => $key,
-                    'identifier_id' => $identifier->id,
-                ]);
-            }else{
-                UserIdentifier::create([
-                    'user_id' => $key + 1,
-                    'identifier_id' => $identifier->id,
-                ]);
-            }
-        }
+        UserIdentifier::create([
+            'user_id' => "21",
+            'identifier_id' => "25",
+        ]);
+
+        User::create([
+            'name' => "Lasniah Wahyuni., ST",
+            'email' => "wahyuni.lasniah@staff.itk.ac.id",
+            'status' => "TENDIK",
+            'email_verified_at' => now(),
+            'password' => Hash::make('123456789'),
+            'remember_token' => Str::random(10),
+            'number' => "0",
+            "unit_id" => "2",
+            'signature' => "beta",
+            'avatar' => "beta",
+        ]);
+
+        User::create([
+            'name' => "Selvian Handayani, S.Si",
+            'email' => "selvian@staff.itk.ac.id",
+            'status' => "TENDIK",
+            'email_verified_at' => now(),
+            'password' => Hash::make('123456789'),
+            'remember_token' => Str::random(10),
+            'number' => "0",
+            "unit_id" => "2",
+            'signature' => "beta",
+            'avatar' => "beta",
+        ]);
+
+        User::create([
+            'name' => "Supatmi, S.Si",
+            'email' => "supatmi@staff.itk.ac.id",
+            'status' => "TENDIK",
+            'email_verified_at' => now(),
+            'password' => Hash::make('123456789'),
+            'remember_token' => Str::random(10),
+            'number' => "0",
+            "unit_id" => "5",
+            'signature' => "beta",
+            'avatar' => "beta",
+        ]);
+
+        User::create([
+            'name' => "Anggina Frezky Harahap",
+            'email' => "anggina.frezky@staff.itk.ac.id",
+            'status' => "TENDIK",
+            'email_verified_at' => now(),
+            'password' => Hash::make('123456789'),
+            'remember_token' => Str::random(10),
+            'number' => "0",
+            "unit_id" => "8",
+            'signature' => "beta",
+            'avatar' => "beta",
+        ]);
     }
 }

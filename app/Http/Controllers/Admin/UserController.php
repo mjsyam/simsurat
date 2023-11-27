@@ -13,6 +13,7 @@ use App\Exceptions\NotFoundError;
 use App\Models\Identifier;
 use App\Models\Role;
 use App\Models\Unit;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Svg\Tag\Rect;
 
@@ -31,10 +32,10 @@ class UserController extends Controller
     {
         $userStatus = $this->constants->user_status;
 
-        $identifiers = Identifier::all();
+        $unit = Unit::all();
 
         return view('admin.user.index', compact([
-            'userStatus', 'identifiers'
+            'userStatus', 'unit'
         ]));
     }
 
@@ -72,7 +73,7 @@ class UserController extends Controller
                 'email' => 'required|string|unique:users,email',
                 'password' => 'required|string|min:8',
                 'status' => ['nullable', Rule::in($this->constants->user_status)],
-                'identifiers' => 'required|array|min:1|exists:identifiers,id',
+                'unit_id' => 'required|min:1|exists:units,id',
                 'signature' => 'string|nullable',
                 'avatar' => 'string|nullable',
             ]);
@@ -80,10 +81,11 @@ class UserController extends Controller
             $data = $request->all();
 
             if (isset($data['password'])) {
-                $data['password'] = bcrypt($data['password']);
+                $data['password'] = Hash::make($data['password']);
             }
 
             $user = User::create([
+                "unit_id" => $request->unit_id,
                 "name" => $request->name,
                 "number" => $request->number,
                 "email" => $request->email,
@@ -92,8 +94,6 @@ class UserController extends Controller
                 "avatar" => $request->avatar,
                 "status" => $request->status
             ]);
-
-            $user->identifiers()->attach($request->identifiers);
 
             return response()->json([
                 "status" => "success",

@@ -3,24 +3,18 @@
 namespace App\Http\Controllers\Letter;
 
 use App\Constants;
-use App\Exceptions\AuthorizationError;
-use App\Exceptions\NotFoundError;
 use App\Http\Controllers\Controller;
 use App\Models\Identifier;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Carbon\Carbon;
-use Barryvdh\DomPDF\Facade\Pdf;
 
-use App\Models\User;
 use App\Models\Letter;
 use App\Models\LetterCategory;
 use App\Models\LetterHistory;
 use App\Models\LetterReceiver;
 use App\Models\LetterStatus;
-use App\Models\Role;
 use App\Utils\ErrorHandler;
 
 class SentLetterController extends Controller
@@ -67,9 +61,7 @@ class SentLetterController extends Controller
             'unit'
         ])->get();
 
-        $signed = Identifier::whereHas('users', function ($query) {
-            $query->where('unit_id', Auth::user()->unit_id);
-        })->with([
+        $signed = Identifier::where('unit_id', Auth::user()->unit_id)->with([
             'users',
             'role',
             'unit'
@@ -124,7 +116,8 @@ class SentLetterController extends Controller
 
             LetterHistory::create([
                 'letter_receiver_id' => $sentLetter->id,
-                'note' => 'Surat berhasil dikirim ke ' . $sentLetter->user->name . '',
+                // 'note' => 'Surat berhasil dikirim ke ' . $sentLetter->user->name . '',
+                'note' => 'Surat mengunggu persetujuan yang bertanda tangan.',
                 'status' => $letterStatus
             ]);
         }

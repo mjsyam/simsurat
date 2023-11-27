@@ -46,9 +46,9 @@
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                     <span class="required fw-bold">identifier</span>
                                 </label>
-                                <select class="drop-data form-select form-select-solid" name="identifiers[]" required multiple>
-                                    @foreach ($identifiers as $identifier)
-                                        <option value="{{ $identifier->id }}">{{ $identifier->role->name }}- {{ $identifier->unit->name }}</option>
+                                <select class="drop-data form-select form-select-solid border border" name="unit_id" required>
+                                    @foreach ($unit as $unt)
+                                        <option value="{{ $unt->id }}">{{ $unt->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
