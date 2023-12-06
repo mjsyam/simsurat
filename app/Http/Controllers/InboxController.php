@@ -52,26 +52,6 @@ class InboxController extends Controller
     public function tableInbox() {
 
         if (request()->ajax()) {
-
-            // $letters = DB::table('letters')
-            // ->select(['*', 'letters.id as letter_id'])
-            // ->join('letter_receivers', 'letter_receivers.letter_id', '=', 'letters.id')
-            // ->join('users', 'letters.user_id', '=', 'users.id')
-            // // ->leftJoin('dispositions', 'letter_receivers.disposition_id', '=', 'dispositions.id')
-            // // ->leftJoin('disposition_to', 'dispositions.id', '=', 'disposition_to.disposition_id')
-            // ->where('letter_receivers.user_id', Auth::user()->id)
-            // // ->orWhere('disposition_to.role_id', Auth::user()->roles->first()->id)
-            // // ->orWhere('letter_receivers.disposition_id', Auth::user()->id)
-            // ->get();
-
-            // $letters = Letter::with(['letterReceivers', 'user', 'dispositions.dispositionTos'])
-            // ->whereHas('letterReceivers', function ($q){
-            //     return $q->where('user_id', Auth::user()->id);
-            // })->orWhereHas('dispositions.dispositionTos', function($q){
-            //     return $q->where('role_id', Auth::user()->roles->first()->id);
-            // })
-            // ->get();
-
             $letterReceivers = LetterReceiver::where('user_id', Auth::user()->id)
             ->orWhereHas('disposition.dispositionTos', function($q){
                 $q->whereIn('role_id', Auth::user()->identifiers->pluck('role_id'));
@@ -131,50 +111,15 @@ class InboxController extends Controller
             $roleIds[] = $parentIds->id;
         }
 
-        // $roleIds = array_unique($roleIds);
 
         $roles = Role::whereIn('id', $roleIds)->get();
         $users = User::whereHas('identifiers', function ($query) use ($roleIds) {
             $query->whereIn('role_id', $roleIds);
         })->get();
 
-        // $role1 = null;
-        // $role2 = null;
-        // if($roles->count() == 1 ) {
-        //     $role1 = $roles;
-        // } elseif ($roles->count() >= 2) {
-        //     list($role1, $role2) = $roles->split(2);
-        // }
 
-
-        $informations = [
-            "Ikuti Disposisi Mentri",
-            "Proses Sesuai Prosedur",
-            "Selesaikan",
-            "Tanggapan/Suara Tertulis",
-            "Pelajari",
-            "Untuk Pertimbangan",
-            "Perbaiki",
-            "Siapkan dan Buatkan konsep/bahan",
-            "Untuk Diketahui/ diperhatikan",
-            "Check status perkembangan",
-            "Laporkan",
-            "Dibantu",
-            "Dapat disetujui",
-            "Temui saya",
-            "Adakan rapat",
-            "Jadwalkan/ ingatkan",
-            "Kirimkan segera",
-            "Fotokopi/ arsipkan",
-            "Buatkan undangan",
-            "Untuk digunakan/ ditindaklanjuti",
-            "Tangani bersama",
-            "Hadiri/ wakili",
-        ];
-
-        // $split_point = count($informations) / 2;
-        // $information1 = array_slice($informations, 0, $split_point);
-        // $information2 = array_slice($informations, $split_point);
+        $security = $this->constants->security;
+        $informations = $this->constants->informations;
 
         $isRead = LetterHistory::where('letter_receiver_id', $letterReceiver->id)->where('status', $this->constants->letter_status[2])->first();
         if (!$isRead) {
@@ -191,20 +136,16 @@ class InboxController extends Controller
 
         if($disposition){
             $dispositionTos = $disposition->dispositionTos->pluck('role_id');
-            // $informations = $disposition->DispositionInformations->pluck('information_id');
         } else{
             $dispositionTos = null;
-            // $informations = null;
         }
 
-        // dd($roles);
         return view('inbox.detail', compact([
-            'users', 'letter', 'letterReceiver', 'roles', 'informations', 'informations', 'disposition', 'dispositionTos'
+            'users', 'letter', 'letterReceiver', 'roles', 'informations', 'security', 'informations', 'disposition', 'dispositionTos'
         ]));
     }
 
     public function disposition(LetterReceiver $letterReceiver, Request $request){
-        // dd($request);
         $users = User::select('id', 'name')->get();
         $disposition = Disposition::create([
             'letter_id' => $letterReceiver->letter->id,

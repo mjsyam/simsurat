@@ -34,46 +34,17 @@
                     </div>
                     <div class="col-md-9">
                         <div class="pt-3" style="display: flex;  justify-content: space-between;">
-                            <div class="form-check">
-                                <input style="color: black; border: rgb(70, 70, 70) 1px solid" class="form-check-input"
-                                    id="sangatRahasia" type="radio" name="security_level" value="Sangat Rahasia"
-                                    @if ($disposition && $disposition->security_level == 'Sangat Rahasia') checked @endif>
-                                <label style="color: black" class="form-check-label" for="sangatRahasia">
-                                    Sangat Rahasia
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input style="color: black; border: rgb(70, 70, 70) 1px solid" class="form-check-input"
-                                    id="rahasia" type="radio" name="security_level" value="Rahasia"
-                                    @if ($disposition && $disposition->security_level == 'Rahasia') checked @endif>
-                                <label style="color: black" class="form-check-label" for="rahasia">
-                                    Rahasia
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input style="color: black; border: rgb(70, 70, 70) 1px solid" class="form-check-input"
-                                    id="sangatSegera" type="radio" name="security_level" value="Sangat Segera"
-                                    @if ($disposition && $disposition->security_level == 'Sangat Segera') checked @endif>
-                                <label style="color: black" class="form-check-label" for="sangatSegera">
-                                    Sangat Segera
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input style="color: black; border: rgb(70, 70, 70) 1px solid" class="form-check-input"
-                                    id="segera" type="radio" name="security_level" value="Segera"
-                                    @if ($disposition && $disposition->security_level == 'Segera') checked @endif>
-                                <label style="color: black" class="form-check-label" for="segera">
-                                    Segera
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input style="color: black; border: rgb(70, 70, 70) 1px solid" class="form-check-input"
-                                    id="biasa" type="radio" name="security_level" value="Biasa"
-                                    @if ($disposition && $disposition->security_level == 'Biasa') checked @endif>
-                                <label style="color: black" class="form-check-label" for="biasa">
-                                    Biasa
-                                </label>
-                            </div>
+                            @foreach ($security as $security)
+                                <div class="form-check">
+                                    <input style="color: black; border: rgb(70, 70, 70) 1px solid" class="form-check-input"
+                                        id="{{$security}}" type="radio" name="security_level" value="{{$security}}"
+                                        @if($disposition) disabled @endif
+                                        @if ($disposition && $disposition->security_level == $security) checked @endif>
+                                    <label style="color: black" class="form-check-label" for="{{$security}}">
+                                        {{$security}}
+                                    </label>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -84,7 +55,7 @@
                     <div class="col-md-9">
                         <input type="number" name="agenda_number" class="form-control" id="agenda"
                             aria-describedby="emailHelp"
-                            value=@if ($disposition) {{ $disposition->agenda_number }} @endif>
+                            value=@if ($disposition) {{ $disposition->agenda_number }} disabled @endif>
                     </div>
                 </div>
                 <div class="row mb-5">
@@ -94,7 +65,7 @@
                     <div class="col-md-9">
                         <input type="date" name="receive_date" class="form-control" id="agenda"
                             aria-describedby="emailHelp"
-                            value=@if ($disposition) {{ $disposition->receive_date }} @endif>
+                            value=@if ($disposition) {{ $disposition->receive_date }} disabled @endif>
                     </div>
                 </div>
                 <div class="row mb-5">
@@ -104,7 +75,7 @@
                     <div class="col-md-9">
                         <input type="date" name="purpose" class="form-control" id="agenda"
                             aria-describedby="emailHelp"
-                            value=@if ($disposition) {{ $disposition->purpose }} @endif>
+                            value=@if ($disposition) {{ $disposition->purpose }} disabled @endif>
                     </div>
                 </div>
                 <div class="row mb-5">
@@ -114,7 +85,7 @@
                     <div class="col-md-9">
                         <input type="text" name="from" class="form-control" id="agenda"
                             aria-describedby="emailHelp"
-                            value=@if ($disposition) {{ $disposition->from }} @endif>
+                            value=@if ($disposition) {{ $disposition->from }} disabled @endif>
                     </div>
                 </div>
                 <div class="row mb-5">
@@ -124,7 +95,7 @@
                     <div class="col-md-9">
                         <input type="text" name="point" class="form-control" id="agenda"
                             aria-describedby="emailHelp"
-                            value=@if ($disposition) {{ $disposition->point }} @endif>
+                            value=@if ($disposition) {{ $disposition->point }} disabled @endif>
                     </div>
                 </div>
                 <div class="row mb-5">
@@ -138,9 +109,11 @@
                                 @endforeach
                             </select>
                         @else
-                            <div class="alert alert-primary" role="alert">
-                                Surat telah terdisposisi
-                            </div>
+                            <ul>
+                                @foreach ($disposition->dispositionTos as $dispositionTos)
+                                    <li>{{ $dispositionTos->user->name }}</li>
+                                @endforeach
+                            </ul>
                         @endif
                     </div>
                 </div>
@@ -155,9 +128,16 @@
                                 @endforeach
                             </select>
                         @else
-                            <div class="alert alert-primary" role="alert">
-                                Surat telah terdisposisi
+                            <div>
+                                <ul>
+                                    @foreach ($disposition->DispositionInformations as $dispositionInformation)
+                                        <li>{{ $dispositionInformation->information }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
+                            {{-- <div class="alert alert-primary" role="alert">
+                                Surat telah terdisposisi
+                            </div> --}}
                         @endif
                     </div>
                 </div>
@@ -166,7 +146,11 @@
                         <label for="agenda" class="form-label">Deskripsi</label>
                     </div>
                     <div class="col-md-9">
-                        <textarea name="description" class="form-control" rows="4"></textarea>
+                        <textarea name="description" class="form-control" rows="4" @if ($disposition) disabled @endif>
+@if ($disposition)
+{{ $disposition->information }}
+@endif
+</textarea>
                     </div>
                 </div>
                 @if (!$disposition)
