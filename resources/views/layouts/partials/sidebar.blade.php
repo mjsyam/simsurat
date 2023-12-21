@@ -1,35 +1,65 @@
-<div class="sidebar">
-	<div class="sidebar-inner">
-		<!-- ### $Sidebar Header ### -->
-		<div class="sidebar-logo">
-			<div class="peers ai-c fxw-nw">
-				<div class="peer peer-greed">
-					<a class='sidebar-link td-n' href="/">
-						<div class="peers ai-c fxw-nw">
-							<div class="peer">
-								<div class="logo">
-									<img src="{{ asset('images/logo.png') }}" style="border-radius: 50%;height: 4rem;width: 7.5rem;object-fit: contain;" alt="">
-								</div>
-							</div>
-							<div class="peer peer-greed">
-								<h5 class="lh-1 mB-0 logo-text">SISUKMA</h5>
-							</div>
-						</div>
-					</a>
-				</div>
-				<div class="peer">
-					<div class="mobile-toggle sidebar-toggle">
-						<a href="" class="td-n">
-							<i class="ti-arrow-circle-left"></i>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
+<ul class="list-unstyled components">
+    @php
+        $route = Route::currentRouteName();
+        $settingOpen = $route == 'admin.role.index'
+            || $route == 'admin.identifier.index'
+            || $route == 'admin.unit.index'
+            || $route == 'admin.user.index';
+    @endphp
 
-		<!-- ### $Sidebar Menu ### -->
-		<ul class="scrollable">
-			@include('layouts.partials.menu')
-		</ul>
-	</div>
-</div>
+    <li class="{{ $settingOpen ? 'active' : '' }}">
+        <a href="#presensiSubMenu" data-toggle="collapse" aria-expanded="false" class="d-flex">
+            <div class="mr-auto"><i class="fas fa-calendar-day fa-fw mr-2"></i>Setting</div>
+            <div class="mr-1">
+                <i class="fa fa-caret-down"></i>
+            </div>
+        </a>
+        <ul class="collapse list-unstyled {{ $settingOpen ? 'show' : '' }} " id="presensiSubMenu">
+            <li class="{{ $route == "admin.user.index" ? 'active' : '' }}">
+                {{-- <a class="btn sidebar-link {{ Str::startsWith($route, ADMIN . '.users') ? 'actived' : '' }}" href="{{ route(ADMIN . '.users.index') }}"> --}}
+                <a href="{{ route('admin.user.index') }}">
+                    <i class="c-red-300 ti-settings"></i>
+                    User
+                </a>
+            </li>
+
+            <li class="{{ $route == "admin.identifier.index" ? 'active' : '' }}">
+                <a href="{{ route('admin.identifier.index') }}">
+                    <i class="c-red-300 ti-settings"></i>
+                    Identifier
+                </a>
+            </li>
+
+            <li class="{{ $route == 'admin.unit.index' ? 'active' : '' }}">
+                <a href="{{ route('admin.unit.index') }}">
+                    <i class="c-red-300 ti-settings"></i>
+                    Unit
+                </a>
+            </li>
+
+            <li class="{{ $route == 'admin.role.index' ? 'active' : '' }}">
+                <a href="{{ route('admin.role.index') }}">
+                    <i class="c-red-300 ti-settings"></i>
+                    Role
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="active">
+        <a href="{{ route('sent.letter-index') }}"><i class="fas fa-home fa-fw mr-2"></i>Beranda</a>
+    </li>
+
+    <li class="{{ $route = 'inbox.index' ? 'active' : '' }}">
+        <a href="{{ route('inbox.index') }}"><i class="c-red-300 ti-settings mr-2"></i>Inbox</a>
+    </li>
+
+    <li class="{{ $route = 'sent.letter-index' ? 'active' : '' }}">
+        <a href="{{ route('sent.letter-index') }}"><i class="fas fa-home fa-fw mr-2"></i>Kirim Surat</a>
+    </li>
+
+    <li class="{{ $route = 'outgoing-letter.index' ? 'active' : '' }}">
+        <a href="{{ route('outgoing-letter.index') }}"><i class="fas fa-home fa-fw mr-2"></i>Surat Keluar</a>
+    </li>
+
+</ul>

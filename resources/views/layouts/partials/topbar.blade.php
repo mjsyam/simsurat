@@ -1,4 +1,4 @@
-<nav class="navbar bg-white py-3">
+<nav class="navbar py-3">
     <div class="container-fluid">
         <a id='sidebar-toggle' class="btn sidebar-toggle" href="javascript:void(0);">
             <i class="ti-menu"></i>

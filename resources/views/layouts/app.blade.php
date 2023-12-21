@@ -5,45 +5,41 @@
 @yield('css')
 
 <body>
-    <div>
-        <!-- #Main ============================ -->
-        <div class="page-container">
-            <!-- ### $Topbar ### -->
+    <div class="wrapper">
+
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                {{-- <div class="p-b-13">
+                    <img src="{{url('/asset/login/images/itk.png')}}" alt="itk" class="center">
+                </div> --}}
+                <h6 style="font-weight:700;font-size:14px" align="center">Sistem Informasi</h6>
+                <h4 class="font-poppins head-sidebar" align="center" style="color:#0067B2">Kepegawaian ITK</h4>
+            </div>
+            @include('layouts.partials.sidebar')
+        </nav>
+        <!-- Page Content  -->
+        <div id="content" style="background-color: whitesmoke">
+
+            <!-- Navbar  -->
             @include('layouts.partials.topbar')
 
-            <!-- ### $App Screen Content ### -->
-            <div class="container-fluid py-5 px-10">
+            @yield('content')
 
-                <h4 class="c-grey-900 mT-10 mB-30">@yield('page-header')</h4>
-
-                @include('layouts.partials.messages')
-
-                @yield('content')
-
-            </div>
-            <!-- ### $App Screen Footer ### -->
-            <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600">
-                <span>Copyright © {{ date('Y') }} Designed by
-                    <a>Colorlib</a>. Created By UPT TIK All rights
-                    reserved.</span>
-            </footer>
         </div>
 
-        <!-- #Left Sidebar ==================== -->
-        @include('layouts.partials.sidebar')
+        @yield('modal')
 
+        <!-- Dark Overlay element -->
+        <div class="overlay"></div>
     </div>
-    
-    <script src="{{ asset('/js/app.js') }}"></script>
+            <button class="btn btn-primary" id="btnTop">
+                <i class="fas fa-arrow-circle-up"></i>
+            </button>
 
-    <!-- Global js content -->
-
-    <!-- End of global js content-->
-
-    <!-- Specific js content placeholder -->
     @stack('js')
     @yield('script')
-    {{-- <script src="{{asset('/datatable/datatables.bundle.js')}}"></script> --}}
+
 </body>
 
 </html>
