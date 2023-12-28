@@ -12,8 +12,8 @@ class HomeController extends Controller
      * @return void
      */
 
-    // middleware juga bisa digunakan didalam controller 
-    // bukan hanya di route 
+    // middleware juga bisa digunakan didalam controller
+    // bukan hanya di route
     // jika dibutuhkan maka middleware bisa digunakan di controller
     // public function __construct()
     // {
@@ -27,6 +27,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return redirect(route('inbox.index'));
     }
 }

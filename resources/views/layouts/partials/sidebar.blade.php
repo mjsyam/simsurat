@@ -8,58 +8,54 @@
     @endphp
 
     <li class="{{ $settingOpen ? 'active' : '' }}">
-        <a href="#presensiSubMenu" data-toggle="collapse" aria-expanded="false" class="d-flex">
-            <div class="mr-auto"><i class="fas fa-calendar-day fa-fw mr-2"></i>Setting</div>
+        <a href="#settingSubMenu" data-toggle="collapse" aria-expanded="false" class="d-flex">
+            <div class="mr-auto"><i class="c-red-300 ti-settings mr-2"></i>Setting</div>
             <div class="mr-1">
                 <i class="fa fa-caret-down"></i>
             </div>
         </a>
-        <ul class="collapse list-unstyled {{ $settingOpen ? 'show' : '' }} " id="presensiSubMenu">
+        <ul class="collapse list-unstyled {{ $settingOpen ? 'show' : '' }} " id="settingSubMenu">
             <li class="{{ $route == "admin.user.index" ? 'active' : '' }}">
                 {{-- <a class="btn sidebar-link {{ Str::startsWith($route, ADMIN . '.users') ? 'actived' : '' }}" href="{{ route(ADMIN . '.users.index') }}"> --}}
                 <a href="{{ route('admin.user.index') }}">
-                    <i class="c-red-300 ti-settings"></i>
+                    <i class="fas fa-user-tie fa-fw mr-2"></i>
                     User
                 </a>
             </li>
 
             <li class="{{ $route == "admin.identifier.index" ? 'active' : '' }}">
                 <a href="{{ route('admin.identifier.index') }}">
-                    <i class="c-red-300 ti-settings"></i>
+                    <i class="fas fa-users-gear fa-fw mr-2"></i>
                     Identifier
                 </a>
             </li>
 
             <li class="{{ $route == 'admin.unit.index' ? 'active' : '' }}">
                 <a href="{{ route('admin.unit.index') }}">
-                    <i class="c-red-300 ti-settings"></i>
+                    <i class="fas fa-users-viewfinder fa-fw mr-2"></i>
                     Unit
                 </a>
             </li>
 
             <li class="{{ $route == 'admin.role.index' ? 'active' : '' }}">
                 <a href="{{ route('admin.role.index') }}">
-                    <i class="c-red-300 ti-settings"></i>
+                    <i class="fas fa-user-lock fa-fw mr-2"></i>
                     Role
                 </a>
             </li>
         </ul>
     </li>
 
-    <li class="active">
-        <a href="{{ route('sent.letter-index') }}"><i class="fas fa-home fa-fw mr-2"></i>Beranda</a>
-    </li>
-
     <li class="{{ $route = 'inbox.index' ? 'active' : '' }}">
-        <a href="{{ route('inbox.index') }}"><i class="c-red-300 ti-settings mr-2"></i>Inbox</a>
+        <a href="{{ route('inbox.index') }}"><i class="fas fa-inbox fa-fw mr-2"></i>Inbox</a>
     </li>
 
     <li class="{{ $route = 'sent.letter-index' ? 'active' : '' }}">
-        <a href="{{ route('sent.letter-index') }}"><i class="fas fa-home fa-fw mr-2"></i>Kirim Surat</a>
+        <a href="{{ route('sent.letter-index') }}"><i class="fas fa-envelope fa-fw mr-2"></i>Kirim Surat</a>
     </li>
 
     <li class="{{ $route = 'outgoing-letter.index' ? 'active' : '' }}">
-        <a href="{{ route('outgoing-letter.index') }}"><i class="fas fa-home fa-fw mr-2"></i>Surat Keluar</a>
+        <a href="{{ route('outgoing-letter.index') }}"><i class="fas fa-envelope-open-text fa-fw mr-2"></i>Surat Keluar</a>
     </li>
 
 </ul>
