@@ -23,11 +23,7 @@
 
             <!-- Navbar  -->
             @include('layouts.partials.topbar')
-            <div class="card" style="margin:30px; padding: 30px;">
-                <div class="card-body">
-                    @yield('content')
-                </div>
-            </div>
+            @yield('content')
 
         </div>
 
