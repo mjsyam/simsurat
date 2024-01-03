@@ -4,6 +4,11 @@
     @include('admin.user.components.add-modal')
     @include('admin.user.components.delete-modal')
     @include('admin.user.components.edit-modal')
+    <style>
+        .form-select {
+            width: 70px !important;
+        }
+    </style>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <div>
         <h3 class="">Users</h3><br>

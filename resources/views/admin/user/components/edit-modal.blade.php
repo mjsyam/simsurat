@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body mx-5 mx-lg-15 mb-7">
                 <form id="edit_user_modal_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
-                    <div class="scroll-y me-n10 pe-10" data-kt-scroll-max-height="auto" data-kt-scroll-offset="300px">
+                    <div class="me-n10 pe-10" data-kt-scroll-max-height="auto" data-kt-scroll-offset="300px">
                         <div class="row mb-9">
                             <div class="col-lg-12 text-center mb-9">
                                 <span class="fs-1 fw-bolder text-dark d-block mb-1">Edit User</span>
@@ -36,7 +36,7 @@
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                     <span class="required fw-bold">Status</span>
                                 </label>
-                                <select class="drop-data form-select form-select-solid" name="status" required>
+                                <select class="drop-data form-select form-select-solid" name="status" required style="width: 100% !important;">
                                     @foreach ($userStatus as $option)
                                         <option value="{{ $option }}">{{ $option }}</option>
                                     @endforeach

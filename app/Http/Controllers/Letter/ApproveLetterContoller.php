@@ -25,7 +25,7 @@ class ApproveLetterContoller extends Controller
                 return $query->whereHas('letterHistories', function($query){
                     return $query->where('status', 'waiting');
                 });
-            })->with("letterReceivers.letterHistories");
+            })->with("letterReceivers.letterHistories")->orderBy("created_at", "desc");
 
             return DataTables::of($letters)
                 ->addColumn('action', function ($letter) {

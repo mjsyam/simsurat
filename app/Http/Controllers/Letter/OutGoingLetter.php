@@ -32,7 +32,7 @@ class OutGoingLetter extends Controller
                         });
                     });
                 });
-            })->get();
+            })->orderBy('created_at', 'desc')->get();
 
             return DataTables::of($letters)
                 ->addColumn('action', function ($letter) {

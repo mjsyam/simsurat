@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @inject('carbon', 'Carbon\Carbon')
 @section('content')
+<style>
+    .form-select {
+        width: 70px !important;
+    }
+</style>
     <div>
         <h3 class="">Surat Belum Dibaca</h3><br>
         <div class="bgc-white bd bdrs-3 p-20 mB-20 mt-4">

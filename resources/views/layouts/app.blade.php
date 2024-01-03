@@ -10,21 +10,24 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                {{-- <div class="p-b-13">
-                    <img src="{{url('/asset/login/images/itk.png')}}" alt="itk" class="center">
-                </div> --}}
-                <h6 style="font-weight:700;font-size:14px">Sistem Informasi</h6>
-                <h4 class="font-poppins head-sidebar" style="color:#0067B2">Surat ITK</h4>
+                <div class="mb-5">
+                    <img src="{{url('/images/Lambang_ITK.png')}}" alt="itk" class="center">
+                </div>
+                <h6 style="font-weight:700;font-size:14px; text-align: center">Sistem Informasi</h6>
+                <h4 class="font-poppins head-sidebar" style="color:#0067B2; text-align: center">Surat ITK</h4>
             </div>
             @include('layouts.partials.sidebar')
         </nav>
         <!-- Page Content  -->
-        <div id="content" style="background-color: whitesmoke">
+        <div id="content" style="background-color: whitesmoke; margin: 0 !important; padding: 0 !important">
 
             <!-- Navbar  -->
             @include('layouts.partials.topbar')
-
-            @yield('content')
+            <div class="card" style="margin:30px; padding: 30px;">
+                <div class="card-body">
+                @yield('content')
+                </div>
+            </div>
 
         </div>
 
@@ -41,5 +44,4 @@
     @yield('script')
 
 </body>
-
 </html>

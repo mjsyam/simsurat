@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body mx-5 mx-lg-15 mb-7">
                 <form id="add_identifier_modal_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
-                    <div class="scroll-y me-n10 pe-10" data-kt-scroll-max-height="auto" data-kt-scroll-offset="300px">
+                    <div class=" me-n10 pe-10" data-kt-scroll-max-height="auto" data-kt-scroll-offset="300px">
                         <div class="row mb-9">
                             <div class="col-lg-12 text-center mb-9">
                                 <span class="fs-1 fw-bolder text-dark d-block mb-1">Tambah Identifier</span>
@@ -18,7 +18,7 @@
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                     <span class="fw-bold">Role</span>
                                 </label>
-                                <select class="drop-data form-select form-select-solid" name="role_id">
+                                <select class="drop-data form-select form-select-solid" name="role_id" style="width: 100% !important;">
                                     <option value=""></option>
                                     @foreach ($roles as $role)
                                         <option value="{{$role->id}}">{{$role->name}}</option>
@@ -29,7 +29,7 @@
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                     <span class="fw-bold">Unit</span>
                                 </label>
-                                <select class="drop-data form-select form-select-solid" name="unit_id">
+                                <select class="drop-data form-select form-select-solid" name="unit_id" style="width: 100% !important;">
                                     <option value=""></option>
                                     @foreach ($units as $unit)
                                         <option value="{{$unit->id}}">{{$unit->name}}</option>

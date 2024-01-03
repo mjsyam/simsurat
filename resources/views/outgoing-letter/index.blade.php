@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-
+<style>
+    .form-select {
+        width: 70px !important;
+    }
+</style>
     <div>
         <h3 class="">Outgoing Letter</h3><br>
         <div class="bgc-white bd bdrs-3 p-20 mB-20 mt-4">

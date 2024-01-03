@@ -3,11 +3,16 @@
 @section('content')
     @include('admin.identifier.components.add-modal')
     @include('admin.identifier.components.delete-modal')
+    <style>
+        .form-select {
+            width: 70px !important;
+        }
+    </style>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <div>
         <h3 class="">Identifiers</h3><br>
         <div class="mb-4">
-            <a href="#add_identifier_modal" class="dropdown-item py-2 btn btn-success px-7" data-bs-toggle="modal">
+            <a href="#add_identifier_modal" class="py-2 btn btn-success px-7" data-bs-toggle="modal">
                 Add
             </a>
         </div>

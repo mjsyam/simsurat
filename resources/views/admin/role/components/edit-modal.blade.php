@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body mx-5 mx-lg-15 mb-7">
                 <form id="add_user_modal_form" class="form fv-plugins-bootstrap5 fv-plugins-framework">
-                    <div class="scroll-y me-n10 pe-10" data-kt-scroll-max-height="auto" data-kt-scroll-offset="300px">
+                    <div class=" me-n10 pe-10" data-kt-scroll-max-height="auto" data-kt-scroll-offset="300px">
                         <div class="row mb-9">
                             <div class="col-lg-12 text-center mb-9">
                                 <span class="fs-1 fw-bolder text-dark d-block mb-1">Edit Role</span>

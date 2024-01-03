@@ -1,12 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    .form-select {
+        width: 70px !important;
+    }
+</style>
     @include('admin.unit.components.add-modal')
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <div>
         <h3 class="">Units</h3><br>
         <div class="mb-4">
-            <a href="#add_unit_modal" class="dropdown-item py-2 btn btn-success px-7" data-bs-toggle="modal">
+            <a href="#add_unit_modal" class="py-2 btn btn-success px-7" data-bs-toggle="modal">
                 Add
             </a>
         </div>

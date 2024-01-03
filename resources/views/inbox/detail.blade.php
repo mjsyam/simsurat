@@ -14,20 +14,20 @@
     @php
         use Carbon\Carbon;
     @endphp
-    <div style="background-color: #E6EEFA" class="mb-2 py-5 px-4">
+    <div class="mb-2 py-5 px-4">
         <div class="d-flex justify-content-between">
             <div>
                 <h1>Detail</h1>
             </div>
             <div>
-                <a href="{{ asset("/storage/letter/$letter->file") }}" class="btn btn-success">Download Letters</a>
+                <a href="{{ asset("/storage/letter/$letter->file") }}" class="btn btn-success">Lihat Surat</a>
             </div>
         </div>
-        <hr>
+        <hr style="height: 2px; background-color:black">
         <form action="{{ route('inbox.disposition', ['letterReceiver' => $letterReceiver->id]) }}" method="POST">
             @method('POST')
             @csrf
-            <div class="container-fluid">
+            <div class="container-fluid mt-5">
                 <div class="row mb-5">
                     <div class="col-md-3">
                         <h3>Tingkat Kerahasiaan</h3>
@@ -39,7 +39,7 @@
                                     <input style="color: black; border: rgb(70, 70, 70) 1px solid" class="form-check-input"
                                         id="{{$security}}" type="radio" name="security_level" value="{{$security}}"
                                         @if($disposition) disabled @endif
-                                        @if ($disposition && $disposition->security_level == $security) checked @endif>
+                                        @if ($disposition && $disposition->security_level == $security) checked @endif required>
                                     <label style="color: black" class="form-check-label" for="{{$security}}">
                                         {{$security}}
                                     </label>
@@ -55,7 +55,7 @@
                     <div class="col-md-9">
                         <input type="number" name="agenda_number" class="form-control" id="agenda"
                             aria-describedby="emailHelp"
-                            value=@if ($disposition) {{ $disposition->agenda_number }} disabled @endif>
+                            value=@if ($disposition) {{ $disposition->agenda_number }} disabled @endif required>
                     </div>
                 </div>
                 <div class="row mb-5">
@@ -65,7 +65,7 @@
                     <div class="col-md-9">
                         <input type="date" name="receive_date" class="form-control" id="agenda"
                             aria-describedby="emailHelp"
-                            value=@if ($disposition) {{ $disposition->receive_date }} disabled @endif>
+                            value=@if ($disposition) {{ $disposition->receive_date }} disabled @endif required>
                     </div>
                 </div>
                 <div class="row mb-5">
@@ -75,7 +75,7 @@
                     <div class="col-md-9">
                         <input type="date" name="purpose" class="form-control" id="agenda"
                             aria-describedby="emailHelp"
-                            value=@if ($disposition) {{ $disposition->purpose }} disabled @endif>
+                            value=@if ($disposition) {{ $disposition->purpose }} disabled @endif required>
                     </div>
                 </div>
                 <div class="row mb-5">
@@ -85,7 +85,7 @@
                     <div class="col-md-9">
                         <input type="text" name="from" class="form-control" id="agenda"
                             aria-describedby="emailHelp"
-                            value=@if ($disposition) {{ $disposition->from }} disabled @endif>
+                            value=@if ($disposition) {{ $disposition->from }} disabled @endif required>
                     </div>
                 </div>
                 <div class="row mb-5">
@@ -95,7 +95,7 @@
                     <div class="col-md-9">
                         <input type="text" name="point" class="form-control" id="agenda"
                             aria-describedby="emailHelp"
-                            value=@if ($disposition) {{ $disposition->point }} disabled @endif>
+                            value=@if ($disposition) {{ $disposition->point }} disabled @endif required>
                     </div>
                 </div>
                 <div class="row mb-5">
@@ -123,7 +123,7 @@
                     </div>
                     <div class="col-md-9">
                         @if (!$disposition)
-                            <select name="informations[]" id="informations" multiple>
+                            <select name="informations[]" id="informations" multiple required>
                                 @foreach ($informations as $information)
                                 @endforeach
                             </select>

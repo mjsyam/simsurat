@@ -54,8 +54,8 @@
         <a href="{{ route('sent.letter-index') }}"><i class="fas fa-envelope fa-fw mr-2"></i>Kirim Surat</a>
     </li>
 
-    <li class="{{ $route = 'outgoing-letter.index' ? 'active' : '' }}">
-        <a href="{{ route('outgoing-letter.index') }}"><i class="fas fa-envelope-open-text fa-fw mr-2"></i>Surat Keluar</a>
+    <li class="{{ $route = 'approve.letter.index' ? 'active' : '' }}">
+        <a href="{{ route('approve.letter.index') }}"><i class="fas fa-envelope-open-text fa-fw mr-2"></i>Surat Keluar</a>
     </li>
 
 </ul>

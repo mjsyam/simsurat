@@ -55,7 +55,7 @@ class InboxController extends Controller
             $letterReceivers = LetterReceiver::where('user_id', Auth::user()->id)
             ->orWhereHas('disposition.dispositionTos', function($q){
                 $q->whereIn('role_id', Auth::user()->identifiers->pluck('role_id'));
-            })->with(['letter', 'user', 'disposition.dispositionTos']);
+            })->with(['letter', 'user', 'disposition.dispositionTos'])->orderBy("created_at", "desc");
 
             // dd($letterReceivers);
 
@@ -146,6 +146,16 @@ class InboxController extends Controller
     }
 
     public function disposition(LetterReceiver $letterReceiver, Request $request){
+        $request->validate([
+            'security_level' => 'required',
+            'agenda_number' => 'required',
+            'receive_date' => 'required',
+            'purpose' => 'required',
+            'from' => 'required',
+            'point' => 'required',
+            'description' => 'required',
+        ]);
+
         $users = User::select('id', 'name')->get();
         $disposition = Disposition::create([
             'letter_id' => $letterReceiver->letter->id,
