@@ -6,6 +6,9 @@
             || $route == 'admin.unit.index'
             || $route == 'admin.user.index';
     @endphp
+    <li class="{{ $route = 'home' ? 'active' : '' }}">
+        <a href="{{ route('home') }}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+    </li>
 
     <li class="{{ $settingOpen ? 'active' : '' }}">
         <a href="#settingSubMenu" data-toggle="collapse" aria-expanded="false" class="d-flex">
