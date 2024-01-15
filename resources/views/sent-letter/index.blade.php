@@ -22,6 +22,7 @@
                         <th>Judul Surat</th>
                         <th>Diterbitkan oleh</th>
                         <th>Dikirimkan ke</th>
+                        <th>Ditanda tangani oleh</th>
                         <th>Kategori Surat</th>
                         <th>Tanggal diterbitkan</th>
                         <th class="w-100px">#</th>
@@ -81,6 +82,7 @@
             { data: 'title'},
             { data: 'user'},
             { data: 'receiver'},
+            { data: 'signed'},
             { data: 'category'},
             { data: 'created_at'},
             { data: 'action'},
