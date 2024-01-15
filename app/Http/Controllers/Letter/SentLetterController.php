@@ -142,6 +142,22 @@ class SentLetterController extends Controller
                         'id', 'fileLink'
                     ]));
                 })
+                ->addColumn('user', function ($letter) {
+                    return $letter->user->name;
+                })
+                ->addColumn('receiver', function ($letter) {
+                    $names = $letter->letterReceivers->map(function ($item) {
+                        return $item->user->name;
+                    })->take(2)->toArray();
+
+                    $count = $letter->letterReceivers->count();
+
+                    if ($count > 2) {
+                        return implode(', ', $names) . " dan " . ($count - 2) . " lainnya";
+                    }
+
+                    return implode(', ', $names);
+                })
                 ->addColumn('category', function ($letter) {
                     return $letter->letterCategory->name;
                 })
