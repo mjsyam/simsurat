@@ -132,7 +132,7 @@
         </div>
     </div>
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-md-6 col-xl-3 mb-4">
             <div class="card shadow border-left-success py-2" style="margin:30px; padding: 30px;">
                 <div class="card-body">
@@ -173,5 +173,5 @@
             </div>
         </div>
 
-    </div>
+    </div> --}}
 @endsection

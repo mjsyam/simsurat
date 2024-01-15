@@ -10,6 +10,18 @@
         <a href="{{ route('home') }}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
     </li>
 
+    <li class="{{ $route = 'inbox.index' ? 'active' : '' }}">
+        <a href="{{ route('inbox.index') }}"><i class="fas fa-inbox fa-fw mr-2"></i>Inbox</a>
+    </li>
+
+    <li class="{{ $route = 'sent.letter-index' ? 'active' : '' }}">
+        <a href="{{ route('sent.letter-index') }}"><i class="fas fa-envelope fa-fw mr-2"></i>Kirim Surat</a>
+    </li>
+
+    <li class="{{ $route = 'approve.letter.index' ? 'active' : '' }}">
+        <a href="{{ route('approve.letter.index') }}"><i class="fas fa-envelope-open-text fa-fw mr-2"></i>Surat Keluar</a>
+    </li>
+
     <li class="{{ $settingOpen ? 'active' : '' }}">
         <a href="#settingSubMenu" data-toggle="collapse" aria-expanded="false" class="d-flex">
             <div class="mr-auto"><i class="c-red-300 ti-settings mr-2"></i>Setting</div>
@@ -48,17 +60,4 @@
             </li>
         </ul>
     </li>
-
-    <li class="{{ $route = 'inbox.index' ? 'active' : '' }}">
-        <a href="{{ route('inbox.index') }}"><i class="fas fa-inbox fa-fw mr-2"></i>Inbox</a>
-    </li>
-
-    <li class="{{ $route = 'sent.letter-index' ? 'active' : '' }}">
-        <a href="{{ route('sent.letter-index') }}"><i class="fas fa-envelope fa-fw mr-2"></i>Kirim Surat</a>
-    </li>
-
-    <li class="{{ $route = 'approve.letter.index' ? 'active' : '' }}">
-        <a href="{{ route('approve.letter.index') }}"><i class="fas fa-envelope-open-text fa-fw mr-2"></i>Surat Keluar</a>
-    </li>
-
 </ul>
