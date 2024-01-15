@@ -34,18 +34,6 @@ class InboxController extends Controller
     }
 
     public function index() {
-
-        // $letters = DB::table('letters')
-        // ->join('letter_receivers', 'letter_receivers.letter_id', '=', 'letters.id')
-        // ->join('users', 'letters.user_id', '=', 'users.id')
-        // ->leftJoin('dispositions', 'letter_receivers.disposition_id', '=', 'dispositions.id')
-        // ->leftJoin('disposition_to', 'dispositions.id', '=', 'disposition_to.disposition_id')
-        // ->where('letter_receivers.user_id', Auth::user()->id)
-        // ->orWhere('letter_receivers.disposition_id', Auth::user()->id)
-        // ->orWhere('disposition_to.role_id', Auth::user()->roles->first()->id)
-        // ->get();
-
-        // dd($letters);
         return view("inbox.index");
     }
 
@@ -69,20 +57,27 @@ class InboxController extends Controller
             ->addColumn('email', function($letterReceivers) {
                 return $letterReceivers->letter->user->email;
             })
+            // ->addColumn('action', function ($letterReceivers) {
+            //     $detail = '
+            //     <li>
+            //         <div class="btn-detail">
+            //             <a href="/inbox/detail/'. $letterReceivers->id .'" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
+            //         </div>
+            //     </li>
+            //     ';
+            //     return '
+            //     <button type="button" class="btn btn-secondary btn-icon btn-sm" data-kt-menu-placement="bottom-end" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+            //     <ul class="dropdown-menu">
+            //     '.$detail.'
+            //     </ul>
+            //     ';
+            // })
             ->addColumn('action', function ($letterReceivers) {
-                $detail = '
-                <li>
-                    <div class="btn-detail">
-                        <a href="/inbox/detail/'. $letterReceivers->id .'" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
-                    </div>
-                </li>
-                ';
-                return '
-                <button type="button" class="btn btn-secondary btn-icon btn-sm" data-kt-menu-placement="bottom-end" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                <ul class="dropdown-menu">
-                '.$detail.'
-                </ul>
-                ';
+                $id = $letterReceivers->id;
+                $letterId = $letterReceivers->letter->id;
+                return view('inbox.components.menu', compact([
+                    'id', 'letterId'
+                ]));
             })
             ->addIndexColumn()
             ->rawColumns(['action'])
