@@ -145,6 +145,9 @@ class SentLetterController extends Controller
                 ->addColumn('user', function ($letter) {
                     return $letter->user->name;
                 })
+                ->addColumn('signed', function ($letter) {
+                    return $letter->signed->name;
+                })
                 ->addColumn('receiver', function ($letter) {
                     $names = $letter->letterReceivers->map(function ($item) {
                         return $item->user->name;
