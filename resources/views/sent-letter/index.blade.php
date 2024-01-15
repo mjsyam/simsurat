@@ -20,8 +20,10 @@
                     <tr class="fw-bold fs-7 text-gray-500 text-uppercase">
                         <th>#</th>
                         <th>Judul Surat</th>
+                        <th>Diterbitkan oleh</th>
+                        <th>Dikirimkan ke</th>
                         <th>Kategori Surat</th>
-                        <th>Tanggal dibuat</th>
+                        <th>Tanggal diterbitkan</th>
                         <th class="w-100px">#</th>
                     </tr>
                 </thead>
@@ -77,6 +79,8 @@
             columns: [
             { data: 'DT_RowIndex'},
             { data: 'title'},
+            { data: 'user'},
+            { data: 'receiver'},
             { data: 'category'},
             { data: 'created_at'},
             { data: 'action'},
