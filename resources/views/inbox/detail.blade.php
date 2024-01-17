@@ -42,9 +42,8 @@
                         <thead class="bgTable">
                             <tr>
                                 <td colspan="2">
-                                    <h5 class="ml-3 my-auto text-white">Nomor Agenda @if ($disposition)
-                                            ({{ $disposition->agenda_number }})
-                                        @endif
+                                    <h5 class="ml-3 my-auto text-white">Nomor Agenda
+                                        ({{ $disposition->agenda_number }})
                                     </h5>
                                 </td>
                             </tr>
@@ -56,9 +55,7 @@
                                 </td>
                                 <td>
                                     <p class="ml-3 my-auto">
-                                        @if ($disposition)
-                                            {{ $disposition->agenda_number }}
-                                        @endif
+                                        {{ $disposition->agenda_number }}
                                     </p>
                                 </td>
                             </tr>
@@ -68,9 +65,7 @@
                                 </td>
                                 <td>
                                     <span class="badge badge-warning">
-                                        @if ($disposition)
-                                            {{ $disposition->security_level }}
-                                        @endif
+                                        {{ $disposition->security_level }}
                                     </span>
                                 </td>
                             </tr>
@@ -80,9 +75,7 @@
                                 </td>
                                 <td>
                                     <p class="ml-3 my-auto">
-                                        @if ($disposition)
-                                            {{ Carbon::parse($disposition->receive_date)->format('d  M  Y') }}
-                                        @endif
+                                        {{ Carbon::parse($disposition->receive_date)->format('d  M  Y') }}
                                     </p>
                                 </td>
                             </tr>
@@ -121,128 +114,7 @@
                                 </td>
                                 <td>
                                     <p class="ml-3 my-auto">
-                                        @if ($disposition)
-                                            {{ Carbon::parse($disposition->receive_date)->format('d  M  Y') }}
-                                        @endif
-                                    </p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table table-striped">
-                        <thead class="bgTable">
-                            <tr>
-                                <td colspan="2">
-                                    <h5 class="ml-3 my-auto text-white">Informasi Detail Surat</h5>
-                                </td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <p class="ml-3 my-auto">No Surat</p>
-                                </td>
-                                <td>
-                                    <p class="ml-3 my-auto">
-                                        @if ($disposition)
-                                            {{ $disposition->agenda_number }}
-                                        @endif
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p class="ml-3 my-auto">Instansi</p>
-                                </td>
-                                <td>
-                                    <p class="ml-3 my-auto">
-                                        @if ($disposition)
-                                            {{ $disposition->from }}
-                                        @endif
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p class="ml-3 my-auto">Perihal</p>
-                                </td>
-                                <td>
-                                    <p class="ml-3 my-auto">
-                                        @if ($disposition)
-                                            {{ $disposition->point }}
-                                        @endif
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p class="ml-3 my-auto">Tanggal</p>
-                                </td>
-                                <td>
-                                    <p class="ml-3 my-auto">
-                                        @if ($disposition)
-                                            {{ Carbon::parse($disposition->purpose)->format('d  M  Y') }}
-                                        @endif
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p class="ml-3 my-auto">Lampiran</p>
-                                </td>
-                                <td>
-                                    <p class="ml-3 my-auto">-</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p class="ml-3 my-auto">Disposition To</p>
-                                </td>
-                                <td>
-                                    @if ($disposition)
-                                        <ul>
-                                            @foreach ($disposition->dispositionTos as $dispositionTos)
-                                                <li>{{ $dispositionTos->user->name }}</li>
-                                            @endforeach
-                                        </ul>
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p class="ml-3 my-auto">Deskripsi</p>
-                                </td>
-                                <td>
-                                    <p class="ml-3 my-auto">
-                                        @if ($disposition)
-                                            {{ $disposition->information }}
-                                        @endif
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p class="ml-3 my-auto">File</p>
-                                </td>
-                                <td>
-                                    <p class="ml-3 my-auto">
-                                        <a href="{{ asset("/storage/letter/$letter->file") }}"
-                                            class="btn text-white bgButton">
-                                            <i class="fa-solid text-white fa-eye me-3"></i>
-                                            Preview
-                                        </a>
-                                        <button type="button" class="btn text-white bgButton"
-                                            data-kt-menu-placement="bottom-end" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="fa-solid text-white fa-eye me-3"></i>
-                                            Download
-                                        </button>
+                                        {{ Carbon::parse($disposition->receive_date)->format('d  M  Y') }}
                                     </p>
                                 </td>
                             </tr>
@@ -252,6 +124,113 @@
             </div>
         </div>
     @endif
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead class="bgTable">
+                        <tr>
+                            <td colspan="2">
+                                <h5 class="ml-3 my-auto text-white">Informasi Detail Surat</h5>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p class="ml-3 my-auto">No Surat</p>
+                            </td>
+                            <td>
+                                <p class="ml-3 my-auto">
+                                    {{ $disposition->agenda_number }}
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="ml-3 my-auto">Instansi</p>
+                            </td>
+                            <td>
+                                <p class="ml-3 my-auto">
+                                    {{ $disposition->from }}
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="ml-3 my-auto">Perihal</p>
+                            </td>
+                            <td>
+                                <p class="ml-3 my-auto">
+                                    {{ $disposition->point }}
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="ml-3 my-auto">Tanggal</p>
+                            </td>
+                            <td>
+                                <p class="ml-3 my-auto">
+                                    {{ Carbon::parse($disposition->purpose)->format('d  M  Y') }}
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="ml-3 my-auto">Lampiran</p>
+                            </td>
+                            <td>
+                                <p class="ml-3 my-auto">-</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="ml-3 my-auto">Disposition To</p>
+                            </td>
+                            <td>
+                                <ul>
+                                    @foreach ($disposition->dispositionTos as $dispositionTos)
+                                        <li>{{ $dispositionTos->user->name }}</li>
+                                    @endforeach
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="ml-3 my-auto">Deskripsi</p>
+                            </td>
+                            <td>
+                                <p class="ml-3 my-auto">
+                                    {{ $disposition->information }}
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="ml-3 my-auto">File</p>
+                            </td>
+                            <td>
+                                <p class="ml-3 my-auto">
+                                    <a href="{{ asset("/storage/letter/$letter->file") }}" class="btn text-white bgButton">
+                                        <i class="fa-solid text-white fa-eye me-3"></i>
+                                        Preview
+                                    </a>
+                                    {{-- <button type="button" class="btn text-white bgButton"
+                                            data-kt-menu-placement="bottom-end" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <i class="fa-solid text-white fa-eye me-3"></i>
+                                            Download
+                                        </button> --}}
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
     @if ($disposition == null)
         <div class="container-fluid mt-5">
