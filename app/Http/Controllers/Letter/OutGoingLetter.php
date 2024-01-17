@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Letter;
 use App\Models\Role;
+use Carbon\Carbon;
 
 class OutGoingLetter extends Controller
 {
@@ -40,11 +41,30 @@ class OutGoingLetter extends Controller
                     <a href="' . asset("/storage/letter/$letter->file") . '" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
                 </div>';
                 })
-                ->addColumn('name', function ($action) {
-                    return $action->user->name;
+                ->addColumn('user', function ($letter) {
+                    return $letter->user->name;
                 })
-                ->addColumn('email', function ($action) {
-                    return $action->user->email;
+                ->addColumn('signed', function ($letter) {
+                    return $letter->signed->name;
+                })
+                ->addColumn('receiver', function ($letter) {
+                    $names = $letter->letterReceivers->map(function ($item) {
+                        return $item->user->name;
+                    })->take(2)->toArray();
+
+                    $count = $letter->letterReceivers->count();
+
+                    if ($count > 2) {
+                        return implode(', ', $names) . " dan " . ($count - 2) . " lainnya";
+                    }
+
+                    return implode(', ', $names);
+                })
+                ->addColumn('category', function ($letter) {
+                    return $letter->letterCategory->name;
+                })
+                ->addColumn('created_at', function ($letter) {
+                    return Carbon::parse($letter->created_at)->format('Y-m-d H:i:s');
                 })
                 ->addIndexColumn()
                 ->rawColumns(['action'])

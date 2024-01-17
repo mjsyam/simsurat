@@ -137,33 +137,65 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if ($disposition)
+                            <tr>
+                                <td>
+                                    <p class="ml-3 my-auto">No Surat</p>
+                                </td>
+                                <td>
+                                    <p class="ml-3 my-auto">
+                                        {{ $disposition->agenda_number }}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="ml-3 my-auto">Instansi</p>
+                                </td>
+                                <td>
+                                    <p class="ml-3 my-auto">
+                                        {{ $disposition->from }}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="ml-3 my-auto">Perihal</p>
+                                </td>
+                                <td>
+                                    <p class="ml-3 my-auto">
+                                        {{ $disposition->point }}
+                                    </p>
+                                </td>
+                            </tr>
+                        @endif
                         <tr>
                             <td>
-                                <p class="ml-3 my-auto">No Surat</p>
+                                <p class="ml-3 my-auto">Kategori Surat</p>
                             </td>
                             <td>
                                 <p class="ml-3 my-auto">
-                                    {{ $disposition->agenda_number }}
+                                    {{ $letter->letterCategory->name }}
                                 </p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p class="ml-3 my-auto">Instansi</p>
+                                <p class="ml-3 my-auto">Title</p>
                             </td>
                             <td>
                                 <p class="ml-3 my-auto">
-                                    {{ $disposition->from }}
+                                    {{ $letter->title }}
                                 </p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p class="ml-3 my-auto">Perihal</p>
+                                <p class="ml-3 my-auto">Yang bertanda tangan</p>
                             </td>
                             <td>
                                 <p class="ml-3 my-auto">
-                                    {{ $disposition->point }}
+                                    {{ $letter->signed->name }}
                                 </p>
                             </td>
                         </tr>
@@ -173,37 +205,7 @@
                             </td>
                             <td>
                                 <p class="ml-3 my-auto">
-                                    {{ Carbon::parse($disposition->purpose)->format('d  M  Y') }}
-                                </p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p class="ml-3 my-auto">Lampiran</p>
-                            </td>
-                            <td>
-                                <p class="ml-3 my-auto">-</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p class="ml-3 my-auto">Disposition To</p>
-                            </td>
-                            <td>
-                                <ul>
-                                    @foreach ($disposition->dispositionTos as $dispositionTos)
-                                        <li>{{ $dispositionTos->user->name }}</li>
-                                    @endforeach
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p class="ml-3 my-auto">Deskripsi</p>
-                            </td>
-                            <td>
-                                <p class="ml-3 my-auto">
-                                    {{ $disposition->information }}
+                                    {{ Carbon::parse($letter->date)->format('d  M  Y') }}
                                 </p>
                             </td>
                         </tr>
@@ -233,47 +235,55 @@
     </div>
 
     @if ($disposition == null)
-        <div class="container-fluid mt-5">
-            <div class="row">
-                <div class="col-md-12">
-                    <h5 style="color: gray">ISIAN DAN CATATAN</h5>
-                    <h6 style="color: gray">Lakukan disposisi jabatan untuk diteruskan kepada pegawai. Berikan catatan
-                        tindakan
-                        untuk informasi tambahan</h6>
-                </div>
-            </div>
         </div>
-        <div class="mb-2 py-5">
-            <form action="{{ route('inbox.disposition', ['letterReceiver' => $letterReceiver->id]) }}" method="POST">
-                @method('POST')
-                @csrf
-                <div class="container-fluid">
-                    <div class="row mb-5">
-                        <div class="col-md-3">
-                            <label for="agenda" class="form-label">Tingkat kerahasiaan</label>
-                        </div>
-                        <div class="col-md-9">
-                            <select class="form-select form-select-sm" name="security_level"
-                                @if ($disposition) disabled @endif>
-                                @foreach ($security as $security)
-                                    <option value="{{ $security }}" @if ($disposition) disabled @endif
-                                        @if ($disposition && $disposition->security_level == $security) selected @endif>{{ $security }}</option>
-                                @endforeach
-                            </select>
+        </div>
+        <div class="card" style="margin:30px; padding: 30px;">
+            <div class="card-body">
+                <div class="container-fluid mt-5">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5 style="color: #515151" class="font-weight-bold">Disposisi Surat</h5>
+                            <h6 style="color: gray">Lakukan disposisi jabatan untuk diteruskan kepada pegawai. Berikan
+                                catatan
+                                tindakan
+                                untuk informasi tambahan</h6>
                         </div>
                     </div>
-                    <div class="row mb-5">
-                        <div class="col-md-3">
-                            <label for="agenda" class="form-label">Nomor Agenda</label>
-                        </div>
-                        <div class="col-md-9">
-                            <input type="number" name="agenda_number" class="form-control" id="agenda"
-                                aria-describedby="emailHelp"
-                                value=@if ($disposition) {{ $disposition->agenda_number }} disabled @endif
-                                required>
-                        </div>
-                    </div>
-                    {{-- <div class="row mb-5">
+                </div>
+                <div class="mb-2 py-5">
+                    <form action="{{ route('inbox.disposition', ['letterReceiver' => $letterReceiver->id]) }}"
+                        method="POST">
+                        @method('POST')
+                        @csrf
+                        <div class="container-fluid">
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <label for="agenda" class="form-label">Tingkat kerahasiaan</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <select class="form-select form-select-sm" name="security_level"
+                                        @if ($disposition) disabled @endif>
+                                        @foreach ($security as $security)
+                                            <option value="{{ $security }}"
+                                                @if ($disposition) disabled @endif
+                                                @if ($disposition && $disposition->security_level == $security) selected @endif>{{ $security }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <label for="agenda" class="form-label">Nomor Agenda</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="number" name="agenda_number" class="form-control" id="agenda"
+                                        aria-describedby="emailHelp"
+                                        value=@if ($disposition) {{ $disposition->agenda_number }} disabled @endif
+                                        required>
+                                </div>
+                            </div>
+                            {{-- <div class="row mb-5">
                         <div class="col-md-3">
                             <label for="agenda" class="form-label">Tanggal Terima</label>
                         </div>
@@ -284,7 +294,7 @@
                                 required>
                         </div>
                     </div> --}}
-                    {{-- <div class="row mb-5">
+                            {{-- <div class="row mb-5">
                         <div class="col-md-3">
                             <label for="agenda" class="form-label">Tanggal Surat</label>
                         </div>
@@ -294,7 +304,7 @@
                                 value=@if ($disposition) {{ $disposition->purpose }} disabled @endif required>
                         </div>
                     </div> --}}
-                    {{-- <div class="row mb-5">
+                            {{-- <div class="row mb-5">
                         <div class="col-md-3">
                             <label for="agenda" class="form-label">Asal Surat</label>
                         </div>
@@ -304,7 +314,7 @@
                                 value=@if ($disposition) {{ $disposition->from }} disabled @endif required>
                         </div>
                     </div> --}}
-                    {{-- <div class="row mb-5">
+                            {{-- <div class="row mb-5">
                         <div class="col-md-3">
                             <label for="agenda" class="form-label">Hal</label>
                         </div>
@@ -314,72 +324,72 @@
                                 value=@if ($disposition) {{ $disposition->point }} disabled @endif required>
                         </div>
                     </div> --}}
-                    <div class="row mb-5">
-                        <div class="col-md-3">
-                            <label for="agenda" class="form-label">Diteruskan Kepada :</label>
-                        </div>
-                        <div class="col-md-9">
-                            @if (!$disposition)
-                                <select name="roles[]" id="roles" multiple>
-                                    @foreach ($roles as $role)
-                                    @endforeach
-                                </select>
-                            @else
-                                <ul>
-                                    @foreach ($disposition->dispositionTos as $dispositionTos)
-                                        <li>{{ $dispositionTos->user->name }}</li>
-                                    @endforeach
-                                </ul>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="row mb-5">
-                        <div class="col-md-3">
-                            <label for="agenda" class="form-label">Untuk :</label>
-                        </div>
-                        <div class="col-md-9">
-                            @if (!$disposition)
-                                <select name="informations[]" id="informations" multiple required>
-                                    @foreach ($informations as $information)
-                                    @endforeach
-                                </select>
-                            @else
-                                <div>
-                                    <ul>
-                                        @foreach ($disposition->DispositionInformations as $dispositionInformation)
-                                            <li>{{ $dispositionInformation->information }}</li>
-                                        @endforeach
-                                    </ul>
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <label for="agenda" class="form-label">Diteruskan Kepada :</label>
                                 </div>
-                                {{-- <div class="alert alert-primary" role="alert">
+                                <div class="col-md-9">
+                                    @if (!$disposition)
+                                        <select name="roles[]" id="roles" multiple>
+                                            @foreach ($roles as $role)
+                                            @endforeach
+                                        </select>
+                                    @else
+                                        <ul>
+                                            @foreach ($disposition->dispositionTos as $dispositionTos)
+                                                <li>{{ $dispositionTos->user->name }}</li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <label for="agenda" class="form-label">Untuk :</label>
+                                </div>
+                                <div class="col-md-9">
+                                    @if (!$disposition)
+                                        <select name="informations[]" id="informations" multiple required>
+                                            @foreach ($informations as $information)
+                                            @endforeach
+                                        </select>
+                                    @else
+                                        <div>
+                                            <ul>
+                                                @foreach ($disposition->DispositionInformations as $dispositionInformation)
+                                                    <li>{{ $dispositionInformation->information }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        {{-- <div class="alert alert-primary" role="alert">
                                     Surat telah terdisposisi
                                 </div> --}}
-                            @endif
-                        </div>
-                    </div>
-                    <div class="row mb-5">
-                        <div class="col-md-3">
-                            <label for="agenda" class="form-label">Deskripsi</label>
-                        </div>
-                        <div class="col-md-9">
-                            <textarea name="description" class="form-control" rows="4" @if ($disposition) disabled @endif>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <label for="agenda" class="form-label">Deskripsi</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <textarea name="description" class="form-control" rows="4" @if ($disposition) disabled @endif>
 @if ($disposition)
 {{ $disposition->information }}
 @endif
 </textarea>
-                        </div>
-                    </div>
-                    @if (!$disposition)
-                        <div class="row">
-                            <div class="col-md-10"></div>
-                            <div class="col-md-2 text-right">
-                                <button class="btn btn-success">Disposisi</button>
+                                </div>
                             </div>
+                            @if (!$disposition)
+                                <div class="row">
+                                    <div class="col-md-10"></div>
+                                    <div class="col-md-2 text-right">
+                                        <button class="btn btn-success">Disposisi</button>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
-                    @endif
+                    </form>
                 </div>
-            </form>
-        </div>
     @endif
 @endsection
 

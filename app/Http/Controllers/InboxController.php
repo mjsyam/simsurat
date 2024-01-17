@@ -43,7 +43,7 @@ class InboxController extends Controller
             $letterReceivers = LetterReceiver::where('user_id', Auth::user()->id)
             ->orWhereHas('disposition.dispositionTos', function($q){
                 $q->whereIn('role_id', Auth::user()->identifiers->pluck('role_id'));
-            })->with(['letter', 'user', 'disposition.dispositionTos'])->orderBy("created_at", "desc");
+            })->with(['letter.letterCategory', 'user', 'disposition.dispositionTos'])->orderBy("created_at", "desc");
 
             // dd($letterReceivers);
 
@@ -51,27 +51,15 @@ class InboxController extends Controller
             ->addColumn('title', function($letterReceivers) {
                 return $letterReceivers->letter->title;
             })
-            ->addColumn('name', function($letterReceivers) {
-                return $letterReceivers->letter->user->name;
+            ->addColumn('signed', function ($letterReceiver) {
+                return $letterReceiver->letter->signed->name;
             })
-            ->addColumn('email', function($letterReceivers) {
-                return $letterReceivers->letter->user->email;
+            ->addColumn('category', function ($letterReceiver) {
+                return $letterReceiver->letter->letterCategory->name;
             })
-            // ->addColumn('action', function ($letterReceivers) {
-            //     $detail = '
-            //     <li>
-            //         <div class="btn-detail">
-            //             <a href="/inbox/detail/'. $letterReceivers->id .'" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
-            //         </div>
-            //     </li>
-            //     ';
-            //     return '
-            //     <button type="button" class="btn btn-secondary btn-icon btn-sm" data-kt-menu-placement="bottom-end" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-            //     <ul class="dropdown-menu">
-            //     '.$detail.'
-            //     </ul>
-            //     ';
-            // })
+            ->addColumn('created_at', function ($letterReceiver) {
+                return Carbon::parse($letterReceiver->letter->created_at)->format('Y-m-d H:i:s');
+            })
             ->addColumn('action', function ($letterReceivers) {
                 $id = $letterReceivers->id;
                 $letterId = $letterReceivers->letter->id;
@@ -140,7 +128,7 @@ class InboxController extends Controller
     }
 
     public function disposition(LetterReceiver $letterReceiver, Request $request){
-        date_default_timezone_set('Asia/Makassar'); 
+        date_default_timezone_set('Asia/Makassar');
 
         $request->validate([
             'security_level' => 'required',

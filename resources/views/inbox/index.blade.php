@@ -15,8 +15,9 @@
                         <tr class="fw-bold fs-7 text-gray-500 text-uppercase">
                             <th>#</th>
                             <th>Judul Surat</th>
-                            <th>Pengirim</th>
-                            <th>Email</th>
+                            <th>Ditanda tangani oleh</th>
+                            <th>Kategori Surat</th>
+                            <th>Tanggal diterbitkan</th>
                             <th class="w-100px">#</th>
                         </tr>
                     </thead>
@@ -76,10 +77,13 @@
                         data: 'title'
                     },
                     {
-                        data: 'name'
+                        data: 'signed'
                     },
                     {
-                        data: 'email'
+                        data: 'category'
+                    },
+                    {
+                        data: 'created_at'
                     },
                     {
                         data: 'action'
