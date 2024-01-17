@@ -134,20 +134,21 @@ class InboxController extends Controller
         } else{
             $dispositionTos = null;
         }
-
         return view('inbox.detail', compact([
             'users', 'letter', 'letterReceiver', 'roles', 'informations', 'security', 'informations', 'disposition', 'dispositionTos'
         ]));
     }
 
     public function disposition(LetterReceiver $letterReceiver, Request $request){
+        date_default_timezone_set('Asia/Makassar'); 
+
         $request->validate([
             'security_level' => 'required',
             'agenda_number' => 'required',
-            'receive_date' => 'required',
-            'purpose' => 'required',
-            'from' => 'required',
-            'point' => 'required',
+            // 'receive_date' => 'required',
+            // 'purpose' => 'required',
+            // 'from' => 'required',
+            // 'point' => 'required',
             'description' => 'required',
         ]);
 
@@ -156,10 +157,10 @@ class InboxController extends Controller
             'letter_id' => $letterReceiver->letter->id,
             'security_level' => $request->security_level,
             'agenda_number' => $request->agenda_number,
-            'receive_date' => $request->receive_date,
-            'purpose' => $request->purpose,
-            'from' => $request->from,
-            'point' => $request->point,
+            'receive_date' => date("Y/m/d"),
+            'purpose' => date("Y/m/d"),
+            'from' => Auth::user()->identifiers->first()->unit->name,
+            'point' => $letterReceiver->letter->title,
             'information' => $request->description,
         ]);
 
