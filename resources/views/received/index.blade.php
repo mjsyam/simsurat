@@ -19,7 +19,6 @@
                             <th>Kategori Surat</th>
                             <th>Tanggal dibuat</th>
                             <th>Status</th>
-                            <th class="w-100px">#</th>
                         </tr>
                     </thead>
                     <tbody class="fs-7">

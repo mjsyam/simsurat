@@ -20,7 +20,6 @@
         </nav>
         <!-- Page Content  -->
         <div id="content" style="background-color: whitesmoke; margin: 0 !important; padding: 0 !important">
-
             <!-- Navbar  -->
             @include('layouts.partials.topbar')
             <div class="card" style="margin:30px; padding: 30px;">

@@ -34,18 +34,6 @@ class InboxController extends Controller
     }
 
     public function index() {
-
-        // $letters = DB::table('letters')
-        // ->join('letter_receivers', 'letter_receivers.letter_id', '=', 'letters.id')
-        // ->join('users', 'letters.user_id', '=', 'users.id')
-        // ->leftJoin('dispositions', 'letter_receivers.disposition_id', '=', 'dispositions.id')
-        // ->leftJoin('disposition_to', 'dispositions.id', '=', 'disposition_to.disposition_id')
-        // ->where('letter_receivers.user_id', Auth::user()->id)
-        // ->orWhere('letter_receivers.disposition_id', Auth::user()->id)
-        // ->orWhere('disposition_to.role_id', Auth::user()->roles->first()->id)
-        // ->get();
-
-        // dd($letters);
         return view("inbox.index");
     }
 
@@ -69,20 +57,27 @@ class InboxController extends Controller
             ->addColumn('email', function($letterReceivers) {
                 return $letterReceivers->letter->user->email;
             })
+            // ->addColumn('action', function ($letterReceivers) {
+            //     $detail = '
+            //     <li>
+            //         <div class="btn-detail">
+            //             <a href="/inbox/detail/'. $letterReceivers->id .'" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
+            //         </div>
+            //     </li>
+            //     ';
+            //     return '
+            //     <button type="button" class="btn btn-secondary btn-icon btn-sm" data-kt-menu-placement="bottom-end" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+            //     <ul class="dropdown-menu">
+            //     '.$detail.'
+            //     </ul>
+            //     ';
+            // })
             ->addColumn('action', function ($letterReceivers) {
-                $detail = '
-                <li>
-                    <div class="btn-detail">
-                        <a href="/inbox/detail/'. $letterReceivers->id .'" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
-                    </div>
-                </li>
-                ';
-                return '
-                <button type="button" class="btn btn-secondary btn-icon btn-sm" data-kt-menu-placement="bottom-end" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                <ul class="dropdown-menu">
-                '.$detail.'
-                </ul>
-                ';
+                $id = $letterReceivers->id;
+                $letterId = $letterReceivers->letter->id;
+                return view('inbox.components.menu', compact([
+                    'id', 'letterId'
+                ]));
             })
             ->addIndexColumn()
             ->rawColumns(['action'])
@@ -139,20 +134,21 @@ class InboxController extends Controller
         } else{
             $dispositionTos = null;
         }
-
         return view('inbox.detail', compact([
             'users', 'letter', 'letterReceiver', 'roles', 'informations', 'security', 'informations', 'disposition', 'dispositionTos'
         ]));
     }
 
     public function disposition(LetterReceiver $letterReceiver, Request $request){
+        date_default_timezone_set('Asia/Makassar'); 
+
         $request->validate([
             'security_level' => 'required',
             'agenda_number' => 'required',
-            'receive_date' => 'required',
-            'purpose' => 'required',
-            'from' => 'required',
-            'point' => 'required',
+            // 'receive_date' => 'required',
+            // 'purpose' => 'required',
+            // 'from' => 'required',
+            // 'point' => 'required',
             'description' => 'required',
         ]);
 
@@ -161,10 +157,10 @@ class InboxController extends Controller
             'letter_id' => $letterReceiver->letter->id,
             'security_level' => $request->security_level,
             'agenda_number' => $request->agenda_number,
-            'receive_date' => $request->receive_date,
-            'purpose' => $request->purpose,
-            'from' => $request->from,
-            'point' => $request->point,
+            'receive_date' => date("Y/m/d"),
+            'purpose' => date("Y/m/d"),
+            'from' => Auth::user()->identifiers->first()->unit->name,
+            'point' => $letterReceiver->letter->title,
             'information' => $request->description,
         ]);
 
