@@ -2,10 +2,10 @@
 
 @section('content')
     <h4>{{ $receiver->letter->title }} <span class="badge"
-            style="background-color: rgb(199, 199, 199)">{{ $receiver->letterStatus->status ?? '' }}</span>
+            style="background-color: rgb(25, 149, 220)">{{ $receiver->letterStatus->status ?? '' }}</span>
         @if ($receiver->letterStatus->status != 'waiting')
             <span class="badge"
-                style="background-color: rgb(199, 199, 199)">{{ $receiver->letterStatus->read == false ? 'Belum Dibaca' : 'Sudah Dibaca' }}</span>
+                style="background-color: @if($receiver->letterStatus->read == false) {{'rgb(246, 159, 72)'}} @else {{"rgb(34,139,34)"}} @endif">{{ $receiver->letterStatus->read == false ? 'Belum Dibaca' : 'Sudah Dibaca' }}</span>
         @endif
     </h4>
     <div class="d-flex justify-content-between">

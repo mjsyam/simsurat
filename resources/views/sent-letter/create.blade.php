@@ -6,7 +6,7 @@
             @csrf
             <a href="#axe3" class="d-block card-header py-3 align-items-center d-flex" data-toggle="collapse"
                 role="button" aria-expanded="true" aria-controls="axe3">
-                <h3 class="m-0 font-weight-bold">Data Surat Keluar</h3>
+                <h3 class="m-0 font-weight-bold">Form Surat</h3>
             </a>
 
             <div class="collapse show" id="axe3">
@@ -23,15 +23,15 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <div class="form-group ">
                             <label for="title" class="required">Judul Surat</label>
-                            <div class="input-group mb-3">
+                            <div class="input-group mb-1">
                                 <input id="title" type="text" name="title"
                                     class="form-control @error('title') is-invalid @enderror" autocomplete="title"
                                     value="{{ old('title') }}" required>
                             </div>
-                            <small id="title" class="form-text text-muted">Contoh : Surat Undangan 17
+                            <small id="title" class="form-text text-primary">Contoh : Surat Undangan 17
                                 Agustus</small>
                         </div>
                     </div>
@@ -47,14 +47,15 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <div class="form-group ">
                             <label for="file" class="required">File</label>
-                            <div class="input-group mb-3">
+                            <div class="input-group mb-1">
                                 <input id="file" type="file" name="file"
                                     class="form-control @error('file') is-invalid @enderror" autocomplete="file"
                                     value="{{ old('file') }}" required>
                             </div>
+                            <small class="fw-bold fs-8 text-danger">* Ukuran File Maksimal 2 MB</small>
                         </div>
                     </div>
 

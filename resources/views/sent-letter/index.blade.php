@@ -13,11 +13,13 @@
     @endif
     <div>
         <h3 class="">Surat Terkirim</h3><br>
-        <div class="mb-4">
-            <a href="{{ route('sent.letter-create') }}" class="btn btn-success px-7">
-                Add
-            </a>
-        </div>
+        @if (Auth::user()->status == 'TENDIK')
+            <div class="mb-4">
+                <a href="{{ route('sent.letter-create') }}" class="btn btn-success px-7">
+                    Buat Surat
+                </a>
+            </div>
+        @endif
         <div class="bgc-white bd bdrs-3 p-20 mB-20 mt-4">
             <div class="table-responsive">
                 <table class="table table-striped" id="sent_letter_table">

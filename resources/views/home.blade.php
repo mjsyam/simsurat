@@ -1,7 +1,9 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <div class="card" style="margin:30px; padding: 30px;">
+<div style="margin-left: 30px">
+
+    <div class="card" style="padding: 30px;">
         <div class="card-header">
             <h1>Dashboard</h1>
         </div>
@@ -11,8 +13,8 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow border-left-info py-2" style="margin:30px; padding: 30px;">
+        <div class="col-md-6 col-xl-4 mb-4">
+            <div class="card shadow border-left-info py-2" style="margin-right: 10px; padding: 30px;">
                 <div class="card-body">
                     <div class="row align-items-center no-gutters">
                         <div class="col mr-2">
@@ -30,8 +32,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow border-left-warning py-2" style="margin:30px; padding: 30px;">
+        <div class="col-md-6 col-xl-4 mb-4">
+            <div class="card shadow border-left-warning py-2" style="margin-right: 10px; padding: 30px;">
                 <div class="card-body">
                     <div class="row align-items-center no-gutters">
                         <div class="col mr-2">
@@ -49,8 +51,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow border-left-danger py-2" style="margin:30px; padding: 30px;">
+        <div class="col-md-6 col-xl-4 mb-4">
+            <div class="card shadow border-left-danger py-2" style="margin-right: 10px; padding: 30px;">
                 <div class="card-body">
                     <div class="row align-items-center no-gutters">
                         <div class="col mr-2">
@@ -71,8 +73,8 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow border-left-secondary py-2" style="margin:30px; padding: 30px;">
+        <div class="col-md-6 col-xl-4 mb-4">
+            <div class="card shadow border-left-secondary py-2" style="margin-right: 10px; padding: 30px;">
                 <div class="card-body">
                     <div class="row align-items-center no-gutters">
                         <div class="col mr-2">
@@ -91,8 +93,8 @@
             </div>
         </div>
 
-        <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow border-left-primary py-2" style="margin:30px; padding: 30px;">
+        <div class="col-md-6 col-xl-4 mb-4">
+            <div class="card shadow border-left-primary py-2" style="margin-right: 10px; padding: 30px;">
                 <div class="card-body">
                     <div class="row align-items-center no-gutters">
                         <div class="col mr-2">
@@ -111,8 +113,8 @@
             </div>
         </div>
 
-        <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow border-left-info py-2" style="margin:30px; padding: 30px;">
+        <div class="col-md-6 col-xl-4 mb-4">
+            <div class="card shadow border-left-info py-2" style="margin-right: 10px; padding: 30px;">
                 <div class="card-body">
                     <div class="row align-items-center no-gutters">
                         <div class="col mr-2">
@@ -133,8 +135,8 @@
     </div>
 
     {{-- <div class="row">
-        <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow border-left-success py-2" style="margin:30px; padding: 30px;">
+        <div class="col-md-6 col-xl-4 mb-4">
+            <div class="card shadow border-left-success py-2" style="margin-right: 10px; padding: 30px;">
                 <div class="card-body">
                     <div class="row align-items-center no-gutters">
                         <div class="col mr-2">
@@ -153,8 +155,8 @@
             </div>
         </div>
 
-        <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow border-left-danger py-2" style="margin:30px; padding: 30px;">
+        <div class="col-md-6 col-xl-4 mb-4">
+            <div class="card shadow border-left-danger py-2" style="margin-right: 10px; padding: 30px;">
                 <div class="card-body">
                     <div class="row align-items-center no-gutters">
                         <div class="col mr-2">
@@ -174,4 +176,5 @@
         </div>
 
     </div> --}}
+</div>
 @endsection

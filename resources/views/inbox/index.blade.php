@@ -18,7 +18,7 @@
                             <th>Ditanda tangani oleh</th>
                             <th>Kategori Surat</th>
                             <th>Tanggal diterbitkan</th>
-                            <th class="w-100px">#</th>
+                            <th class="w-100px">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="fs-7">
