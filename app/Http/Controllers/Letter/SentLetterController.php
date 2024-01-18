@@ -122,7 +122,7 @@ class SentLetterController extends Controller
             ]);
         }
 
-        return back()->with('success', 'Berhasil mengirim surat');
+        return redirect(route('sent.letter-index'))->with('success', 'Berhasil mengirim surat');
     }
 
     public function sentLetterTable(Request $request)

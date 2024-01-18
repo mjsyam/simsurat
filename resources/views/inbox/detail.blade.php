@@ -242,8 +242,8 @@
                 <div class="container-fluid mt-5">
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 style="color: #515151" class="font-weight-bold">Disposisi Surat</h5>
-                            <h6 style="color: gray">Lakukan disposisi jabatan untuk diteruskan kepada pegawai. Berikan
+                            <h2 style="color: #515151" class="font-weight-bold">Disposisi Surat</h2>
+                            <h6 style="color: gray">Lakukan <span class="font-weight-bold">disposisi</span> jabatan untuk diteruskan kepada unit lain. Berikan
                                 catatan
                                 tindakan
                                 untuk informasi tambahan</h6>

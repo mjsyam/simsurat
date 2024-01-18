@@ -6,6 +6,11 @@
             width: 70px !important;
         }
     </style>
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <div>
         <h3 class="">Surat Terkirim</h3><br>
         <div class="mb-4">
