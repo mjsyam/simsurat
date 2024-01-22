@@ -201,6 +201,18 @@
                         </tr>
                         <tr>
                             <td>
+                                <p>Disposisi</p>
+                            </td>
+                            <td>
+                                <ul>
+                                    @foreach ($disposition->dispositionTos as $dispositionTos)
+                                        <li>{{ $dispositionTos->user->name }}</li>
+                                    @endforeach
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <p class="ml-3 my-auto">Tanggal</p>
                             </td>
                             <td>
@@ -243,7 +255,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h2 style="color: #515151" class="font-weight-bold">Disposisi Surat</h2>
-                            <h6 style="color: gray">Lakukan <span class="font-weight-bold">disposisi</span> jabatan untuk diteruskan kepada unit lain. Berikan
+                            <h6 style="color: gray">Lakukan <span class="font-weight-bold">disposisi</span> jabatan untuk
+                                diteruskan kepada unit lain. Berikan
                                 catatan
                                 tindakan
                                 untuk informasi tambahan</h6>
