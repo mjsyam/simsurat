@@ -8,6 +8,15 @@
     </style>
     <div>
         <h3 class="">Disposisi Keluar</h3><br>
+        <div class="d-flex justify-content-end align-items-center">
+            <label for="letter_category_id" class="me-3">Tingkat Kerahasiaan</label>
+            <select class="form-select" aria-label="Default select example" style="min-width: 200px;" id="security_filter">
+                <option value="*">Semua</option>
+                @foreach ($security as $security)
+                    <option value="{{ $security }}">{{ $security }}</option>
+                @endforeach
+            </select>
+        </div>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="very-soon-tab-pane" role="tabpanel" aria-labelledby="very-soon-tab"
                 tabindex="0">
@@ -91,6 +100,10 @@
                     },
                 ],
             });
+        });
+
+        $('#security_filter').on('change', function () {
+            $('#outbox_disposition').DataTable().ajax.reload();
         });
     </script>
 @endsection
