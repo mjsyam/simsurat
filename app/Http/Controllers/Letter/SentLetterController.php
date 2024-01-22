@@ -79,7 +79,7 @@ class SentLetterController extends Controller
             'title' => 'required',
             'date' => 'required',
             'signed' => 'required',
-            'file' => 'required',
+            'file' => 'required|max:2048',
             'receivers' => 'required',
         ]);
 
