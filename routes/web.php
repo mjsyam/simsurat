@@ -42,6 +42,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/inbox/table', [InboxController::class, 'tableInbox'])->name('inbox.tableInbox');
     Route::get('/inbox/detail/{letterReceiver}', [InboxController::class, 'detail'])->name('inbox.detail');
     Route::post('/inbox/disposition/{letterReceiver}', [InboxController::class, 'disposition'])->name('inbox.disposition');
+    
+    Route::get('/inbox-disposition', [InboxController::class, 'indexDisposition'])->name('inbox.indexDisposition');
+    Route::get('/inbox-disposition/table', [InboxController::class, 'tableDisposition'])->name('inbox.tableDisposition');
+    Route::get('/inbox-disposition/detail/{letterReceiver}', [InboxController::class, 'detailDisposition'])->name('inbox.detailDisposition');
+
+    Route::get('/outbox-disposition', [InboxController::class, 'indexOutboxDisposition'])->name('inbox.indexOutboxDisposition');
+    Route::get('/outbox-disposition/table', [InboxController::class, 'tableOutboxDisposition'])->name('inbox.tableOutboxDisposition');
+    Route::get('/outbox-disposition/detail/{letterReceiver}', [InboxController::class, 'detailOutboxDisposition'])->name('inbox.detailOutboxDisposition');
+
 
     Route::get('/outgoing-letter', [OutGoingLetter::class, 'index'])->name('outgoing-letter.index');
     Route::get('/outgoing-letter/table', [OutGoingLetter::class, 'tableApprove'])->name('outgoing-letter.tableApprove');

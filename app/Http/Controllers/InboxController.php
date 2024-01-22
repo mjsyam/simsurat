@@ -193,4 +193,17 @@ class InboxController extends Controller
         }
         return $childRoleIds;
     }
+
+    public function indexDisposition(){
+        return view("inbox.disposition");
+    }
+
+
+
+    public function indexOutboxDisposition(){
+        return view("inbox.outbox-disposition");
+    }
+
+
+
 }
