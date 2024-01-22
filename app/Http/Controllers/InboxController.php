@@ -41,15 +41,16 @@ class InboxController extends Controller
 
         if (request()->ajax()) {
             $letterReceivers = LetterReceiver::where('user_id', Auth::user()->id)
-            ->orWhereHas('disposition.dispositionTos', function($q){
-                $q->whereIn('role_id', Auth::user()->identifiers->pluck('role_id'));
-            })->with(['letter.letterCategory', 'user', 'disposition.dispositionTos'])->orderBy("created_at", "desc");
+            ->with(['letter.letterCategory', 'user', 'disposition.dispositionTos'])->orderBy("created_at", "desc");
 
             // dd($letterReceivers);
 
             return DataTables::of($letterReceivers)
             ->addColumn('title', function($letterReceivers) {
                 return $letterReceivers->letter->title;
+            })
+            ->addColumn('security_level', function($letterReceivers) {
+                return $letterReceivers->disposition->security_level;
             })
             ->addColumn('signed', function ($letterReceiver) {
                 return $letterReceiver->letter->signed->name;
@@ -73,6 +74,75 @@ class InboxController extends Controller
         }
     }
 
+    public function tableDipositionOutBox() {
+        $letterReceivers = LetterReceiver::where('user_id', Auth::user()->id)->where('disposition_id', "!=", null)->with(['letter.letterCategory', 'user', 'disposition.dispositionTos'])->orderBy("created_at", "desc");
+
+        return DataTables::of($letterReceivers)
+            ->addColumn('title', function($letterReceivers) {
+                return $letterReceivers->letter->title;
+            })
+            ->addColumn('security_level', function($query) {
+                return $query->disposition->security_level;
+                // $sql = "letterReceivers.disposition.security_level like ?";
+                // $query->whereRaw($sql, ["%{$keyword}%"]);
+                // return $query;
+            })
+            ->addColumn('signed', function ($letterReceiver) {
+                return $letterReceiver->letter->signed->name;
+            })
+            ->addColumn('category', function ($letterReceiver) {
+                return $letterReceiver->letter->letterCategory->name;
+            })
+            ->addColumn('created_at', function ($letterReceiver) {
+                return Carbon::parse($letterReceiver->letter->created_at)->format('Y-m-d H:i:s');
+            })
+            ->addColumn('action', function ($letterReceivers) {
+                $id = $letterReceivers->id;
+                $letterId = $letterReceivers->letter->id;
+                return view('inbox.components.menu', compact([
+                    'id', 'letterId'
+                ]));
+            })
+            ->addIndexColumn()
+            ->rawColumns(['action', 'security_level'])
+            ->make(true);
+    }
+
+    public function tableDisposisitionInbox() {
+        $letterReceivers = LetterReceiver::whereHas('disposition.dispositionTos', function($q){
+            $q->whereIn('role_id', Auth::user()->identifiers->pluck('role_id'));
+        })->with(['letter.letterCategory', 'user', 'disposition.dispositionTos'])->orderBy("created_at", "desc");
+
+        return DataTables::of($letterReceivers)
+            ->addColumn('title', function($letterReceivers) {
+                return $letterReceivers->letter->title;
+            })
+            ->addColumn('security_level', function($query) {
+                return $query->disposition->security_level;
+                // $sql = "letterReceivers.disposition.security_level like ?";
+                // $query->whereRaw($sql, ["%{$keyword}%"]);
+                // return $query;
+            })
+            ->addColumn('signed', function ($letterReceiver) {
+                return $letterReceiver->letter->signed->name;
+            })
+            ->addColumn('category', function ($letterReceiver) {
+                return $letterReceiver->letter->letterCategory->name;
+            })
+            ->addColumn('created_at', function ($letterReceiver) {
+                return Carbon::parse($letterReceiver->letter->created_at)->format('Y-m-d H:i:s');
+            })
+            ->addColumn('action', function ($letterReceivers) {
+                $id = $letterReceivers->id;
+                $letterId = $letterReceivers->letter->id;
+                return view('inbox.components.menu', compact([
+                    'id', 'letterId'
+                ]));
+            })
+            ->addIndexColumn()
+            ->rawColumns(['action'])
+            ->make(true);
+    }
 
     public function detail(LetterReceiver $letterReceiver){
         $letter = $letterReceiver->letter;
@@ -198,12 +268,7 @@ class InboxController extends Controller
         return view("inbox.disposition");
     }
 
-
-
     public function indexOutboxDisposition(){
         return view("inbox.outbox-disposition");
     }
-
-
-
 }

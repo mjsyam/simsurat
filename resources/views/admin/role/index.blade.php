@@ -66,7 +66,7 @@
                 columns: [{
                         data: 'DT_RowIndex',
                         orderable: false,
-                        searchable: false
+                        searchable: false,
                     },
                     {
                         data: 'name'
@@ -75,7 +75,8 @@
                         data: 'parent'
                     },
                     {
-                        data: 'action'
+                        data: 'action',
+                        searchable: false,
                     },
                 ],
 

@@ -59,12 +59,12 @@
                 },
 
                 columns: [
-                { data: 'DT_RowIndex'},
+                { data: 'DT_RowIndex', searchable: false,},
                 { data: 'refrences_number'},
                 { data: 'title'},
                 { data: 'category'},
                 { data: 'created_at'},
-                { data: 'action'},
+                { data: 'action', searchable: false,},
                 ],
             });
         });

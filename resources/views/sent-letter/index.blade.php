@@ -83,7 +83,8 @@
                     },
 
                     columns: [{
-                            data: 'DT_RowIndex'
+                            data: 'DT_RowIndex',
+                            searchable: false,
                         },
                         {
                             data: 'title'
@@ -104,7 +105,8 @@
                             data: 'created_at'
                         },
                         {
-                            data: 'action'
+                            data: 'action',
+                            searchable: false,
                         },
                     ],
                 });
@@ -142,7 +144,8 @@
                             ">",
 
                         columns: [{
-                                data: 'DT_RowIndex'
+                                data: 'DT_RowIndex',
+                                searchable: false,
                             },
                             {
                                 data: "name"
@@ -151,7 +154,8 @@
                                 data: "role"
                             },
                             {
-                                data: "action"
+                                data: "action",
+                                searchable: false,
                             },
                         ],
                         columnDefs: [{

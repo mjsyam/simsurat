@@ -75,7 +75,8 @@
                         data: 'parent'
                     },
                     {
-                        data: 'action'
+                        data: 'action',
+                        searchable: false,
                     },
                 ],
 

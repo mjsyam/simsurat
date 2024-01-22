@@ -108,7 +108,8 @@
                         data: 'created_at'
                     },
                     {
-                        data: 'action'
+                        data: 'action',
+                        searchable: false,
                     },
                 ],
 

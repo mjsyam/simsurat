@@ -82,7 +82,8 @@
                         data: 'unit'
                     },
                     {
-                        data: 'action'
+                        data: 'action',
+                        searchable: false,
                     },
                 ],
 
