@@ -18,7 +18,7 @@ table {
   padding-bottom: 5px;
 
   .dataTables_length{
-    color: $default-dark;
+    color: $default-darkw;
     float: left;
 
     @include to($breakpoint-sm) {
@@ -40,7 +40,7 @@ table {
   }
 
   .dataTables_filter {
-    color: $default-dark;
+    color: $default-darkw;
     float: right;
 
     @include to($breakpoint-sm) {
@@ -66,7 +66,7 @@ table {
   }
 
   .dataTables_processing {
-    color: $default-dark;
+    color: $default-darkw;
   }
 
   .dataTables_paginate {

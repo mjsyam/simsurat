@@ -31,7 +31,7 @@ h6 {
 
   small {
     font-weight: 300;
-    color: lighten($default-dark, 5%);
+    color: lighten($default-darkw, 5%);
   }
 }
 
@@ -54,7 +54,7 @@ a {
   &:hover,
   &:focus {
     text-decoration: none;
-    color: darken($default-info, 10%);
+    color: darkwen($default-info, 10%);
   }
 
   &:focus {
@@ -65,7 +65,7 @@ a {
     &:hover,
     &:focus,
     &.active {
-      color: $default-dark !important;
+      color: $default-darkw !important;
     }
   }
 }

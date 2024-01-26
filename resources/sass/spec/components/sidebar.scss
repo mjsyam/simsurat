@@ -219,7 +219,7 @@
 
       &.open {
         > a {
-          color: $default-dark;
+          color: $default-darkw;
 
           .icon-holder {
             color: $default-info;
@@ -250,7 +250,7 @@
 
       &:hover,
       &:focus {
-        color: $default-dark;
+        color: $default-darkw;
         text-decoration: none;
 
         .icon-holder {
@@ -282,13 +282,13 @@
               &:hover,
               &:focus {
                 background-color: transparent;
-                color: $default-dark;
+                color: $default-darkw;
               }
             }
 
             &.actived {
               a {
-                color: $default-dark;
+                color: $default-darkw;
               }
             }
           }

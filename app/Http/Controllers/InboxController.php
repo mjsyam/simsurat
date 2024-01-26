@@ -49,9 +49,9 @@ class InboxController extends Controller
             ->addColumn('title', function($letterReceivers) {
                 return $letterReceivers->letter->title;
             })
-            ->addColumn('security_level', function($letterReceivers) {
-                return $letterReceivers->disposition->security_level;
-            })
+            // ->addColumn('security_level', function($letterReceivers) {
+            //     return $letterReceivers->disposition->security_level;
+            // })
             ->addColumn('signed', function ($letterReceiver) {
                 return $letterReceiver->letter->signed->name;
             })
