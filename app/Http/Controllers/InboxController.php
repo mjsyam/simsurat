@@ -50,7 +50,12 @@ class InboxController extends Controller
                 return $letterReceivers->letter->title;
             })
             ->addColumn('security_level', function($letterReceivers) {
-                return $letterReceivers->disposition->security_level;
+                if($letterReceivers->disposition){
+                    $securityLevel = $letterReceivers->disposition->security_level;
+                } else{
+                    $securityLevel = "";
+                }
+                return $securityLevel;
             })
             ->addColumn('signed', function ($letterReceiver) {
                 return $letterReceiver->letter->signed->name;
@@ -189,11 +194,13 @@ class InboxController extends Controller
 
         if($disposition){
             $dispositionTos = $disposition->dispositionTos->pluck('role_id');
+            $dispositionStatus = $disposition->dispositionTos->where('role_id', Auth::user()->identifiers->first()->role->id)->first();
         } else{
             $dispositionTos = null;
+            $dispositionStatus = null;
         }
         return view('inbox.detail', compact([
-            'users', 'letter', 'letterReceiver', 'roles', 'informations', 'security', 'informations', 'disposition', 'dispositionTos'
+            'users', 'letter', 'letterReceiver', 'roles', 'informations', 'security', 'informations', 'disposition', 'dispositionTos', 'dispositionStatus'
         ]));
     }
 
@@ -255,6 +262,14 @@ class InboxController extends Controller
 
         return redirect()->back()->with('success', 'disposisi berhasil')->with(compact('users', 'letterReceiver'));
     }
+
+    public function dispositionStatus(DispositionTo $dispositionTo, $status){
+        $dispositionTo->update([
+            'status' => $status
+        ]);
+        return redirect()->back();
+    }
+
 
     private function getChildRoleIds($roleIds){
         $childRoleIds = Role::whereIn('parent_id', $roleIds)->pluck('id')->toArray();

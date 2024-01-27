@@ -30,6 +30,7 @@ return new class extends Migration
             $table->foreignId("role_id")->constrained("roles");
             $table->foreignId("user_id")->constrained("users");
             $table->enum("read", [0, 1])->default(0);
+            $table->enum("status", ["process", "approved", "rejected"])->default("process");
             $table->timestamps();
         });
 
@@ -40,6 +41,7 @@ return new class extends Migration
             $table->foreignId("user_id")->constrained("users");
             $table->foreignId("disposition_id")->nullable()->constrained("dispositions");
             $table->foreignId("identifier_id")->constrained("identifiers");
+            $table->enum("status", ["process", "approved", "rejected"])->default("process");
             $table->timestamps();
         });
 

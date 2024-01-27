@@ -30,9 +30,32 @@
     @endphp
 
     <div class="container-fluid">
-        <h2 style="color: #515151" class="font-weight-bold">Daftar Surat Masuk</h2>
+        <h2 style="color: #515151" class="font-weight-bold">Detail Surat</h2>
         <h5 style="color: gray" class="font-weight-bold">Sisukma Institut Teknologi Kalimantan</h5>
+        @if ($dispositionStatus)            
+            @if ($dispositionStatus->status == 'process')
+                <div class="alert alert-info my-3" role="alert">
+                    <h3 class="alert-heading">Berikan Status surat</h3>
+                    <div class="my-3">
+                        <form method="POST" action="{{ route('inbox.disposition.status',  ['dispositionTo' => $dispositionStatus->id, 'status' => 'approved']) }}" style="display: inline-block">
+                            @csrf
+                            <button type="submit" class="btn btn-success">Disetujui</button>
+                        </form>
+                        <form method="POST" action="{{ route('inbox.disposition.status', ['dispositionTo' => $dispositionStatus->id, 'status' => 'rejected']) }}" style="display: inline-block">
+                            @csrf
+                            <button type="submit" class="ml-2 btn btn-danger">Ditolak</button>
+                        </form>
+                    </div>
+                </div>
+            @else
+                <div class="alert @if($dispositionStatus->status == 'approved') alert-success @else alert-danger @endif" role="alert">
+                    Surat telah <b>@if($dispositionStatus->status == "approved") Disetujui @else Ditolak @endif</b> oleh Anda.
+                </div>
+            @endif
+        @endif
     </div>
+
+
     @if ($disposition)
         <div class="container-fluid">
             <hr style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid black">
@@ -201,13 +224,17 @@
                         </tr>
                         <tr>
                             <td>
-                                <p>Disposisi</p>
+                                <p class="ml-3 my-auto">Disposisi</p>
                             </td>
                             <td>
                                 <ul>
-                                    @foreach ($disposition->dispositionTos as $dispositionTos)
-                                        <li>{{ $dispositionTos->user->name }}</li>
-                                    @endforeach
+                                    @if ($disposition)
+                                        @foreach ($disposition->dispositionTos as $dispositionTos)
+                                            <li>{{ $dispositionTos->role->name }} - @if($dispositionTos->status == "process") Diproses @elseif($dispositionTos->status == "approved") Disetujui @else Ditolak @endif</li>
+                                        @endforeach
+                                    @else
+                                        -
+                                    @endif
                                 </ul>
                             </td>
                         </tr>
@@ -296,47 +323,6 @@
                                         required>
                                 </div>
                             </div>
-                            {{-- <div class="row mb-5">
-                        <div class="col-md-3">
-                            <label for="agenda" class="form-label">Tanggal Terima</label>
-                        </div>
-                        <div class="col-md-9">
-                            <input type="date" name="receive_date" class="form-control" id="agenda"
-                                aria-describedby="emailHelp"
-                                value=@if ($disposition) {{ $disposition->receive_date }} disabled @endif
-                                required>
-                        </div>
-                    </div> --}}
-                            {{-- <div class="row mb-5">
-                        <div class="col-md-3">
-                            <label for="agenda" class="form-label">Tanggal Surat</label>
-                        </div>
-                        <div class="col-md-9">
-                            <input type="date" name="purpose" class="form-control" id="agenda"
-                                aria-describedby="emailHelp"
-                                value=@if ($disposition) {{ $disposition->purpose }} disabled @endif required>
-                        </div>
-                    </div> --}}
-                            {{-- <div class="row mb-5">
-                        <div class="col-md-3">
-                            <label for="agenda" class="form-label">Asal Surat</label>
-                        </div>
-                        <div class="col-md-9">
-                            <input type="text" name="from" class="form-control" id="agenda"
-                                aria-describedby="emailHelp"
-                                value=@if ($disposition) {{ $disposition->from }} disabled @endif required>
-                        </div>
-                    </div> --}}
-                            {{-- <div class="row mb-5">
-                        <div class="col-md-3">
-                            <label for="agenda" class="form-label">Hal</label>
-                        </div>
-                        <div class="col-md-9">
-                            <input type="text" name="point" class="form-control" id="agenda"
-                                aria-describedby="emailHelp"
-                                value=@if ($disposition) {{ $disposition->point }} disabled @endif required>
-                        </div>
-                    </div> --}}
                             <div class="row mb-3">
                                 <div class="col-md-3">
                                     <label for="agenda" class="form-label">Diteruskan Kepada :</label>

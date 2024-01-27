@@ -41,22 +41,23 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');
     Route::get('/inbox/table', [InboxController::class, 'tableInbox'])->name('inbox.tableInbox');
     Route::get('/inbox/detail/{letterReceiver}', [InboxController::class, 'detail'])->name('inbox.detail');
-    Route::post('/inbox/disposition/{letterReceiver}', [InboxController::class, 'disposition'])->name('inbox.disposition');
+    Route::post('/inbox/disposition/{disposition}', [InboxController::class, 'disposition'])->name('inbox.disposition');
+    Route::post("/inbox/disposition/{dispositionTo}/status/{status}", [InboxController::class, 'dispositionStatus'])->name('inbox.disposition.status');
 
-    Route::get('/inbox-disposition', [InboxController::class, 'indexDisposition'])->name('inbox.indexDisposition');
-    Route::get('/inbox-disposition/table', [InboxController::class, 'tableDisposisitionInbox'])->name('inbox.tableDisposisitionInbox');
+    Route::get('/inbox-disposition', [InboxController::class, 'indexDisposition'])->name('inbox.indexDisposition'); 
+    Route::get('/inbox-disposition/table', [InboxController::class, 'tableDisposisitionInbox'])->name('inbox.tableDisposisitionInbox'); 
 
-    Route::get('/outbox-disposition', [InboxController::class, 'indexOutboxDisposition'])->name('inbox.indexOutboxDisposition');
-    Route::get('/outbox-disposition/table', [InboxController::class, 'tableDipositionOutBox'])->name('inbox.tableOutboxDisposition');
-
-
-    Route::get('/outgoing-letter', [OutGoingLetter::class, 'index'])->name('outgoing-letter.index');
-    Route::get('/outgoing-letter/table', [OutGoingLetter::class, 'tableApprove'])->name('outgoing-letter.tableApprove');
+    Route::get('/outbox-disposition', [InboxController::class, 'indexOutboxDisposition'])->name('inbox.indexOutboxDisposition'); 
+    Route::get('/outbox-disposition/table', [InboxController::class, 'tableDipositionOutBox'])->name('inbox.tableOutboxDisposition'); 
 
 
-    Route::get('/approve/letter', [ApproveLetterContoller::class, 'index'])->name('approve.letter.index');
-    Route::get('/approve/letter/table', [ApproveLetterContoller::class, 'tableApprove'])->name('approve.letter.tableApprove');
-    Route::post('/approve/letter/{id}', [ApproveLetterContoller::class, 'approve'])->name('approve.letter.approve');
+    Route::get('/outgoing-letter', [OutGoingLetter::class, 'index'])->name('outgoing-letter.index'); 
+    Route::get('/outgoing-letter/table', [OutGoingLetter::class, 'tableApprove'])->name('outgoing-letter.tableApprove'); 
+
+
+    Route::get('/approve/letter', [ApproveLetterContoller::class, 'index'])->name('approve.letter.index'); 
+    Route::get('/approve/letter/table', [ApproveLetterContoller::class, 'tableApprove'])->name('approve.letter.tableApprove'); 
+    Route::post('/approve/letter/{id}', [ApproveLetterContoller::class, 'approve'])->name('approve.letter.approve'); 
 });
 
 Route::prefix('admin')->group(function () {
