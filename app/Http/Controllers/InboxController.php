@@ -219,7 +219,6 @@ class InboxController extends Controller
 
         $request->validate([
             'security_level' => 'required',
-            'agenda_number' => 'required',
             // 'receive_date' => 'required',
             // 'purpose' => 'required',
             // 'from' => 'required',
@@ -231,7 +230,6 @@ class InboxController extends Controller
         $disposition = Disposition::create([
             'letter_id' => $letterReceiver->letter->id,
             'security_level' => $request->security_level,
-            'agenda_number' => $request->agenda_number,
             'receive_date' => date("Y/m/d"),
             'purpose' => date("Y/m/d"),
             'from' => Auth::user()->identifiers->first()->unit->name,
