@@ -45,4 +45,9 @@ class LetterReceiver extends Model
     {
         return $this->hasMany(LetterHistory::class)->orderBy("created_at", "desc");
     }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->format('d-m-Y H:i');
+    }
 }

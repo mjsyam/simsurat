@@ -41,6 +41,9 @@ class InboxController extends Controller
 
         if (request()->ajax()) {
             $letterReceivers = LetterReceiver::where('user_id', Auth::user()->id)
+            ->whereHas('letterStatus', function ($query) {
+                $query->whereNot('status', $this->constants->letter_status[0]);
+            })
             ->with(['letter.letterCategory', 'user', 'disposition.dispositionTos'])->orderBy("created_at", "desc");
 
             // dd($letterReceivers);
@@ -59,7 +62,7 @@ class InboxController extends Controller
                 return $letterReceiver->letter->letterCategory->name;
             })
             ->addColumn('created_at', function ($letterReceiver) {
-                return Carbon::parse($letterReceiver->letter->created_at)->format('Y-m-d H:i:s');
+                return $letterReceiver->letter->created_at;
             })
             ->addColumn('action', function ($letterReceivers) {
                 $id = $letterReceivers->id;
@@ -67,6 +70,9 @@ class InboxController extends Controller
                 return view('inbox.components.menu', compact([
                     'id', 'letterId'
                 ]));
+            })
+            ->addColumn('read', function ($query) {
+                return $query->letterStatus->read;
             })
             ->addIndexColumn()
             ->rawColumns(['action'])
