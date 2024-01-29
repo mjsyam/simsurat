@@ -49,14 +49,9 @@ class InboxController extends Controller
             ->addColumn('title', function($letterReceivers) {
                 return $letterReceivers->letter->title;
             })
-            ->addColumn('security_level', function($letterReceivers) {
-                if($letterReceivers->disposition){
-                    $securityLevel = $letterReceivers->disposition->security_level;
-                } else{
-                    $securityLevel = "";
-                }
-                return $securityLevel;
-            })
+            // ->addColumn('security_level', function($letterReceivers) {
+            //     return $letterReceivers->disposition->security_level;
+            // })
             ->addColumn('signed', function ($letterReceiver) {
                 return $letterReceiver->letter->signed->name;
             })
@@ -79,8 +74,17 @@ class InboxController extends Controller
         }
     }
 
-    public function tableDipositionOutBox() {
-        $letterReceivers = LetterReceiver::where('user_id', Auth::user()->id)->where('disposition_id', "!=", null)->with(['letter.letterCategory', 'user', 'disposition.dispositionTos'])->orderBy("created_at", "desc");
+    public function tableDipositionOutBox(Request $request) {
+        $letterReceivers = LetterReceiver::where('user_id', Auth::user()->id)
+            ->where('disposition_id', "!=", null)
+            ->with(['letter.letterCategory', 'user', 'disposition.dispositionTos'])
+            ->orderBy("created_at", "desc");
+
+        if ($request->security_level !== "*") {
+            $letterReceivers->whereHas('disposition', function($q) use ($request){
+                $q->where('security_level', $request->security_level);
+            });
+        }
 
         return DataTables::of($letterReceivers)
             ->addColumn('title', function($letterReceivers) {
@@ -280,10 +284,16 @@ class InboxController extends Controller
     }
 
     public function indexDisposition(){
-        return view("inbox.disposition");
+        $security = $this->constants->security;
+        return view("inbox.disposition", compact([
+            'security'
+        ]));
     }
 
     public function indexOutboxDisposition(){
-        return view("inbox.outbox-disposition");
+        $security = $this->constants->security;
+        return view("inbox.outbox-disposition", compact([
+            'security'
+        ]));
     }
 }
