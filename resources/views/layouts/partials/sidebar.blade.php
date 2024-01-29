@@ -16,9 +16,23 @@
         </a>
         <ul class="collapse list-unstyled " id="inboxSubMenu">
             <li class="{{ $route == 'inbox.index' ? 'active' : '' }}">
-                <a href="{{ route('inbox.index') }}">
-                    <i class="fas fa-user-tie fa-fw mr-2"></i>
-                    Surat Masuk
+                <a href="{{ route('inbox.index') }}" class="d-flex justify-content-between">
+                    <div>
+                        <i class="fas fa-user-tie fa-fw mr-2"></i>
+                        Surat Masuk
+                    </div>
+                    @php
+                        $read = \App\Models\LetterReceiver::where('user_id', Auth::user()->id)
+                            ->whereHas('letterStatus', function ($query) {
+                                $query->whereNot('status', "Menunggu Persetujuan");
+                            })
+                            ->count();
+                    @endphp
+                    @if($read > 0)
+                        <span class="badge badge-danger d-flex align-items-center">
+                            {{ $read < 10 ? $read : '9+' }}
+                        </span>
+                    @endif
                 </a>
             </li>
 
