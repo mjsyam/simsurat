@@ -24,7 +24,7 @@
                     @php
                         $read = \App\Models\LetterReceiver::where('user_id', Auth::user()->id)
                             ->whereHas('letterStatus', function ($query) {
-                                $query->whereNot('status', "Menunggu Persetujuan");
+                                $query->whereNot('status', "Menunggu Persetujuan")->where('read', '0');
                             })
                             ->count();
                     @endphp
@@ -37,9 +37,19 @@
             </li>
 
             <li class="{{ $route == 'inbox.indexDisposition' ? 'active' : '' }}">
-                <a href="{{ route('inbox.indexDisposition') }}">
+                <a href="{{ route('inbox.indexDisposition') }}" class="d-flex justify-content-start">
                     <i class="fas fa-users-viewfinder fa-fw mr-2"></i>
                     Disposisi Masuk
+                    @php
+                        $read = \App\Models\DispositionTo::whereIn('role_id', Auth::user()->identifiers->pluck('role_id'))
+                        ->where('status', 'process')
+                        ->count();
+                    @endphp
+                    @if($read > 0)
+                        <span class="badge badge-danger d-flex align-items-center">
+                            {{ $read < 10 ? $read : '9+' }}
+                        </span>
+                    @endif
                 </a>
             </li>
 
