@@ -70,31 +70,36 @@ class ApproveLetterContoller extends Controller
         $letter = Letter::find($id);
 
         foreach ($letter->letterReceivers as $letterReceiver) {
-            $letterReceiver->letterStatus()->update([
-                "status" => $request->action,
-            ]);
 
             if ($request->action == "approved") {
+                $letterReceiver->letterStatus()->update([
+                    "status" => "Disetujui Yang Bertanda Tangan",
+                ]);
+
                 $letterReceiver->letterHistories()->create([
                     "letter_receiver_id" => $letterReceiver->id,
                     "note" => "Surat berhasil disetujui",
-                    "status" => $request->action,
+                    "status" => "Disetujui Yang Bertanda Tangan",
                 ]);
 
                 $letterReceiver->letterHistories()->create([
                     "letter_receiver_id" => $letterReceiver->id,
                     "note" => "Surat berhasil dikirim",
-                    "status" => "sented",
+                    "status" => "Terkirim",
                 ]);
 
                 $letterReceiver->letterStatus()->update([
-                    "status" => "sented",
+                    "status" => "Terkirim",
                 ]);
             } else {
+                $letterReceiver->letterStatus()->update([
+                    "status" => "Ditolak Yang Bertanda Tangan",
+                ]);
+
                 $letterReceiver->letterHistories()->create([
                     "letter_receiver_id" => $letterReceiver->id,
                     "note" => "Surat berhasil ditolak",
-                    "status" => $request->action,
+                    "status" => "Ditolak Yang Bertanda Tangan",
                 ]);
             }
         }
