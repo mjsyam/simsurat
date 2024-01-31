@@ -24,7 +24,7 @@ class ApproveLetterContoller extends Controller
 
             $letters = Letter::where("signed_id", $user->id)->whereHas('letterReceivers', function($query){
                 return $query->whereHas('letterHistories', function($query){
-                    return $query->where('status', 'waiting');
+                    return $query->where('status', 'Menunggu Persetujuan');
                 });
             })->with("letterReceivers.letterHistories")->orderBy("created_at", "desc");
 

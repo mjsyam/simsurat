@@ -3,7 +3,7 @@
 @section('content')
     <h4>{{ $receiver->letter->title }} <span class="badge"
             style="background-color: rgb(25, 149, 220)">{{ $receiver->letterStatus->status ?? '' }}</span>
-        @if ($receiver->letterStatus->status != 'waiting')
+        @if ($receiver->letterStatus->status != 'Menunggu Persetujuan')
             <span class="badge"
                 style="background-color: @if($receiver->letterStatus->read == false) {{'rgb(246, 159, 72)'}} @else {{"rgb(34,139,34)"}} @endif">{{ $receiver->letterStatus->read == false ? 'Belum Dibaca' : 'Sudah Dibaca' }}</span>
         @endif
