@@ -20,6 +20,7 @@ use App\Models\DispositionInformation;
 use App\Models\Disposition;
 use App\Models\DispositionTo;
 use App\Models\Information;
+use Illuminate\Support\Facades\Notification;
 
 class InboxController extends Controller
 {
@@ -275,6 +276,21 @@ class InboxController extends Controller
         $dispositionTo->update([
             'status' => $status
         ]);
+
+        $sender = $dispositionTo->disposition->letter->user;
+
+        if ($status == 'approved') {
+            Notification::send($sender, new \App\Notifications\MailNotification((object) [
+                'headers' => 'Disposisi Anda Telah Di Setujui',
+                'user' => $sender
+            ]));
+        } else if ($status == 'rejected') {
+            Notification::send($sender, new \App\Notifications\MailNotification((object) [
+                'headers' => 'Disposisi Anda Telah Di Tolak',
+                'user' => $sender
+            ]));
+        }
+
         return redirect()->back();
     }
 

@@ -12,6 +12,7 @@ use App\Http\Controllers\Letter\ReceivedLetterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PDFController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +25,17 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Route::get('/test', function () {
+    Notification::send(Auth::user(), new App\Notifications\MailNotification((object) [
+        'headers' => 'Disposisi Anda Telah Di Setujui',
+        'user' => Auth::user()
+    ]));
+    return "asdwa";
+});
+
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect()->route('login');
 });
 
 Auth::routes();
@@ -71,7 +81,7 @@ Route::prefix('admin')->group(function () {
             Route::post('/add', 'store')->name('admin.user.add');
 
             Route::get('/get-data/table', 'getUsersTable')->name('admin.user.table');
-            Route::post('/assign-identifier/{id}','assignIdentifier')->name('admin.user.assignIdentifier');
+            Route::post('/assign-identifier/{id}', 'assignIdentifier')->name('admin.user.assignIdentifier');
         });
     });
 
