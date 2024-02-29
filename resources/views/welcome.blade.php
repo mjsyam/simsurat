@@ -165,13 +165,6 @@
                     <h6>humas@itk.ac.id</h6>
                  </div>
             </section>
-            <section class="row-divider">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p class="copyright">Copyright© 2020 Institut Teknologi Kalimantan - Design: Patrick Polii</p>
-                    </div>
-                </div>
-            </section>
 
         </footer>
         <!-- min js -->

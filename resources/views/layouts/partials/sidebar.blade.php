@@ -99,4 +99,11 @@
             </li>
         </ul>
     </li>
+
+    <li>
+        <a href="{{ asset('USER GUIDE - WEB SISUKMA.pdf') }}" target="_blank">
+            <i class="fas fa-book fa-fw mr-2"></i>
+            User Guide
+        </a>
+    </li>
 </ul>
