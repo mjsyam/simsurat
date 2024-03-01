@@ -7,7 +7,7 @@ use GuzzleHttp\Psr7\Request;
 
 class WaBlast
 {
-    public function send($phoneNumber, $sender)
+    public static function send($phoneNumber, $sender)
     {
         $client = new Client();
 

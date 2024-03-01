@@ -20,6 +20,7 @@ use App\Models\DispositionInformation;
 use App\Models\Disposition;
 use App\Models\DispositionTo;
 use App\Models\Information;
+use App\Service\WaBlast;
 use Illuminate\Support\Facades\Notification;
 
 class InboxController extends Controller
@@ -276,18 +277,21 @@ class InboxController extends Controller
         $dispositionTo->update([
             'status' => $status
         ]);
-
-        $sender = $dispositionTo->disposition->letter->user;
+        $letter = $dispositionTo->disposition->letter;
+        $sender = $letter->user;
+        $signed = $letter->signed;
 
         if ($status == 'approved') {
+            WaBlast::send($sender->phone_number, $sender->name);
             Notification::send($sender, new \App\Notifications\MailNotification((object) [
                 'headers' => 'Disposisi Anda Telah Di Setujui',
                 'user' => $sender
             ]));
-        } else if ($status == 'rejected') {
-            Notification::send($sender, new \App\Notifications\MailNotification((object) [
-                'headers' => 'Disposisi Anda Telah Di Tolak',
-                'user' => $sender
+
+            WaBlast::send($signed->phone_number, $signed->name);
+            Notification::send($signed, new \App\Notifications\MailNotification((object) [
+                'headers' => 'Disposisi Anda Telah Di Setujui',
+                'user' => $signed
             ]));
         }
 
