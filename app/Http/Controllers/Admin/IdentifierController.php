@@ -113,9 +113,9 @@ class IdentifierController extends Controller
             'role_id' => 'required|string',
         ]);
 
-        Identifier::create([
+        UserIdentifier::create([
+            'user_id' => $request->user_id,
             'unit_id' => $unit,
-            'role_id' => $request->role_id,
         ]);
 
         return redirect()->route('admin.unit.detail', $unit);
@@ -127,8 +127,8 @@ class IdentifierController extends Controller
             'role_id' => 'required|string',
         ]);
 
-        $identifier = Identifier::where('unit_id', $unit)->where('role_id', $request->role_id)->firstOrFail();
-        $identifier->delete();
+        $user_indentifier = UserIdentifier::where('user_id', $request->user_id)->where('unit_id', $unit)->first();
+        $user_indentifier->delete();
 
         return redirect()->route('admin.unit.detail', $unit);
     }
