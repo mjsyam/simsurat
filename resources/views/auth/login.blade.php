@@ -47,13 +47,14 @@
             </div>
             <div class="col-span-1 bg-blue-800 rounded-r-2xl p-8 flex justify-center items-center">
                 <div class="font-bold text-white p-4">
-                    <p class="text-3xl mb-4">Selamat Datang di Sisukma ITK</p>
+                    <p class="text-3xl mb-4">Selamat Datang di SISUKMA ITK</p>
                     <p class="mb-4 font-semibold">Apabila anda mengalami kesulitan dalam login, silahkan hubungi Admin
-                        SIKUSMA lewat email:eoffice@itk.ac.id</p>
+                        SISUKMA lewat <br>
+                        email: eoffice@itk.ac.id</p>
                     <p>
                         Panduan penggunaan SISUKMA dapat diunduh melalui lini berikut:
                     </p>
-                    <a href="{{ asset('USER GUIDE - WEB SISUKMA.pdf') }}" target="_blank" style="text-decoration: underline;">
+                    <a href="{{ asset('USER GUIDE - WEB SISUKMA.pdf') }}" target="_blank" style="text-decoration: underline; color: orange">
                         <i class="fas fa-book fa-fw"></i>
                         User Guide
                     </a>

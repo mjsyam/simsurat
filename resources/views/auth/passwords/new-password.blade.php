@@ -23,7 +23,7 @@
                         <img src="{{ asset('images/logo.png') }}" class="h-12" alt="">
                     </div>
                     {{ csrf_field() }}
-                    <div for="password" class="mb-1 text-sm font-semibold">Password</div>
+                    <div for="password" class="mb-1 text-sm font-semibold">Password Baru</div>
                     <input id="password" type="password"
                         class="w-full rounded-lg border border-gray-300 px-1 py-1 focus:ring-3 focus:ring-primary-300 focus:border-primary-300"
                         name="password" required>
@@ -32,7 +32,7 @@
                             <small>{{ $errors->first('password') }}</small>
                         </span>
                     @endif
-                    <div for="password_confirmation" class="mb-1 text-sm font-semibold">Confirm Password</div>
+                    <div for="password_confirmation" class="mb-1 text-sm font-semibold">Confirm Password Baru</div>
                     <input id="password_confirmation" type="password"
                         class="w-full rounded-lg border border-gray-300 px-1 py-1 focus:ring-3 focus:ring-primary-300 focus:border-primary-300"
                         name="password_confirmation" required>
@@ -43,13 +43,13 @@
                     @endif
                     <div class="flex flex-1 justify-center mt-6">
                         <button type="submit" class="bg-blue-800 rounded-xl px-20 py-2 text-white font-semibold">Ubah
-                            Password</button>
+                            Password Baru</button>
                     </div>
                 </form>
             </div>
             <div class="col-span-1 bg-blue-800 rounded-r-2xl p-8 flex justify-center items-center">
                 <div class="font-bold text-white p-4">
-                    <p class="text-3xl mb-4">Selamat Datang di Sisukma ITK</p>
+                    <p class="text-3xl mb-4">Selamat Datang di SISUKMA ITK</p>
                     <p class="mb-4 font-semibold">Ubah password anda untuk meningkatkan keamanan.</p>
                     {{-- <p class="mb-4">
                         Apabila anda belum memiliki akun, silahkan hubungi Admin SIKUSMA lewat email:eoffice@itk.ac.id untuk mendapatkan akun
