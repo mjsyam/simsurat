@@ -70,45 +70,47 @@
         <a href="{{ route('approve.letter.index') }}"><i class="fas fa-envelope-open-text fa-fw mr-2"></i>Surat
             Keluar</a>
     </li>
+    @if (Auth::user()->status == "ADMIN")
 
-    <li class="{{ $settingOpen ? 'active' : '' }}">
-        <a href="#settingSubMenu" data-toggle="collapse" aria-expanded="false" class="d-flex">
-            <div class="mr-auto"><i class="c-red-300 ti-settings mr-2"></i>Setting</div>
-            <div class="mr-1">
-                <i class="fa fa-caret-down"></i>
-            </div>
-        </a>
-        <ul class="collapse list-unstyled {{ $settingOpen ? 'show' : '' }} " id="settingSubMenu">
-            <li class="{{ $route == 'admin.user.index' ? 'active' : '' }}">
-                {{-- <a class="btn sidebar-link {{ Str::startsWith($route, ADMIN . '.users') ? 'actived' : '' }}" href="{{ route(ADMIN . '.users.index') }}"> --}}
-                <a href="{{ route('admin.user.index') }}">
-                    <i class="fas fa-user-tie fa-fw mr-1"></i>
-                    User
-                </a>
-            </li>
+        <li class="{{ $settingOpen ? 'active' : '' }}">
+            <a href="#settingSubMenu" data-toggle="collapse" aria-expanded="false" class="d-flex">
+                <div class="mr-auto"><i class="c-red-300 ti-settings mr-2"></i>Setting</div>
+                <div class="mr-1">
+                    <i class="fa fa-caret-down"></i>
+                </div>
+            </a>
+            <ul class="collapse list-unstyled {{ $settingOpen ? 'show' : '' }} " id="settingSubMenu">
+                <li class="{{ $route == 'admin.user.index' ? 'active' : '' }}">
+                    {{-- <a class="btn sidebar-link {{ Str::startsWith($route, ADMIN . '.users') ? 'actived' : '' }}" href="{{ route(ADMIN . '.users.index') }}"> --}}
+                    <a href="{{ route('admin.user.index') }}">
+                        <i class="fas fa-user-tie fa-fw mr-1"></i>
+                        User
+                    </a>
+                </li>
 
-            <li class="{{ $route == 'admin.identifier.index' ? 'active' : '' }}">
-                <a href="{{ route('admin.identifier.index') }}">
-                    <i class="fas fa-users-gear fa-fw mr-2"></i>
-                    Identifier
-                </a>
-            </li>
+                <li class="{{ $route == 'admin.identifier.index' ? 'active' : '' }}">
+                    <a href="{{ route('admin.identifier.index') }}">
+                        <i class="fas fa-users-gear fa-fw mr-2"></i>
+                        Identifier
+                    </a>
+                </li>
 
-            <li class="{{ $route == 'admin.unit.index' ? 'active' : '' }}">
-                <a href="{{ route('admin.unit.index') }}">
-                    <i class="fas fa-users-viewfinder fa-fw mr-2"></i>
-                    Unit
-                </a>
-            </li>
+                <li class="{{ $route == 'admin.unit.index' ? 'active' : '' }}">
+                    <a href="{{ route('admin.unit.index') }}">
+                        <i class="fas fa-users-viewfinder fa-fw mr-2"></i>
+                        Unit
+                    </a>
+                </li>
 
-            <li class="{{ $route == 'admin.role.index' ? 'active' : '' }}">
-                <a href="{{ route('admin.role.index') }}">
-                    <i class="fas fa-user-lock fa-fw mr-2"></i>
-                    Role
-                </a>
-            </li>
-        </ul>
-    </li>
+                <li class="{{ $route == 'admin.role.index' ? 'active' : '' }}">
+                    <a href="{{ route('admin.role.index') }}">
+                        <i class="fas fa-user-lock fa-fw mr-2"></i>
+                        Role
+                    </a>
+                </li>
+            </ul>
+        </li>
+    @endif
 
     <li>
         <a href="{{ route('new.password') }}">

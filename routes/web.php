@@ -72,61 +72,63 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/approve/letter/{id}', [ApproveLetterContoller::class, 'approve'])->name('approve.letter.approve');
 });
 
-Route::prefix('admin')->group(function () {
-    // TODO : perbaiki detial user
-    Route::controller(Admin\UserController::class)->group(function () {
-        Route::prefix('user')->group(function () {
-            Route::get('/list', 'index')->name('admin.user.index');
-            Route::get('/detail/{id}', 'show')->name('admin.user.detail');
-            Route::put('/update/{id}', 'update')->name('admin.user.update');
-            Route::delete('/delete/{id}', 'destroy')->name('admin.user.delete');
-            Route::post('/add', 'store')->name('admin.user.add');
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::prefix('admin')->group(function () {
+        // TODO : perbaiki detial user
+        Route::controller(Admin\UserController::class)->group(function () {
+            Route::prefix('user')->group(function () {
+                Route::get('/list', 'index')->name('admin.user.index');
+                Route::get('/detail/{id}', 'show')->name('admin.user.detail');
+                Route::put('/update/{id}', 'update')->name('admin.user.update');
+                Route::delete('/delete/{id}', 'destroy')->name('admin.user.delete');
+                Route::post('/add', 'store')->name('admin.user.add');
 
-            Route::get('/get-data/table', 'getUsersTable')->name('admin.user.table');
-            Route::post('/assign-identifier/{id}', 'assignIdentifier')->name('admin.user.assignIdentifier');
+                Route::get('/get-data/table', 'getUsersTable')->name('admin.user.table');
+                Route::post('/assign-identifier/{id}', 'assignIdentifier')->name('admin.user.assignIdentifier');
+            });
         });
-    });
 
-    // TODO : role seharusnya tidak boleh dihapus, hanya boleh digantikan
-    Route::controller(Admin\RoleController::class)->group(function () {
-        Route::prefix('role')->group(function () {
-            Route::get('/list', 'index')->name('admin.role.index');
-            Route::get('/detail/{role}', 'show')->name('admin.role.detail');
-            Route::put('/update/{role}', 'update')->name('admin.role.update');
-            Route::delete('/delete/{role}', 'destroy')->name('admin.role.delete');
-            Route::post('/add', 'store')->name('admin.role.add');
-            Route::post('/assign-identifier/{role}', 'assignIdentifier')->name('admin.role.assignIdentifier');
-            Route::post('/remove-identifier/{role}', 'removeIdentifier')->name('admin.role.removeIdentifier');
+        // TODO : role seharusnya tidak boleh dihapus, hanya boleh digantikan
+        Route::controller(Admin\RoleController::class)->group(function () {
+            Route::prefix('role')->group(function () {
+                Route::get('/list', 'index')->name('admin.role.index');
+                Route::get('/detail/{role}', 'show')->name('admin.role.detail');
+                Route::put('/update/{role}', 'update')->name('admin.role.update');
+                Route::delete('/delete/{role}', 'destroy')->name('admin.role.delete');
+                Route::post('/add', 'store')->name('admin.role.add');
+                Route::post('/assign-identifier/{role}', 'assignIdentifier')->name('admin.role.assignIdentifier');
+                Route::post('/remove-identifier/{role}', 'removeIdentifier')->name('admin.role.removeIdentifier');
 
-            Route::get('/get-data/table', 'getRolesTable')->name('admin.role.table');
+                Route::get('/get-data/table', 'getRolesTable')->name('admin.role.table');
+            });
         });
-    });
 
-    Route::controller(Admin\UnitController::class)->group(function () {
-        Route::prefix('unit')->group(function () {
-            Route::get('/list', 'index')->name('admin.unit.index');
-            Route::get('/detail/{unit}', 'show')->name('admin.unit.detail');
-            Route::put('/update/{unit}', 'update')->name('admin.unit.update');
-            Route::delete('/delete/{unit}', 'destroy')->name('admin.unit.delete');
-            Route::post('/add', 'store')->name('admin.unit.add');
-            Route::post('/assign-identifier/{unit}', 'assignIdentifier')->name('admin.unit.assignIdentifier');
-            Route::post('/remove-identifier/{unit}', 'removeIdentifier')->name('admin.unit.removeIdentifier');
+        Route::controller(Admin\UnitController::class)->group(function () {
+            Route::prefix('unit')->group(function () {
+                Route::get('/list', 'index')->name('admin.unit.index');
+                Route::get('/detail/{unit}', 'show')->name('admin.unit.detail');
+                Route::put('/update/{unit}', 'update')->name('admin.unit.update');
+                Route::delete('/delete/{unit}', 'destroy')->name('admin.unit.delete');
+                Route::post('/add', 'store')->name('admin.unit.add');
+                Route::post('/assign-identifier/{unit}', 'assignIdentifier')->name('admin.unit.assignIdentifier');
+                Route::post('/remove-identifier/{unit}', 'removeIdentifier')->name('admin.unit.removeIdentifier');
 
-            Route::get('/get-data/table', 'getUnitsTable')->name('admin.unit.table');
+                Route::get('/get-data/table', 'getUnitsTable')->name('admin.unit.table');
+            });
         });
-    });
 
-    Route::controller(Admin\IdentifierController::class)->group(function () {
-        Route::prefix('identifier')->group(function () {
-            Route::get('/list', 'index')->name('admin.identifier.index');
-            Route::get('/detail/{identifier}', 'show')->name('admin.identifier.detail');
-            Route::put('/update/{identifier}', 'update')->name('admin.identifier.update');
-            Route::delete('/delete/{identifier}', 'destroy')->name('admin.identifier.delete');
-            Route::post('/add', 'store')->name('admin.identifier.add');
+        Route::controller(Admin\IdentifierController::class)->group(function () {
+            Route::prefix('identifier')->group(function () {
+                Route::get('/list', 'index')->name('admin.identifier.index');
+                Route::get('/detail/{identifier}', 'show')->name('admin.identifier.detail');
+                Route::put('/update/{identifier}', 'update')->name('admin.identifier.update');
+                Route::delete('/delete/{identifier}', 'destroy')->name('admin.identifier.delete');
+                Route::post('/add', 'store')->name('admin.identifier.add');
 
-            Route::get('/get-data/table', 'getIdentifiersTable')->name('admin.identifier.table');
-            Route::post('/assign-user/{identifier}', 'assignUser')->name('admin.identifier.assignUser');
-            Route::post('/remove-user/{identifier}', 'removeUser')->name('admin.identifier.removeUser');
+                Route::get('/get-data/table', 'getIdentifiersTable')->name('admin.identifier.table');
+                Route::post('/assign-user/{identifier}', 'assignUser')->name('admin.identifier.assignUser');
+                Route::post('/remove-user/{identifier}', 'removeUser')->name('admin.identifier.removeUser');
+            });
         });
     });
 });

@@ -885,7 +885,7 @@ class UserRoleSeeder extends Seeder
                 "unit_id" => "8",
                 'name' => "Admin",
                 'email' => "superadmin@gmail.com",
-                'status' => 'TENDIK',
+                'status' => 'ADMIN',
                 'email_verified_at' => now(),
                 'password' => Hash::make('123456789'),
                 'remember_token' => str::random(10),
@@ -1730,7 +1730,7 @@ class UserRoleSeeder extends Seeder
                 'remember_token' => Str::random(10),
                 'number' => "0",
                 'phone_number' => '6282393892599',
-                'unit_id' => "10", 
+                'unit_id' => "10",
                 'signature' => "beta",
                 'avatar' => "beta",
                 'identifier_id' => "56", // Add identifier_id

@@ -16,6 +16,7 @@ use App\Models\Unit;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Svg\Tag\Rect;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
