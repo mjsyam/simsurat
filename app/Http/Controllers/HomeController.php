@@ -56,7 +56,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Hash::check("123456789", Auth::user()->password)){
+        if(Hash::check("123456789"gi, Auth::user()->password)){
             return redirect()->route('new.password');
         }
         
