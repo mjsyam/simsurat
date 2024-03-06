@@ -48,7 +48,7 @@
                     </div>
                 </div>
             @else
-                <div class="alert @if($dispositionStatus->status == 'approved') alert-success @else alert-danger @endif" role="alert">
+                <div class="alert @if($dispositionStatus->status == "approved") alert-success @else alert-danger @endif" role="alert">
                     Surat telah <b>@if($dispositionStatus->status == "approved") Disetujui @else Ditolak @endif</b> oleh Anda.
                 </div>
             @endif

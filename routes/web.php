@@ -42,7 +42,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/inbox/table', [InboxController::class, 'tableInbox'])->name('inbox.tableInbox');
     Route::get('/inbox/detail/{letterReceiver}', [InboxController::class, 'detail'])->name('inbox.detail');
     Route::post('/inbox/disposition/{disposition}', [InboxController::class, 'disposition'])->name('inbox.disposition');
-    Route::post("/inbox/disposition/{dispositionTo}/status/{status}", [InboxController::class, 'dispositionStatus'])->name('inbox.disposition.status');
+    Route::post("/inbox/disposition/{dispositionTow}/status/{status}", [InboxController::class, 'dispositionStatus'])->name('inbox.disposition.status');
 
     Route::get('/inbox-disposition', [InboxController::class, 'indexDisposition'])->name('inbox.indexDisposition'); 
     Route::get('/inbox-disposition/table', [InboxController::class, 'tableDisposisitionInbox'])->name('inbox.tableDisposisitionInbox'); 
