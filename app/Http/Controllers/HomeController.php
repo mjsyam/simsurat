@@ -56,10 +56,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Hash::check("123456789"gi, Auth::user()->password)){
+        if(Hash::check("123456789", Auth::user()->password)){
             return redirect()->route('new.password');
         }
-        
+
         $letter_unread = LetterReceiver::where('user_id', auth()->user()->id)
         ->with(['letter','letterStatus'])
         ->whereHas('letterStatus', function($query){
@@ -100,7 +100,7 @@ class HomeController extends Controller
             $query->where('status', 'rejected');
         })->count();
 
-        
+
         return view('home', compact([
             'letter_unread',
             'letter_in',
