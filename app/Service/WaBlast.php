@@ -21,7 +21,7 @@ class WaBlast
           "message": {
             "type": "template",
             "template": {
-              "template_code_id": "d7529850_b0a9_41fe_b49c_b7d78ed184de:sim_surat",
+              "template_code_id": "d7529850_b0a9_41fe_b49c_b7d78ed184de:rev_sisukma_itk",
               "payload": [
                 {
                   "position": "body",
