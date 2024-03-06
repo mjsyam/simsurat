@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId("letter_id")->constrained("letters");
             $table->string("security_level");
-            $table->integer("agenda_number");
             $table->date("receive_date");
             $table->string("purpose");
             $table->string("from");

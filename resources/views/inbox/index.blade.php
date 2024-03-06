@@ -10,7 +10,7 @@
         <h3 class="">Surat Masuk</h3><br>
         <div class="bgc-white bd bdrs-3 p-20 mB-20 mt-4">
             <div class="table-responsive">
-                <table class="table table-striped" id="inbox_table">
+                <table class="" id="inbox_table">
                     <thead>
                         <tr class="fw-bold fs-7 text-gray-500 text-uppercase">
                             <th>#</th>
@@ -91,6 +91,15 @@
                         searchable: false,
                     },
                 ],
+                createdRow: function(row, data, dataIndex) {
+                    const { read } = data;
+
+                    if (!read) {
+                        return $(row).css('background-color', 'rgb(255, 255, 255)');
+                    } else {
+                        return $(row).css('background-color', 'whitesmoke');
+                    }
+                },
             });
 
             detailLetterTable = $('#table_detail')

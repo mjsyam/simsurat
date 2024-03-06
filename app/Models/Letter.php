@@ -40,4 +40,9 @@ class Letter extends Model
     {
         return $this->belongsTo(Identifier::class);
     }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->format('d-m-Y H:i');
+    }
 }

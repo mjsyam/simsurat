@@ -24,7 +24,7 @@ class ApproveLetterContoller extends Controller
 
             $letters = Letter::where("signed_id", $user->id)->whereHas('letterReceivers', function($query){
                 return $query->whereHas('letterHistories', function($query){
-                    return $query->where('status', 'waiting');
+                    return $query->where('status', 'Menunggu Persetujuan');
                 });
             })->with("letterReceivers.letterHistories")->orderBy("created_at", "desc");
 
@@ -70,31 +70,36 @@ class ApproveLetterContoller extends Controller
         $letter = Letter::find($id);
 
         foreach ($letter->letterReceivers as $letterReceiver) {
-            $letterReceiver->letterStatus()->update([
-                "status" => $request->action,
-            ]);
 
             if ($request->action == "approved") {
+                $letterReceiver->letterStatus()->update([
+                    "status" => "Disetujui Yang Bertanda Tangan",
+                ]);
+
                 $letterReceiver->letterHistories()->create([
                     "letter_receiver_id" => $letterReceiver->id,
                     "note" => "Surat berhasil disetujui",
-                    "status" => $request->action,
+                    "status" => "Disetujui Yang Bertanda Tangan",
                 ]);
 
                 $letterReceiver->letterHistories()->create([
                     "letter_receiver_id" => $letterReceiver->id,
                     "note" => "Surat berhasil dikirim",
-                    "status" => "sented",
+                    "status" => "Terkirim",
                 ]);
 
                 $letterReceiver->letterStatus()->update([
-                    "status" => "sented",
+                    "status" => "Terkirim",
                 ]);
             } else {
+                $letterReceiver->letterStatus()->update([
+                    "status" => "Ditolak Yang Bertanda Tangan",
+                ]);
+
                 $letterReceiver->letterHistories()->create([
                     "letter_receiver_id" => $letterReceiver->id,
                     "note" => "Surat berhasil ditolak",
-                    "status" => $request->action,
+                    "status" => "Ditolak Yang Bertanda Tangan",
                 ]);
             }
         }

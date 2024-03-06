@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Letter;
 use App\Models\LetterReceiver;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -19,8 +21,33 @@ class HomeController extends Controller
     // jika dibutuhkan maka middleware bisa digunakan di controller
     // public function __construct()
     // {
-    //     $this->middleware('auth');
+    //     // $this->middleware('auth');
+    //     // dd(Auth::user());
+    //     // if(Auth::user()->p == Hash::make('123456789')){
+    //     //     return redirect()->route('change password');
+    //     // }
     // }
+
+    public function newPassword(){
+        return view('auth.passwords.new-password');
+    }
+
+    public function changePassword(Request $request){
+        $request->validate([
+            'password' => 'required|min:8|confirmed',
+            'password_confirmation' => "required|min:8"
+        ]);
+
+        if(Hash::check($request->password, Auth::user()->password)){
+            return redirect()->back()->withErrors('Password tidak boleh sama dengan password sebelumnya!');
+        }else{
+            $user = Auth::user();
+            $user->password = Hash::make($request->password);
+            $user->save();
+        }
+
+        return redirect()->route('home');
+    }
 
     /**
      * Show the application dashboard.
@@ -29,6 +56,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if(Hash::check("123456789", Auth::user()->password)){
+            return redirect()->route('new.password');
+        }
+        
         $letter_unread = LetterReceiver::where('user_id', auth()->user()->id)
         ->with(['letter','letterStatus'])
         ->whereHas('letterStatus', function($query){

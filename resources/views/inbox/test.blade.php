@@ -8,31 +8,31 @@
           <div class="col-md-8">
               <div class="letter-content pt-3" style="display: flex;  justify-content: space-between;">
                   <div>
-                      <input id="sangatRahasia" type="radio" name="security_level" value="Sangat Rahasia" @if($disposition && $disposition->security_level == "Sangat Rahasia") checked @endif> 
+                      <input id="sangatRahasia" type="radio" name="security_level" value="Sangat Rahasia" @if($disposition && $disposition->security_level == "Sangat Rahasia") checked @endif>
                       <label for="sangatRahasia">
                           Sangat Rahasia
                       </label>
                   </div>
                   <div>
-                      <input id="rahasia" type="radio" name="security_level" value="Rahasia" @if($disposition && $disposition->security_level == "Rahasia") checked @endif> 
+                      <input id="rahasia" type="radio" name="security_level" value="Rahasia" @if($disposition && $disposition->security_level == "Rahasia") checked @endif>
                       <label for="rahasia">
                           Rahasia
                       </label>
                   </div>
                   <div>
-                      <input id="sangatSegera" type="radio" name="security_level" value="Sangat Segera" @if($disposition && $disposition->security_level == "Sangat Segera") checked @endif> 
+                      <input id="sangatSegera" type="radio" name="security_level" value="Sangat Segera" @if($disposition && $disposition->security_level == "Sangat Segera") checked @endif>
                       <label for="sangatSegera">
                           Sangat Segera
                       </label>
                   </div>
                   <div>
-                      <input id="segera" type="radio" name="security_level" value="Segera" @if($disposition && $disposition->security_level == "Segera") checked @endif> 
+                      <input id="segera" type="radio" name="security_level" value="Segera" @if($disposition && $disposition->security_level == "Segera") checked @endif>
                       <label for="segera">
                           Segera
                       </label>
                   </div>
                   <div>
-                      <input id="biasa" type="radio" name="security_level" value="Biasa" @if($disposition && $disposition->security_level == "Biasa") checked @endif> 
+                      <input id="biasa" type="radio" name="security_level" value="Biasa" @if($disposition && $disposition->security_level == "Biasa") checked @endif>
                       <label for="biasa">
                           Biasa
                       </label>
@@ -40,13 +40,6 @@
               </div>
               <table style="width: 100%">
                   <tbody>
-                      <tr>
-                          <td style="width: 20%;">Nomor Agenda</td>
-                          <td style="width: 2%">:</td>
-                          <td>
-                              <input type="number" name="agenda_number" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" value=@if($disposition) {{$disposition->agenda_number}} @endif>
-                          </td>
-                      </tr>
                       <tr>
                           <td>Tanggal Terima</td>
                           <td>:</td>
@@ -71,7 +64,7 @@
                       <tr>
                           <td>Hal</td>
                           <td>:</td>
-                          <td>                                                
+                          <td>
                               <input type="text" name="point" class="w-100 d-inline" style="border: none; border-bottom: 1px solid #000;" value=@if($disposition) {{$disposition->point}} @endif>
                           </td>
                       </tr>
@@ -145,7 +138,7 @@
               @endif
           </div>
       </div>
-     
+
   </div>
-  
+
 </form>

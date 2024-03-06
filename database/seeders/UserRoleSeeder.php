@@ -821,6 +821,65 @@ class UserRoleSeeder extends Seeder
             Identifier::create($identifier);
         });
 
+        // 6285259367474
+        // 6285895165709
+        // 6287854257246
+        // 6282183755464
+        // 6281347565630
+        // 6281363123365
+        // 6282148788999
+        // 6282326200076
+        // 6285363220512
+        // 6285768333807
+        // 6285242800578
+        // 6285341112790
+        // 6285244317201
+        // 6285649312537
+        // 6281360650330
+        // 6281393177723
+        // 6285396942508
+        // 6281317666677
+        // 6287753372399
+        // 6285255605456
+        // 6281242608799
+        // 6285282814331
+        // 6282338264877
+        // 6282236719503
+        // 628991333570
+        // 6281238326787
+        // 6287877091800
+        // 6281234550536
+        // 6282130717329
+        // 6281217580491
+        // 6285250651451
+        // 628971554763
+        // 6281347087013
+        // 6282245439445
+        // 6281257004114
+        // 6281348494529
+        // 6289639003412
+
+
+
+        // 6285256166864
+
+        // 6282155237471
+        // 6281355844412
+
+        // 6282243137654
+        // 6282257451955
+        // 6281224661190
+        // 6281217183412
+
+
+        // 6281330686130
+        // 6281231352063
+        // 628990945520
+        // 6285387380122
+        // 6282393892599
+        // 6285725659195
+        // 6281258668666
+
         collect([
             [
                 "unit_id" => "8",
@@ -845,6 +904,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "1",
+                'phone_number' => '6285259367474',
                 "unit_id" => "1",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -859,6 +919,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "2",
+                'phone_number' => '6285895165709',
                 "unit_id" => "1",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -873,6 +934,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "3",
+                'phone_number' => '6287854257246',
                 "unit_id" => "1",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -888,6 +950,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "4",
+                'phone_number' => '6282183755464',
                 "unit_id" => "2",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -902,6 +965,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "5",
+                'phone_number' => '6281347565630',
                 "unit_id" => "2",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -916,6 +980,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "6",
+                'phone_number' => '6281363123365',
                 "unit_id" => "2",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -930,6 +995,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "7",
+                'phone_number' => '6282148788999',
                 "unit_id" => "2",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -944,6 +1010,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "8",
+                'phone_number' => '6282326200076',
                 "unit_id" => "2",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -958,6 +1025,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "9",
+                'phone_number' => '6285363220512',
                 "unit_id" => "2",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -972,6 +1040,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "10",
+                'phone_number' => '6285768333807',
                 "unit_id" => "2",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -986,6 +1055,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "11",
+                'phone_number' => '6285242800578',
                 "unit_id" => "3",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1000,6 +1070,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "12",
+                'phone_number' => '6285341112790',
                 "unit_id" => "3",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1014,6 +1085,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "13",
+                'phone_number' => '6285244317201',
                 "unit_id" => "3",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1028,6 +1100,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "14",
+                'phone_number' => '6285649312537',
                 "unit_id" => "3",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1042,6 +1115,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "15",
+                'phone_number' => '6281360650330',
                 "unit_id" => "3",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1056,6 +1130,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "16",
+                'phone_number' => '6281393177723',
                 "unit_id" => "4",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1070,6 +1145,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "17",
+                'phone_number' => '6285396942508',
                 "unit_id" => "4",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1084,6 +1160,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "18",
+                'phone_number' => '6281317666677',
                 "unit_id" => "4",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1098,6 +1175,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "19",
+                'phone_number' => '6287753372399',
                 "unit_id" => "4",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1112,6 +1190,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "20",
+                'phone_number' => '6285255605456',
                 "unit_id" => "4",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1126,6 +1205,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "21",
+                'phone_number' => '6281242608799',
                 "unit_id" => "5",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1140,6 +1220,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "22",
+                'phone_number' => '6285282814331',
                 "unit_id" => "5",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1154,6 +1235,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "23",
+                'phone_number' => '6282338264877',
                 "unit_id" => "5",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1168,6 +1250,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "24",
+                'phone_number' => '6282236719503',
                 "unit_id" => "5",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1182,6 +1265,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "25",
+                'phone_number' => '628991333570',
                 "unit_id" => "5",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1196,6 +1280,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "26",
+                'phone_number' => '6281238326787',
                 "unit_id" => "5",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1210,6 +1295,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "27",
+                'phone_number' => '6287877091800',
                 "unit_id" => "5",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1224,6 +1310,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "28",
+                'phone_number' => '6281234550536',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1238,6 +1325,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "29",
+                'phone_number' => '6282130717329',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1252,6 +1340,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "30",
+                'phone_number' => '6281217580491',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1266,6 +1355,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "31",
+                'phone_number' => '6285250651451',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1280,6 +1370,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "32",
+                'phone_number' => '628971554763',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1294,6 +1385,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "33",
+                'phone_number' => '6281347087013',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1308,6 +1400,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "34",
+                'phone_number' => '6282245439445',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1322,6 +1415,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "35",
+                'phone_number' => '6281257004114',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1336,6 +1430,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "36",
+                'phone_number' => '6281348494529',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1350,6 +1445,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "37",
+                'phone_number' => '6289639003412',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1364,6 +1460,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "38",
+                'phone_number' => '',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1378,6 +1475,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "39",
+                'phone_number' => '',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1392,6 +1490,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "40",
+                'phone_number' => '',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1406,6 +1505,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "41",
+                'phone_number' => '6285256166864',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1420,6 +1520,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "42",
+                'phone_number' => '',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1434,6 +1535,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "43",
+                'phone_number' => '6282155237471',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1448,6 +1550,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "44",
+                'phone_number' => '6281355844412',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1476,6 +1579,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '6282243137654',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1490,6 +1594,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '6282257451955',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1504,6 +1609,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '6281224661190',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1518,6 +1624,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '6281217183412',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1532,6 +1639,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '6282243137654',
                 "unit_id" => "6",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1546,6 +1654,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '',
                 "unit_id" => "7",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1560,6 +1669,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '6281330686130',
                 "unit_id" => "8",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1574,6 +1684,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '6281231352063',
                 "unit_id" => "8",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1588,6 +1699,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '628990945520',
                 "unit_id" => "8",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1602,6 +1714,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '6285387380122',
                 "unit_id" => "9",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1616,7 +1729,8 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
-                "unit_id" => "10",
+                'phone_number' => '6282393892599',
+                'unit_id' => "10", 
                 'signature' => "beta",
                 'avatar' => "beta",
                 'identifier_id' => "56", // Add identifier_id
@@ -1630,6 +1744,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '6285725659195',
                 "unit_id" => "11",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1644,6 +1759,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '6281258668666',
                 "unit_id" => "12",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1658,6 +1774,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '',
                 "unit_id" => "13",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1672,6 +1789,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '',
                 "unit_id" => "14",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1686,6 +1804,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '',
                 "unit_id" => "15",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1700,6 +1819,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '6285859107339',
                 "unit_id" => "16",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1714,6 +1834,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '628113603040',
                 "unit_id" => "17",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1728,6 +1849,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '6282139837201',
                 "unit_id" => "18",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1742,6 +1864,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '6281254712848',
                 "unit_id" => "19",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1756,6 +1879,7 @@ class UserRoleSeeder extends Seeder
                 'password' => Hash::make('123456789'),
                 'remember_token' => Str::random(10),
                 'number' => "0",
+                'phone_number' => '',
                 "unit_id" => "8",
                 'signature' => "beta",
                 'avatar' => "beta",
@@ -1771,6 +1895,7 @@ class UserRoleSeeder extends Seeder
                 'password' => $user["password"],
                 'remember_token' => $user["remember_token"],
                 'number' => $user["number"],
+                'phone_number' => $user["phone_number"] ?? '',
                 "unit_id" => $user["unit_id"],
                 'signature' => $user["signature"],
                 'avatar' => $user["avatar"],

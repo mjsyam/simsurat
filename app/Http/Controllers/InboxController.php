@@ -20,6 +20,8 @@ use App\Models\DispositionInformation;
 use App\Models\Disposition;
 use App\Models\DispositionTo;
 use App\Models\Information;
+use App\Service\WaBlast;
+use Illuminate\Support\Facades\Notification;
 
 class InboxController extends Controller
 {
@@ -41,6 +43,9 @@ class InboxController extends Controller
 
         if (request()->ajax()) {
             $letterReceivers = LetterReceiver::where('user_id', Auth::user()->id)
+            ->whereHas('letterStatus', function ($query) {
+                $query->whereNot('status', $this->constants->letter_status[0]);
+            })
             ->with(['letter.letterCategory', 'user', 'disposition.dispositionTos'])->orderBy("created_at", "desc");
 
             // dd($letterReceivers);
@@ -49,14 +54,9 @@ class InboxController extends Controller
             ->addColumn('title', function($letterReceivers) {
                 return $letterReceivers->letter->title;
             })
-            ->addColumn('security_level', function($letterReceivers) {
-                if($letterReceivers->disposition){
-                    $securityLevel = $letterReceivers->disposition->security_level;
-                } else{
-                    $securityLevel = "";
-                }
-                return $securityLevel;
-            })
+            // ->addColumn('security_level', function($letterReceivers) {
+            //     return $letterReceivers->disposition->security_level;
+            // })
             ->addColumn('signed', function ($letterReceiver) {
                 return $letterReceiver->letter->signed->name;
             })
@@ -64,7 +64,7 @@ class InboxController extends Controller
                 return $letterReceiver->letter->letterCategory->name;
             })
             ->addColumn('created_at', function ($letterReceiver) {
-                return Carbon::parse($letterReceiver->letter->created_at)->format('Y-m-d H:i:s');
+                return $letterReceiver->letter->created_at;
             })
             ->addColumn('action', function ($letterReceivers) {
                 $id = $letterReceivers->id;
@@ -73,14 +73,26 @@ class InboxController extends Controller
                     'id', 'letterId'
                 ]));
             })
+            ->addColumn('read', function ($query) {
+                return $query->letterStatus->read;
+            })
             ->addIndexColumn()
             ->rawColumns(['action'])
             ->make(true);
         }
     }
 
-    public function tableDipositionOutBox() {
-        $letterReceivers = LetterReceiver::where('user_id', Auth::user()->id)->where('disposition_id', "!=", null)->with(['letter.letterCategory', 'user', 'disposition.dispositionTos'])->orderBy("created_at", "desc");
+    public function tableDipositionOutBox(Request $request) {
+        $letterReceivers = LetterReceiver::where('user_id', Auth::user()->id)
+            ->where('disposition_id', "!=", null)
+            ->with(['letter.letterCategory', 'user', 'disposition.dispositionTos'])
+            ->orderBy("created_at", "desc");
+
+        if ($request->security_level !== "*") {
+            $letterReceivers->whereHas('disposition', function($q) use ($request){
+                $q->where('security_level', $request->security_level);
+            });
+        }
 
         return DataTables::of($letterReceivers)
             ->addColumn('title', function($letterReceivers) {
@@ -209,7 +221,6 @@ class InboxController extends Controller
 
         $request->validate([
             'security_level' => 'required',
-            'agenda_number' => 'required',
             // 'receive_date' => 'required',
             // 'purpose' => 'required',
             // 'from' => 'required',
@@ -221,7 +232,6 @@ class InboxController extends Controller
         $disposition = Disposition::create([
             'letter_id' => $letterReceiver->letter->id,
             'security_level' => $request->security_level,
-            'agenda_number' => $request->agenda_number,
             'receive_date' => date("Y/m/d"),
             'purpose' => date("Y/m/d"),
             'from' => Auth::user()->identifiers->first()->unit->name,
@@ -267,6 +277,24 @@ class InboxController extends Controller
         $dispositionTo->update([
             'status' => $status
         ]);
+        $letter = $dispositionTo->disposition->letter;
+        $sender = $letter->user;
+        $signed = $letter->signed;
+
+        if ($status == 'approved') {
+            WaBlast::send($sender->phone_number, $sender->name);
+            Notification::send($sender, new \App\Notifications\MailNotification((object) [
+                'headers' => 'Disposisi Anda Telah Di Setujui',
+                'user' => $sender
+            ]));
+
+            WaBlast::send($signed->phone_number, $signed->name);
+            Notification::send($signed, new \App\Notifications\MailNotification((object) [
+                'headers' => 'Disposisi Anda Telah Di Setujui',
+                'user' => $signed
+            ]));
+        }
+
         return redirect()->back();
     }
 
@@ -280,10 +308,16 @@ class InboxController extends Controller
     }
 
     public function indexDisposition(){
-        return view("inbox.disposition");
+        $security = $this->constants->security;
+        return view("inbox.disposition", compact([
+            'security'
+        ]));
     }
 
     public function indexOutboxDisposition(){
-        return view("inbox.outbox-disposition");
+        $security = $this->constants->security;
+        return view("inbox.outbox-disposition", compact([
+            'security'
+        ]));
     }
 }

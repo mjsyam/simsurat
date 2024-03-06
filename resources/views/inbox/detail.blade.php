@@ -32,7 +32,7 @@
     <div class="container-fluid">
         <h2 style="color: #515151" class="font-weight-bold">Detail Surat</h2>
         <h5 style="color: gray" class="font-weight-bold">Sisukma Institut Teknologi Kalimantan</h5>
-        @if ($dispositionStatus)            
+        @if ($dispositionStatus)
             @if ($dispositionStatus->status == 'process')
                 <div class="alert alert-info my-3" role="alert">
                     <h3 class="alert-heading">Berikan Status surat</h3>
@@ -62,26 +62,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <table class="table table-striped">
-                        <thead class="bgTable">
-                            <tr>
-                                <td colspan="2">
-                                    <h5 class="ml-3 my-auto text-white">Nomor Agenda
-                                        ({{ $disposition->agenda_number }})
-                                    </h5>
-                                </td>
-                            </tr>
-                        </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <p class="ml-3 my-auto">Kode</p>
-                                </td>
-                                <td>
-                                    <p class="ml-3 my-auto">
-                                        {{ $disposition->agenda_number }}
-                                    </p>
-                                </td>
-                            </tr>
                             <tr>
                                 <td>
                                     <p class="ml-3 my-auto">Sifat</p>
@@ -161,16 +142,6 @@
                     </thead>
                     <tbody>
                         @if ($disposition)
-                            <tr>
-                                <td>
-                                    <p class="ml-3 my-auto">No Surat</p>
-                                </td>
-                                <td>
-                                    <p class="ml-3 my-auto">
-                                        {{ $disposition->agenda_number }}
-                                    </p>
-                                </td>
-                            </tr>
                             <tr>
                                 <td>
                                     <p class="ml-3 my-auto">Instansi</p>
@@ -310,17 +281,6 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-3">
-                                    <label for="agenda" class="form-label">Nomor Agenda</label>
-                                </div>
-                                <div class="col-md-9">
-                                    <input type="number" name="agenda_number" class="form-control" id="agenda"
-                                        aria-describedby="emailHelp"
-                                        value=@if ($disposition) {{ $disposition->agenda_number }} disabled @endif
-                                        required>
                                 </div>
                             </div>
                             <div class="row mb-3">

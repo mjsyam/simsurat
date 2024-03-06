@@ -12,6 +12,7 @@ use App\Http\Controllers\Letter\ReceivedLetterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PDFController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +25,17 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Route::get('/test', function () {
+    Notification::send(Auth::user(), new App\Notifications\MailNotification((object) [
+        'headers' => 'Disposisi Anda Telah Di Setujui',
+        'user' => Auth::user()
+    ]));
+    return "asdwa";
+});
+
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect()->route('login');
 });
 
 Auth::routes();
@@ -34,6 +44,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
 
+Route::get('/new-password', [HomeController::class, 'newPassword'])->name('new.password');
+Route::post('/change-password', [HomeController::class, 'changePassword'])->name('change.password');
 Route::get('/pdf/letter/{letter}', [PDFController::class, 'index'])->name('pdf.letter');
 
 Route::group(['middleware' => ['auth']], function () {
@@ -41,23 +53,23 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');
     Route::get('/inbox/table', [InboxController::class, 'tableInbox'])->name('inbox.tableInbox');
     Route::get('/inbox/detail/{letterReceiver}', [InboxController::class, 'detail'])->name('inbox.detail');
-    Route::post('/inbox/disposition/{disposition}', [InboxController::class, 'disposition'])->name('inbox.disposition');
-    Route::post("/inbox/disposition/{dispositionTow}/status/{status}", [InboxController::class, 'dispositionStatus'])->name('inbox.disposition.status');
+    Route::post('/inbox/disposition/{letterReceiver}', [InboxController::class, 'disposition'])->name('inbox.disposition');
+    Route::post("/inbox/disposition/{dispositionTo}/status/{status}", [InboxController::class, 'dispositionStatus'])->name('inbox.disposition.status');
 
-    Route::get('/inbox-disposition', [InboxController::class, 'indexDisposition'])->name('inbox.indexDisposition'); 
-    Route::get('/inbox-disposition/table', [InboxController::class, 'tableDisposisitionInbox'])->name('inbox.tableDisposisitionInbox'); 
+    Route::get('/inbox-disposition', [InboxController::class, 'indexDisposition'])->name('inbox.indexDisposition');
+    Route::get('/inbox-disposition/table', [InboxController::class, 'tableDisposisitionInbox'])->name('inbox.tableDisposisitionInbox');
 
-    Route::get('/outbox-disposition', [InboxController::class, 'indexOutboxDisposition'])->name('inbox.indexOutboxDisposition'); 
-    Route::get('/outbox-disposition/table', [InboxController::class, 'tableDipositionOutBox'])->name('inbox.tableOutboxDisposition'); 
-
-
-    Route::get('/outgoing-letter', [OutGoingLetter::class, 'index'])->name('outgoing-letter.index'); 
-    Route::get('/outgoing-letter/table', [OutGoingLetter::class, 'tableApprove'])->name('outgoing-letter.tableApprove'); 
+    Route::get('/outbox-disposition', [InboxController::class, 'indexOutboxDisposition'])->name('inbox.indexOutboxDisposition');
+    Route::get('/outbox-disposition/table', [InboxController::class, 'tableDipositionOutBox'])->name('inbox.tableOutboxDisposition');
 
 
-    Route::get('/approve/letter', [ApproveLetterContoller::class, 'index'])->name('approve.letter.index'); 
-    Route::get('/approve/letter/table', [ApproveLetterContoller::class, 'tableApprove'])->name('approve.letter.tableApprove'); 
-    Route::post('/approve/letter/{id}', [ApproveLetterContoller::class, 'approve'])->name('approve.letter.approve'); 
+    Route::get('/outgoing-letter', [OutGoingLetter::class, 'index'])->name('outgoing-letter.index');
+    Route::get('/outgoing-letter/table', [OutGoingLetter::class, 'tableApprove'])->name('outgoing-letter.tableApprove');
+
+
+    Route::get('/approve/letter', [ApproveLetterContoller::class, 'index'])->name('approve.letter.index');
+    Route::get('/approve/letter/table', [ApproveLetterContoller::class, 'tableApprove'])->name('approve.letter.tableApprove');
+    Route::post('/approve/letter/{id}', [ApproveLetterContoller::class, 'approve'])->name('approve.letter.approve');
 });
 
 Route::prefix('admin')->group(function () {
@@ -71,7 +83,7 @@ Route::prefix('admin')->group(function () {
             Route::post('/add', 'store')->name('admin.user.add');
 
             Route::get('/get-data/table', 'getUsersTable')->name('admin.user.table');
-            Route::post('/assign-identifier/{id}','assignIdentifier')->name('admin.user.assignIdentifier');
+            Route::post('/assign-identifier/{id}', 'assignIdentifier')->name('admin.user.assignIdentifier');
         });
     });
 
