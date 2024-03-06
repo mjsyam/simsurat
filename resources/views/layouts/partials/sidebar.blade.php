@@ -67,8 +67,7 @@
     </li>
 
     <li class="{{ $route = 'approve.letter.index' ? 'active' : '' }}">
-        <a href="{{ route('approve.letter.index') }}"><i class="fas fa-envelope-open-text fa-fw mr-2"></i>Surat
-            Keluar</a>
+        <a href="{{ route('approve.letter.index') }}"><i class="fas fa-envelope-open-text fa-fw mr-2"></i>Approve Surat</a>
     </li>
     @if (Auth::user()->status == "ADMIN")
 
