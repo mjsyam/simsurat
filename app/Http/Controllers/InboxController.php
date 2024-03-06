@@ -274,26 +274,28 @@ class InboxController extends Controller
     }
 
     public function dispositionStatus(DispositionTo $dispositionTo, $status){
-        $dispositionTo->update([
-            'status' => $status
-        ]);
-        $letter = $dispositionTo->disposition->letter;
-        $sender = $letter->user;
-        $signed = $letter->signed;
+        DB::transaction(function() use ($dispositionTo, $status){
+            $dispositionTo->update([
+                'status' => $status
+            ]);
+            $letter = $dispositionTo->disposition->letter;
+            $sender = $letter->user;
+            $signed = $letter->signed;
 
-        if ($status == 'approved') {
-            WaBlast::send($sender->phone_number, $sender->name, $letter->title);
-            Notification::send($sender, new \App\Notifications\MailNotification((object) [
-                'headers' => 'Disposisi Anda Telah Di Setujui',
-                'user' => $sender
-            ]));
+            if ($status == 'approved') {
+                WaBlast::send($sender->phone_number, $sender->name, $letter->title);
+                Notification::send($sender, new \App\Notifications\MailNotification((object) [
+                    'headers' => 'Disposisi Anda Telah Di Setujui',
+                    'user' => $sender
+                ]));
 
-            WaBlast::send($signed->phone_number, $signed->name, $letter->title);
-            Notification::send($signed, new \App\Notifications\MailNotification((object) [
-                'headers' => 'Disposisi Anda Telah Di Setujui',
-                'user' => $signed
-            ]));
-        }
+                WaBlast::send($signed->phone_number, $signed->name, $letter->title);
+                Notification::send($signed, new \App\Notifications\MailNotification((object) [
+                    'headers' => 'Disposisi Anda Telah Di Setujui',
+                    'user' => $signed
+                ]));
+            }
+        });
 
         return redirect()->back();
     }
