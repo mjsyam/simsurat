@@ -14,7 +14,7 @@
                         <label>
                             Role Akun
                         </label>
-                        <select class="form-select" name="role_id" aria-label="Default select example">
+                        <select class="form-select" name="user_id" aria-label="Default select example">
                             @foreach ($unassigned_users as $user)
                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                             @endforeach
@@ -33,7 +33,7 @@
                         <label>
                             Role Akun
                         </label>
-                        <select class="form-select" name="role_id" aria-label="Default select example">
+                        <select class="form-select" name="user_id" aria-label="Default select example">
                             @foreach ($assigned_users as $user)
                                 <option value="{{ $user->id }}">{{ $user->name }}</option>
                             @endforeach

@@ -109,27 +109,28 @@ class IdentifierController extends Controller
 
     public function assignUser(Request $request, $unit)
     {
-        $request->validate([
-            'role_id' => 'required|string',
-        ]);
+        // $request->validate([
+        //     'role_id' => 'required|string',
+        // ]);
+        
 
         UserIdentifier::create([
             'user_id' => $request->user_id,
-            'unit_id' => $unit,
+            'identifier_id' => $unit,
         ]);
 
-        return redirect()->route('admin.unit.detail', $unit);
+        return redirect()->route('admin.identifier.detail', $unit);
     }
 
     public function removeUser(Request $request, string $unit)
     {
-        $request->validate([
-            'role_id' => 'required|string',
-        ]);
+        // $request->validate([
+        //     'role_id' => 'required|string',
+        // ]);
 
-        $user_indentifier = UserIdentifier::where('user_id', $request->user_id)->where('unit_id', $unit)->first();
+        $user_indentifier = UserIdentifier::where('user_id', $request->user_id)->where('identifier_id', $unit)->first();
         $user_indentifier->delete();
 
-        return redirect()->route('admin.unit.detail', $unit);
+        return redirect()->route('admin.identifier.detail', $unit);
     }
 }
