@@ -71,6 +71,7 @@ class UserController extends Controller
             $request->validate([
                 'name' => 'required|string',
                 'number' => 'required|string',
+                'phone_number' => 'string|nullable', // 'phone_number' => 'required|string|unique:users,phone_number
                 'email' => 'required|string|unique:users,email',
                 'password' => 'required|string|min:8',
                 'status' => ['nullable', Rule::in($this->constants->user_status)],
@@ -89,6 +90,7 @@ class UserController extends Controller
                 "unit_id" => $request->unit_id,
                 "name" => $request->name,
                 "number" => $request->number,
+                "phone_number" => $request->phone_number,
                 "email" => $request->email,
                 "password" => bcrypt($data['password']),
                 "signature" => $request->signature,
@@ -129,6 +131,7 @@ class UserController extends Controller
             $request->validate([
                 'name' => 'required|string',
                 'number' => 'required|string',
+                "phone_number" => "nullable|string", // "phone_number" => "required|string|unique:users,phone_number,$user->id",
                 'email' => ['required', 'string', Rule::unique('users')->ignore($user->id)],
                 'status' => ['nullable', Rule::in($this->constants->user_status)],
             ]);
@@ -136,6 +139,7 @@ class UserController extends Controller
             $user->update([
                 "name" => $request->name,
                 "number" => $request->number,
+                "phone_number" => $request->phone_number,
                 "email" => $request->email,
                 "status" => $request->status
             ]);

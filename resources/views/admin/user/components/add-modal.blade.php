@@ -35,7 +35,8 @@
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                     <span class="required fw-bold">Status</span>
                                 </label>
-                                <select class="drop-data form-select form-select-solid" name="status" required style="width: 100% !important;">
+                                <select class="drop-data form-select form-select-solid" name="status" required
+                                    style="width: 100% !important;">
                                     @foreach ($userStatus as $option)
                                         <option value="{{ $option }}">{{ $option }}</option>
                                     @endforeach
@@ -46,7 +47,8 @@
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
                                     <span class="required fw-bold">identifier</span>
                                 </label>
-                                <select class="drop-data form-select form-select-solid border border" name="unit_id" required style="width: 100% !important;">
+                                <select class="drop-data form-select form-select-solid border border" name="unit_id"
+                                    required style="width: 100% !important;">
                                     @foreach ($unit as $unt)
                                         <option value="{{ $unt->id }}">{{ $unt->name }}</option>
                                     @endforeach
@@ -59,6 +61,15 @@
                                 </label>
                                 <input type="text" class="form-control form-control-solid" id="email"
                                     name="email">
+                            </div>
+
+                            {{-- No telepon --}}
+                            <div class="col-lg-12 mb-3">
+                                <label class="d-flex align-items-center fs-6 form-label mb-2">
+                                    <span class="required fw-bold">No Telepon</span>
+                                </label>
+                                <input type="text" class="form-control form-control-solid" id="phone_number"
+                                    name="phone_number">
                             </div>
 
                             <div class="col-lg-12 mb-3">
