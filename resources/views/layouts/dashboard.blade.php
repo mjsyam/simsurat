@@ -11,7 +11,7 @@
         <nav id="sidebar">
             <div class="sidebar-header">
                 <div class="mb-5">
-                    <img src="{{ url('/images/Lambang_ITK.png') }}" alt="itk" class="center">
+                    <img src="{{ url('/images/logo.png') }}" alt="itk" class="center">
                 </div>
                 <h6 style="font-weight:700;font-size:14px; text-align: center">Sistem Informasi</h6>
                 <h4 class="font-poppins head-sidebar" style="color:#0067B2; text-align: center">Surat ITK</h4>
