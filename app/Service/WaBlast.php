@@ -7,7 +7,7 @@ use GuzzleHttp\Psr7\Request;
 
 class WaBlast
 {
-    public static function send($phoneNumber, $sender)
+    public static function send($phoneNumber, $sender, $title)
     {
         $client = new Client();
 
@@ -15,6 +15,7 @@ class WaBlast
           'Authorization' => 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiYXBwbGljYXRpb24iOiI2NWE4OTYwYTBmYWJhYzAwMTkyZTY2MzciLCJpYXQiOjE1MTYyMzkwMjJ9.OiZekdcoFNPLmjtCgjTtfH_HQ6h8BjrxnxxwV_0jO8Bcc2jUyJclLHCh5DeY1XAOugrgPEdA1Gt_RU8Dy9CWzpFAWbJUMrjkievzT5FKSdGXBUpstIsQyTWNL00fhXB1Tss14gxSD2_vCguNZb-6qynbUg_93kg4TJdu7W3Lfa_fZLtWvwewTkqnDUPU6YwHGAsHIxDwM1M-DsWJnJy346lZlsAYJQKl_TTYHypCThbNvHBsBJQTsAfR4oE1O0qfZCyJIo7Hmj_hMgseVLSdlDzs3CSV9VlFnRsdRvIncANfc49yGIWizbVejsAwNiuSfdxh5ovp294EqjqjoPCM7w',
           'Content-Type' => 'application/json'
         ];
+
         $body = '{
           "phone_number": "'.$phoneNumber.'",
           "message": {
@@ -28,6 +29,10 @@ class WaBlast
                     {
                       "type": "text",
                       "text": "' . $sender . '"
+                    },
+                    {
+                        "type": "text",
+                        "text": "'. $title .'"
                     }
                   ]
                 }

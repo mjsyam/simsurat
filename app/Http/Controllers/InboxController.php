@@ -282,13 +282,13 @@ class InboxController extends Controller
         $signed = $letter->signed;
 
         if ($status == 'approved') {
-            WaBlast::send($sender->phone_number, $sender->name);
+            WaBlast::send($sender->phone_number, $sender->name, $letter->title);
             Notification::send($sender, new \App\Notifications\MailNotification((object) [
                 'headers' => 'Disposisi Anda Telah Di Setujui',
                 'user' => $sender
             ]));
 
-            WaBlast::send($signed->phone_number, $signed->name);
+            WaBlast::send($signed->phone_number, $signed->name, $letter->title);
             Notification::send($signed, new \App\Notifications\MailNotification((object) [
                 'headers' => 'Disposisi Anda Telah Di Setujui',
                 'user' => $signed
