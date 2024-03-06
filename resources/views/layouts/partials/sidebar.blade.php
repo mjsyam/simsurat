@@ -4,7 +4,7 @@
         $settingOpen = $route == 'admin.role.index' || $route == 'admin.identifier.index' || $route == 'admin.unit.index' || $route == 'admin.user.index';
     @endphp
     <li class="{{ $route = 'home' ? 'active' : '' }}">
-        <a href="{{ route('home') }}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+        <a href="{{ route('home') }}"><i class="fa-solid fa-chart-line mr-1"></i> Dashboard</a>
     </li>
 
     <li class="">
@@ -82,7 +82,7 @@
             <li class="{{ $route == 'admin.user.index' ? 'active' : '' }}">
                 {{-- <a class="btn sidebar-link {{ Str::startsWith($route, ADMIN . '.users') ? 'actived' : '' }}" href="{{ route(ADMIN . '.users.index') }}"> --}}
                 <a href="{{ route('admin.user.index') }}">
-                    <i class="fas fa-user-tie fa-fw mr-2"></i>
+                    <i class="fas fa-user-tie fa-fw mr-1"></i>
                     User
                 </a>
             </li>
@@ -111,8 +111,15 @@
     </li>
 
     <li>
+        <a href="{{ route('new.password') }}">
+            <i class="fa-solid fa-key mr-1"></i>
+            Ubah Password
+        </a>
+    </li>
+
+    <li>
         <a href="{{ asset('USER GUIDE - WEB SISUKMA.pdf') }}" target="_blank">
-            <i class="fas fa-book fa-fw mr-2"></i>
+            <i class="fas fa-book fa-fw"></i>
             User Guide
         </a>
     </li>

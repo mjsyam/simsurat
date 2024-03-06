@@ -39,6 +39,12 @@ class OutGoingLetter extends Controller
                 ->addColumn('action', function ($letter) {
                     return '<div class="btn-detail" id="btn-' . $letter->id . '">
                     <a href="' . asset("/storage/letter/$letter->file") . '" class="dropdown-item py-2"><i class="fa-solid fa-eye me-3"></i>Detail</a>
+                </div>
+                <div class="btn-detail">
+                    <a href="' . route("sent.receiver.show", ["id" => $letter->id]) . '" class="dropdown-item py-2">
+                        <i class="fa-solid fa-eye me-3"></i>
+                        Riwayat Status
+                    </a>
                 </div>';
                 })
                 ->addColumn('user', function ($letter) {

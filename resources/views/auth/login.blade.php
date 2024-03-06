@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -49,6 +50,13 @@
                     <p class="text-3xl mb-4">Selamat Datang di Sisukma ITK</p>
                     <p class="mb-4 font-semibold">Apabila anda mengalami kesulitan dalam login, silahkan hubungi Admin
                         SIKUSMA lewat email:eoffice@itk.ac.id</p>
+                    <p>
+                        Panduan penggunaan SISUKMA dapat diunduh melalui lini berikut:
+                    </p>
+                    <a href="{{ asset('USER GUIDE - WEB SISUKMA.pdf') }}" target="_blank" style="text-decoration: underline;">
+                        <i class="fas fa-book fa-fw"></i>
+                        User Guide
+                    </a>
                     {{-- <p class="mb-4">
                         Apabila anda belum memiliki akun, silahkan hubungi Admin SIKUSMA lewat email:eoffice@itk.ac.id untuk mendapatkan akun
                     </p> --}}
