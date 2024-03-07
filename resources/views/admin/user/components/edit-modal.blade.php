@@ -46,6 +46,19 @@
 
                             <div class="col-lg-12 mb-3">
                                 <label class="d-flex align-items-center fs-6 form-label mb-2">
+                                    <span class="required fw-bold">identifier</span>
+                                </label>
+                                <select class="drop-data form-select form-select-solid border border" name="unit_id"
+                                    required style="width: 100% !important;">
+                                    @foreach ($unit as $unt)
+                                        <option value="{{ $unt->id }}"
+                                            >{{ $unt->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-lg-12 mb-3">
+                                <label class="d-flex align-items-center fs-6 form-label mb-2">
                                     <span class="required fw-bold">Email</span>
                                 </label>
                                 <input type="text" class="form-control form-control-solid" id="email"

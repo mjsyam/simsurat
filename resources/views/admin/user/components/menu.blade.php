@@ -15,6 +15,8 @@
                 number: '{{ $query->number }}',
                 status: '{{ $query->status }}',
                 email: '{{ $query->email }}',
+                phone_number: '{{ $query->phone_number }}',
+                unit_id: '{{ $query->unit_id }}',
             })">
             <i class="fa-solid fa-pen  me-3"></i>
             Edit

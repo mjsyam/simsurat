@@ -45,12 +45,21 @@
             number,
             status,
             email,
+            phone_number,
+            unit_id
         }) => {
             $('#edit_user_modal_form [name="id"]').val(id);
             $('#edit_user_modal_form [name="name"]').val(name);
             $('#edit_user_modal_form [name="email"]').val(email);
             $('#edit_user_modal_form [name="status"]').val(status);
             $('#edit_user_modal_form [name="number"]').val(number);
+            $('#edit_user_modal_form [name="phone_number"]').val(phone_number);
+            $('#edit_user_modal_form [name="unit_id"] option').map(function() {
+                console.log(unit_id);
+                if ($(this).val() == unit_id) {
+                    $(this).attr('selected', 'selected');
+                }
+            });
         };
 
         const onDeleteUserModalOpen = ({
