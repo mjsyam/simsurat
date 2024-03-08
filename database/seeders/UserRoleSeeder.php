@@ -93,7 +93,7 @@ class UserRoleSeeder extends Seeder
             ],
             // 13
             [
-                'name' => "Ketua Jurusan Sains, Teknik Perkapalan, dan Kemaritiman",
+                'name' => "Ketua Jurusan Sains, Teknologi Pangan, dan Kemaritiman",
                 "parent_id" => "3",
             ],
             // 14
@@ -176,7 +176,7 @@ class UserRoleSeeder extends Seeder
             ],
             // 28
             [
-                'name' => "Koordinator Prodi Teknik Perkapalan",
+                'name' => "Koordinator Prodi Teknologi Pangan",
                 "parent_id" => "13",
             ],
             // 29
@@ -416,7 +416,7 @@ class UserRoleSeeder extends Seeder
             ],
             // 3
             [
-                'name' => "Jurusan Sains, Teknik Perkapalan, dan Kemaritiman",
+                'name' => "Jurusan Sains, Teknologi Pangan, dan Kemaritiman",
             ],
             // 4
             [
@@ -482,6 +482,39 @@ class UserRoleSeeder extends Seeder
             [
                 'name' => "UPT Teknologi Informasi dan Komunikasi",
             ],
+            // 20
+            [
+                'name' => "TPB",
+            ],
+            // 21
+            [
+                'name' => "Pusat Laboratorium Terpadu",
+            ],
+            // 22
+            [
+                'name' => "Pusat Pengembangan Strategis",
+
+            ],
+            // 23
+            [
+                'name' => "Pusat Pengembangan Pendidikan",
+            ],
+            // 24
+            [
+                'name' => "Pusat Pembinaan Kemahasiswaan dan Alumni",
+            ],
+            // 25
+            [
+                'name' => "LPPM",
+            ],
+            // 26
+            [
+                'name' => "Pusat E-Learning",
+            ],
+            // 27
+            [
+                'name' => "SPI",
+            ],
         ])->each(function ($unit) {
             Unit::create($unit);
         });
@@ -537,27 +570,27 @@ class UserRoleSeeder extends Seeder
                 'unit_id' => 2,
                 'role_id' => 26,
             ],
-            // 11 Ketua Jurusan Sains, Teknik Perkapalan, dan Kemaritiman - Jurusan Sains, Teknik Perkapalan, dan Kemaritiman
+            // 11 Ketua Jurusan Sains, Teknologi Pangan, dan Kemaritiman - Jurusan Sains, Teknologi Pangan, dan Kemaritiman
             [
                 'unit_id' => 3,
                 'role_id' => 13,
             ],
-            // 12 Koordinator Prodi Fisika - Jurusan Sains, Teknik Perkapalan, dan Kemaritiman
+            // 12 Koordinator Prodi Fisika - Jurusan Sains, Teknologi Pangan, dan Kemaritiman
             [
                 'unit_id' => 3,
                 'role_id' => 27,
             ],
-            // 13 Koordinator Prodi Teknik Perkapalan
+            // 13 Koordinator Prodi Teknologi Pangan
             [
                 'unit_id' => 3,
                 'role_id' => 28,
             ],
-            // 14 Koordinator Prodi Teknik Kelautan - Jurusan Sains, Teknik Perkapalan, dan Kemaritiman
+            // 14 Koordinator Prodi Teknik Kelautan - Jurusan Sains, Teknologi Pangan, dan Kemaritiman
             [
                 'unit_id' => 3,
                 'role_id' => 29,
             ],
-            // 15 Koordinator Prodi Teknologi Pangan - Jurusan Sains, Teknik Perkapalan, dan Kemaritiman
+            // 15 Koordinator Prodi Teknologi Pangan - Jurusan Sains, Teknologi Pangan, dan Kemaritiman
             [
                 'unit_id' => 3,
                 'role_id' => 30,
@@ -820,65 +853,6 @@ class UserRoleSeeder extends Seeder
         ])->each(function ($identifier) {
             Identifier::create($identifier);
         });
-
-        // 6285259367474
-        // 6285895165709
-        // 6287854257246
-        // 6282183755464
-        // 6281347565630
-        // 6281363123365
-        // 6282148788999
-        // 6282326200076
-        // 6285363220512
-        // 6285768333807
-        // 6285242800578
-        // 6285341112790
-        // 6285244317201
-        // 6285649312537
-        // 6281360650330
-        // 6281393177723
-        // 6285396942508
-        // 6281317666677
-        // 6287753372399
-        // 6285255605456
-        // 6281242608799
-        // 6285282814331
-        // 6282338264877
-        // 6282236719503
-        // 628991333570
-        // 6281238326787
-        // 6287877091800
-        // 6281234550536
-        // 6282130717329
-        // 6281217580491
-        // 6285250651451
-        // 628971554763
-        // 6281347087013
-        // 6282245439445
-        // 6281257004114
-        // 6281348494529
-        // 6289639003412
-
-
-
-        // 6285256166864
-
-        // 6282155237471
-        // 6281355844412
-
-        // 6282243137654
-        // 6282257451955
-        // 6281224661190
-        // 6281217183412
-
-
-        // 6281330686130
-        // 6281231352063
-        // 628990945520
-        // 6285387380122
-        // 6282393892599
-        // 6285725659195
-        // 6281258668666
 
         collect([
             [
@@ -1912,56 +1886,1524 @@ class UserRoleSeeder extends Seeder
             'identifier_id' => "25",
         ]);
 
-        User::create([
-            'name' => "Lasniah Wahyuni., ST",
-            'email' => "wahyuni.lasniah@staff.itk.ac.id",
-            'status' => "TENDIK",
-            'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            'remember_token' => Str::random(10),
-            'number' => "0",
-            "unit_id" => "2",
-            'signature' => "beta",
-            'avatar' => "beta",
-        ]);
+        // tendik
 
-        User::create([
-            'name' => "Selvian Handayani, S.Si",
-            'email' => "selvian@staff.itk.ac.id",
-            'status' => "TENDIK",
-            'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            'remember_token' => Str::random(10),
-            'number' => "0",
-            "unit_id" => "2",
-            'signature' => "beta",
-            'avatar' => "beta",
-        ]);
-
-        User::create([
-            'name' => "Supatmi, S.Si",
-            'email' => "supatmi@staff.itk.ac.id",
-            'status' => "TENDIK",
-            'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            'remember_token' => Str::random(10),
-            'number' => "0",
-            "unit_id" => "5",
-            'signature' => "beta",
-            'avatar' => "beta",
-        ]);
-
-        User::create([
-            'name' => "Anggina Frezky Harahap",
-            'email' => "anggina.frezky@staff.itk.ac.id",
-            'status' => "TENDIK",
-            'email_verified_at' => now(),
-            'password' => Hash::make('123456789'),
-            'remember_token' => Str::random(10),
-            'number' => "0",
-            "unit_id" => "8",
-            'signature' => "beta",
-            'avatar' => "beta",
-        ]);
+        collect([
+            // 67
+            [
+                'name' => 'Zainal Abidin',
+                'email' => 'zainal.abidn@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '9',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 68
+            [
+                'name' => 'Made Yuri Suryani',
+                'email' => 'yurisuryani@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '21',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 69
+            [
+                'name' => 'Yulia Ayu Mulyanti',
+                'email' => 'yulia.ayu@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '13',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 70
+            [
+                'name' => 'Yudhi Trianto',
+                'email' => 'yudhi.t@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '19',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 71
+            [
+                'name' => 'Yudha Prasetyo',
+                'email' => 'yudha.prasetyo@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '21',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 72
+            [
+                'name' => 'Yuda Prasetiawan Muhamad Jumansyah',
+                'email' => 'yuda.prasetiawan@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '9',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 73
+            [
+                'name' => 'Wendy Aditya Rahma',
+                'email' => 'wendy.aditya@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '10',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 74
+            [
+                'name' => 'Wahyuni Harliyanti',
+                'email' => 'wahyuni@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '21',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 75
+            [
+                'name' => 'Wahyuni Lasniah',
+                'email' => 'wahyuni.lasniah@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '2',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 76
+            [
+                'name' => 'Wahyu Eko Yuliawan',
+                'email' => 'wahyu.yulia@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '1',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 77
+            [
+                'name' => 'Vina Indah Samudra',
+                'email' => 'vina.samudra@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '9',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 78
+            [
+                'name' => 'Teo Lukmanul Hakim',
+                'email' => 'teo.lukmanul@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '21',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 79
+            [
+                'name' => 'Syarifah Nihlah Yahya',
+                'email' => 'syarifahny@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '21',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 80
+            [
+                'name' => 'Supatmi',
+                'email' => 'supatmi@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '5',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 81
+            [
+                'name' => 'Sindi Karina',
+                'email' => 'sindi.karina@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '11',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 82
+            [
+                'name' => 'Selvian Handayani',
+                'email' => 'selvian@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '2',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 83
+            [
+                'name' => 'Saputro Dewo Santoso',
+                'email' => 'saputro.dewo@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '10',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 84
+            [
+                'name' => 'Samuel Govery',
+                'email' => 'samuel.govery@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '11',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 85
+            [
+                'name' => 'Samsul Ryandi Maradika',
+                'email' => 'samsul.ryandi@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '22',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 86
+            [
+                'name' => 'Rizky Dwi Meilan Sari',
+                'email' => 'rizkymeilan@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '5',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 87
+            [
+                'name' => 'Rivan Hadinata Putra',
+                'email' => 'rivan.hadinata@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '19',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 88
+            [
+                'name' => 'Ridho Wibi Pradana',
+                'email' => 'ridho_wibi@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '21',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 89
+            [
+                'name' => 'Ria Pujima Violeta Hutabarat',
+                'email' => 'ria@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '12',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 90
+            [
+                'name' => 'Reza Nouryan Rachman',
+                'email' => 'reza.nouryan@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '23',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 91
+            [
+                'name' => 'Ramdan Indra Lesmana',
+                'email' => 'ramdan.indra.lesmana@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '15',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 92
+            [
+                'name' => 'Muhammad Izzah Ramadhan',
+                'email' => 'Ramadhan@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '19',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 93
+            [
+                'name' => 'Rachman Bawono Sidiq Saputra',
+                'email' => 'rachman.bawono@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '2',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 94
+            [
+                'name' => 'Putri Sekar Wilis',
+                'email' => 'putrisw@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '12',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 95
+            [
+                'name' => 'Prinda Alfira Khaliq Subagyo',
+                'email' => 'prindaaks@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '3',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 96
+            [
+                'name' => 'Prayogi Yanuar Sujali',
+                'email' => 'prayogi.yanuar@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '10',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 97
+            [
+                'name' => 'Muhammad Nurhidayatur Rozikin',
+                'email' => 'nurhidayatur.rozikin@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '10',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 98
+            [
+                'name' => 'Nur Aini Ayu Lestari',
+                'email' => 'nur.aini@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '20',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 99
+            [
+                'name' => 'Noor Ayu Wulan Apris',
+                'email' => 'noor.ayu@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '12',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 100
+            [
+                'name' => 'Nuur Zainila Romadani',
+                'email' => 'nila@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '17',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 101
+            [
+                'name' => 'Nanda Septiana',
+                'email' => 'nanda.septiana@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '20',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 102
+            [
+                'name' => 'Nanda Kartika',
+                'email' => 'nanda.kartika@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '14',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 103
+            [
+                'name' => 'Nada Shafira Ramadhani Yusrakh',
+                'email' => 'nada.shafira@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '4',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 104
+            [
+                'name' => 'Muhammad Yudha',
+                'email' => 'muhammad.yudha@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '19',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 105
+            [
+                'name' => 'Muhadi Reza Nanda',
+                'email' => 'muhadireza@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '21',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 106
+            [
+                'name' => 'Muh. Yunus',
+                'email' => 'muh.yunus@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '19',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 107
+            [
+                'name' => 'Mufida Fatma Ayuningtyas',
+                'email' => 'mufida.fatmaa@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '24',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 108
+            [
+                'name' => 'Mahmudhah Syarifatunnisa',
+                'email' => 'mahmudhah.syrf@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '9',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 109
+            [
+                'name' => 'Luh Appucha Pandu Liyanty',
+                'email' => 'luh.appucha@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '10',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 110
+            [
+                'name' => 'Hanif Kurniawan',
+                'email' => 'kurniawan.hanif@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '21',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 111
+            [
+                'name' => 'Muhammad Kharisma',
+                'email' => 'kharisma@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '25',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 112
+            [
+                'name' => 'Siti Kharirotun Nadiroh',
+                'email' => 'kharir@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '12',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 113
+            [
+                'name' => 'Kelen Maria Fransiska Koraag',
+                'email' => 'kelenmf525@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '18',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 114
+            [
+                'name' => 'Kamilina Rhodiyah LD',
+                'email' => 'kammilinald@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '25',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 115
+            [
+                'name' => 'Jian Adi Permana',
+                'email' => 'jian.adi@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '21',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 116
+            [
+                'name' => 'Wardatul Jannah',
+                'email' => 'jannah1112@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '9',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 117
+            [
+                'name' => 'Jakaria Aspan Latifah',
+                'email' => 'jakaria.aspanl@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '21',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 118
+            [
+                'name' => 'Istiqomah',
+                'email' => 'istiqomah@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '11',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 119
+            [
+                'name' => 'Istigfarin',
+                'email' => 'istigfarin@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '9',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 120
+            [
+                'name' => 'Ika Lestari',
+                'email' => 'ika.lestari@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '25',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 121
+            [
+                'name' => 'Ika Anggraini',
+                'email' => 'ika.anggraini@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '21',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 122
+            [
+                'name' => 'Hervita Triswidyaria',
+                'email' => 'hervita@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '3',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 123
+            [
+                'name' => 'Hermawan Juliansyah',
+                'email' => 'hermawan.juliansyah@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '22',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 124
+            [
+                'name' => 'Hendro Susilo',
+                'email' => 'hendroin@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '21',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 125
+            [
+                'name' => 'Hemy Octantia',
+                'email' => 'hemy.octantia@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '19',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 126
+            [
+                'name' => 'Rachman Hadi',
+                'email' => 'hadi.itkbalikpapan@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '15',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 127
+            [
+                'name' => 'Firman Ali Nuryanto',
+                'email' => 'firman.ali.n@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '21',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 128
+            [
+                'name' => 'Firda Ayu Melati',
+                'email' => 'firda.ayu@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '25',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 129
+            [
+                'name' => 'Finandy Ari Hardianto',
+                'email' => 'finandy.ari@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '19',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 130
+            [
+                'name' => 'Erlina Jatiningtyas',
+                'email' => 'erlina.jatiningtyas@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '21',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 131
+            [
+                'name' => 'Endang Novina',
+                'email' => 'endang.novina@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '2',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 132
+            [
+                'name' => 'Eko Nurahmat',
+                'email' => 'eko.nurahmat@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '26',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 133
+            [
+                'name' => 'Dwitami Sekarini',
+                'email' => 'dwitami.sekarini@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '14',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 134
+            [
+                'name' => 'Dwi Harti Ningrum',
+                'email' => 'dwi.ningrum@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '12',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 135
+            [
+                'name' => 'Dora Oktavia',
+                'email' => 'dora.oktavia@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '12',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 136
+            [
+                'name' => 'Dini Septiantoro',
+                'email' => 'diniseptiantoro@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '12',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 137
+            [
+                'name' => 'Didik Kiswoyo',
+                'email' => 'didikkiswoyo@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '18',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 138
+            [
+                'name' => 'Diah Mahmudah',
+                'email' => 'diah.mmdh@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '4',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 139
+            [
+                'name' => 'Devi Meilana Trisnawati',
+                'email' => 'devi.meilana@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '9',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 140
+            [
+                'name' => 'Desy Ridho Rahayu',
+                'email' => 'desy.ridho@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '9',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 141
+            [
+                'name' => 'Della Febriana',
+                'email' => 'della.febriana@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '24',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 142
+            [
+                'name' => 'Della Aswintha Asdedi',
+                'email' => 'della.aswintha@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '10',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 143
+            [
+                'name' => 'Danu Fajar Hendarto',
+                'email' => 'danu.fajar@student.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '19',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 144
+            [
+                'name' => 'Citra Ayu Afrieyana',
+                'email' => 'citra.afrieyana@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '9',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 145
+            [
+                'name' => 'Bima Catur Apriadi',
+                'email' => 'bima.catur@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '25',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 146
+            [
+                'name' => 'Bebby Putri Indahswari',
+                'email' => 'bebbyputrii@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '5',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 147
+            [
+                'name' => 'Barry',
+                'email' => 'barry.juan.siahaan@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '19',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 148
+            [
+                'name' => 'Muhammad Badawi',
+                'email' => 'badawi@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '15',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 149
+            [
+                'name' => 'Ayu Lia Pratama',
+                'email' => 'ayu.liapratama@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '15',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 150
+            [
+                'name' => 'Asnah',
+                'email' => 'asnah@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '10',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 151
+            [
+                'name' => 'Arum Prastiyo Putri',
+                'email' => 'arum.pputri@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '27',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 152
+            [
+                'name' => 'Ardian Saputra',
+                'email' => 'ardian.saputra@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '13',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 153
+            [
+                'name' => 'Aprizal Kamran',
+                'email' => 'aprizal.kamran@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '19',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 154
+            [
+                'name' => 'Annisa Mawaddah',
+                'email' => 'annisamawaddah@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '12',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 155
+            [
+                'name' => 'Annisa Dwi Juliastuti',
+                'email' => 'annisa.dwi@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '24',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 156
+            [
+                'name' => 'Anggina Frezky Harahap',
+                'email' => 'anggina.frezky@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '10',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 157
+            [
+                'name' => 'Anggi Ramadan',
+                'email' => 'anggi.ramadan@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '11',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 158
+            [
+                'name' => 'Andik Setiawan',
+                'email' => 'andik.setiawan@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '21',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 159
+            [
+                'name' => 'Amalia Ika Nur Fauziati Abdullah',
+                'email' => 'amalia.abdullah@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '1',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 160
+            [
+                'name' => 'Alviyah Rahmah',
+                'email' => 'alviyah.rahmah@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '4',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 161
+            [
+                'name' => 'Alvin Fauzi Aulia',
+                'email' => 'alvin.fauzi@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '19',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 162
+            [
+                'name' => 'Almah',
+                'email' => 'almah@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '4',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 163
+            [
+                'name' => 'Ali Usman',
+                'email' => 'ali.usman@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '15',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 164
+            [
+                'name' => 'Aldian Putri Dwiyhana',
+                'email' => 'aldianputri@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '3',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 165
+            [
+                'name' => 'Akhmad Fuad Widyakharisma',
+                'email' => 'akhmad.fuad@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '12',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 166
+            [
+                'name' => 'Muhammad Airy Ichlasul Rana',
+                'email' => 'airy.ichlasul@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '15',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 167
+            [
+                'name' => 'Ainunna Uswatun Hasanah',
+                'email' => 'ainunna@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '14',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 168
+            [
+                'name' => 'Ahmad Safri Syamsuddin',
+                'email' => 'ahmad.safri@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '11',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 169
+            [
+                'name' => 'Ahmad Arifin',
+                'email' => 'ahmad.arifin@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '15',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 170
+            [
+                'name' => 'Agus Triyanto',
+                'email' => 'agus.triyanto@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '15',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 171
+            [
+                'name' => 'Agus Setiawan',
+                'email' => 'agus.setiawan@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '5',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 172
+            [
+                'name' => 'Agus Nurtriartono',
+                'email' => 'agus.nurtriartono@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '21',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 173
+            [
+                'name' => 'Adhe Paramita',
+                'email' => 'adhe.paramita@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '21',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+            // 174
+            [
+                'name' => 'Achmad Fadhil Pratama',
+                'email' => 'achmad.fadhil@staff.itk.ac.id',
+                'status' => 'TENDIK',
+                'email_verified_at' => now(),
+                'password' => Hash::make('123456789'),
+                'remember_token' => Str::random(10),
+                'number' => '0',
+                'phone_number' => '',
+                'unit_id' => '19',
+                'signature' => 'beta',
+                'avatar' => 'beta',
+            ],
+ 
+        ])->each(function ($user) {
+            User::create($user);
+        });
     }
 }
